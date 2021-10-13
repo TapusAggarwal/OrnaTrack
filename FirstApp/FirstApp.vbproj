@@ -28,7 +28,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>false</MapFileExtensions>
-    <ApplicationRevision>64</ApplicationRevision>
+    <ApplicationRevision>66</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -102,7 +102,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Customer.vb" />
-    <Compile Include="CustomerExtensions.vb" />
     <Compile Include="Extras\ApplicationEvents.vb" />
     <Compile Include="DevUse\LoadingForm.Designer.vb">
       <DependentUpon>LoadingForm.vb</DependentUpon>
@@ -110,11 +109,53 @@
     <Compile Include="DevUse\LoadingForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormView\DgvForExistingPhNo.Designer.vb">
+      <DependentUpon>DgvForExistingPhNo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormView\DgvForExistingPhNo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormView\QrCodeView.Designer.vb">
+      <DependentUpon>QrCodeView.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormView\QrCodeView.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Kitty.vb" />
+    <Compile Include="Messenger\AddNewMessage.Designer.vb">
+      <DependentUpon>AddNewMessage.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Messenger\AddNewMessage.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Messenger\KittyRecievedReciept.Designer.vb">
+      <DependentUpon>KittyRecievedReciept.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Messenger\KittyRecievedReciept.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Messenger\MessageSender.Designer.vb">
+      <DependentUpon>MessageSender.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Messenger\MessageSender.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Messenger\Messenger.Designer.vb">
+      <DependentUpon>Messenger.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Messenger\Messenger.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="MyUserControls\ActiveKittyControl.Designer.vb">
+      <DependentUpon>ActiveKittyControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MyUserControls\ActiveKittyControl.vb">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="MyUserControls\KittyModeControl.Designer.vb">
       <DependentUpon>KittyModeControl.vb</DependentUpon>
@@ -196,6 +237,21 @@
     <EmbeddedResource Include="DevUse\LoadingForm.resx">
       <DependentUpon>LoadingForm.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Messenger\AddNewMessage.resx">
+      <DependentUpon>AddNewMessage.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Messenger\KittyRecievedReciept.resx">
+      <DependentUpon>KittyRecievedReciept.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Messenger\MessageSender.resx">
+      <DependentUpon>MessageSender.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Messenger\Messenger.resx">
+      <DependentUpon>Messenger.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyUserControls\ActiveKittyControl.resx">
+      <DependentUpon>ActiveKittyControl.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MyUserControls\KittyModeControl.resx">
       <DependentUpon>KittyModeControl.vb</DependentUpon>
     </EmbeddedResource>
@@ -265,12 +321,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DevUse\FirstApp_database.accdb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Resources\AccountInfo.jpg" />
     <Content Include="Resources\Bis_Logo.jpg" />
     <Content Include="Resources\Google_PhonePe.png" />
+    <None Include="Resources\phnIcon.png" />
     <Content Include="Resources\Splash-Screen.gif" />
     <None Include="Resources\LogoMata.jpg" />
     <None Include="Resources\Heder.jpg" />
@@ -290,6 +344,7 @@
     <Reference Include="ProBaseAdvancedTextBox">
       <HintPath>..\TextEditor\ProBaseAdvancedTextBox.dll</HintPath>
     </Reference>
+    <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -308,7 +363,7 @@
       <Version>5.15.3</Version>
     </PackageReference>
     <PackageReference Include="HtmlAgilityPack">
-      <Version>1.11.36</Version>
+      <Version>1.11.37</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>13.0.1</Version>

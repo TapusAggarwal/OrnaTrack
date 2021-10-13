@@ -59,6 +59,7 @@
 
     Public Event UP_keyPressed()
     Public Event DOWN_keyPressed()
+    Public Event LeftTextBox()
 
     Private Sub TB_KeyDownEvent(sender As TextBox, e As KeyEventArgs) Handles InitialTB.KeyDown
 
@@ -100,6 +101,7 @@
     End Sub
 
     Private Sub TB_Leave(sender As TextBox, e As EventArgs) Handles InitialTB.Leave
+        RaiseEvent LeftTextBox()
 
         If sender.TextLength > 0 AndAlso sender.TextLength <> 10 Then
             MessageBox.Show("PhNo Must Be 10 Digit Long This No Is " & sender.TextLength & " Digit Long.",
@@ -131,5 +133,24 @@
         Next
         ActiveControl.BackColor = Color.Goldenrod
     End Sub
+
+    Public Function CheckRegistration()
+        Dim Registered_Numbers As New List(Of String)
+        FlowLayoutPanel1.Invoke(Sub()
+                                    For Each TB As TextBox In FlowLayoutPanel1.Controls
+                                        Dim status As String = Isregistered(TB.Text.Trim)
+
+                                        If status = "true" Then
+                                            Registered_Numbers.Add(TB.Text.Trim)
+                                            TB.ForeColor = Color.Green
+                                        ElseIf status = "false" Then
+                                            TB.ForeColor = Color.Maroon
+                                        Else
+                                            Exit Sub
+                                        End If
+                                    Next
+                                End Sub)
+        Return Registered_Numbers
+    End Function
 
 End Class

@@ -309,7 +309,6 @@ Partial Class Frame
         '
         'RestartToolStripMenuItem
         '
-        Me.RestartToolStripMenuItem.CheckOnClick = True
         Me.RestartToolStripMenuItem.Name = "RestartToolStripMenuItem"
         Me.RestartToolStripMenuItem.Size = New System.Drawing.Size(311, 30)
         Me.RestartToolStripMenuItem.Text = "Restart Server"

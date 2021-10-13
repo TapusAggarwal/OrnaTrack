@@ -23,26 +23,53 @@ Partial Class CoustProfileUpdated
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Me.ProfileLabel = New System.Windows.Forms.Label()
-        Me.AccountBalanceLabel = New System.Windows.Forms.Label()
-        Me.UdhariCompletedLabel = New System.Windows.Forms.Label()
-        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(CoustProfileUpdated))
+        Me.IconButton2 = New FontAwesome.Sharp.IconButton()
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.ExistingPhNosButton = New FontAwesome.Sharp.IconButton()
+        Me.CheckRegistrationButton = New FontAwesome.Sharp.IconButton()
+        Me.ConnectKittys = New FontAwesome.Sharp.IconButton()
+        Me.PanelTitleBar = New System.Windows.Forms.Panel()
+        Me.KittyNoLabel = New System.Windows.Forms.Label()
+        Me.NotesLabel = New System.Windows.Forms.Label()
+        Me.CustomerIdTB = New System.Windows.Forms.TextBox()
+        Me.NotesTB = New System.Windows.Forms.TextBox()
+        Me.SaveCoustmerButton = New FontAwesome.Sharp.IconButton()
+        Me.DeleteCoustmerButton = New FontAwesome.Sharp.IconButton()
+        Me.ButtonPanel = New System.Windows.Forms.Panel()
         Me.GetImageFromWatsappToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GetImageFromDeviceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RemoveImageToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ButtonPanel = New System.Windows.Forms.Panel()
-        Me.DeleteCoustmerButton = New FontAwesome.Sharp.IconButton()
-        Me.SaveCoustmerButton = New FontAwesome.Sharp.IconButton()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ProfileLabel = New System.Windows.Forms.Label()
+        Me.ImageBoxPanel = New System.Windows.Forms.Panel()
+        Me.ImageBox = New System.Windows.Forms.PictureBox()
+        Me.ProfilePanel = New System.Windows.Forms.Panel()
+        Me.PhoneNoTag1 = New FirstApp.PhoneNoTag()
+        Me.FemaleRB = New System.Windows.Forms.RadioButton()
+        Me.ProfessionCB = New System.Windows.Forms.ComboBox()
         Me.MaleRB = New System.Windows.Forms.RadioButton()
+        Me.IconButton1 = New FontAwesome.Sharp.IconButton()
+        Me.NameLabel = New System.Windows.Forms.Label()
+        Me.AddressTB = New System.Windows.Forms.TextBox()
+        Me.RegionCB = New System.Windows.Forms.ComboBox()
         Me.SirNameLabel = New System.Windows.Forms.Label()
-        Me.KittyAvailedLabel = New System.Windows.Forms.Label()
+        Me.PhoneNoLabel = New System.Windows.Forms.Label()
+        Me.NameTB = New System.Windows.Forms.TextBox()
+        Me.SirNameTB = New System.Windows.Forms.TextBox()
+        Me.ProfessionLabel = New System.Windows.Forms.Label()
+        Me.RegionLabel = New System.Windows.Forms.Label()
+        Me.MarriedCheckBox = New System.Windows.Forms.CheckBox()
+        Me.AddressLabel = New System.Windows.Forms.Label()
+        Me.LedgerLabel = New System.Windows.Forms.Label()
         Me.LedgerPanel = New System.Windows.Forms.Panel()
-        Me.ConnectKittys = New FontAwesome.Sharp.IconButton()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.UdhariDetailsButton = New FontAwesome.Sharp.IconButton()
         Me.AddUdhariButton = New FontAwesome.Sharp.IconButton()
         Me.ProductDetailsButton = New FontAwesome.Sharp.IconButton()
+        Me.AccountBalanceLabel = New System.Windows.Forms.Label()
         Me.AddBalanceButton = New FontAwesome.Sharp.IconButton()
         Me.AccountBalanceTB = New System.Windows.Forms.TextBox()
         Me.HistoryButton = New FontAwesome.Sharp.IconButton()
@@ -50,8 +77,10 @@ Partial Class CoustProfileUpdated
         Me.UdhariAmountTB = New System.Windows.Forms.TextBox()
         Me.UdhariCompleted = New System.Windows.Forms.Label()
         Me.KittyCompletedLabel = New System.Windows.Forms.Label()
+        Me.UdhariCompletedLabel = New System.Windows.Forms.Label()
         Me.KittysCompleted = New System.Windows.Forms.Label()
         Me.AddPurchaseButton = New FontAwesome.Sharp.IconButton()
+        Me.KittyAvailedLabel = New System.Windows.Forms.Label()
         Me.AddKittyButton = New FontAwesome.Sharp.IconButton()
         Me.KittysAvailed = New System.Windows.Forms.Label()
         Me.TillDateAmountTB = New System.Windows.Forms.TextBox()
@@ -59,140 +88,167 @@ Partial Class CoustProfileUpdated
         Me.TillDateAmountLabel = New System.Windows.Forms.Label()
         Me.ProductsCompleted = New System.Windows.Forms.Label()
         Me.KittyDetailsButton = New FontAwesome.Sharp.IconButton()
-        Me.ImageBoxPanel = New System.Windows.Forms.Panel()
-        Me.ImageBox = New System.Windows.Forms.PictureBox()
-        Me.FemaleRB = New System.Windows.Forms.RadioButton()
-        Me.ProfessionCB = New System.Windows.Forms.ComboBox()
-        Me.AddressLabel = New System.Windows.Forms.Label()
-        Me.NameLabel = New System.Windows.Forms.Label()
-        Me.MarriedCheckBox = New System.Windows.Forms.CheckBox()
-        Me.PhoneNoLabel = New System.Windows.Forms.Label()
-        Me.AddressTB = New System.Windows.Forms.TextBox()
-        Me.RegionCB = New System.Windows.Forms.ComboBox()
-        Me.NameTB = New System.Windows.Forms.TextBox()
-        Me.ReadyMadeCheckBox = New System.Windows.Forms.CheckBox()
-        Me.UniformCheckBox = New System.Windows.Forms.CheckBox()
-        Me.NotesTB = New System.Windows.Forms.TextBox()
-        Me.SirNameTB = New System.Windows.Forms.TextBox()
-        Me.CustomerIdTB = New System.Windows.Forms.TextBox()
-        Me.ProfessionLabel = New System.Windows.Forms.Label()
-        Me.LedgerLabel = New System.Windows.Forms.Label()
-        Me.JwelleryCheckBox = New System.Windows.Forms.CheckBox()
-        Me.NotesLabel = New System.Windows.Forms.Label()
-        Me.ProfilePanel = New System.Windows.Forms.Panel()
-        Me.PhoneNoTag1 = New FirstApp.PhoneNoTag()
-        Me.IconButton3 = New FontAwesome.Sharp.IconButton()
-        Me.IconButton1 = New FontAwesome.Sharp.IconButton()
-        Me.RegionLabel = New System.Windows.Forms.Label()
-        Me.KittyNoLabel = New System.Windows.Forms.Label()
-        Me.PanelTitleBar = New System.Windows.Forms.Panel()
-        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.ExistingPhNosButton = New FontAwesome.Sharp.IconButton()
-        Me.IconButton2 = New FontAwesome.Sharp.IconButton()
-        Me.ContextMenuStrip1.SuspendLayout()
         Me.ButtonPanel.SuspendLayout()
-        Me.LedgerPanel.SuspendLayout()
+        Me.ContextMenuStrip1.SuspendLayout()
         Me.ImageBoxPanel.SuspendLayout()
         CType(Me.ImageBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ProfilePanel.SuspendLayout()
+        Me.LedgerPanel.SuspendLayout()
         Me.SuspendLayout()
         '
-        'ProfileLabel
+        'IconButton2
         '
-        Me.ProfileLabel.AutoSize = True
-        Me.ProfileLabel.BackColor = System.Drawing.Color.Transparent
-        Me.ProfileLabel.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ProfileLabel.ForeColor = System.Drawing.SystemColors.ActiveCaption
-        Me.ProfileLabel.Location = New System.Drawing.Point(616, 108)
-        Me.ProfileLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.ProfileLabel.Name = "ProfileLabel"
-        Me.ProfileLabel.Size = New System.Drawing.Size(86, 30)
-        Me.ProfileLabel.TabIndex = 255
-        Me.ProfileLabel.Text = "Profile"
+        Me.IconButton2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.IconButton2.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(70, Byte), Integer))
+        Me.IconButton2.FlatAppearance.BorderSize = 0
+        Me.IconButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.IconButton2.Font = New System.Drawing.Font("Cambria", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.IconButton2.ForeColor = System.Drawing.Color.MediumPurple
+        Me.IconButton2.IconChar = FontAwesome.Sharp.IconChar.ArrowCircleRight
+        Me.IconButton2.IconColor = System.Drawing.Color.MediumOrchid
+        Me.IconButton2.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.IconButton2.IconSize = 38
+        Me.IconButton2.Location = New System.Drawing.Point(30, 231)
+        Me.IconButton2.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.IconButton2.Name = "IconButton2"
+        Me.IconButton2.Size = New System.Drawing.Size(206, 79)
+        Me.IconButton2.TabIndex = 259
+        Me.IconButton2.Text = "KittyMode"
+        Me.IconButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
+        Me.IconButton2.UseVisualStyleBackColor = False
         '
-        'AccountBalanceLabel
+        'ExistingPhNosButton
         '
-        Me.AccountBalanceLabel.AutoSize = True
-        Me.AccountBalanceLabel.BackColor = System.Drawing.Color.Transparent
-        Me.AccountBalanceLabel.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.AccountBalanceLabel.ForeColor = System.Drawing.SystemColors.ActiveCaption
-        Me.AccountBalanceLabel.Location = New System.Drawing.Point(681, 309)
-        Me.AccountBalanceLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.AccountBalanceLabel.Name = "AccountBalanceLabel"
-        Me.AccountBalanceLabel.Size = New System.Drawing.Size(222, 30)
-        Me.AccountBalanceLabel.TabIndex = 222
-        Me.AccountBalanceLabel.Text = "Account Balance"
+        Me.ExistingPhNosButton.BackColor = System.Drawing.Color.Transparent
+        Me.ExistingPhNosButton.FlatAppearance.BorderSize = 0
+        Me.ExistingPhNosButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.ExistingPhNosButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.ExistingPhNosButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ExistingPhNosButton.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ExistingPhNosButton.ForeColor = System.Drawing.Color.Transparent
+        Me.ExistingPhNosButton.IconChar = FontAwesome.Sharp.IconChar.PersonBooth
+        Me.ExistingPhNosButton.IconColor = System.Drawing.Color.Goldenrod
+        Me.ExistingPhNosButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.ExistingPhNosButton.IconSize = 40
+        Me.ExistingPhNosButton.Location = New System.Drawing.Point(1451, 218)
+        Me.ExistingPhNosButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.ExistingPhNosButton.Name = "ExistingPhNosButton"
+        Me.ExistingPhNosButton.Size = New System.Drawing.Size(34, 38)
+        Me.ExistingPhNosButton.TabIndex = 267
+        Me.ExistingPhNosButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.ToolTip1.SetToolTip(Me.ExistingPhNosButton, "All The Customers Connected With Same PhNos As This One.")
+        Me.ExistingPhNosButton.UseVisualStyleBackColor = False
+        Me.ExistingPhNosButton.Visible = False
         '
-        'UdhariCompletedLabel
+        'CheckRegistrationButton
         '
-        Me.UdhariCompletedLabel.AutoSize = True
-        Me.UdhariCompletedLabel.BackColor = System.Drawing.Color.Transparent
-        Me.UdhariCompletedLabel.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.UdhariCompletedLabel.ForeColor = System.Drawing.SystemColors.ActiveCaption
-        Me.UdhariCompletedLabel.Location = New System.Drawing.Point(56, 87)
-        Me.UdhariCompletedLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.UdhariCompletedLabel.Name = "UdhariCompletedLabel"
-        Me.UdhariCompletedLabel.Size = New System.Drawing.Size(233, 28)
-        Me.UdhariCompletedLabel.TabIndex = 237
-        Me.UdhariCompletedLabel.Text = "Udhari Completed:"
+        Me.CheckRegistrationButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.CheckRegistrationButton.BackColor = System.Drawing.Color.Transparent
+        Me.CheckRegistrationButton.FlatAppearance.BorderSize = 0
+        Me.CheckRegistrationButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(60, Byte), Integer))
+        Me.CheckRegistrationButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(90, Byte), Integer))
+        Me.CheckRegistrationButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.CheckRegistrationButton.Font = New System.Drawing.Font("Century Schoolbook", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CheckRegistrationButton.ForeColor = System.Drawing.Color.MediumPurple
+        Me.CheckRegistrationButton.IconChar = FontAwesome.Sharp.IconChar.ShieldAlt
+        Me.CheckRegistrationButton.IconColor = System.Drawing.Color.MediumPurple
+        Me.CheckRegistrationButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.CheckRegistrationButton.IconSize = 25
+        Me.CheckRegistrationButton.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.CheckRegistrationButton.Location = New System.Drawing.Point(807, 95)
+        Me.CheckRegistrationButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.CheckRegistrationButton.Name = "CheckRegistrationButton"
+        Me.CheckRegistrationButton.Size = New System.Drawing.Size(28, 35)
+        Me.CheckRegistrationButton.TabIndex = 248
+        Me.CheckRegistrationButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
+        Me.ToolTip1.SetToolTip(Me.CheckRegistrationButton, "Checks If A Number Is Registered With Whatsapp")
+        Me.CheckRegistrationButton.UseVisualStyleBackColor = False
         '
-        'ContextMenuStrip1
+        'ConnectKittys
         '
-        Me.ContextMenuStrip1.ImageScalingSize = New System.Drawing.Size(24, 24)
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GetImageFromWatsappToolStripMenuItem, Me.GetImageFromDeviceToolStripMenuItem, Me.RemoveImageToolStripMenuItem})
-        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(289, 100)
+        Me.ConnectKittys.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.ConnectKittys.BackColor = System.Drawing.Color.Transparent
+        Me.ConnectKittys.FlatAppearance.BorderSize = 0
+        Me.ConnectKittys.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(55, Byte), Integer), CType(CType(90, Byte), Integer))
+        Me.ConnectKittys.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(90, Byte), Integer))
+        Me.ConnectKittys.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ConnectKittys.Font = New System.Drawing.Font("Century Schoolbook", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ConnectKittys.ForeColor = System.Drawing.Color.MediumPurple
+        Me.ConnectKittys.IconChar = FontAwesome.Sharp.IconChar.PeopleArrows
+        Me.ConnectKittys.IconColor = System.Drawing.Color.MediumPurple
+        Me.ConnectKittys.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.ConnectKittys.IconSize = 45
+        Me.ConnectKittys.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.ConnectKittys.Location = New System.Drawing.Point(721, 19)
+        Me.ConnectKittys.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.ConnectKittys.Name = "ConnectKittys"
+        Me.ConnectKittys.Size = New System.Drawing.Size(43, 46)
+        Me.ConnectKittys.TabIndex = 247
+        Me.ConnectKittys.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
+        Me.ToolTip1.SetToolTip(Me.ConnectKittys, "Here You Can Connect Kitties With This Customer")
+        Me.ConnectKittys.UseVisualStyleBackColor = False
         '
-        'GetImageFromWatsappToolStripMenuItem
+        'PanelTitleBar
         '
-        Me.GetImageFromWatsappToolStripMenuItem.Name = "GetImageFromWatsappToolStripMenuItem"
-        Me.GetImageFromWatsappToolStripMenuItem.Size = New System.Drawing.Size(288, 32)
-        Me.GetImageFromWatsappToolStripMenuItem.Text = "Get Image From Watsapp"
+        Me.PanelTitleBar.BackColor = System.Drawing.Color.FromArgb(CType(CType(24, Byte), Integer), CType(CType(24, Byte), Integer), CType(CType(60, Byte), Integer))
+        Me.PanelTitleBar.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelTitleBar.Location = New System.Drawing.Point(0, 0)
+        Me.PanelTitleBar.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.PanelTitleBar.Name = "PanelTitleBar"
+        Me.PanelTitleBar.Size = New System.Drawing.Size(1924, 63)
+        Me.PanelTitleBar.TabIndex = 262
+        Me.PanelTitleBar.Visible = False
         '
-        'GetImageFromDeviceToolStripMenuItem
+        'KittyNoLabel
         '
-        Me.GetImageFromDeviceToolStripMenuItem.Name = "GetImageFromDeviceToolStripMenuItem"
-        Me.GetImageFromDeviceToolStripMenuItem.Size = New System.Drawing.Size(288, 32)
-        Me.GetImageFromDeviceToolStripMenuItem.Text = "Get Image From Device"
+        Me.KittyNoLabel.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.KittyNoLabel.AutoSize = True
+        Me.KittyNoLabel.BackColor = System.Drawing.Color.DarkGoldenrod
+        Me.KittyNoLabel.Font = New System.Drawing.Font("Consolas", 18.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.KittyNoLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.KittyNoLabel.Location = New System.Drawing.Point(780, 70)
+        Me.KittyNoLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.KittyNoLabel.Name = "KittyNoLabel"
+        Me.KittyNoLabel.Size = New System.Drawing.Size(0, 42)
+        Me.KittyNoLabel.TabIndex = 261
+        Me.KittyNoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.KittyNoLabel.Visible = False
         '
-        'RemoveImageToolStripMenuItem
+        'NotesLabel
         '
-        Me.RemoveImageToolStripMenuItem.Name = "RemoveImageToolStripMenuItem"
-        Me.RemoveImageToolStripMenuItem.Size = New System.Drawing.Size(288, 32)
-        Me.RemoveImageToolStripMenuItem.Text = "Remove Image"
-        Me.RemoveImageToolStripMenuItem.Visible = False
+        Me.NotesLabel.AutoSize = True
+        Me.NotesLabel.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.NotesLabel.ForeColor = System.Drawing.SystemColors.ActiveCaption
+        Me.NotesLabel.Location = New System.Drawing.Point(1567, 337)
+        Me.NotesLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.NotesLabel.Name = "NotesLabel"
+        Me.NotesLabel.Size = New System.Drawing.Size(247, 30)
+        Me.NotesLabel.TabIndex = 254
+        Me.NotesLabel.Text = "Notes On Coustmer"
         '
-        'ButtonPanel
+        'CustomerIdTB
         '
-        Me.ButtonPanel.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.ButtonPanel.Controls.Add(Me.DeleteCoustmerButton)
-        Me.ButtonPanel.Controls.Add(Me.SaveCoustmerButton)
-        Me.ButtonPanel.Location = New System.Drawing.Point(1534, 116)
-        Me.ButtonPanel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.ButtonPanel.Name = "ButtonPanel"
-        Me.ButtonPanel.Size = New System.Drawing.Size(392, 182)
-        Me.ButtonPanel.TabIndex = 252
+        Me.CustomerIdTB.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CustomerIdTB.Location = New System.Drawing.Point(13, 87)
+        Me.CustomerIdTB.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.CustomerIdTB.Name = "CustomerIdTB"
+        Me.CustomerIdTB.ReadOnly = True
+        Me.CustomerIdTB.Size = New System.Drawing.Size(105, 35)
+        Me.CustomerIdTB.TabIndex = 256
+        Me.CustomerIdTB.Tag = ""
+        Me.CustomerIdTB.Visible = False
         '
-        'DeleteCoustmerButton
+        'NotesTB
         '
-        Me.DeleteCoustmerButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.DeleteCoustmerButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(70, Byte), Integer))
-        Me.DeleteCoustmerButton.FlatAppearance.BorderSize = 0
-        Me.DeleteCoustmerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.DeleteCoustmerButton.Font = New System.Drawing.Font("Cambria", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DeleteCoustmerButton.ForeColor = System.Drawing.Color.MediumPurple
-        Me.DeleteCoustmerButton.IconChar = FontAwesome.Sharp.IconChar.Eraser
-        Me.DeleteCoustmerButton.IconColor = System.Drawing.Color.Black
-        Me.DeleteCoustmerButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.DeleteCoustmerButton.Location = New System.Drawing.Point(0, 93)
-        Me.DeleteCoustmerButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.DeleteCoustmerButton.Name = "DeleteCoustmerButton"
-        Me.DeleteCoustmerButton.Padding = New System.Windows.Forms.Padding(15, 0, 30, 0)
-        Me.DeleteCoustmerButton.Size = New System.Drawing.Size(394, 76)
-        Me.DeleteCoustmerButton.TabIndex = 206
-        Me.DeleteCoustmerButton.Text = "Remove Coustmer"
-        Me.DeleteCoustmerButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.DeleteCoustmerButton.UseVisualStyleBackColor = False
+        Me.NotesTB.BackColor = System.Drawing.Color.Lavender
+        Me.NotesTB.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.NotesTB.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.NotesTB.Location = New System.Drawing.Point(1509, 372)
+        Me.NotesTB.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.NotesTB.Multiline = True
+        Me.NotesTB.Name = "NotesTB"
+        Me.NotesTB.Size = New System.Drawing.Size(356, 582)
+        Me.NotesTB.TabIndex = 253
         '
         'SaveCoustmerButton
         '
@@ -216,18 +272,242 @@ Partial Class CoustProfileUpdated
         Me.SaveCoustmerButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.SaveCoustmerButton.UseVisualStyleBackColor = False
         '
+        'DeleteCoustmerButton
+        '
+        Me.DeleteCoustmerButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.DeleteCoustmerButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(70, Byte), Integer))
+        Me.DeleteCoustmerButton.FlatAppearance.BorderSize = 0
+        Me.DeleteCoustmerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.DeleteCoustmerButton.Font = New System.Drawing.Font("Cambria", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DeleteCoustmerButton.ForeColor = System.Drawing.Color.MediumPurple
+        Me.DeleteCoustmerButton.IconChar = FontAwesome.Sharp.IconChar.Eraser
+        Me.DeleteCoustmerButton.IconColor = System.Drawing.Color.Black
+        Me.DeleteCoustmerButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.DeleteCoustmerButton.Location = New System.Drawing.Point(0, 93)
+        Me.DeleteCoustmerButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.DeleteCoustmerButton.Name = "DeleteCoustmerButton"
+        Me.DeleteCoustmerButton.Padding = New System.Windows.Forms.Padding(15, 0, 30, 0)
+        Me.DeleteCoustmerButton.Size = New System.Drawing.Size(394, 76)
+        Me.DeleteCoustmerButton.TabIndex = 206
+        Me.DeleteCoustmerButton.Text = "Remove Coustmer"
+        Me.DeleteCoustmerButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.DeleteCoustmerButton.UseVisualStyleBackColor = False
+        '
+        'ButtonPanel
+        '
+        Me.ButtonPanel.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.ButtonPanel.Controls.Add(Me.DeleteCoustmerButton)
+        Me.ButtonPanel.Controls.Add(Me.SaveCoustmerButton)
+        Me.ButtonPanel.Location = New System.Drawing.Point(1534, 116)
+        Me.ButtonPanel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.ButtonPanel.Name = "ButtonPanel"
+        Me.ButtonPanel.Size = New System.Drawing.Size(392, 182)
+        Me.ButtonPanel.TabIndex = 252
+        '
+        'GetImageFromWatsappToolStripMenuItem
+        '
+        Me.GetImageFromWatsappToolStripMenuItem.Name = "GetImageFromWatsappToolStripMenuItem"
+        Me.GetImageFromWatsappToolStripMenuItem.Size = New System.Drawing.Size(288, 32)
+        Me.GetImageFromWatsappToolStripMenuItem.Text = "Get Image From Watsapp"
+        '
+        'GetImageFromDeviceToolStripMenuItem
+        '
+        Me.GetImageFromDeviceToolStripMenuItem.Name = "GetImageFromDeviceToolStripMenuItem"
+        Me.GetImageFromDeviceToolStripMenuItem.Size = New System.Drawing.Size(288, 32)
+        Me.GetImageFromDeviceToolStripMenuItem.Text = "Get Image From Device"
+        '
+        'RemoveImageToolStripMenuItem
+        '
+        Me.RemoveImageToolStripMenuItem.Name = "RemoveImageToolStripMenuItem"
+        Me.RemoveImageToolStripMenuItem.Size = New System.Drawing.Size(288, 32)
+        Me.RemoveImageToolStripMenuItem.Text = "Remove Image"
+        Me.RemoveImageToolStripMenuItem.Visible = False
+        '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.ImageScalingSize = New System.Drawing.Size(24, 24)
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GetImageFromWatsappToolStripMenuItem, Me.GetImageFromDeviceToolStripMenuItem, Me.RemoveImageToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(289, 100)
+        '
+        'ProfileLabel
+        '
+        Me.ProfileLabel.AutoSize = True
+        Me.ProfileLabel.BackColor = System.Drawing.Color.Transparent
+        Me.ProfileLabel.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ProfileLabel.ForeColor = System.Drawing.SystemColors.ActiveCaption
+        Me.ProfileLabel.Location = New System.Drawing.Point(616, 108)
+        Me.ProfileLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.ProfileLabel.Name = "ProfileLabel"
+        Me.ProfileLabel.Size = New System.Drawing.Size(86, 30)
+        Me.ProfileLabel.TabIndex = 265
+        Me.ProfileLabel.Text = "Profile"
+        '
+        'ImageBoxPanel
+        '
+        Me.ImageBoxPanel.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(70, Byte), Integer))
+        Me.ImageBoxPanel.Controls.Add(Me.ImageBox)
+        Me.ImageBoxPanel.Location = New System.Drawing.Point(275, 127)
+        Me.ImageBoxPanel.Name = "ImageBoxPanel"
+        Me.ImageBoxPanel.Size = New System.Drawing.Size(314, 359)
+        Me.ImageBoxPanel.TabIndex = 266
+        '
+        'ImageBox
+        '
+        Me.ImageBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.ImageBox.ContextMenuStrip = Me.ContextMenuStrip1
+        Me.ImageBox.ErrorImage = Nothing
+        Me.ImageBox.Image = CType(resources.GetObject("ImageBox.Image"), System.Drawing.Image)
+        Me.ImageBox.InitialImage = Nothing
+        Me.ImageBox.Location = New System.Drawing.Point(31, 43)
+        Me.ImageBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.ImageBox.Name = "ImageBox"
+        Me.ImageBox.Size = New System.Drawing.Size(253, 273)
+        Me.ImageBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.ImageBox.TabIndex = 4
+        Me.ImageBox.TabStop = False
+        '
+        'ProfilePanel
+        '
+        Me.ProfilePanel.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(70, Byte), Integer))
+        Me.ProfilePanel.Controls.Add(Me.PhoneNoTag1)
+        Me.ProfilePanel.Controls.Add(Me.FemaleRB)
+        Me.ProfilePanel.Controls.Add(Me.ProfessionCB)
+        Me.ProfilePanel.Controls.Add(Me.MaleRB)
+        Me.ProfilePanel.Controls.Add(Me.CheckRegistrationButton)
+        Me.ProfilePanel.Controls.Add(Me.IconButton1)
+        Me.ProfilePanel.Controls.Add(Me.NameLabel)
+        Me.ProfilePanel.Controls.Add(Me.AddressTB)
+        Me.ProfilePanel.Controls.Add(Me.RegionCB)
+        Me.ProfilePanel.Controls.Add(Me.SirNameLabel)
+        Me.ProfilePanel.Controls.Add(Me.PhoneNoLabel)
+        Me.ProfilePanel.Controls.Add(Me.NameTB)
+        Me.ProfilePanel.Controls.Add(Me.SirNameTB)
+        Me.ProfilePanel.Controls.Add(Me.ProfessionLabel)
+        Me.ProfilePanel.Controls.Add(Me.RegionLabel)
+        Me.ProfilePanel.Controls.Add(Me.MarriedCheckBox)
+        Me.ProfilePanel.Controls.Add(Me.AddressLabel)
+        Me.ProfilePanel.Location = New System.Drawing.Point(605, 127)
+        Me.ProfilePanel.Name = "ProfilePanel"
+        Me.ProfilePanel.Size = New System.Drawing.Size(839, 359)
+        Me.ProfilePanel.TabIndex = 5
+        '
+        'PhoneNoTag1
+        '
+        Me.PhoneNoTag1.BackColor = System.Drawing.Color.MediumSlateBlue
+        Me.PhoneNoTag1.Location = New System.Drawing.Point(164, 82)
+        Me.PhoneNoTag1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.PhoneNoTag1.Name = "PhoneNoTag1"
+        Me.PhoneNoTag1.Size = New System.Drawing.Size(642, 52)
+        Me.PhoneNoTag1.TabIndex = 2
+        Me.PhoneNoTag1.TagData = ""
+        '
+        'FemaleRB
+        '
+        Me.FemaleRB.AutoSize = True
+        Me.FemaleRB.Checked = True
+        Me.FemaleRB.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.FemaleRB.ForeColor = System.Drawing.SystemColors.ActiveCaption
+        Me.FemaleRB.Location = New System.Drawing.Point(505, 300)
+        Me.FemaleRB.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.FemaleRB.Name = "FemaleRB"
+        Me.FemaleRB.Size = New System.Drawing.Size(128, 34)
+        Me.FemaleRB.TabIndex = 201
+        Me.FemaleRB.TabStop = True
+        Me.FemaleRB.Text = "Female"
+        Me.FemaleRB.UseVisualStyleBackColor = True
+        '
+        'ProfessionCB
+        '
+        Me.ProfessionCB.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.ProfessionCB.DropDownHeight = 200
+        Me.ProfessionCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ProfessionCB.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ProfessionCB.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ProfessionCB.FormattingEnabled = True
+        Me.ProfessionCB.IntegralHeight = False
+        Me.ProfessionCB.Location = New System.Drawing.Point(165, 166)
+        Me.ProfessionCB.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.ProfessionCB.MaxDropDownItems = 20
+        Me.ProfessionCB.Name = "ProfessionCB"
+        Me.ProfessionCB.Size = New System.Drawing.Size(229, 34)
+        Me.ProfessionCB.TabIndex = 3
+        Me.ProfessionCB.Tag = ""
+        '
         'MaleRB
         '
         Me.MaleRB.AutoSize = True
         Me.MaleRB.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.MaleRB.ForeColor = System.Drawing.SystemColors.ActiveCaption
-        Me.MaleRB.Location = New System.Drawing.Point(50, 271)
+        Me.MaleRB.Location = New System.Drawing.Point(407, 300)
         Me.MaleRB.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.MaleRB.Name = "MaleRB"
         Me.MaleRB.Size = New System.Drawing.Size(99, 34)
         Me.MaleRB.TabIndex = 200
         Me.MaleRB.Text = "Male"
         Me.MaleRB.UseVisualStyleBackColor = True
+        '
+        'IconButton1
+        '
+        Me.IconButton1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.IconButton1.BackColor = System.Drawing.Color.Transparent
+        Me.IconButton1.FlatAppearance.BorderSize = 0
+        Me.IconButton1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(55, Byte), Integer), CType(CType(90, Byte), Integer))
+        Me.IconButton1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(90, Byte), Integer))
+        Me.IconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.IconButton1.Font = New System.Drawing.Font("Century Schoolbook", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.IconButton1.ForeColor = System.Drawing.Color.MediumPurple
+        Me.IconButton1.IconChar = FontAwesome.Sharp.IconChar.ArrowRight
+        Me.IconButton1.IconColor = System.Drawing.Color.MediumPurple
+        Me.IconButton1.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.IconButton1.IconSize = 30
+        Me.IconButton1.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.IconButton1.Location = New System.Drawing.Point(131, 242)
+        Me.IconButton1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.IconButton1.Name = "IconButton1"
+        Me.IconButton1.Size = New System.Drawing.Size(30, 32)
+        Me.IconButton1.TabIndex = 13
+        Me.IconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
+        Me.IconButton1.UseVisualStyleBackColor = False
+        '
+        'NameLabel
+        '
+        Me.NameLabel.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.NameLabel.AutoSize = True
+        Me.NameLabel.BackColor = System.Drawing.Color.Transparent
+        Me.NameLabel.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.NameLabel.ForeColor = System.Drawing.SystemColors.ActiveCaption
+        Me.NameLabel.Location = New System.Drawing.Point(28, 23)
+        Me.NameLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.NameLabel.Name = "NameLabel"
+        Me.NameLabel.Size = New System.Drawing.Size(87, 30)
+        Me.NameLabel.TabIndex = 189
+        Me.NameLabel.Text = "Name"
+        '
+        'AddressTB
+        '
+        Me.AddressTB.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.AddressTB.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.AddressTB.Location = New System.Drawing.Point(164, 237)
+        Me.AddressTB.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.AddressTB.Name = "AddressTB"
+        Me.AddressTB.Size = New System.Drawing.Size(642, 35)
+        Me.AddressTB.TabIndex = 5
+        Me.AddressTB.Tag = ""
+        '
+        'RegionCB
+        '
+        Me.RegionCB.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.RegionCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.RegionCB.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.RegionCB.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RegionCB.FormattingEnabled = True
+        Me.RegionCB.Location = New System.Drawing.Point(574, 166)
+        Me.RegionCB.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.RegionCB.Name = "RegionCB"
+        Me.RegionCB.Size = New System.Drawing.Size(229, 34)
+        Me.RegionCB.TabIndex = 4
+        Me.RegionCB.Tag = ""
         '
         'SirNameLabel
         '
@@ -236,29 +516,123 @@ Partial Class CoustProfileUpdated
         Me.SirNameLabel.BackColor = System.Drawing.Color.Transparent
         Me.SirNameLabel.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SirNameLabel.ForeColor = System.Drawing.SystemColors.ActiveCaption
-        Me.SirNameLabel.Location = New System.Drawing.Point(450, 24)
+        Me.SirNameLabel.Location = New System.Drawing.Point(450, 23)
         Me.SirNameLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.SirNameLabel.Name = "SirNameLabel"
         Me.SirNameLabel.Size = New System.Drawing.Size(119, 30)
         Me.SirNameLabel.TabIndex = 204
         Me.SirNameLabel.Text = "Sir Name"
         '
-        'KittyAvailedLabel
+        'PhoneNoLabel
         '
-        Me.KittyAvailedLabel.AutoSize = True
-        Me.KittyAvailedLabel.BackColor = System.Drawing.Color.Transparent
-        Me.KittyAvailedLabel.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.KittyAvailedLabel.ForeColor = System.Drawing.SystemColors.ActiveCaption
-        Me.KittyAvailedLabel.Location = New System.Drawing.Point(403, 30)
-        Me.KittyAvailedLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.KittyAvailedLabel.Name = "KittyAvailedLabel"
-        Me.KittyAvailedLabel.Size = New System.Drawing.Size(165, 28)
-        Me.KittyAvailedLabel.TabIndex = 227
-        Me.KittyAvailedLabel.Text = "Kitty Availed:"
+        Me.PhoneNoLabel.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.PhoneNoLabel.AutoSize = True
+        Me.PhoneNoLabel.BackColor = System.Drawing.Color.Transparent
+        Me.PhoneNoLabel.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.PhoneNoLabel.ForeColor = System.Drawing.SystemColors.ActiveCaption
+        Me.PhoneNoLabel.Location = New System.Drawing.Point(28, 98)
+        Me.PhoneNoLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.PhoneNoLabel.Name = "PhoneNoLabel"
+        Me.PhoneNoLabel.Size = New System.Drawing.Size(130, 30)
+        Me.PhoneNoLabel.TabIndex = 190
+        Me.PhoneNoLabel.Text = "Phone No"
+        '
+        'NameTB
+        '
+        Me.NameTB.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.NameTB.BackColor = System.Drawing.Color.White
+        Me.NameTB.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.NameTB.Location = New System.Drawing.Point(165, 23)
+        Me.NameTB.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.NameTB.Name = "NameTB"
+        Me.NameTB.Size = New System.Drawing.Size(229, 35)
+        Me.NameTB.TabIndex = 0
+        Me.NameTB.Tag = ""
+        '
+        'SirNameTB
+        '
+        Me.SirNameTB.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.SirNameTB.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SirNameTB.Location = New System.Drawing.Point(574, 23)
+        Me.SirNameTB.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.SirNameTB.Name = "SirNameTB"
+        Me.SirNameTB.Size = New System.Drawing.Size(229, 35)
+        Me.SirNameTB.TabIndex = 1
+        Me.SirNameTB.Tag = ""
+        '
+        'ProfessionLabel
+        '
+        Me.ProfessionLabel.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.ProfessionLabel.AutoSize = True
+        Me.ProfessionLabel.BackColor = System.Drawing.Color.Transparent
+        Me.ProfessionLabel.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ProfessionLabel.ForeColor = System.Drawing.SystemColors.ActiveCaption
+        Me.ProfessionLabel.Location = New System.Drawing.Point(28, 165)
+        Me.ProfessionLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.ProfessionLabel.Name = "ProfessionLabel"
+        Me.ProfessionLabel.Size = New System.Drawing.Size(131, 30)
+        Me.ProfessionLabel.TabIndex = 195
+        Me.ProfessionLabel.Text = "Profession"
+        '
+        'RegionLabel
+        '
+        Me.RegionLabel.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.RegionLabel.AutoSize = True
+        Me.RegionLabel.BackColor = System.Drawing.Color.Transparent
+        Me.RegionLabel.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RegionLabel.ForeColor = System.Drawing.SystemColors.ActiveCaption
+        Me.RegionLabel.Location = New System.Drawing.Point(469, 165)
+        Me.RegionLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.RegionLabel.Name = "RegionLabel"
+        Me.RegionLabel.Size = New System.Drawing.Size(97, 30)
+        Me.RegionLabel.TabIndex = 198
+        Me.RegionLabel.Text = "Region"
+        '
+        'MarriedCheckBox
+        '
+        Me.MarriedCheckBox.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.MarriedCheckBox.BackColor = System.Drawing.Color.Transparent
+        Me.MarriedCheckBox.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MarriedCheckBox.ForeColor = System.Drawing.SystemColors.ActiveCaption
+        Me.MarriedCheckBox.Location = New System.Drawing.Point(662, 297)
+        Me.MarriedCheckBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.MarriedCheckBox.Name = "MarriedCheckBox"
+        Me.MarriedCheckBox.Size = New System.Drawing.Size(141, 43)
+        Me.MarriedCheckBox.TabIndex = 6
+        Me.MarriedCheckBox.TabStop = False
+        Me.MarriedCheckBox.Text = "Married"
+        Me.MarriedCheckBox.UseVisualStyleBackColor = False
+        '
+        'AddressLabel
+        '
+        Me.AddressLabel.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.AddressLabel.AutoSize = True
+        Me.AddressLabel.BackColor = System.Drawing.Color.Transparent
+        Me.AddressLabel.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.AddressLabel.ForeColor = System.Drawing.SystemColors.ActiveCaption
+        Me.AddressLabel.Location = New System.Drawing.Point(28, 242)
+        Me.AddressLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.AddressLabel.Name = "AddressLabel"
+        Me.AddressLabel.Size = New System.Drawing.Size(105, 30)
+        Me.AddressLabel.TabIndex = 220
+        Me.AddressLabel.Text = "Address"
+        '
+        'LedgerLabel
+        '
+        Me.LedgerLabel.AutoSize = True
+        Me.LedgerLabel.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LedgerLabel.ForeColor = System.Drawing.SystemColors.ActiveCaption
+        Me.LedgerLabel.Location = New System.Drawing.Point(287, 496)
+        Me.LedgerLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.LedgerLabel.Name = "LedgerLabel"
+        Me.LedgerLabel.Size = New System.Drawing.Size(95, 30)
+        Me.LedgerLabel.TabIndex = 269
+        Me.LedgerLabel.Text = "Ledger"
         '
         'LedgerPanel
         '
         Me.LedgerPanel.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(70, Byte), Integer))
+        Me.LedgerPanel.Controls.Add(Me.Label2)
         Me.LedgerPanel.Controls.Add(Me.ConnectKittys)
         Me.LedgerPanel.Controls.Add(Me.TextBox1)
         Me.LedgerPanel.Controls.Add(Me.Label1)
@@ -287,31 +661,21 @@ Partial Class CoustProfileUpdated
         Me.LedgerPanel.Location = New System.Drawing.Point(275, 514)
         Me.LedgerPanel.Name = "LedgerPanel"
         Me.LedgerPanel.Size = New System.Drawing.Size(1173, 452)
-        Me.LedgerPanel.TabIndex = 257
+        Me.LedgerPanel.TabIndex = 268
         '
-        'ConnectKittys
+        'Label2
         '
-        Me.ConnectKittys.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.ConnectKittys.BackColor = System.Drawing.Color.Transparent
-        Me.ConnectKittys.FlatAppearance.BorderSize = 0
-        Me.ConnectKittys.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(55, Byte), Integer), CType(CType(90, Byte), Integer))
-        Me.ConnectKittys.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(90, Byte), Integer))
-        Me.ConnectKittys.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ConnectKittys.Font = New System.Drawing.Font("Century Schoolbook", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ConnectKittys.ForeColor = System.Drawing.Color.MediumPurple
-        Me.ConnectKittys.IconChar = FontAwesome.Sharp.IconChar.PeopleArrows
-        Me.ConnectKittys.IconColor = System.Drawing.Color.MediumPurple
-        Me.ConnectKittys.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.ConnectKittys.IconSize = 45
-        Me.ConnectKittys.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.ConnectKittys.Location = New System.Drawing.Point(721, 19)
-        Me.ConnectKittys.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.ConnectKittys.Name = "ConnectKittys"
-        Me.ConnectKittys.Size = New System.Drawing.Size(43, 46)
-        Me.ConnectKittys.TabIndex = 247
-        Me.ConnectKittys.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
-        Me.ToolTip1.SetToolTip(Me.ConnectKittys, "Here You Can Connect Kitties With This Customer")
-        Me.ConnectKittys.UseVisualStyleBackColor = False
+        Me.Label2.AutoSize = True
+        Me.Label2.BackColor = System.Drawing.Color.Transparent
+        Me.Label2.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.ForeColor = System.Drawing.SystemColors.ActiveCaption
+        Me.Label2.Location = New System.Drawing.Point(66, 262)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(604, 28)
+        Me.Label2.TabIndex = 248
+        Me.Label2.Text = "2: Active    1: UnAvailed      1: Availed     1:Cracked"
+        Me.Label2.Visible = False
         '
         'TextBox1
         '
@@ -402,6 +766,19 @@ Partial Class CoustProfileUpdated
         Me.ProductDetailsButton.TabIndex = 243
         Me.ProductDetailsButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
         Me.ProductDetailsButton.UseVisualStyleBackColor = False
+        '
+        'AccountBalanceLabel
+        '
+        Me.AccountBalanceLabel.AutoSize = True
+        Me.AccountBalanceLabel.BackColor = System.Drawing.Color.Transparent
+        Me.AccountBalanceLabel.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.AccountBalanceLabel.ForeColor = System.Drawing.SystemColors.ActiveCaption
+        Me.AccountBalanceLabel.Location = New System.Drawing.Point(681, 309)
+        Me.AccountBalanceLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.AccountBalanceLabel.Name = "AccountBalanceLabel"
+        Me.AccountBalanceLabel.Size = New System.Drawing.Size(222, 30)
+        Me.AccountBalanceLabel.TabIndex = 222
+        Me.AccountBalanceLabel.Text = "Account Balance"
         '
         'AddBalanceButton
         '
@@ -508,6 +885,19 @@ Partial Class CoustProfileUpdated
         Me.KittyCompletedLabel.TabIndex = 225
         Me.KittyCompletedLabel.Text = "Kitty Completed:"
         '
+        'UdhariCompletedLabel
+        '
+        Me.UdhariCompletedLabel.AutoSize = True
+        Me.UdhariCompletedLabel.BackColor = System.Drawing.Color.Transparent
+        Me.UdhariCompletedLabel.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.UdhariCompletedLabel.ForeColor = System.Drawing.SystemColors.ActiveCaption
+        Me.UdhariCompletedLabel.Location = New System.Drawing.Point(56, 87)
+        Me.UdhariCompletedLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.UdhariCompletedLabel.Name = "UdhariCompletedLabel"
+        Me.UdhariCompletedLabel.Size = New System.Drawing.Size(233, 28)
+        Me.UdhariCompletedLabel.TabIndex = 237
+        Me.UdhariCompletedLabel.Text = "Udhari Completed:"
+        '
         'KittysCompleted
         '
         Me.KittysCompleted.AutoSize = True
@@ -541,6 +931,19 @@ Partial Class CoustProfileUpdated
         Me.AddPurchaseButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.AddPurchaseButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.AddPurchaseButton.UseVisualStyleBackColor = False
+        '
+        'KittyAvailedLabel
+        '
+        Me.KittyAvailedLabel.AutoSize = True
+        Me.KittyAvailedLabel.BackColor = System.Drawing.Color.Transparent
+        Me.KittyAvailedLabel.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.KittyAvailedLabel.ForeColor = System.Drawing.SystemColors.ActiveCaption
+        Me.KittyAvailedLabel.Location = New System.Drawing.Point(403, 30)
+        Me.KittyAvailedLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.KittyAvailedLabel.Name = "KittyAvailedLabel"
+        Me.KittyAvailedLabel.Size = New System.Drawing.Size(165, 28)
+        Me.KittyAvailedLabel.TabIndex = 227
+        Me.KittyAvailedLabel.Text = "Kitty Availed:"
         '
         'AddKittyButton
         '
@@ -648,440 +1051,6 @@ Partial Class CoustProfileUpdated
         Me.KittyDetailsButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
         Me.KittyDetailsButton.UseVisualStyleBackColor = False
         '
-        'ImageBoxPanel
-        '
-        Me.ImageBoxPanel.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(70, Byte), Integer))
-        Me.ImageBoxPanel.Controls.Add(Me.ImageBox)
-        Me.ImageBoxPanel.Controls.Add(Me.FemaleRB)
-        Me.ImageBoxPanel.Controls.Add(Me.MaleRB)
-        Me.ImageBoxPanel.Location = New System.Drawing.Point(275, 127)
-        Me.ImageBoxPanel.Name = "ImageBoxPanel"
-        Me.ImageBoxPanel.Size = New System.Drawing.Size(314, 359)
-        Me.ImageBoxPanel.TabIndex = 258
-        '
-        'ImageBox
-        '
-        Me.ImageBox.BackgroundImage = Global.FirstApp.My.Resources.Resources.addSign
-        Me.ImageBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.ImageBox.ContextMenuStrip = Me.ContextMenuStrip1
-        Me.ImageBox.ErrorImage = Global.FirstApp.My.Resources.Resources.addSign
-        Me.ImageBox.InitialImage = Global.FirstApp.My.Resources.Resources.addSign
-        Me.ImageBox.Location = New System.Drawing.Point(50, 35)
-        Me.ImageBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.ImageBox.Name = "ImageBox"
-        Me.ImageBox.Size = New System.Drawing.Size(226, 233)
-        Me.ImageBox.TabIndex = 4
-        Me.ImageBox.TabStop = False
-        '
-        'FemaleRB
-        '
-        Me.FemaleRB.AutoSize = True
-        Me.FemaleRB.Checked = True
-        Me.FemaleRB.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.FemaleRB.ForeColor = System.Drawing.SystemColors.ActiveCaption
-        Me.FemaleRB.Location = New System.Drawing.Point(148, 271)
-        Me.FemaleRB.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.FemaleRB.Name = "FemaleRB"
-        Me.FemaleRB.Size = New System.Drawing.Size(128, 34)
-        Me.FemaleRB.TabIndex = 201
-        Me.FemaleRB.TabStop = True
-        Me.FemaleRB.Text = "Female"
-        Me.FemaleRB.UseVisualStyleBackColor = True
-        '
-        'ProfessionCB
-        '
-        Me.ProfessionCB.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.ProfessionCB.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ProfessionCB.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ProfessionCB.FormattingEnabled = True
-        Me.ProfessionCB.Location = New System.Drawing.Point(167, 166)
-        Me.ProfessionCB.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.ProfessionCB.Name = "ProfessionCB"
-        Me.ProfessionCB.Size = New System.Drawing.Size(229, 34)
-        Me.ProfessionCB.TabIndex = 3
-        Me.ProfessionCB.Tag = ""
-        '
-        'AddressLabel
-        '
-        Me.AddressLabel.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.AddressLabel.AutoSize = True
-        Me.AddressLabel.BackColor = System.Drawing.Color.Transparent
-        Me.AddressLabel.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.AddressLabel.ForeColor = System.Drawing.SystemColors.ActiveCaption
-        Me.AddressLabel.Location = New System.Drawing.Point(28, 240)
-        Me.AddressLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.AddressLabel.Name = "AddressLabel"
-        Me.AddressLabel.Size = New System.Drawing.Size(105, 30)
-        Me.AddressLabel.TabIndex = 220
-        Me.AddressLabel.Text = "Address"
-        '
-        'NameLabel
-        '
-        Me.NameLabel.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.NameLabel.AutoSize = True
-        Me.NameLabel.BackColor = System.Drawing.Color.Transparent
-        Me.NameLabel.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.NameLabel.ForeColor = System.Drawing.SystemColors.ActiveCaption
-        Me.NameLabel.Location = New System.Drawing.Point(28, 23)
-        Me.NameLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.NameLabel.Name = "NameLabel"
-        Me.NameLabel.Size = New System.Drawing.Size(87, 30)
-        Me.NameLabel.TabIndex = 189
-        Me.NameLabel.Text = "Name"
-        '
-        'MarriedCheckBox
-        '
-        Me.MarriedCheckBox.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.MarriedCheckBox.BackColor = System.Drawing.Color.Transparent
-        Me.MarriedCheckBox.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.MarriedCheckBox.ForeColor = System.Drawing.SystemColors.ActiveCaption
-        Me.MarriedCheckBox.Location = New System.Drawing.Point(33, 299)
-        Me.MarriedCheckBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.MarriedCheckBox.Name = "MarriedCheckBox"
-        Me.MarriedCheckBox.Size = New System.Drawing.Size(141, 43)
-        Me.MarriedCheckBox.TabIndex = 6
-        Me.MarriedCheckBox.TabStop = False
-        Me.MarriedCheckBox.Text = "Married"
-        Me.MarriedCheckBox.UseVisualStyleBackColor = False
-        '
-        'PhoneNoLabel
-        '
-        Me.PhoneNoLabel.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.PhoneNoLabel.AutoSize = True
-        Me.PhoneNoLabel.BackColor = System.Drawing.Color.Transparent
-        Me.PhoneNoLabel.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.PhoneNoLabel.ForeColor = System.Drawing.SystemColors.ActiveCaption
-        Me.PhoneNoLabel.Location = New System.Drawing.Point(28, 97)
-        Me.PhoneNoLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.PhoneNoLabel.Name = "PhoneNoLabel"
-        Me.PhoneNoLabel.Size = New System.Drawing.Size(130, 30)
-        Me.PhoneNoLabel.TabIndex = 190
-        Me.PhoneNoLabel.Text = "Phone No"
-        '
-        'AddressTB
-        '
-        Me.AddressTB.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.AddressTB.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.AddressTB.Location = New System.Drawing.Point(164, 235)
-        Me.AddressTB.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.AddressTB.Name = "AddressTB"
-        Me.AddressTB.Size = New System.Drawing.Size(642, 35)
-        Me.AddressTB.TabIndex = 5
-        Me.AddressTB.Tag = ""
-        '
-        'RegionCB
-        '
-        Me.RegionCB.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.RegionCB.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.RegionCB.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RegionCB.FormattingEnabled = True
-        Me.RegionCB.Location = New System.Drawing.Point(574, 166)
-        Me.RegionCB.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.RegionCB.Name = "RegionCB"
-        Me.RegionCB.Size = New System.Drawing.Size(229, 34)
-        Me.RegionCB.TabIndex = 4
-        Me.RegionCB.Tag = ""
-        '
-        'NameTB
-        '
-        Me.NameTB.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.NameTB.BackColor = System.Drawing.Color.White
-        Me.NameTB.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.NameTB.Location = New System.Drawing.Point(165, 23)
-        Me.NameTB.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.NameTB.Name = "NameTB"
-        Me.NameTB.Size = New System.Drawing.Size(229, 35)
-        Me.NameTB.TabIndex = 0
-        Me.NameTB.Tag = ""
-        '
-        'ReadyMadeCheckBox
-        '
-        Me.ReadyMadeCheckBox.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.ReadyMadeCheckBox.AutoSize = True
-        Me.ReadyMadeCheckBox.BackColor = System.Drawing.Color.Transparent
-        Me.ReadyMadeCheckBox.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ReadyMadeCheckBox.ForeColor = System.Drawing.SystemColors.ActiveCaption
-        Me.ReadyMadeCheckBox.Location = New System.Drawing.Point(484, 303)
-        Me.ReadyMadeCheckBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.ReadyMadeCheckBox.Name = "ReadyMadeCheckBox"
-        Me.ReadyMadeCheckBox.Size = New System.Drawing.Size(186, 34)
-        Me.ReadyMadeCheckBox.TabIndex = 8
-        Me.ReadyMadeCheckBox.TabStop = False
-        Me.ReadyMadeCheckBox.Text = "ReadyMade"
-        Me.ReadyMadeCheckBox.UseVisualStyleBackColor = False
-        '
-        'UniformCheckBox
-        '
-        Me.UniformCheckBox.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.UniformCheckBox.AutoSize = True
-        Me.UniformCheckBox.BackColor = System.Drawing.Color.Transparent
-        Me.UniformCheckBox.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.UniformCheckBox.ForeColor = System.Drawing.SystemColors.ActiveCaption
-        Me.UniformCheckBox.Location = New System.Drawing.Point(681, 303)
-        Me.UniformCheckBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.UniformCheckBox.Name = "UniformCheckBox"
-        Me.UniformCheckBox.Size = New System.Drawing.Size(131, 34)
-        Me.UniformCheckBox.TabIndex = 10
-        Me.UniformCheckBox.TabStop = False
-        Me.UniformCheckBox.Text = "Uniform"
-        Me.UniformCheckBox.UseVisualStyleBackColor = False
-        '
-        'NotesTB
-        '
-        Me.NotesTB.BackColor = System.Drawing.Color.Lavender
-        Me.NotesTB.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.NotesTB.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.NotesTB.Location = New System.Drawing.Point(1509, 372)
-        Me.NotesTB.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.NotesTB.Multiline = True
-        Me.NotesTB.Name = "NotesTB"
-        Me.NotesTB.Size = New System.Drawing.Size(356, 582)
-        Me.NotesTB.TabIndex = 253
-        '
-        'SirNameTB
-        '
-        Me.SirNameTB.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.SirNameTB.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SirNameTB.Location = New System.Drawing.Point(574, 23)
-        Me.SirNameTB.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.SirNameTB.Name = "SirNameTB"
-        Me.SirNameTB.Size = New System.Drawing.Size(229, 35)
-        Me.SirNameTB.TabIndex = 1
-        Me.SirNameTB.Tag = ""
-        '
-        'CustomerIdTB
-        '
-        Me.CustomerIdTB.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CustomerIdTB.Location = New System.Drawing.Point(13, 87)
-        Me.CustomerIdTB.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.CustomerIdTB.Name = "CustomerIdTB"
-        Me.CustomerIdTB.ReadOnly = True
-        Me.CustomerIdTB.Size = New System.Drawing.Size(105, 35)
-        Me.CustomerIdTB.TabIndex = 256
-        Me.CustomerIdTB.Tag = ""
-        Me.CustomerIdTB.Visible = False
-        '
-        'ProfessionLabel
-        '
-        Me.ProfessionLabel.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.ProfessionLabel.AutoSize = True
-        Me.ProfessionLabel.BackColor = System.Drawing.Color.Transparent
-        Me.ProfessionLabel.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ProfessionLabel.ForeColor = System.Drawing.SystemColors.ActiveCaption
-        Me.ProfessionLabel.Location = New System.Drawing.Point(28, 171)
-        Me.ProfessionLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.ProfessionLabel.Name = "ProfessionLabel"
-        Me.ProfessionLabel.Size = New System.Drawing.Size(131, 30)
-        Me.ProfessionLabel.TabIndex = 195
-        Me.ProfessionLabel.Text = "Profession"
-        '
-        'LedgerLabel
-        '
-        Me.LedgerLabel.AutoSize = True
-        Me.LedgerLabel.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LedgerLabel.ForeColor = System.Drawing.SystemColors.ActiveCaption
-        Me.LedgerLabel.Location = New System.Drawing.Point(287, 496)
-        Me.LedgerLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.LedgerLabel.Name = "LedgerLabel"
-        Me.LedgerLabel.Size = New System.Drawing.Size(95, 30)
-        Me.LedgerLabel.TabIndex = 260
-        Me.LedgerLabel.Text = "Ledger"
-        '
-        'JwelleryCheckBox
-        '
-        Me.JwelleryCheckBox.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.JwelleryCheckBox.AutoSize = True
-        Me.JwelleryCheckBox.BackColor = System.Drawing.Color.Transparent
-        Me.JwelleryCheckBox.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.JwelleryCheckBox.ForeColor = System.Drawing.SystemColors.ActiveCaption
-        Me.JwelleryCheckBox.Location = New System.Drawing.Point(338, 303)
-        Me.JwelleryCheckBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.JwelleryCheckBox.Name = "JwelleryCheckBox"
-        Me.JwelleryCheckBox.Size = New System.Drawing.Size(135, 34)
-        Me.JwelleryCheckBox.TabIndex = 7
-        Me.JwelleryCheckBox.TabStop = False
-        Me.JwelleryCheckBox.Text = "Jwellery"
-        Me.JwelleryCheckBox.UseVisualStyleBackColor = False
-        '
-        'NotesLabel
-        '
-        Me.NotesLabel.AutoSize = True
-        Me.NotesLabel.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.NotesLabel.ForeColor = System.Drawing.SystemColors.ActiveCaption
-        Me.NotesLabel.Location = New System.Drawing.Point(1567, 337)
-        Me.NotesLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.NotesLabel.Name = "NotesLabel"
-        Me.NotesLabel.Size = New System.Drawing.Size(247, 30)
-        Me.NotesLabel.TabIndex = 254
-        Me.NotesLabel.Text = "Notes On Coustmer"
-        '
-        'ProfilePanel
-        '
-        Me.ProfilePanel.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(70, Byte), Integer))
-        Me.ProfilePanel.Controls.Add(Me.PhoneNoTag1)
-        Me.ProfilePanel.Controls.Add(Me.IconButton3)
-        Me.ProfilePanel.Controls.Add(Me.IconButton1)
-        Me.ProfilePanel.Controls.Add(Me.ProfessionCB)
-        Me.ProfilePanel.Controls.Add(Me.NameLabel)
-        Me.ProfilePanel.Controls.Add(Me.AddressTB)
-        Me.ProfilePanel.Controls.Add(Me.RegionCB)
-        Me.ProfilePanel.Controls.Add(Me.SirNameLabel)
-        Me.ProfilePanel.Controls.Add(Me.PhoneNoLabel)
-        Me.ProfilePanel.Controls.Add(Me.NameTB)
-        Me.ProfilePanel.Controls.Add(Me.ReadyMadeCheckBox)
-        Me.ProfilePanel.Controls.Add(Me.SirNameTB)
-        Me.ProfilePanel.Controls.Add(Me.UniformCheckBox)
-        Me.ProfilePanel.Controls.Add(Me.ProfessionLabel)
-        Me.ProfilePanel.Controls.Add(Me.RegionLabel)
-        Me.ProfilePanel.Controls.Add(Me.MarriedCheckBox)
-        Me.ProfilePanel.Controls.Add(Me.JwelleryCheckBox)
-        Me.ProfilePanel.Controls.Add(Me.AddressLabel)
-        Me.ProfilePanel.Location = New System.Drawing.Point(605, 127)
-        Me.ProfilePanel.Name = "ProfilePanel"
-        Me.ProfilePanel.Size = New System.Drawing.Size(839, 359)
-        Me.ProfilePanel.TabIndex = 0
-        '
-        'PhoneNoTag1
-        '
-        Me.PhoneNoTag1.BackColor = System.Drawing.Color.MediumSlateBlue
-        Me.PhoneNoTag1.Location = New System.Drawing.Point(164, 84)
-        Me.PhoneNoTag1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.PhoneNoTag1.Name = "PhoneNoTag1"
-        Me.PhoneNoTag1.Size = New System.Drawing.Size(642, 52)
-        Me.PhoneNoTag1.TabIndex = 2
-        Me.PhoneNoTag1.TagData = ""
-        '
-        'IconButton3
-        '
-        Me.IconButton3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.IconButton3.BackColor = System.Drawing.Color.Transparent
-        Me.IconButton3.FlatAppearance.BorderSize = 0
-        Me.IconButton3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(55, Byte), Integer), CType(CType(90, Byte), Integer))
-        Me.IconButton3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(90, Byte), Integer))
-        Me.IconButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.IconButton3.Font = New System.Drawing.Font("Century Schoolbook", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.IconButton3.ForeColor = System.Drawing.Color.MediumPurple
-        Me.IconButton3.IconChar = FontAwesome.Sharp.IconChar.ShieldAlt
-        Me.IconButton3.IconColor = System.Drawing.Color.MediumPurple
-        Me.IconButton3.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.IconButton3.IconSize = 25
-        Me.IconButton3.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.IconButton3.Location = New System.Drawing.Point(807, 96)
-        Me.IconButton3.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.IconButton3.Name = "IconButton3"
-        Me.IconButton3.Size = New System.Drawing.Size(28, 35)
-        Me.IconButton3.TabIndex = 248
-        Me.IconButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
-        Me.ToolTip1.SetToolTip(Me.IconButton3, "Checks If A Number Is Registered With Whatsapp")
-        Me.IconButton3.UseVisualStyleBackColor = False
-        '
-        'IconButton1
-        '
-        Me.IconButton1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.IconButton1.BackColor = System.Drawing.Color.Transparent
-        Me.IconButton1.FlatAppearance.BorderSize = 0
-        Me.IconButton1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(55, Byte), Integer), CType(CType(90, Byte), Integer))
-        Me.IconButton1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(90, Byte), Integer))
-        Me.IconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.IconButton1.Font = New System.Drawing.Font("Century Schoolbook", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.IconButton1.ForeColor = System.Drawing.Color.MediumPurple
-        Me.IconButton1.IconChar = FontAwesome.Sharp.IconChar.ArrowRight
-        Me.IconButton1.IconColor = System.Drawing.Color.MediumPurple
-        Me.IconButton1.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.IconButton1.IconSize = 30
-        Me.IconButton1.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.IconButton1.Location = New System.Drawing.Point(131, 240)
-        Me.IconButton1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.IconButton1.Name = "IconButton1"
-        Me.IconButton1.Size = New System.Drawing.Size(30, 32)
-        Me.IconButton1.TabIndex = 15
-        Me.IconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
-        Me.IconButton1.UseVisualStyleBackColor = False
-        '
-        'RegionLabel
-        '
-        Me.RegionLabel.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.RegionLabel.AutoSize = True
-        Me.RegionLabel.BackColor = System.Drawing.Color.Transparent
-        Me.RegionLabel.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RegionLabel.ForeColor = System.Drawing.SystemColors.ActiveCaption
-        Me.RegionLabel.Location = New System.Drawing.Point(450, 171)
-        Me.RegionLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.RegionLabel.Name = "RegionLabel"
-        Me.RegionLabel.Size = New System.Drawing.Size(97, 30)
-        Me.RegionLabel.TabIndex = 198
-        Me.RegionLabel.Text = "Region"
-        '
-        'KittyNoLabel
-        '
-        Me.KittyNoLabel.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.KittyNoLabel.AutoSize = True
-        Me.KittyNoLabel.BackColor = System.Drawing.Color.DarkGoldenrod
-        Me.KittyNoLabel.Font = New System.Drawing.Font("Consolas", 18.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.KittyNoLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.KittyNoLabel.Location = New System.Drawing.Point(780, 70)
-        Me.KittyNoLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.KittyNoLabel.Name = "KittyNoLabel"
-        Me.KittyNoLabel.Size = New System.Drawing.Size(0, 42)
-        Me.KittyNoLabel.TabIndex = 261
-        Me.KittyNoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.KittyNoLabel.Visible = False
-        '
-        'PanelTitleBar
-        '
-        Me.PanelTitleBar.BackColor = System.Drawing.Color.FromArgb(CType(CType(24, Byte), Integer), CType(CType(24, Byte), Integer), CType(CType(60, Byte), Integer))
-        Me.PanelTitleBar.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelTitleBar.Location = New System.Drawing.Point(0, 0)
-        Me.PanelTitleBar.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.PanelTitleBar.Name = "PanelTitleBar"
-        Me.PanelTitleBar.Size = New System.Drawing.Size(1924, 63)
-        Me.PanelTitleBar.TabIndex = 262
-        Me.PanelTitleBar.Visible = False
-        '
-        'ExistingPhNosButton
-        '
-        Me.ExistingPhNosButton.BackColor = System.Drawing.Color.Transparent
-        Me.ExistingPhNosButton.FlatAppearance.BorderSize = 0
-        Me.ExistingPhNosButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
-        Me.ExistingPhNosButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
-        Me.ExistingPhNosButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ExistingPhNosButton.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ExistingPhNosButton.ForeColor = System.Drawing.Color.Transparent
-        Me.ExistingPhNosButton.IconChar = FontAwesome.Sharp.IconChar.PersonBooth
-        Me.ExistingPhNosButton.IconColor = System.Drawing.Color.Goldenrod
-        Me.ExistingPhNosButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.ExistingPhNosButton.IconSize = 40
-        Me.ExistingPhNosButton.Location = New System.Drawing.Point(1451, 218)
-        Me.ExistingPhNosButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.ExistingPhNosButton.Name = "ExistingPhNosButton"
-        Me.ExistingPhNosButton.Size = New System.Drawing.Size(34, 38)
-        Me.ExistingPhNosButton.TabIndex = 263
-        Me.ExistingPhNosButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.ToolTip1.SetToolTip(Me.ExistingPhNosButton, "All The Customers Connected With Same PhNos As This One.")
-        Me.ExistingPhNosButton.UseVisualStyleBackColor = False
-        Me.ExistingPhNosButton.Visible = False
-        '
-        'IconButton2
-        '
-        Me.IconButton2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.IconButton2.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(70, Byte), Integer))
-        Me.IconButton2.FlatAppearance.BorderSize = 0
-        Me.IconButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.IconButton2.Font = New System.Drawing.Font("Cambria", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.IconButton2.ForeColor = System.Drawing.Color.MediumPurple
-        Me.IconButton2.IconChar = FontAwesome.Sharp.IconChar.ArrowCircleRight
-        Me.IconButton2.IconColor = System.Drawing.Color.MediumOrchid
-        Me.IconButton2.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.IconButton2.IconSize = 38
-        Me.IconButton2.Location = New System.Drawing.Point(30, 231)
-        Me.IconButton2.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.IconButton2.Name = "IconButton2"
-        Me.IconButton2.Size = New System.Drawing.Size(206, 79)
-        Me.IconButton2.TabIndex = 259
-        Me.IconButton2.Text = "KittyMode"
-        Me.IconButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
-        Me.IconButton2.UseVisualStyleBackColor = False
-        '
         'CoustProfileUpdated
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
@@ -1089,18 +1058,18 @@ Partial Class CoustProfileUpdated
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(80, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1924, 987)
-        Me.Controls.Add(Me.ExistingPhNosButton)
-        Me.Controls.Add(Me.PanelTitleBar)
         Me.Controls.Add(Me.LedgerLabel)
-        Me.Controls.Add(Me.ProfileLabel)
-        Me.Controls.Add(Me.ButtonPanel)
         Me.Controls.Add(Me.LedgerPanel)
-        Me.Controls.Add(Me.IconButton2)
+        Me.Controls.Add(Me.ExistingPhNosButton)
+        Me.Controls.Add(Me.ProfileLabel)
         Me.Controls.Add(Me.ImageBoxPanel)
+        Me.Controls.Add(Me.ProfilePanel)
+        Me.Controls.Add(Me.PanelTitleBar)
+        Me.Controls.Add(Me.ButtonPanel)
+        Me.Controls.Add(Me.IconButton2)
         Me.Controls.Add(Me.NotesTB)
         Me.Controls.Add(Me.CustomerIdTB)
         Me.Controls.Add(Me.NotesLabel)
-        Me.Controls.Add(Me.ProfilePanel)
         Me.Controls.Add(Me.KittyNoLabel)
         Me.DoubleBuffered = True
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
@@ -1108,42 +1077,64 @@ Partial Class CoustProfileUpdated
         Me.MaximizeBox = False
         Me.Name = "CoustProfileUpdated"
         Me.Text = "Kitty Records"
-        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ButtonPanel.ResumeLayout(False)
-        Me.LedgerPanel.ResumeLayout(False)
-        Me.LedgerPanel.PerformLayout()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ImageBoxPanel.ResumeLayout(False)
-        Me.ImageBoxPanel.PerformLayout()
         CType(Me.ImageBox, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ProfilePanel.ResumeLayout(False)
         Me.ProfilePanel.PerformLayout()
+        Me.LedgerPanel.ResumeLayout(False)
+        Me.LedgerPanel.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
 
-    Friend WithEvents ProfileLabel As Label
-    Friend WithEvents AccountBalanceLabel As Label
-    Friend WithEvents UdhariCompletedLabel As Label
-    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents IconButton2 As FontAwesome.Sharp.IconButton
+    Friend WithEvents ToolTip1 As ToolTip
+    Friend WithEvents PanelTitleBar As Panel
+    Friend WithEvents KittyNoLabel As Label
+    Friend WithEvents NotesLabel As Label
+    Friend WithEvents CustomerIdTB As TextBox
+    Friend WithEvents NotesTB As TextBox
+    Friend WithEvents SaveCoustmerButton As FontAwesome.Sharp.IconButton
+    Friend WithEvents DeleteCoustmerButton As FontAwesome.Sharp.IconButton
+    Friend WithEvents ButtonPanel As Panel
     Friend WithEvents GetImageFromWatsappToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GetImageFromDeviceToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents RemoveImageToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ButtonPanel As Panel
-    Friend WithEvents DeleteCoustmerButton As FontAwesome.Sharp.IconButton
-    Friend WithEvents SaveCoustmerButton As FontAwesome.Sharp.IconButton
-    Friend WithEvents AddKittyButton As FontAwesome.Sharp.IconButton
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents ExistingPhNosButton As FontAwesome.Sharp.IconButton
+    Friend WithEvents ProfileLabel As Label
+    Friend WithEvents ImageBoxPanel As Panel
+    Friend WithEvents ImageBox As PictureBox
+    Friend WithEvents ProfilePanel As Panel
+    Friend WithEvents FemaleRB As RadioButton
+    Friend WithEvents ProfessionCB As ComboBox
     Friend WithEvents MaleRB As RadioButton
-    Friend WithEvents SirNameLabel As Label
-    Friend WithEvents KittyAvailedLabel As Label
+    Friend WithEvents CheckRegistrationButton As FontAwesome.Sharp.IconButton
     Friend WithEvents IconButton1 As FontAwesome.Sharp.IconButton
+    Friend WithEvents NameLabel As Label
+    Friend WithEvents AddressTB As TextBox
+    Friend WithEvents RegionCB As ComboBox
+    Friend WithEvents SirNameLabel As Label
+    Friend WithEvents PhoneNoLabel As Label
+    Friend WithEvents NameTB As TextBox
+    Friend WithEvents SirNameTB As TextBox
+    Friend WithEvents ProfessionLabel As Label
+    Friend WithEvents RegionLabel As Label
+    Friend WithEvents MarriedCheckBox As CheckBox
+    Friend WithEvents AddressLabel As Label
+    Friend WithEvents LedgerLabel As Label
     Friend WithEvents LedgerPanel As Panel
+    Friend WithEvents Label2 As Label
     Friend WithEvents ConnectKittys As FontAwesome.Sharp.IconButton
     Friend WithEvents TextBox1 As TextBox
     Friend WithEvents Label1 As Label
     Friend WithEvents UdhariDetailsButton As FontAwesome.Sharp.IconButton
     Friend WithEvents AddUdhariButton As FontAwesome.Sharp.IconButton
     Friend WithEvents ProductDetailsButton As FontAwesome.Sharp.IconButton
+    Friend WithEvents AccountBalanceLabel As Label
     Friend WithEvents AddBalanceButton As FontAwesome.Sharp.IconButton
     Friend WithEvents AccountBalanceTB As TextBox
     Friend WithEvents HistoryButton As FontAwesome.Sharp.IconButton
@@ -1151,41 +1142,16 @@ Partial Class CoustProfileUpdated
     Friend WithEvents UdhariAmountTB As TextBox
     Friend WithEvents UdhariCompleted As Label
     Friend WithEvents KittyCompletedLabel As Label
+    Friend WithEvents UdhariCompletedLabel As Label
     Friend WithEvents KittysCompleted As Label
     Friend WithEvents AddPurchaseButton As FontAwesome.Sharp.IconButton
+    Friend WithEvents KittyAvailedLabel As Label
+    Friend WithEvents AddKittyButton As FontAwesome.Sharp.IconButton
     Friend WithEvents KittysAvailed As Label
     Friend WithEvents TillDateAmountTB As TextBox
     Friend WithEvents ProductCompletedLabel As Label
     Friend WithEvents TillDateAmountLabel As Label
     Friend WithEvents ProductsCompleted As Label
     Friend WithEvents KittyDetailsButton As FontAwesome.Sharp.IconButton
-    Friend WithEvents ImageBoxPanel As Panel
-    Friend WithEvents ImageBox As PictureBox
-    Friend WithEvents FemaleRB As RadioButton
-    Friend WithEvents ProfessionCB As ComboBox
-    Friend WithEvents AddressLabel As Label
-    Friend WithEvents NameLabel As Label
-    Friend WithEvents MarriedCheckBox As CheckBox
-    Friend WithEvents PhoneNoLabel As Label
-    Friend WithEvents AddressTB As TextBox
-    Friend WithEvents RegionCB As ComboBox
-    Friend WithEvents NameTB As TextBox
-    Friend WithEvents ReadyMadeCheckBox As CheckBox
-    Friend WithEvents UniformCheckBox As CheckBox
-    Friend WithEvents NotesTB As TextBox
-    Friend WithEvents SirNameTB As TextBox
-    Friend WithEvents CustomerIdTB As TextBox
-    Friend WithEvents ProfessionLabel As Label
-    Friend WithEvents LedgerLabel As Label
-    Friend WithEvents JwelleryCheckBox As CheckBox
-    Friend WithEvents NotesLabel As Label
-    Friend WithEvents ProfilePanel As Panel
-    Friend WithEvents RegionLabel As Label
-    Friend WithEvents KittyNoLabel As Label
-    Friend WithEvents PanelTitleBar As Panel
-    Friend WithEvents IconButton3 As FontAwesome.Sharp.IconButton
-    Friend WithEvents ExistingPhNosButton As FontAwesome.Sharp.IconButton
-    Friend WithEvents ToolTip1 As ToolTip
-    Friend WithEvents IconButton2 As FontAwesome.Sharp.IconButton
     Friend WithEvents PhoneNoTag1 As PhoneNoTag
 End Class

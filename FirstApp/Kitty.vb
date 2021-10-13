@@ -3,21 +3,24 @@
 Public Class Kitty
 
     Private _record As New Dictionary(Of Date, Integer)
-    Private _availed As Boolean
-    Private _initialised As Boolean = False
+    Private ReadOnly apostrope As String = "{#}"
 
 #Region "Properties"
     Public ReadOnly Property KittyUID As Integer = -1
 
-    Public Property KittyNo As Integer = Nothing
+    Public Property KittyNo As Integer = -1
 
-    Public Property KittyType As Integer = 0
+    Public Property KittyType As Integer = -1
 
-    Public Property KittyInterest As Integer = 0
+    Public Property KittyInterest As Integer = -1
 
-    Public Property Duration As Integer = 0
+    Public Property Duration As Integer = -1
 
     Public Property CustomerID As Integer = -1
+
+    Public Property Notes As String = ""
+
+    Public Property IsAvailed As Boolean = False
 
     Public Property Record As Dictionary(Of Date, Integer)
         Get
@@ -30,14 +33,14 @@ Public Class Kitty
 
 #End Region
 
-    Sub New(Optional UID As Integer = -1)
+    Sub New(Optional UID As Integer = -1, Optional InitializeKitty As Boolean = False, Optional completely As Boolean = False)
         If UID = -1 Then Exit Sub
         KittyUID = UID
+        If InitializeKitty Then Initialize(completely)
     End Sub
 
     Sub Initialize(Optional InitializeCompletely As Boolean = True)
         If KittyUID = -1 Then Exit Sub
-        If _initialised Then Exit Sub
         Try
             Dim dr As OleDbDataReader = DataReader("Select * From Kitty_Data Where KittyUID=" & KittyUID)
             While dr.Read
@@ -46,65 +49,59 @@ Public Class Kitty
                 KittyType = dr("KittyType")
                 KittyInterest = dr("Interest")
                 Duration = dr("Duration")
-                IsAvailed(If(dr("Availed") = "False", False, True))
+                IsAvailed = If(dr("Availed") = "False", False, True)
+                Try : Notes = dr("Notes").ToString.Replace(apostrope, "'") : Catch : End Try
                 If InitializeCompletely Then
+                    Record.Clear()
                     AddRecord(dr("Dates"))
                 End If
-                _initialised = True
             End While
         Catch ex As Exception
-            MessageBox.Show("Error" + ex.Message)
+            MessageBox.Show("[Kitty]/Initialize Error: " + ex.Message)
         End Try
     End Sub
 
     Sub Save()
         If KittyUID = -1 Then
             If CustomerID = -1 Then
-                MessageBox.Show("Attempt To Save A Kitty Without A Customer To Own It. Can't Proceed Further Without A CustomerId.", "Illegal Selection", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                MessageBox.Show("[Kitty] Attempt To Save A Kitty Without A Customer To Own It. Can't Proceed Further Without A CustomerId.", "Illegal Selection", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Exit Sub
             End If
+            If MessageBox.Show("[Kitty] Do You Want To Add New Kitty ?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then Exit Sub
             SqlCommand(
-                "insert into Kitty_Data (CoustID,KittyNo,KittyType,Dates,Interest,Duration,Availed) values('" &
-                CustomerID & "','" & KittyNo & "','" & KittyType & "','" & RecordString() & "','" &
-                KittyInterest & "','" & Duration & "','" & IsAvailed() & "')")
+                "INSERT INTO Kitty_Data (CoustID,KittyNo,KittyType,Dates,Interest,Duration,Availed,Notes)" &
+                $"VALUES({CustomerID},{KittyNo},{KittyType},'{RecordString()}',{KittyInterest},{Duration},'{IsAvailed}','{Notes.Replace("'", apostrope)}')")
         Else
+            If MessageBox.Show("[Kitty] Do You Want To Update This Kitty ?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then Exit Sub
             SqlCommand(
-                "UPDATE Kitty_Data set " & "KittyNo='" & KittyNo & "',KittyType='" & KittyType & "',Dates='" & RecordString() &
-                "',Interest='" & KittyInterest & "',Duration='" & Duration & "',Availed='" & IsAvailed() & "' WHERE KittyUID=" & KittyUID)
+                $"UPDATE Kitty_Data set KittyNo={KittyNo},KittyType={KittyType},Dates='{RecordString()}',Interest={KittyInterest},Duration={Duration}" &
+                $",Availed ='{IsAvailed()}',Notes='{Notes.Replace("'", apostrope)}' WHERE KittyUID={KittyUID}")
         End If
+    End Sub
+
+    Public Sub Dissolve()
+        Try
+            If MessageBox.Show("Are You Sure That You Want To Dissolve This Kitty ?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then Exit Sub
+            SqlCommand("DELETE FROM Kitty_Data WHERE KittyUID=" & KittyUID)
+        Catch ex As Exception
+            MessageBox.Show($"Error [Kitty]/Dissolve: {ex.Message}")
+        End Try
     End Sub
 
     Public ReadOnly Property Owner As Customer
         Get
             Try
-                Return New Customer(Int(CommonReader("CoustID")))
+                Return New Customer(CustomerID)
             Catch ex As Exception
-                MessageBox.Show("This Kitty DoesNot Have A Associated Customer With It.", "Illegeal Selection", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                MessageBox.Show("Error [Kitty]/Owner This Kitty DoesNot Have A Associated Customer With It.", "Illegeal Selection", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Return Nothing
             End Try
         End Get
     End Property
 
-    Private Function CommonReader(Field As String)
-        Try
-            Dim dr As OleDbDataReader = DataReader("Select " & Field & " From Kitty_Data Where KittyUID=" & KittyUID)
-            Dim temp As String = Nothing
-            While dr.Read
-                Try
-                    temp = dr(Field)
-                Catch ex As Exception
-                End Try
-            End While
-            dr.Close()
-            Return temp
-        Catch ex As Exception
-            MessageBox.Show($"Error [Kitty]/CommonReader: {ex.Message}")
-            Return Nothing
-        End Try
-    End Function
-
     Public Function AddRecord(_entry As String) As Boolean
         Try
+            If String.IsNullOrEmpty(_entry) Then Return False
             For Each i As String In _entry.Split(",")
                 Dim _entryDate = i.Substring(0, 10).Trim
                 Dim _entryAmount As Integer = i.Substring(10)
@@ -172,6 +169,7 @@ Public Class Kitty
 
     Public Function GetInstalmentsPending() As Integer  'Instalments Pending Till Date
         Try
+            If Record.Count = 0 Then Return -1
             Dim LastDate As Date = Record.Last.Key
             Dim daysbetween As TimeSpan = Today - LastDate
             Dim monthsbetweeen As Integer = Int(daysbetween.Days / 31) '#Instalments Left
@@ -182,12 +180,32 @@ Public Class Kitty
 
             If GetInstalments_LeftForMaturity() = 0 Then Return -1 ' If Matured -> Return -1
 
-            Return monthsbetweeen
+            If monthsbetweeen < 0 Then Return 0 Else Return monthsbetweeen 'If SomeBody Paid More Than Necessary
         Catch ex As Exception
             MessageBox.Show("Can't Get Pending Instalments [Kitty]: " + ex.Message)
-            Return Nothing
+            Return -1
         End Try
     End Function
+
+    'Public Function GetInstalmentsPending1() As Integer  'Instalments Pending Till Date
+    '    Try
+    '        If Record.Count = 0 Then Return -1
+    '        Dim FirstMonth As Integer = Record.First.Key.Month
+    '        Dim daysbetween As TimeSpan = Today - LastDate
+    '        Dim monthsbetweeen As Integer = Int(daysbetween.Days / 31) '#Instalments Left
+
+    '        If monthsbetweeen + GetInstalmentsCompleted() > Duration Then 'If There Are More Months Between Last Instalment
+    '            monthsbetweeen = Duration - GetInstalmentsCompleted()
+    '        End If
+
+    '        If GetInstalments_LeftForMaturity() = 0 Then Return -1 ' If Matured -> Return -1
+
+    '        If monthsbetweeen < 0 Then Return 0 Else Return monthsbetweeen 'If SomeBody Paid More Than Necessary
+    '    Catch ex As Exception
+    '        MessageBox.Show("Can't Get Pending Instalments [Kitty]: " + ex.Message)
+    '        Return -1
+    '    End Try
+    'End Function
 
     Public Function GetInstalments_LeftForMaturity() As Integer 'Instalments Pending For Maturity
         Try
@@ -212,8 +230,12 @@ Public Class Kitty
     End Function
 
     Public Function Status() As String
-        If _availed Then
-            Return "Availed"
+        If IsAvailed Then
+            If IsMatured() Then
+                Return "Availed"
+            Else
+                Return "Cracked"
+            End If
         Else
             If IsMatured() Then
                 Return "Matured"
@@ -222,26 +244,6 @@ Public Class Kitty
             End If
         End If
     End Function
-
-    Public Function IsAvailed() As Boolean
-        If Not IsMatured() Then
-            Return False
-        Else
-            Return _availed
-        End If
-    End Function
-
-    Public Sub IsAvailed(value As Boolean)
-        If value Then
-            If IsMatured() Then
-                _availed = value
-            Else
-                MessageBox.Show("This Kitty Is Not Yet Matured, Can't Avail It.", "Illegal Selection", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            End If
-        Else
-            _availed = False
-        End If
-    End Sub
 
 #Region "Public Shared Function"
     Friend Shared Function GetListOfKittyTypes() As List(Of String)
@@ -271,6 +273,7 @@ Public Class Kitty
         End Try
         Return temp_list
     End Function
+
 #End Region
 
 End Class

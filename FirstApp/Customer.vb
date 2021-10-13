@@ -2,15 +2,21 @@
 
 Public Class Customer
 
-    Protected _customerID As Integer = -1
+    Private ReadOnly apostrope As String = "{#}"
 
     Sub New(CustID As Integer)
-        _customerID = CustID
+        CustomerID = CustID
     End Sub
 
-    Public Function GetCustomerID() As Object
-        Return _customerID
+    Public Overrides Function Equals(obj As Object) As Boolean
+        If obj Is Nothing OrElse Not Me.GetType.Equals(obj.GetType) Then
+            Return False
+        Else
+            Return DirectCast(obj, Customer).CustomerID = CustomerID
+        End If
     End Function
+
+    Public ReadOnly Property CustomerID = -1
 
 #Region "Shared Functions"
     Friend Shared Function SearchByKittyNo(KittyNo As String, Optional MaxLimit As Integer = -1) As Integer()
@@ -80,28 +86,25 @@ Public Class Customer
     End Function
 
     Friend Shared Function ListOF_KittyModeControl(IDs As Integer(), Optional MaxLimit As Integer = -1, Optional isKittyID As Boolean = False) As List(Of Task(Of KittyModeControl))
-        If IDs Is Nothing Then Return Nothing
+        If IDs Is Nothing OrElse IDs.Count = 0 Then Return Nothing
+        If MaxLimit <> -1 AndAlso IDs.Count > MaxLimit Then Return Nothing
 
         Dim T_List As New List(Of Task(Of KittyModeControl))
         Dim KittyIds As New List(Of Kitty)
 
         If isKittyID Then
             For Each Id As Integer In IDs
-                KittyIds.Add(New Kitty(Id))
+                KittyIds.Add(New Kitty(Id, True))
             Next
         Else
             For Each Id As Integer In IDs
                 Dim i As New Customer(Id)
-                KittyIds.AddRange(i.OwnedKitties)
-                If KittyIds.Count > MaxLimit AndAlso MaxLimit <> -1 Then
-                    Return Nothing
-                End If
+                KittyIds.AddRange(i.OwnedKitties(True))
             Next
         End If
 
         For Each KittyId As Kitty In KittyIds
             T_List.Add(Task.Run(Function()
-                                    KittyId.Initialize(InitializeCompletely:=False)
                                     Dim CoustmerPanel As New KittyModeControl
                                     With CoustmerPanel
                                         .CoustName = KittyId.Owner.FullName
@@ -114,7 +117,7 @@ Public Class Customer
                                         Catch ex As Exception
                                             .KittyType = ""
                                         End Try
-                                        .CoustID = KittyId.Owner.GetCustomerID()
+                                        .CoustID = KittyId.Owner.CustomerID
                                         .KittyID = KittyId.KittyUID
                                     End With
                                     Return CoustmerPanel
@@ -124,14 +127,40 @@ Public Class Customer
         Return T_List
 
     End Function
+
+    Friend Shared Function ListOF_ActiveKittyControl(IDs As Integer(), Optional MaxLimit As Integer = -1) As List(Of Task(Of ActiveKittyControl))
+        If IDs Is Nothing Then Return Nothing
+        If MaxLimit <> -1 AndAlso IDs.Count > MaxLimit Then Return Nothing
+
+        Dim T_List As New List(Of Task(Of ActiveKittyControl))
+
+        For Each Id As Integer In IDs
+            Dim _customer = New Customer(Id)
+            T_List.Add(Task.Run(Function()
+                                    Dim CoustmerPanel As New ActiveKittyControl
+                                    With CoustmerPanel
+                                        .CoustName = _customer.FullName
+                                        .PhNo = _customer.PhNo(",")
+                                        .SetImage = ""
+                                        .CoustID = _customer.CustomerID
+                                        .ActiveKitty = _customer.OwnedKitties.Count
+                                    End With
+                                    Return CoustmerPanel
+                                End Function))
+        Next
+
+        Return T_List
+
+    End Function
+
 #End Region
 
-    Public Function OwnedKitties() As List(Of Kitty)
+    Public Function OwnedKitties(Optional initialise As Boolean = False, Optional completely As Boolean = False) As List(Of Kitty)
         Dim Result As New List(Of Kitty)
         Try
-            Dim dr_KittyUID As OleDbDataReader = DataReader("Select KittyUID From Kitty_Data Where CoustID=" & GetCustomerID())
+            Dim dr_KittyUID As OleDbDataReader = DataReader($"Select KittyUID From Kitty_Data Where CoustID={CustomerID} ORDER BY KittyUID ASC")
             While dr_KittyUID.Read
-                Result.Add(New Kitty(dr_KittyUID("KittyUID")))
+                Result.Add(New Kitty(dr_KittyUID("KittyUID"), initialise, completely))
             End While
             dr_KittyUID.Close()
             Return Result
@@ -141,57 +170,27 @@ Public Class Customer
         End Try
     End Function
 
-    Public Function DeleteCustomer() As Boolean
+    Public Sub DeleteCustomer()
         Try
-            Dim customerExists As Boolean = True
-
-            Try
-                Dim dr_checkExists As OleDbDataReader = DataReader($"Select CName From Customers_Data Where SrNo={_customerID}")
-                While dr_checkExists.Read
-                    customerExists = dr_checkExists("CName").ToString.Length > 0
-                End While
-            Catch ex As Exception
-            End Try
-
-            If customerExists Then
-
-                Try : SqlCommand("DELETE FROM Coustmers_Data WHERE SrNo=" & GetCustomerID() & "") : Catch : End Try
-                Try : SqlCommand("DELETE FROM Kitty_Data WHERE CoustID='" & GetCustomerID() & "'") : Catch : End Try
-                Try : SqlCommand("DELETE FROM Udhari_Data WHERE CoustID='" & GetCustomerID() & "'") : Catch : End Try
-
-                Try
-                    Dim dr_checkExists As OleDbDataReader = DataReader($"Select CName From Customers_Data Where SrNo={_customerID}")
-                    While dr_checkExists.Read
-                        customerExists = dr_checkExists("CName").ToString.Length > 0
-                    End While
-                Catch ex As Exception
-                End Try
-
-                If Not customerExists Then
-                    Return True
-                Else
-                    Return False
-                End If
-
-            Else
-                Return False
-            End If
-
+            If MessageBox.Show("Are You Sure That You Permanently Want To Delete This Customet?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then Exit Sub
+            Try : SqlCommand($"DELETE FROM Coustmers_Data WHERE SrNo={CustomerID}") : Catch : End Try
+            Try : SqlCommand($"DELETE FROM Kitty_Data WHERE CoustID={CustomerID}") : Catch : End Try
+            'Try : SqlCommand($"DELETE FROM Udhari_Data WHERE CoustID={CustomerID}") : Catch : End Try
         Catch ex As Exception
             MessageBox.Show($"Error [Customer/DeleteCustomer]: {ex.Message}", "Error In Customer Class", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Return False
         End Try
-    End Function
+    End Sub
 
 #Region "Customer Name"
     Public Function FirstName() As String
         Try
-            Dim dr_firstName As OleDbDataReader = DataReader("Select CName From Coustmers_Data Where SrNo=" & _customerID)
-            Dim temp_name As String = Nothing
+            Dim dr_firstName As OleDbDataReader = DataReader("Select CName From Coustmers_Data Where SrNo=" & CustomerID)
+            Dim temp_name As String = ""
             While dr_firstName.Read
                 Try : temp_name = dr_firstName("CName") : Catch ex As Exception : End Try
             End While
             dr_firstName.Close()
+            temp_name = temp_name.Replace(apostrope, "'")
             Return temp_name.Trim
         Catch ex As Exception
             MessageBox.Show($"Error [Customer/FirstName]: {ex.Message}", "Error In Customer Class", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -201,18 +200,25 @@ Public Class Customer
 
     Public WriteOnly Property UpdatedFirstName As String
         Set(value As String)
-            SqlCommand("UPDATE Coustmers_Data set CName='" & value.Trim & "' Where SrNo=" & _customerID)
+            If String.IsNullOrEmpty(value) Then Exit Property
+            value = value.Replace("'", apostrope)
+            SqlCommand("UPDATE Coustmers_Data set CName='" & value.Trim & "' Where SrNo=" & CustomerID)
         End Set
     End Property
 
     Public Function LastName() As String
         Try
-            Dim dr_sirName As OleDbDataReader = DataReader("Select CsName From Coustmers_Data Where SrNo=" & _customerID)
-            Dim temp_name As String = Nothing
+            Dim dr_sirName As OleDbDataReader = DataReader("Select CsName From Coustmers_Data Where SrNo=" & CustomerID)
+            Dim temp_name As String = ""
             While dr_sirName.Read
-                Try : temp_name = dr_sirName("CsName") : Catch ex As Exception : End Try
+                Try
+                    temp_name = dr_sirName("CsName")
+                Catch ex As Exception
+                    Return Nothing
+                End Try
             End While
             dr_sirName.Close()
+            temp_name = temp_name.Replace(apostrope, "'")
             Return temp_name.Trim
         Catch ex As Exception
             MessageBox.Show($"Error [Customer/LastName]: {ex.Message}", "Error In Customer Class", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -222,7 +228,9 @@ Public Class Customer
 
     Public WriteOnly Property UpdatedLastName As String
         Set(value As String)
-            SqlCommand("UPDATE Coustmers_Data set CsName='" & value.Trim & "' Where SrNo=" & _customerID)
+            If String.IsNullOrEmpty(value) Then Exit Property
+            value = value.Replace("'", apostrope)
+            SqlCommand("UPDATE Coustmers_Data set CsName='" & value.Trim & "' Where SrNo=" & CustomerID)
         End Set
     End Property
 
@@ -243,7 +251,8 @@ Public Class Customer
 #Region "CustomerPhoneNo"
     Public WriteOnly Property UpdatedPhNo As String
         Set(value As String)
-            SqlCommand("UPDATE Coustmers_Data set PhNo='" & value & "' Where SrNo=" & _customerID)
+            If String.IsNullOrEmpty(value) Then Exit Property
+            SqlCommand("UPDATE Coustmers_Data set PhNo='" & value & "' Where SrNo=" & CustomerID)
         End Set
     End Property
 
@@ -258,7 +267,7 @@ Public Class Customer
 
     Public Function GetPhNo() As List(Of String)
         Try
-            Dim dr_phno As OleDbDataReader = DataReader("Select PhNo From Coustmers_Data Where SrNo=" & _customerID)
+            Dim dr_phno As OleDbDataReader = DataReader("Select PhNo From Coustmers_Data Where SrNo=" & CustomerID)
             Dim temp_phno As New List(Of String)
             While dr_phno.Read
                 Try
@@ -277,15 +286,25 @@ Public Class Customer
         End Try
     End Function
 
-    'Friend Shared Function SharedPhNo() As List(Of Customer)
+    Public Shared Function SharedPhNo(_phnos As String()) As List(Of Integer)
 
-    'End Function
+        Dim _sharedMembers As New List(Of Integer)
+
+        For Each _no In _phnos
+            If String.IsNullOrEmpty(_no) Or String.IsNullOrWhiteSpace(_no) Then Continue For
+            For Each _NewcustomerID As Integer In SearchByPhNo(_no.Trim)
+                _sharedMembers.Add(_NewcustomerID)
+            Next
+        Next
+
+        Return _sharedMembers.Distinct().ToList()
+    End Function
 #End Region
 
 #Region "CustomerProfession"
     Public Function Profession() As String
         Try
-            Dim dr_profession As OleDbDataReader = DataReader("Select Prof From Coustmers_Data Where SrNo=" & _customerID)
+            Dim dr_profession As OleDbDataReader = DataReader("Select Prof From Coustmers_Data Where SrNo=" & CustomerID)
             Dim temp_profession As String = Nothing
             While dr_profession.Read
                 Try
@@ -294,7 +313,7 @@ Public Class Customer
                 End Try
             End While
             dr_profession.Close()
-            Return temp_profession
+            Return temp_profession.Replace(apostrope, "'")
         Catch ex As Exception
             MessageBox.Show($"Error [Customer/Profession()]: {ex.Message}", "Error In Customer Class", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return Nothing
@@ -303,7 +322,9 @@ Public Class Customer
 
     Public WriteOnly Property UpdatedProfession As String
         Set(value As String)
-            SqlCommand("UPDATE Coustmers_Data set Prof='" & value & "' Where SrNo=" & _customerID)
+            If String.IsNullOrEmpty(value) Then Exit Property
+            value = value.Replace("'", apostrope)
+            SqlCommand("UPDATE Coustmers_Data set Prof='" & value & "' Where SrNo=" & CustomerID)
         End Set
     End Property
 
@@ -326,16 +347,16 @@ Public Class Customer
 #Region "CustomerRegion"
     Public Function Region() As String
         Try
-            Dim dr_region As OleDbDataReader = DataReader("Select Addrs From Coustmers_Data Where SrNo=" & _customerID)
+            Dim dr_region As OleDbDataReader = DataReader("Select Region From Coustmers_Data Where SrNo=" & CustomerID)
             Dim temp_region As String = Nothing
             While dr_region.Read
                 Try
-                    temp_region = dr_region("Addrs")
+                    temp_region = dr_region("Region")
                 Catch ex As Exception
                 End Try
             End While
             dr_region.Close()
-            Return temp_region
+            Return temp_region.Replace(apostrope, "'")
         Catch ex As Exception
             MessageBox.Show($"Error [Customer/Region]: {ex.Message}", "Error In Customer Class", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return Nothing
@@ -344,7 +365,9 @@ Public Class Customer
 
     Public WriteOnly Property UpdatedRegion As String
         Set(value As String)
-            SqlCommand("UPDATE Coustmers_Data set Addrs='" & value & "' Where SrNo=" & _customerID)
+            If String.IsNullOrEmpty(value) Then Exit Property
+            value = value.Replace("'", apostrope)
+            SqlCommand("UPDATE Coustmers_Data set Region='" & value & "' Where SrNo=" & CustomerID)
         End Set
     End Property
 
@@ -367,7 +390,7 @@ Public Class Customer
 #Region "CustomerAddress"
     Public Function Address() As String
         Try
-            Dim dr_address As OleDbDataReader = DataReader("Select Address From Coustmers_Data Where SrNo=" & _customerID)
+            Dim dr_address As OleDbDataReader = DataReader("Select Address From Coustmers_Data Where SrNo=" & CustomerID)
             Dim temp_address As String = Nothing
             While dr_address.Read
                 Try
@@ -376,7 +399,11 @@ Public Class Customer
                 End Try
             End While
             dr_address.Close()
-            Return temp_address
+            Try
+                Return temp_address.Replace(apostrope, "'")
+            Catch ex As Exception
+                Return Nothing
+            End Try
         Catch ex As Exception
             MessageBox.Show($"Error [Customer/Address]: {ex.Message}", "Error In Customer Class", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return Nothing
@@ -385,7 +412,8 @@ Public Class Customer
 
     Public WriteOnly Property UpdatedAddress As String
         Set(value As String)
-            SqlCommand("UPDATE Coustmers_Data set Address='" & value & "' Where SrNo=" & _customerID)
+            value = value.Replace("'", apostrope)
+            SqlCommand("UPDATE Coustmers_Data set Address='" & value & "' Where SrNo=" & CustomerID)
         End Set
     End Property
 #End Region
@@ -393,7 +421,7 @@ Public Class Customer
 #Region "CustomerDescription"
     Public Function Description() As String
         Try
-            Dim dr_description As OleDbDataReader = DataReader("Select dscrp From Coustmers_Data Where SrNo=" & _customerID)
+            Dim dr_description As OleDbDataReader = DataReader("Select dscrp From Coustmers_Data Where SrNo=" & CustomerID)
             Dim temp_description As String = Nothing
             While dr_description.Read
                 Try
@@ -402,7 +430,7 @@ Public Class Customer
                 End Try
             End While
             dr_description.Close()
-            Return temp_description
+            Return temp_description.Replace(apostrope, "'")
         Catch ex As Exception
             MessageBox.Show($"Error [Customer/Description]: {ex.Message}", "Error In Customer Class", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return Nothing
@@ -411,7 +439,8 @@ Public Class Customer
 
     Public WriteOnly Property UpdatedDescription As String
         Set(value As String)
-            SqlCommand("UPDATE Coustmers_Data set dscrp='" & value & "' Where SrNo=" & _customerID)
+            value = value.Replace("'", apostrope)
+            SqlCommand("UPDATE Coustmers_Data set dscrp='" & value & "' Where SrNo=" & CustomerID)
         End Set
     End Property
 #End Region
@@ -419,7 +448,7 @@ Public Class Customer
 #Region "Married"
     Public Function IsMarried() As Boolean
         Try
-            Dim dr_isMarried As OleDbDataReader = DataReader("Select Mry From Coustmers_Data Where SrNo=" & _customerID)
+            Dim dr_isMarried As OleDbDataReader = DataReader("Select Mry From Coustmers_Data Where SrNo=" & CustomerID)
             Dim temp_result As Boolean = False
             While dr_isMarried.Read
                 Try : temp_result = If(dr_isMarried("Mry") = "True", temp_result = True) : Catch ex As Exception : End Try
@@ -434,7 +463,7 @@ Public Class Customer
 
     Public WriteOnly Property UpdatedMarriedStatus As String
         Set(value As String)
-            SqlCommand("UPDATE Coustmers_Data set Mry='" & value & "' Where SrNo=" & _customerID)
+            SqlCommand("UPDATE Coustmers_Data set Mry='" & value & "' Where SrNo=" & CustomerID)
         End Set
     End Property
 #End Region
@@ -442,7 +471,7 @@ Public Class Customer
 #Region "Gender"
     Public Function Gender() As String
         Try
-            Dim dr_gender As OleDbDataReader = DataReader("Select Gender From Coustmers_Data Where SrNo=" & _customerID)
+            Dim dr_gender As OleDbDataReader = DataReader("Select Gender From Coustmers_Data Where SrNo=" & CustomerID)
             Dim temp_gender As String = ""
             While dr_gender.Read
                 Try : temp_gender = dr_gender("Gender") : Catch ex As Exception : End Try
@@ -457,7 +486,7 @@ Public Class Customer
 
     Public WriteOnly Property UpdatedGender As String
         Set(value As String)
-            SqlCommand("UPDATE Coustmers_Data set Gender='" & value & "' Where SrNo=" & _customerID)
+            SqlCommand("UPDATE Coustmers_Data set Gender='" & value & "' Where SrNo=" & CustomerID)
         End Set
     End Property
 #End Region

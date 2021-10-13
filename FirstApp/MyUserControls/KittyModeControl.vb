@@ -1,7 +1,6 @@
 ﻿Public Class KittyModeControl
 
     Dim ImagePath As String = ""
-    Dim OrignalDate As String = ""
 
     Public Property CoustName As String
         Get
@@ -50,17 +49,10 @@
 
     Public Property LastInstalmentDate As String
         Get
-            Return OrignalDate
+            Return LastInstalmentParam.Text
         End Get
         Set
-            'Dim result As String = LastInstallmentInWords(Value, Complete:=True)
-            'LastInstalmentParam.Text = result.Split(",")(0)
-            'If result.Split(",")(1) < 31 Then
-            '    KittyNoParam.ForeColor = Color.LimeGreen
-            '    KittyTypeParam.ForeColor = Color.LimeGreen
-            '    LastInstalmentParam.ForeColor = Color.LimeGreen
-            'End If
-            OrignalDate = Value
+            LastInstalmentParam.Text = Value
         End Set
     End Property
 
@@ -78,7 +70,7 @@
             Return KittyNoParam.Text
         End Get
         Set
-            KittyNoParam.Text = Value
+            KittyNoParam.Text = If(Value > 0, Value, "")
         End Set
     End Property
 
@@ -102,11 +94,10 @@
             End If
         Next
 
-
-        Dim Fm As New CoustProfileUpdated With {
+        Dim Fm As New KittyModeCoustView With {
             .MdiParent = Frame,
             .Dock = DockStyle.Fill,
-            .Tag = CoustID
+            .Tag = CoustID.ToString + "_" + KittyID.ToString
         }
         Fm.Show()
     End Sub
@@ -114,6 +105,5 @@
     Private Sub CloseButton_Click(sender As Object, e As EventArgs) Handles CloseButton.Click
         Dispose()
     End Sub
-
 
 End Class

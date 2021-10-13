@@ -48,7 +48,7 @@ Partial Class Main
         Me.FlowLayoutPanel1.Location = New System.Drawing.Point(13, 347)
         Me.FlowLayoutPanel1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(1795, 617)
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(1773, 617)
         Me.FlowLayoutPanel1.TabIndex = 187
         '
         'KittyMode1

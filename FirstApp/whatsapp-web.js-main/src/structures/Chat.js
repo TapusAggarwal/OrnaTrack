@@ -85,7 +85,6 @@ class Chat extends Base {
      * @returns {Promise<Message>} Message that was just sent
      */
     async sendMessage(content, options) {
-        console.log(this)
         return this.client.sendMessage(this.id._serialized, content, options);
     }
 

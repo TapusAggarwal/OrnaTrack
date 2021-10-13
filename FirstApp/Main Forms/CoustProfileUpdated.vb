@@ -2,7 +2,7 @@
 
 Public Class CoustProfileUpdated
 
-    Protected _currentCustomer As Customer
+    Protected _currentCustomer As Customer = Nothing
 
     Sub New()
         CreateHandle()
@@ -20,9 +20,12 @@ Public Class CoustProfileUpdated
     Private Sub CustomerProfile_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LoadComboBoxData(ProfessionCB, Customer.ListOfProfessions)
         LoadComboBoxData(RegionCB, Customer.ListOfRegions)
-
-        CustomerIdTB.Text = Tag.ToString.Split("_")(0)
         KeyPreview = True
+
+        If Tag IsNot Nothing Then
+            CustomerIdTB.Text = Tag.ToString.Split("_")(0)
+            ImageBox.Select()
+        End If
     End Sub
 
     Private Sub LoadProfileData()
@@ -42,45 +45,111 @@ Public Class CoustProfileUpdated
             FemaleRB.Checked = False
         End If
         NotesTB.Text = _currentCustomer.Description()
+        'CheckRegistrationButton_Click(CheckRegistrationButton, EventArgs.Empty)
     End Sub
 
-    Private Sub CoustmerIdTB_TextChanged(sender As TextBox, e As EventArgs) Handles CustomerIdTB.TextChanged
+    Private Sub CustomerIdTB_TextChanged(sender As TextBox, e As EventArgs) Handles CustomerIdTB.TextChanged
         If Not sender.TextLength = 0 Then
             _currentCustomer = New Customer(sender.Text)
             LoadProfileData()
+            CheckForSimilarPhNo()
         End If
     End Sub
 
 
     Private Sub SaveCoustmerButton_Click(sender As Object, e As EventArgs) Handles SaveCoustmerButton.Click
-        If _currentCustomer.GetCustomerID() IsNot Nothing Then
-
-            If MessageBox.Show("Do You Want To Save Changes Made To Customer Data ?", "Confirm", MessageBoxButtons.YesNo) = DialogResult.Yes Then
-                _currentCustomer.UpdatedFirstName = NameTB.Text
-                _currentCustomer.UpdatedLastName = SirNameTB.Text
-                _currentCustomer.UpdatedPhNo = PhoneNoTag1.TagData
-                _currentCustomer.UpdatedProfession = ProfessionCB.SelectedItem
-                _currentCustomer.UpdatedRegion = RegionCB.SelectedItem
-                _currentCustomer.UpdatedAddress = AddressTB.Text
-                If MarriedCheckBox.Checked Then _currentCustomer.UpdatedMarriedStatus = "True" Else _currentCustomer.UpdatedMarriedStatus = "False"
-                If MaleRB.Checked Then
-                    _currentCustomer.UpdatedGender = "Male"
-                ElseIf FemaleRB.Checked Then
-                    _currentCustomer.UpdatedGender = "Female"
-                End If
-                _currentCustomer.UpdatedDescription = NotesTB.Text
-            End If
+        SaveCoustmerButton.Select()
+        If NameTB.TextLength = 0 Then
+            MessageBox.Show("You Have To Enter Name Of The Coustmer To Add New Coustmer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Exit Sub
         End If
+        If _currentCustomer IsNot Nothing Then
+            If MessageBox.Show("Do You Want To Update Changes Made To Customer Data ?", "Confirm", MessageBoxButtons.YesNo) = DialogResult.No Then Exit Sub
+            _currentCustomer.UpdatedFirstName = NameTB.Text
+            _currentCustomer.UpdatedLastName = SirNameTB.Text
+            _currentCustomer.UpdatedPhNo = PhoneNoTag1.TagData
+            _currentCustomer.UpdatedProfession = ProfessionCB.SelectedItem
+            _currentCustomer.UpdatedRegion = RegionCB.SelectedItem
+            _currentCustomer.UpdatedAddress = AddressTB.Text
+            If MarriedCheckBox.Checked Then _currentCustomer.UpdatedMarriedStatus = "True" Else _currentCustomer.UpdatedMarriedStatus = "False"
+            If MaleRB.Checked Then
+                _currentCustomer.UpdatedGender = "Male"
+            ElseIf FemaleRB.Checked Then
+                _currentCustomer.UpdatedGender = "Female"
+            End If
+            _currentCustomer.UpdatedDescription = NotesTB.Text
+        Else
+            Dim _Married As String
+            Dim _gender As String = ""
+            If MaleRB.Checked Then
+                _gender = "Male"
+            ElseIf FemaleRB.Checked Then
+                _gender = "Female"
+            End If
 
+            If MarriedCheckBox.Checked Then _Married = "True" Else _Married = "False"
+            If MessageBox.Show("Do You Want To Save New Member To Customer Data ?", "Confirm", MessageBoxButtons.YesNo) = DialogResult.No Then Exit Sub
+            SqlCommand($"INSERT INTO Coustmers_Data (CName,CsName,PhNo,Prof,Region,Address,Gender,Mry,dscrp)" &
+                       $"VALUES('{NameTB.Text.Trim}','{SirNameTB.Text.Trim}','{PhoneNoTag1.TagData}','{ProfessionCB.SelectedItem}','{RegionCB.SelectedItem}','{AddressTB.Text}','{_gender}','{_Married}','{NotesTB.Text.Trim}')")
+
+            Try
+                Dim dr As OleDb.OleDbDataReader = DataReader("Select max(SrNo) From Coustmers_Data")
+                While dr.Read
+                    Dim _temp As Integer = dr(0)
+                    CustomerIdTB.Text = _temp
+                End While
+            Catch ex As Exception
+
+            End Try
+        End If
     End Sub
 
     Private Sub DeleteCoustmerButton_Click(sender As Object, e As EventArgs) Handles DeleteCoustmerButton.Click
-
+        If _currentCustomer Is Nothing Then
+            MessageBox.Show("Can't Delete Customer That Does Not Exist!", "Illegal Selection", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Else
+            _currentCustomer.DeleteCustomer()
+            Close()
+        End If
     End Sub
 
     Private Sub KittyDetailsButton_Click(sender As Object, e As EventArgs) Handles KittyDetailsButton.Click
-        KittyView.Tag = _currentCustomer
-        KittyView.Show()
+        Dim Fm As New KittyView With {
+            .Tag = _currentCustomer
+        }
+        AddHandler Fm.ShowDetailsClicked, Sub(_kitty As Kitty)
+                                              Dim KittyForm_Fm As New KittyForm With {
+                                                .Tag = _kitty
+                                                }
+                                              KittyForm_Fm.ShowDialog()
+                                              Fm.LoadKittyData(Fm.DgvMain)
+                                          End Sub
+        Fm.Show()
+    End Sub
+
+    Private Sub CheckForSimilarPhNo() Handles PhoneNoTag1.LeftTextBox
+        ExistingPhNosButton.Visible = False
+        Dim x As List(Of Integer) = Customer.SharedPhNo(PhoneNoTag1.TagData.Split(","))
+        If x.Count > 1 Then
+            ExistingPhNosButton.Visible = True
+        ElseIf x.Count = 1 Then
+            If _currentCustomer Is Nothing OrElse x.First <> _currentCustomer.CustomerID Then
+                ExistingPhNosButton.Visible = True
+            End If
+        Else
+        End If
+    End Sub
+
+    Private Sub ExistingPhNosButton_Click(sender As Object, e As EventArgs) Handles ExistingPhNosButton.Click
+        Dim Fm As New DgvForExistingPhno With {
+            .CurrentPhNo = (From _phno In PhoneNoTag1.TagData.Split(",") Select _phno.Trim).ToArray,
+            .ShowInTaskbar = False
+        }
+        If _currentCustomer IsNot Nothing Then Fm.CurrentCustomer = _currentCustomer
+        Fm.ShowDialog()
+        If Fm.SelectedCustomer >= 0 Then
+            CustomerIdTB.Text = Fm.SelectedCustomer
+        End If
     End Sub
 
 #Region "Convenience Wrapper"
@@ -135,6 +204,38 @@ Public Class CoustProfileUpdated
             End Try
             SendKeys.Send("+{Tab}")
         End If
+    End Sub
+
+    Private Sub IconButton2_Click(sender As Object, e As EventArgs) Handles IconButton2.Click
+        For Each ExistingFm As Form In Frame.MdiChildren
+            If ExistingFm.Name <> "Main" Then
+                Dim Fm As New KittyModeCoustView With {
+                .MdiParent = Frame,
+                .Tag = _currentCustomer.CustomerID,
+                .Dock = DockStyle.Fill
+                }
+                Fm.Show()
+                ExistingFm.Dispose()
+            End If
+        Next
+    End Sub
+
+    Private Sub AddKittyButton_Click(sender As Object, e As EventArgs) Handles AddKittyButton.Click
+        Dim _tempKitty As New Kitty With {
+           .CustomerID = _currentCustomer.CustomerID
+       }
+        Dim KittyForm_Fm As New KittyForm With {
+          .Tag = _tempKitty
+          }
+        KittyForm_Fm.ShowDialog()
+    End Sub
+
+    Private Sub CheckRegistrationButton_Click(sender As Object, e As EventArgs) Handles CheckRegistrationButton.Click
+        If PhoneNoTag1.TagData = "" Then
+            MessageBox.Show("First Add Numbers To Check Validity Of Numbers.", "Server Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            Exit Sub
+        End If
+        PhoneNoTag1.CheckRegistration()
     End Sub
 
 #End Region

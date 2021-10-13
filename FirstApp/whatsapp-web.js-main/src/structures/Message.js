@@ -4,6 +4,7 @@ const Base = require('./Base');
 const MessageMedia = require('./MessageMedia');
 const Location = require('./Location');
 const Order = require('./Order');
+const Payment = require('./Payment');
 const { MessageTypes } = require('../util/Constants');
 
 /**
@@ -205,6 +206,21 @@ class Message extends Base {
          */
         this.links = data.links;
 
+        /** Buttons */
+        if (data.dynamicReplyButtons) {
+            this.dynamicReplyButtons = data.dynamicReplyButtons;
+        }
+        
+        /** Selected Button Id **/
+        if (data.selectedButtonId) {
+            this.selectedButtonId = data.selectedButtonId;
+        }
+
+        /** Selected List row Id **/
+        if (data.listResponse && data.listResponse.singleSelectReply.selectedRowId) {
+            this.selectedRowId = data.listResponse.singleSelectReply.selectedRowId;
+        }
+        
         return super._patch(data);
     }
 
@@ -304,9 +320,9 @@ class Message extends Base {
      * @returns {Promise<MessageMedia>}
      */
     async downloadMedia() {
-        // if (!this.hasMedia) {
-        //     return undefined;
-        // }
+        if (!this.hasMedia) {
+            return undefined;
+        }
 
         const result = await this.client.pupPage.evaluate(async (msgId) => {
             const msg = window.Store.Msg.get(msgId);
@@ -340,7 +356,7 @@ class Message extends Base {
                 return {
                     data,
                     mimetype: msg.mimetype,
-                    filename: "tapus_img.png"
+                    filename: msg.filename
                 };
             } catch (e) {
                 if(e.status && e.status === 404) return undefined;
@@ -435,6 +451,21 @@ class Message extends Base {
             }, this.orderId, this.token);
             if (!result) return undefined;
             return new Order(this.client, result);
+        }
+        return undefined;
+    }
+    /**
+     * Gets the payment details associated with a given message
+     * @return {Promise<Payment>}
+     */
+    async getPayment() {
+        if (this.type === MessageTypes.PAYMENT) {
+            const msg = await this.client.pupPage.evaluate(async (msgId) => {
+                const msg = window.Store.Msg.get(msgId);
+                if(!msg) return null;
+                return msg.serialize();
+            }, this.id._serialized);
+            return new Payment(this.client, msg);
         }
         return undefined;
     }

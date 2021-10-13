@@ -1,15 +1,13 @@
-const console = require('console');
 const fs = require('fs');
-const { Client, Location } = require('./index');
-const Chat = require('./src/structures/Chat.js')
-const Message = require('./src/structures/Message.js')
+const { Client, Location, List, Buttons } = require('./index');
+
 const SESSION_FILE_PATH = './session.json';
 let sessionCfg;
 if (fs.existsSync(SESSION_FILE_PATH)) {
     sessionCfg = require(SESSION_FILE_PATH);
 }
 
-const client = new Client({ puppeteer: { headless: false } });
+const client = new Client({ puppeteer: { headless: false }, session: sessionCfg });
 // You can use an existing session and avoid scanning a QR code by adding a "session" object to the client options.
 // This object must include WABrowserId, WASecretBundle, WAToken1 and WAToken2.
 
@@ -22,34 +20,19 @@ const client = new Client({ puppeteer: { headless: false } });
 
 client.initialize();
 
-client.on('qr', async (qr) => {
+client.on('qr', (qr) => {
     // NOTE: This event will not be fired if a session is specified.
-    // console.log('QR RECEIVED', qr);
-    try {
-        let statePromise = client.getState().then((state) => { return state })
-        const getPromisedState = async () => {
-            let state = await statePromise
-            return state
-        }
-        globalValue = await getPromisedState()
-        console.log(globalValue);
-    } catch (error) {
-        globalValue = 'NOTCONNECTED'
-        console.log(globalValue);
-    }
-
+    console.log('QR RECEIVED', qr);
 });
 
 client.on('authenticated', (session) => {
     console.log('AUTHENTICATED', session);
+    sessionCfg=session;
     fs.writeFile(SESSION_FILE_PATH, JSON.stringify(session), function (err) {
-        serverlog(JSON.stringify(session))
         if (err) {
-            serverlog(`(Session Created) But Error while writing session on File: ${err}`)
-        } else {
-            serverlog(err)
+            console.error(err);
         }
-    })
+    });
 });
 
 client.on('auth_failure', msg => {
@@ -58,50 +41,7 @@ client.on('auth_failure', msg => {
 });
 
 client.on('ready', () => {
-    let statePromise = client.getState().then((state) => { return state })
-    const getPromisedState = async () => {
-        let state = await statePromise
-        return state
-    }
-    let globalValue = getPromisedState()
-    console.log(globalValue)
-    // client.getChats().then((chats) => {
-    //     console.log(chats);
-    // })
-    // client.getChatById("917018362951@c.us").then((x)=>{
-    //     console.log(x);
-    // })
-    // client.getChats().then((chats)=>{
-    //     console.log(chats); // message chats it was deleted.
-    // })
-    // let asd = {id: {server: 'c.us',
-    // user: '917018362951',
-    // _serialized: '917018362951@c.us'}
-    // }
-
-    // let newChat = new Chat(client, asd)
-    // // newChat.sendMessage("bello")
-    // newChat.fetchMessages({limit: 1}).then((x) => {
-    //     let newMsg = new Message(client, x[0])
-    //     console.log(newMsg)
-    //     newMsg.forward("916239631173@c.us")
-    //     newMsg.downloadMedia().then((x) => {
-    //         console.log(x)
-    //     })
-    // })
-    // let asd = {id: {
-    //     id: '3EB07E8634A4440D0F28',
-    //     _serialized: 'false_917018362951@c.us_3EB07E8634A4440D0F28'
-    //   }}
-
-    // let newMsg = new Message(client, asd)
-
-    client.searchMessages("chd sarafa", { limit: 20 }).then((x) => {
-        // x.forEach(Message => {
-        //     console.log(Message.body)
-        // });
-        console.log(x[0])
-    })
+    console.log('READY');
 });
 
 client.on('message', async msg => {
@@ -264,6 +204,13 @@ client.on('message', async msg => {
             const quotedMsg = await msg.getQuotedMessage();
             client.interface.openChatWindowAt(quotedMsg.id._serialized);
         }
+    } else if (msg.body === '!buttons') {
+        let button = new Buttons('Button body',[{body:'bt1'},{body:'bt2'},{body:'bt3'}],'title','footer');
+        client.sendMessage(msg.from, button);
+    } else if (msg.body === '!list') {
+        let sections = [{title:'sectionTitle',rows:[{title:'ListItem1', description: 'desc'},{title:'ListItem2'}]}];
+        let list = new List('List body','btnText',sections,'Title','footer');
+        client.sendMessage(msg.from, list);
     }
 });
 
@@ -298,7 +245,7 @@ client.on('message_ack', (msg, ack) => {
         ACK_PLAYED: 4
     */
 
-    if (ack == 3) {
+    if(ack == 3) {
         // The message was read
     }
 });
@@ -327,9 +274,10 @@ client.on('change_battery', (batteryInfo) => {
 });
 
 client.on('change_state', state => {
-    console.log('CHANGE STATE', state);
+    console.log('CHANGE STATE', state );
 });
 
 client.on('disconnected', (reason) => {
     console.log('Client was logged out', reason);
 });
+

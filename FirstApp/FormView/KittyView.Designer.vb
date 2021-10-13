@@ -26,10 +26,6 @@ Partial Class KittyView
         Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle24 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle25 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -39,6 +35,10 @@ Partial Class KittyView
         Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle24 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle25 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -48,11 +48,6 @@ Partial Class KittyView
         Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle22 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.DgvMain = New System.Windows.Forms.DataGridView()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.MessageCheckBox = New System.Windows.Forms.CheckBox()
-        Me.DgvMessage = New System.Windows.Forms.DataGridView()
-        Me.SendMessageButton = New FontAwesome.Sharp.IconButton()
-        Me.SharingPanel = New System.Windows.Forms.Panel()
         Me.Column10 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -64,6 +59,9 @@ Partial Class KittyView
         Me.Column7 = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.Entry = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.MessageCheckBox = New System.Windows.Forms.CheckBox()
+        Me.DgvMessage = New System.Windows.Forms.DataGridView()
         Me.DataGridViewCheckBoxColumn1 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -74,6 +72,8 @@ Partial Class KittyView
         Me.DataGridViewTextBoxColumn7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewButtonColumn1 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.DataGridViewTextBoxColumn8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SendMessageButton = New FontAwesome.Sharp.IconButton()
+        Me.SharingPanel = New System.Windows.Forms.Panel()
         CType(Me.DgvMain, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DgvMessage, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SharingPanel.SuspendLayout()
@@ -130,117 +130,6 @@ Partial Class KittyView
         Me.DgvMain.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
         Me.DgvMain.Size = New System.Drawing.Size(1317, 238)
         Me.DgvMain.TabIndex = 1
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Century Gothic", 26.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.ForeColor = System.Drawing.SystemColors.ActiveCaption
-        Me.Label3.Location = New System.Drawing.Point(8, 39)
-        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(136, 63)
-        Me.Label3.TabIndex = 227
-        Me.Label3.Text = "Kitty"
-        '
-        'MessageCheckBox
-        '
-        Me.MessageCheckBox.BackColor = System.Drawing.Color.Transparent
-        Me.MessageCheckBox.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.MessageCheckBox.ForeColor = System.Drawing.SystemColors.ActiveCaption
-        Me.MessageCheckBox.Location = New System.Drawing.Point(1071, 0)
-        Me.MessageCheckBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.MessageCheckBox.Name = "MessageCheckBox"
-        Me.MessageCheckBox.Size = New System.Drawing.Size(230, 40)
-        Me.MessageCheckBox.TabIndex = 228
-        Me.MessageCheckBox.Text = "Message Mode"
-        Me.MessageCheckBox.UseVisualStyleBackColor = False
-        '
-        'DgvMessage
-        '
-        Me.DgvMessage.AllowUserToAddRows = False
-        Me.DgvMessage.AllowUserToDeleteRows = False
-        Me.DgvMessage.AllowUserToResizeColumns = False
-        Me.DgvMessage.AllowUserToResizeRows = False
-        Me.DgvMessage.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(60, Byte), Integer))
-        Me.DgvMessage.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.DgvMessage.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical
-        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(80, Byte), Integer))
-        DataGridViewCellStyle14.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle14.ForeColor = System.Drawing.Color.Gainsboro
-        DataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.Transparent
-        DataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DgvMessage.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle14
-        Me.DgvMessage.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DgvMessage.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewCheckBoxColumn1, Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4, Me.DataGridViewTextBoxColumn5, Me.DataGridViewTextBoxColumn6, Me.DataGridViewTextBoxColumn7, Me.DataGridViewButtonColumn1, Me.DataGridViewTextBoxColumn8})
-        DataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle23.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        DataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DgvMessage.DefaultCellStyle = DataGridViewCellStyle23
-        Me.DgvMessage.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
-        Me.DgvMessage.GridColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(80, Byte), Integer))
-        Me.DgvMessage.Location = New System.Drawing.Point(9, 40)
-        Me.DgvMessage.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.DgvMessage.MultiSelect = False
-        Me.DgvMessage.Name = "DgvMessage"
-        DataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle24.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(80, Byte), Integer))
-        DataGridViewCellStyle24.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle24.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle24.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle24.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(80, Byte), Integer))
-        DataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DgvMessage.RowHeadersDefaultCellStyle = DataGridViewCellStyle24
-        Me.DgvMessage.RowHeadersVisible = False
-        Me.DgvMessage.RowHeadersWidth = 62
-        DataGridViewCellStyle25.BackColor = System.Drawing.Color.FromArgb(CType(CType(32, Byte), Integer), CType(CType(32, Byte), Integer), CType(CType(32, Byte), Integer))
-        DataGridViewCellStyle25.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle25.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(32, Byte), Integer), CType(CType(32, Byte), Integer), CType(CType(32, Byte), Integer))
-        DataGridViewCellStyle25.SelectionForeColor = System.Drawing.Color.White
-        Me.DgvMessage.RowsDefaultCellStyle = DataGridViewCellStyle25
-        Me.DgvMessage.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
-        Me.DgvMessage.Size = New System.Drawing.Size(1084, 238)
-        Me.DgvMessage.TabIndex = 229
-        Me.DgvMessage.Visible = False
-        '
-        'SendMessageButton
-        '
-        Me.SendMessageButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(70, Byte), Integer))
-        Me.SendMessageButton.Enabled = False
-        Me.SendMessageButton.FlatAppearance.BorderSize = 0
-        Me.SendMessageButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.SendMessageButton.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SendMessageButton.ForeColor = System.Drawing.Color.DimGray
-        Me.SendMessageButton.IconChar = FontAwesome.Sharp.IconChar.AddressCard
-        Me.SendMessageButton.IconColor = System.Drawing.Color.Black
-        Me.SendMessageButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.SendMessageButton.IconSize = 40
-        Me.SendMessageButton.Location = New System.Drawing.Point(961, 288)
-        Me.SendMessageButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.SendMessageButton.Name = "SendMessageButton"
-        Me.SendMessageButton.Size = New System.Drawing.Size(340, 70)
-        Me.SendMessageButton.TabIndex = 230
-        Me.SendMessageButton.Text = "Send Message"
-        Me.SendMessageButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
-        Me.SendMessageButton.UseVisualStyleBackColor = False
-        '
-        'SharingPanel
-        '
-        Me.SharingPanel.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(60, Byte), Integer))
-        Me.SharingPanel.Controls.Add(Me.SendMessageButton)
-        Me.SharingPanel.Controls.Add(Me.MessageCheckBox)
-        Me.SharingPanel.Controls.Add(Me.DgvMain)
-        Me.SharingPanel.Controls.Add(Me.DgvMessage)
-        Me.SharingPanel.Location = New System.Drawing.Point(137, 2)
-        Me.SharingPanel.Name = "SharingPanel"
-        Me.SharingPanel.Size = New System.Drawing.Size(1338, 367)
-        Me.SharingPanel.TabIndex = 231
         '
         'Column10
         '
@@ -384,6 +273,84 @@ Partial Class KittyView
         Me.Column8.Visible = False
         Me.Column8.Width = 119
         '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Century Gothic", 26.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.SystemColors.ActiveCaption
+        Me.Label3.Location = New System.Drawing.Point(8, 39)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(136, 63)
+        Me.Label3.TabIndex = 227
+        Me.Label3.Text = "Kitty"
+        '
+        'MessageCheckBox
+        '
+        Me.MessageCheckBox.BackColor = System.Drawing.Color.Transparent
+        Me.MessageCheckBox.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MessageCheckBox.ForeColor = System.Drawing.SystemColors.ActiveCaption
+        Me.MessageCheckBox.Location = New System.Drawing.Point(1071, 0)
+        Me.MessageCheckBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.MessageCheckBox.Name = "MessageCheckBox"
+        Me.MessageCheckBox.Size = New System.Drawing.Size(230, 40)
+        Me.MessageCheckBox.TabIndex = 228
+        Me.MessageCheckBox.Text = "Message Mode"
+        Me.MessageCheckBox.UseVisualStyleBackColor = False
+        '
+        'DgvMessage
+        '
+        Me.DgvMessage.AllowUserToAddRows = False
+        Me.DgvMessage.AllowUserToDeleteRows = False
+        Me.DgvMessage.AllowUserToResizeColumns = False
+        Me.DgvMessage.AllowUserToResizeRows = False
+        Me.DgvMessage.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(60, Byte), Integer))
+        Me.DgvMessage.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.DgvMessage.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical
+        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle14.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(80, Byte), Integer))
+        DataGridViewCellStyle14.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle14.ForeColor = System.Drawing.Color.Gainsboro
+        DataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.Transparent
+        DataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DgvMessage.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle14
+        Me.DgvMessage.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DgvMessage.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewCheckBoxColumn1, Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4, Me.DataGridViewTextBoxColumn5, Me.DataGridViewTextBoxColumn6, Me.DataGridViewTextBoxColumn7, Me.DataGridViewButtonColumn1, Me.DataGridViewTextBoxColumn8})
+        DataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle23.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        DataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DgvMessage.DefaultCellStyle = DataGridViewCellStyle23
+        Me.DgvMessage.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
+        Me.DgvMessage.GridColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(80, Byte), Integer))
+        Me.DgvMessage.Location = New System.Drawing.Point(9, 40)
+        Me.DgvMessage.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.DgvMessage.MultiSelect = False
+        Me.DgvMessage.Name = "DgvMessage"
+        DataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle24.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(80, Byte), Integer))
+        DataGridViewCellStyle24.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle24.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle24.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle24.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(80, Byte), Integer))
+        DataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DgvMessage.RowHeadersDefaultCellStyle = DataGridViewCellStyle24
+        Me.DgvMessage.RowHeadersVisible = False
+        Me.DgvMessage.RowHeadersWidth = 62
+        DataGridViewCellStyle25.BackColor = System.Drawing.Color.FromArgb(CType(CType(32, Byte), Integer), CType(CType(32, Byte), Integer), CType(CType(32, Byte), Integer))
+        DataGridViewCellStyle25.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle25.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(32, Byte), Integer), CType(CType(32, Byte), Integer), CType(CType(32, Byte), Integer))
+        DataGridViewCellStyle25.SelectionForeColor = System.Drawing.Color.White
+        Me.DgvMessage.RowsDefaultCellStyle = DataGridViewCellStyle25
+        Me.DgvMessage.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
+        Me.DgvMessage.Size = New System.Drawing.Size(1084, 238)
+        Me.DgvMessage.TabIndex = 229
+        Me.DgvMessage.Visible = False
+        '
         'DataGridViewCheckBoxColumn1
         '
         Me.DataGridViewCheckBoxColumn1.Frozen = True
@@ -502,6 +469,39 @@ Partial Class KittyView
         Me.DataGridViewTextBoxColumn8.ReadOnly = True
         Me.DataGridViewTextBoxColumn8.Visible = False
         Me.DataGridViewTextBoxColumn8.Width = 119
+        '
+        'SendMessageButton
+        '
+        Me.SendMessageButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(70, Byte), Integer))
+        Me.SendMessageButton.Enabled = False
+        Me.SendMessageButton.FlatAppearance.BorderSize = 0
+        Me.SendMessageButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.SendMessageButton.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SendMessageButton.ForeColor = System.Drawing.Color.DimGray
+        Me.SendMessageButton.IconChar = FontAwesome.Sharp.IconChar.AddressCard
+        Me.SendMessageButton.IconColor = System.Drawing.Color.Black
+        Me.SendMessageButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.SendMessageButton.IconSize = 40
+        Me.SendMessageButton.Location = New System.Drawing.Point(961, 288)
+        Me.SendMessageButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.SendMessageButton.Name = "SendMessageButton"
+        Me.SendMessageButton.Size = New System.Drawing.Size(340, 70)
+        Me.SendMessageButton.TabIndex = 230
+        Me.SendMessageButton.Text = "Send Message"
+        Me.SendMessageButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
+        Me.SendMessageButton.UseVisualStyleBackColor = False
+        '
+        'SharingPanel
+        '
+        Me.SharingPanel.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(60, Byte), Integer))
+        Me.SharingPanel.Controls.Add(Me.SendMessageButton)
+        Me.SharingPanel.Controls.Add(Me.MessageCheckBox)
+        Me.SharingPanel.Controls.Add(Me.DgvMain)
+        Me.SharingPanel.Controls.Add(Me.DgvMessage)
+        Me.SharingPanel.Location = New System.Drawing.Point(137, 2)
+        Me.SharingPanel.Name = "SharingPanel"
+        Me.SharingPanel.Size = New System.Drawing.Size(1338, 367)
+        Me.SharingPanel.TabIndex = 231
         '
         'KittyView
         '

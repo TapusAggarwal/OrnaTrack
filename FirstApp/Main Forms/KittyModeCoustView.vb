@@ -1,420 +1,448 @@
-﻿Imports System.Data.OleDb
-Imports System.Threading
+﻿Imports System.Threading
 
 Public Class KittyModeCoustView
-    '    Sub New()
-    '        InitializeComponent()
-    '    End Sub
 
-    '    Protected Overrides ReadOnly Property createParams As CreateParams
-    '        Get
-    '            Dim cp As CreateParams = MyBase.CreateParams
-    '            cp.ExStyle = cp.ExStyle Or &H2000000
-    '            Return cp
-    '        End Get
-    '    End Property
+    Protected Overrides ReadOnly Property createParams As CreateParams
+        Get
+            Dim cp As CreateParams = MyBase.CreateParams
+            cp.ExStyle = cp.ExStyle Or &H2000000
+            Return cp
+        End Get
+    End Property
 
-    '    Public BookMode As Boolean = False
-    '    Public CoustmerID As String = -1
-    '    Public Fm_KittyView As KittyView = Nothing
-    '    Public Fm_KittyForm As KittyForm = Nothing
-    '    Dim ExistingNumber As New Dictionary(Of String, List(Of String))
-    '    Dim TotalKitties As Integer = 0
-    '    Dim BookDict As New Dictionary(Of Integer, List(Of String))
-    '    Dim current_id As Integer
+    Protected _Customer As Customer
+    Public _KittyID_Book As Integer = Nothing
+    Public _KittyForm As KittyForm
+    Public BookMode As Boolean = False
+    Protected BookList As New List(Of Integer)
 
-    '    'EVENT:- CoustmerID Added
-    '    Public Sub CoustmerIdTB_TextChanged() Handles CoustmerIdTB.TextChanged
-    '        CoustmerID = CoustmerIdTB.Text
-    '        If CoustmerIdTB.TextLength = 0 Then
-    '            Dispose()
-    '            Frame.NewCoustmerButton_Click()
-    '        End If
-    '        If CoustmerIdTB.TextLength > 0 Then
-    '            RemoveControls()    'Clears KittyForm Before Opening Duplicate Customers
-    '            CalculateTotalKitties()
-    '            LoadCoustmerProfileData()
-    '            LoadKittyViewData()
-    '            CheckForDuplicatePhNo(PhNo.Text, False)
-    '        End If
-    '    End Sub
+    Protected ReviewMode As Boolean = False
+    Protected _reviewed As Boolean = False
 
-    '    'FUNCTION:- Load Form Data Also Coustmer's Full Data If Asked
-    '    Public Sub CoustProfileUpdated_Load() Handles Me.Load
-    '        CoustmerIdTB.Text = Tag.ToString.Split("_")(0)
-    '        KeyPreview = True
-    '    End Sub
+#Region "Load Customer And Kitty Data"
+    'Load -> CustomerId TextBox Text = TAG(CustomerId)
+    Public Sub CoustProfileUpdated_Load() Handles Me.Load
+        KeyPreview = True
+        CustomerIdTB.Text = Tag.ToString.Split("_")(0).Trim
+        If Prev_SessionToolStripMenuItem.Checked Then
+            Prev_SessionToolStripMenuItem_Click(Prev_SessionToolStripMenuItem, EventArgs.Empty)
+        End If
+    End Sub
 
-    '    Private Sub Me_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
-    '        Try
-    '            If e.Control And e.KeyCode = Keys.I Then
-    '                ShowCoustmerID()
-    '                KittyIdTB.Visible = True
-    '            ElseIf e.Control And e.KeyCode = Keys.N Then
-    '                AddKittyButton_Click()
-    '            End If
-    '            If Fm_KittyForm IsNot Nothing Then
-    '                If e.Control And e.KeyCode = Keys.S Then
-    '                    Fm_KittyForm.SaveButton_Click(Fm_KittyForm.SaveButton, e)
-    '                ElseIf e.Control And e.KeyCode = Keys.P Then
-    '                    Fm_KittyForm.PaymentButton.Select()
-    '                    Fm_KittyForm.PaymentButton_Click()
-    '                    Fm_KittyForm.DatePicker.Select()
-    '                ElseIf e.Control And e.KeyCode = Keys.D Then
-    '                    Fm_KittyForm.DeleteButton_Click()
-    '                    Fm_KittyForm.DatePicker.Select()
-    '                End If
-    '            End If
-    '        Catch
-    '        End Try
-    '    End Sub
+    'Loading Data On Text Changed Event
+    Public Sub CoustmerIdTB_TextChanged(sender As Object, e As EventArgs) Handles CustomerIdTB.TextChanged
+        If CustomerIdTB.TextLength = 0 Then
+            Dispose()
+            Frame.NewCoustmerButton_Click()
+        End If
 
-    '    'CallBack Function To Be Used By KittyView To Send Back KittyId
-    '    Public Sub ShowKittyForm(KittyId As String)
-    '        RemoveControls()        'Removes Previosly Opened KittyForm
-    '        Dim T_Data As New List(Of String) From {
-    '                CoustmerID,
-    '                KittyId,
-    '                1,
-    '                "kittymode"
-    '                }
-    '        Invoke(Sub()
-    '                   Fm_KittyForm = New KittyForm With {
-    '                       .Tag = T_Data
-    '                   }
-    '                   Dim Pnl As Panel = Fm_KittyForm.MainPanel
-    '                   Pnl.Dock = DockStyle.Fill
-    '                   RemoveControls()
-    '                   ShowLabel.Visible = False
-    '                   Fm_KittyForm.Kitty_Load()
-    '                   KittyPanel.Controls.Add(Pnl)
-    '               End Sub)
-    '    End Sub
+        _Customer = New Customer(CustomerIdTB.Text.Trim)
 
-    '#Region "FUNCTION:- Load Customer Profile"
+        If CustomerIdTB.TextLength > 0 Then
+            LoadCustomerProfileData()
+            LoadCustomerKittyData()
+            UpdateBookMode()
+            If ReviewMode Then
+                Dim dr As OleDb.OleDbDataReader = DataReader($"Select Review From Coustmers_Data Where SrNo={_Customer.CustomerID}")
+                While dr.Read
+                    Try
+                        If dr("Review").ToString.Split("_")(1) = "False" Then
+                            _reviewed = False
+                        Else
+                            _reviewed = True
+                        End If
+                    Catch ex As Exception
+                    End Try
+                End While
+                UpdateReview()
+            End If
+        End If
+    End Sub
 
-    '    Private Sub LoadCoustmerProfileData()
-    '        Dim dr As OleDbDataReader = DataReader("select * from Coustmers_Data Where SrNo=" & CoustmerID)
-    '        While dr.Read
-    '            Try
-    '                FullName.Text = dr("CName").ToString.Trim     'Adding Name
-    '            Catch : End Try
-    '            Try
-    '                FullName.Text = dr("CName").ToString.Trim & " " & dr("CsName").ToString.Trim     'Adding SirName
-    '            Catch : End Try
-    '            Try
-    '                PhNo.Text = dr("PhNo")                        'Adding Phone Number
-    '            Catch : End Try
-    '            Try
-    '                Profession.Text = dr("Prof").ToString.Trim                  'Adding Proffesion
-    '            Catch : End Try
-    '            Try
-    '                Address.Text = dr("Address").ToString.Trim                          'Adding Address
-    '            Catch : End Try
-    '            Try
-    '                Gender.Text = dr("Gender")      'Adding Male/Female
-    '            Catch : End Try
-    '            Try
-    '                ImageBox.BackgroundImage = Image.FromFile(dr("img"))    'Adding Profile Iamge
-    '            Catch : End Try
-    '            Try
-    '                Married.Text = dr("Mry")                          'Checking If Married 
-    '            Catch : End Try
-    '        End While
-    '        dr.Close()
-    '    End Sub
-    '#End Region
+    'First Load Customer Profile
+    Private Sub LoadCustomerProfileData()
+        With _Customer
+            Try
+                FullName.Text = .FullName
+            Catch : End Try
+            Try
+                PhNo.Text = .PhNo(",")
+            Catch : End Try
+            Try
+                Profession.Text = .Profession
+            Catch : End Try
+            Try
+                Address.Text = .Address
+            Catch : End Try
+            Try
+                Gender.Text = .Gender
+            Catch : End Try
+            Try
+                'ImageBox.BackgroundImage = Image.FromFile(dr("img"))    'Adding Profile Iamge
+            Catch : End Try
+            Try
+                Married.Text = .IsMarried
+            Catch : End Try
+            If Customer.SharedPhNo(_Customer.GetPhNo.ToArray).Count > 1 Then
+                ExistingPhNosButton.Visible = True
+            Else
+                ExistingPhNosButton.Visible = False
+            End If
+        End With
 
-    '#Region "FUNCTION:- Checks For All Customers With Same Numbers as this customer"
-    '    Private Function CheckForDuplicatePhNo(PhNo As String, Optional SaveMsg As Boolean = True)
-    '        If PhNo.Length < 10 Then
-    '            Return False
-    '        End If
-    '        ExistingNumber.Clear()
-    '        For Each No In PhNo.Split(",")
-    '            No = No.Trim
-    '            If myconnection.State <> ConnectionState.Open Then
-    '                myconnection.Open()
-    '            End If
-    '            Dim dr As OleDbDataReader = DataReader("select * from Coustmers_Data Where PhNo like '%" & No & "%'")
-    '            Try
-    '                While dr.Read
-    '                    If dr("CName").ToString.Length > 0 And dr("SrNo") <> CoustmerID Then
-    '                        ExistingNumber.Add(dr("CName") & " " & dr("CsName"), New List(Of String)({dr("PhNo"), dr("SrNo")}))
-    '                    End If
-    '                End While
-    '                dr.Close()
-    '            Catch ex As Exception
-    '                MessageBox.Show("Error: CheckForDuplaicatePhNo -> " & ex.Message)
-    '            End Try
-    '        Next
-    '        'If SaveMsg Then
-    '        '    Dim Ans As String = MessageBox.Show("There Are Coustmers Sharing The PhNo (" & PhNo & ") To Check Them Click The Button On The Right Side Of PhNo's.", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
-    '        'End If
-    '        If ExistingNumber.Count > 0 Then
-    '            ExistingPhNosButton.Invoke(Sub()
-    '                                           ExistingPhNosButton.Visible = True
-    '                                       End Sub)
-    '            Return True
-    '        Else
-    '            ExistingPhNosButton.Invoke(Sub()
-    '                                           ExistingPhNosButton.Visible = False
-    '                                       End Sub)
-    '            Return False
-    '        End If
-    '    End Function
-    '#End Region
+    End Sub
 
-    '    'BUTTON:- Add Kitty
-    '    Public Sub AddKittyButton_Click() Handles AddKittyButton.Click
-    '        TotalKitties = 0
-    '        Dim dr As OleDbDataReader =
-    '                DataReader("Select Status,KittyNo from Kitty_Data Where CoustID='" & CoustmerID & "'")
-    '        Dim KittyNo As New List(Of String)
-    '        While dr.Read : TotalKitties += 1 : End While
-    '        dr.Close()
-    '        myconnection.Close()
-    '        Dim T_Data As New List(Of String) From {
-    '                CoustmerID,
-    '                TotalKitties + 1,
-    '                0,
-    '                "kittymode"
-    '                }
-    '        Dim Fm As New Form
-    '        Fm = KittyForm
-    '        Fm.Tag = T_Data
-    '        Fm.ShowDialog()
-    '        CalculateTotalKitties()
-    '    End Sub
+    'Second Load Kitty View Data
+    Private Sub LoadCustomerKittyData()
+        Dim _KittyView As KittyView
+        _KittyView = New KittyView With {
+            .Tag = _Customer
+        }
 
-    '#Region "FUNCTION:- Load Kitty View Data"
-    '    Public Sub LoadKittyViewData()
-    '        Fm_KittyView = New KittyView
-    '        Fm_KittyView.Tag = New List(Of String)({CoustmerIdTB.Text, "callback"})
-    '        Fm_KittyView.DgvMain.Columns(9).Visible = False
-    '        PanelView.Controls.Clear()
-    '        Dim Pnl As Panel = Fm_KittyView.SharingPanel
-    '        Pnl.Dock = DockStyle.Fill
-    '        PanelView.Controls.Add(Pnl)
-    '        Fm_KittyView.KittyView_Load()
-    '        KittyPanel_ControlAdded()
-    '    End Sub
-    '#End Region
+        _KittyView.DgvMain.Columns(9).Visible = False
+        PanelView.Controls.Clear()
+        Dim Pnl As Panel = _KittyView.SharingPanel
+        Pnl.Dock = DockStyle.Fill
+        PanelView.Controls.Add(Pnl)
+        _KittyView.KittyView_Load()
 
-    '#Region "FUNCTION:-Calculate Total Kitties"
-    '    Private Sub CalculateTotalKitties()
-    '        TotalKitties += 1
-    '        Dim dr As OleDbDataReader =
-    '                DataReader("Select Status,KittyNo from Kitty_Data Where CoustID='" & CoustmerID & "'")
-    '        While dr.Read
-    '            TotalKitties += 1
-    '        End While
-    '        dr.Close()
-    '    End Sub
-    '#End Region
+        AddHandler _KittyView.ShowDetailsClicked, Sub(_kitty As Kitty)
+                                                      KittyIdTB.Text = _kitty.KittyUID
+                                                  End Sub
 
-    '    'BUTTON:- ConnectedKittys
-    '    Private Sub IconButton3_Click(sender As Object, e As EventArgs) Handles ConnectKittys.Click
-    '        ConnectedKittyView.Tag = CoustmerID
-    '        ConnectedKittyView.ShowDialog()
-    '        ConnectedKittyView.Dispose()
-    '        CalculateTotalKitties()
-    '    End Sub
+        Dim _count As Integer = _Customer.OwnedKitties.Count
+        If _count = 1 Then
+            KittyIdTB.Text = _Customer.OwnedKitties.First.KittyUID
+        ElseIf _count = 0 Then
+            KittyIdTB.Text = ""
+        End If
 
-    '    Public Sub ShowCoustmerID()
-    '        Try
-    '            CoustmerIdTB.Invoke(Sub()
-    '                                    CoustmerIdTB.Visible = True
-    '                                End Sub)
-    '        Catch ex As Exception
-    '        End Try
-    '    End Sub
+        If Not String.IsNullOrEmpty(KittyIdTB.Text) Then
+            Dim _temp As New Kitty(KittyIdTB.Text.Trim, True)
+            If _temp.CustomerID = -1 Then
+                KittyIdTB.Text = ""
+            End If
+        End If
 
-    '    Private Sub CoustmerIdTB_KeyDown(sender As Object, e As KeyEventArgs) Handles CoustmerIdTB.KeyDown, KittyIdTB.KeyDown
-    '        If (e.KeyCode = Keys.Enter AndAlso e.Modifiers = Keys.Shift) Then
-    '            If Not WantToContinue("This Feature Is Only For DevUse: To Manually Change The ID. Do You Still Want To Continue?", "Data Loss Warning") Then Exit Sub
-    '            Dim Id As String = InputBox("Enter The New Id.(This May Lead To Unexpected Errors)", "Enter ID")
-    '            sender.Text = Id
-    '        End If
-    '    End Sub
+    End Sub
 
-    '    Private Sub ConnectionLabel_Click(sender As Object, e As EventArgs) Handles ExistingPhNosButton.Click
-    '        Dim Tag_Data As New ArrayList From {
-    '            ExistingNumber,
-    '            "callback"
-    '        }
-    '        DgvForExistingPhno.Tag = Tag_Data
-    '        DgvForExistingPhno.ShowInTaskbar = False
-    '        DgvForExistingPhno.ShowDialog()
-    '        DgvForExistingPhno.Dispose()
-    '    End Sub
+    'KittyID TextBox Text=Tag.split(_)(1)
+    Private Sub KittyModeCoustView_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+        Dim x1 As New Thread(Sub()
+                                 If Tag.ToString.Split("_").Count > 1 Then
+                                     KittyIdTB.Invoke(Sub()
+                                                          KittyIdTB.Text = Tag.ToString.Split("_")(1)
+                                                      End Sub)
+                                 End If
+                             End Sub) With {
+            .Priority = ThreadPriority.Lowest
+                                      }
+        x1.Start()
+    End Sub
 
-    '    Public Sub RemoveControls()
-    '        For Each i In KittyPanel.Controls
-    '            If i IsNot ShowLabel Then KittyPanel.Controls.Remove(i)
-    '        Next
-    '    End Sub
+    'Call Load Kitty Data Method
+    Private Sub KittyIdTB_TextChanged(sender As Object, e As EventArgs) Handles KittyIdTB.TextChanged
+        RemoveControls()
+        If KittyIdTB.TextLength <> 0 Then
+            ShowKittyForm(New Kitty(KittyIdTB.Text.Trim, InitializeKitty:=True, True))
+        End If
+    End Sub
 
-    '    Private Sub KittyIdTB_TextChanged(sender As Object, e As EventArgs) Handles KittyIdTB.TextChanged
-    '        Try
-    '            If KittyIdTB.Text = "" Then
-    '                RemoveControls()
-    '                Exit Sub
-    '            End If
-    '            ShowKittyForm(KittyIdTB.Text)
+    'Loads A Form Given A Kitty
+    Public Sub ShowKittyForm(_tempKitty As Kitty)
+        Invoke(Sub()
+                   _KittyForm = New KittyForm With {
+                       .Tag = _tempKitty
+                   }
+                   Dim Pnl As Panel = _KittyForm.MainPanel
+                   Pnl.Dock = DockStyle.Fill
+                   RemoveControls()
+                   ShowLabel.Visible = False
+                   _KittyForm.Kitty_Load(_KittyForm, EventArgs.Empty)
+                   KittyPanel.Controls.Add(Pnl)
+                   AddHandler _KittyForm.CloseButton_Clicked, Sub()
+                                                                  RemoveControls()
+                                                              End Sub
+                   AddHandler _KittyForm.ReloadKittyView, Sub()
+                                                              LoadCustomerKittyData()
+                                                          End Sub
+                   CustomerIdTB.Text = _tempKitty.CustomerID
+               End Sub)
+    End Sub
 
-    '        Catch ex As Exception
-    '        End Try
-    '    End Sub
+    'SHIFT + ENTER -> For Manually Changing CustomerID And KittyID
+    Private Sub CoustmerIdTB_KeyDown(sender As Object, e As KeyEventArgs) Handles CustomerIdTB.KeyDown, KittyIdTB.KeyDown
+        If (e.KeyCode = Keys.Enter AndAlso e.Modifiers = Keys.Shift) Then
+            If MessageBox.Show("This Feature Is Only For DevUse: To Manually Change The ID. Do You Still Want To Continue?", "Data Loss Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then Exit Sub
+            Dim Id As String = InputBox("Enter The New Id.(This May Lead To Unexpected Errors)", "Enter ID")
+            If Not IsNumeric(sender.text) Then Exit Sub
+            sender.Text = Id
+        End If
+    End Sub
 
-    '    Private Sub KittyModeCoustView_Closed(sender As Object, e As EventArgs) Handles Me.Closed
-    '        PanelView.Controls.Clear()
-    '        KittyPanel.Controls.Clear()
-    '    End Sub
+    'Makes IDs Visible
+    Public Sub ShowCoustmerID()
+        Try
+            CustomerIdTB.Invoke(Sub()
+                                    CustomerIdTB.Visible = True
+                                    KittyIdTB.Visible = True
+                                End Sub)
+        Catch ex As Exception
+        End Try
+    End Sub
 
-    '    Private Sub IconButton1_Click(sender As Object, e As EventArgs) Handles IconButton1.Click
-    '        For Each ExistingFm As Form In Frame.MdiChildren
-    '            If ExistingFm.Name <> "Main" Then
-    '                Dim Fm As New CoustProfileUpdated With {
-    '                .MdiParent = Frame,
-    '                .Dock = DockStyle.Fill,
-    '                .Tag = CoustmerID
-    '                }
-    '                Fm.Show()
-    '                ExistingFm.Dispose()
-    '            End If
-    '        Next
+    'Removes All Controls From Kitty Panel Except ShowLabel
+    Public Sub RemoveControls()
+        For Each i In KittyPanel.Controls
+            If i IsNot ShowLabel Then KittyPanel.Controls.Remove(i)
+        Next
+    End Sub
 
-    '    End Sub
+    'Hides Show Label If Control IS Added TO Panel OR Shows It If Removed
+    Private Sub KittyPanel_ControlAdded() Handles KittyPanel.ControlAdded, KittyPanel.ControlRemoved
+        If KittyPanel.Controls.Count = 1 Then
+            ShowLabel.Visible = True
+        End If
+    End Sub
 
-    '    Private Sub KittyModeCoustView_Shown(sender As Object, e As EventArgs) Handles Me.Shown
-    '        Dim x1 As Thread = New Thread(Sub()
-    '                                          If Tag.ToString.Split("_").Count > 1 Then
-    '                                              KittyIdTB.Invoke(Sub()
-    '                                                                   KittyIdTB.Text = Tag.ToString.Split("_")(1)
-    '                                                               End Sub)
-    '                                              'ShowKittyForm(Tag.ToString.Split("_")(1))
-    '                                          End If
-    '                                      End Sub) With {
-    '            .Priority = ThreadPriority.Lowest
-    '                                      }
-    '        x1.Start()
-    '    End Sub
+#End Region
 
-    '    Private Sub AddKittyButton_Click(sender As Object, e As EventArgs) Handles AddKittyButton.Click
+#Region "Direct Important Methods"
+    'Customer Details Button Click
+    Private Sub CustomerDetailsButton_Click(sender As Object, e As EventArgs) Handles CustomerDetailsButton.Click
+        For Each ExistingFm As Form In Frame.MdiChildren
+            If ExistingFm.Name <> "Main" Then
+                Dim Fm As New CoustProfileUpdated With {
+                .MdiParent = Frame,
+                .Dock = DockStyle.Fill,
+                .Tag = _Customer.CustomerID
+                }
+                Fm.Show()
+                ExistingFm.Dispose()
+            End If
+        Next
 
-    '    End Sub
+    End Sub
 
-    '    Private Sub KittyPanel_ControlAdded() Handles KittyPanel.ControlAdded, KittyPanel.ControlRemoved
-    '        If KittyPanel.Controls.Count = 1 Then
-    '            ShowLabel.Visible = True
-    '            KittyInfoLabel.Visible = False : PrevKittyButton.Visible = False : NextKittyButton.Visible = False
-    '        Else
-    '            ShowLabel.Visible = False
-    '            If KittyIdTB.Text.Length = 0 Or CoustmerIdTB.Text.Length = 0 Then Exit Sub
-    '            If BookMode Then
-    '                KittyInfoLabel.Visible = True : PrevKittyButton.Visible = True : NextKittyButton.Visible = True
-    '                Dim dr As OleDbDataReader = DataReader("Select KittyType,KittyNo From Kitty_Data Where KittyID='" & KittyIdTB.Text & "' AND CoustID='" & CoustmerIdTB.Text & "'")
-    '                While dr.Read
-    '                    If dr("KittyNo").GetType IsNot GetType(DBNull) And dr("KittyType").GetType IsNot GetType(DBNull) Then
-    '                        KittyInfoLabel.Text = "₹" + dr("KittyType") + ": #" + dr("KittyNo") + ": "
+    'ExistingPhNo Button Click
+    Private Sub ExistingPhNosButton_Click(sender As Object, e As EventArgs) Handles ExistingPhNosButton.Click
+        Dim Fm As New DgvForExistingPhno With {
+            .CurrentPhNo = _Customer.GetPhNo.ToArray,
+            .CurrentCustomer = _Customer,
+            .ShowInTaskbar = False
+        }
+        Fm.ShowDialog()
+        If Fm.SelectedCustomer >= 0 Then
+            CustomerIdTB.Text = Fm.SelectedCustomer
+        End If
+    End Sub
 
-    '                        Dim dr_range As OleDbDataReader = DataReader("Select * From Kitty_Data Where KittyType='" & dr("KittyType") & "'")
-    '                        Dim range As New List(Of Integer)
-    '                        While dr_range.Read
-    '                            Try
-    '                                Dim x As Integer = dr_range("KittyNo")
-    '                                range.Add(x)
-    '                            Catch ex As Exception
-    '                            End Try
-    '                        End While
-    '                        KittyInfoLabel.Text += Str(range.Min).Trim + "-" + Str(range.Max).Trim + "[" & range.Count & "]"
-    '                    End If
-    '                    Exit While
-    '                End While
-    '                dr.Close()
+    'KeyBoard ShortCuts
+    Private Sub Me_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
+        Try
+            If e.Control And e.KeyCode = Keys.I Then
+                ShowCoustmerID()
+            ElseIf e.Control And e.KeyCode = Keys.K Then
+                AddKittyButton_Click(AddKittyButton, EventArgs.Empty)
+            End If
+            If _KittyForm IsNot Nothing Then
+                If e.Control And e.KeyCode = Keys.S Then
+                    _KittyForm.SaveButton_Click(_KittyForm.SaveButton, e)
+                ElseIf e.Control And e.KeyCode = Keys.P Then
+                    _KittyForm.PaymentButton.Select()
+                    _KittyForm.PaymentButton_Click(_KittyForm.PaymentButton, e)
+                    _KittyForm.DatePicker.Select()
+                ElseIf e.Control And e.KeyCode = Keys.D Then
+                    _KittyForm.DeleteButton_Click(_KittyForm.DeleteButton, e)
+                    _KittyForm.DatePicker.Select()
+                ElseIf e.Control And e.KeyCode = Keys.B Then
+                    BookModeButton_Click(BookModeButton, EventArgs.Empty)
+                ElseIf e.Control And e.KeyCode = Keys.J Then
+                    JumpToKittyNoButton_Click(JumpToKittyNoButton, EventArgs.Empty)
+                ElseIf e.Control And e.KeyCode = Keys.Right Then
+                    NextKittyButton_Click(NextKittyButton, EventArgs.Empty)
+                ElseIf e.Control And e.KeyCode = Keys.Left Then
+                    PrevKittyButton_Click(PrevKittyButton, EventArgs.Empty)
+                End If
+            End If
+        Catch
+        End Try
+    End Sub
 
-    '            End If
-    '        End If
-    '    End Sub
+    'AddKitty Button
+    Private Sub AddKittyButton_Click(sender As Object, e As EventArgs) Handles AddKittyButton.Click
+        Dim _tempKitty As New Kitty With {
+            .CustomerID = _Customer.CustomerID
+        }
+        Dim KittyForm_Fm As New KittyForm With {
+          .Tag = _tempKitty
+          }
+        KittyForm_Fm.ShowDialog()
+        LoadCustomerKittyData()
+    End Sub
 
-    '    Sub OpenBookMode()
-    '        KittyPanel_ControlAdded()
-    '        Dim KittyType As Integer = KittyInfoLabel.Text.Split(":")(0)
-    '        Dim KittyNo As Integer
-    '        Try
-    '            For Each i As Char In KittyInfoLabel.Text.Split(":")(1).Replace("#", "").Trim
-    '                If Not IsNumeric(i) Then
-    '                    Error "KittyNo Is Not An Integer."
-    '                End If
-    '            Next
-    '            KittyNo = KittyInfoLabel.Text.Split(":")(1).Replace("#", "")
-    '        Catch ex As Exception
-    '            MessageBox.Show("Error: Kitty Number Of This Kitty Is Not An Integer. Try Changing It To An Integer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-    '            BookMode = False
-    '            Exit Sub
-    '        End Try
-    '        BookModeButton.IconColor = Color.PaleGreen
+#End Region
 
+#Region "BookMode"
+    Private Sub BookModeButton_Click(sender As Object, e As EventArgs) Handles BookModeButton.Click
+        If KittyIdTB.Text.Length = 0 Then Exit Sub
 
-    '        Dim dr_range As OleDbDataReader = DataReader("Select CoustID,KittyID,KittyNo From Kitty_Data Where KittyType='" & KittyType & "'")
-    '        Dim temp_dict As New Dictionary(Of List(Of String), Integer)
-    '        While dr_range.Read
-    '            Try
-    '                temp_dict.Add(New List(Of String) From {dr_range("CoustID"), dr_range("KittyID"), dr_range("KittyNo")}, dr_range("KittyNo"))
-    '            Catch ex As Exception
-    '            End Try
-    '        End While
-    '        dr_range.Close()
+        Dim dr As OleDb.OleDbDataReader = DataReader($"Select KittyUID From Kitty_Data Where KittyType={_KittyForm._currentKitty.KittyType} ORDER BY KittyNo ASC")
+        While dr.Read
+            BookList.Add(dr("KittyUID"))
+        End While
+        BookMode = Not BookMode
+        If BookMode Then
+            KittyInfoLabel.Visible = True : PrevKittyButton.Visible = True : NextKittyButton.Visible = True : JumpToKittyNoButton.Visible = True
+            BookModeButton.IconColor = Color.PaleGreen
+            UpdateBookMode()
+        End If
+        If Not BookMode Then
+            BookModeButton.IconColor = Color.Silver
+            KittyInfoLabel.Visible = False : PrevKittyButton.Visible = False : NextKittyButton.Visible = False : JumpToKittyNoButton.Visible = False
+        End If
+    End Sub
 
-    '        Dim sorted = From pair In temp_dict
-    '                     Order By pair.Value
-    '        Dim srno As Integer = 0
-    '        For Each i In sorted
-    '            srno += 1
-    '            BookDict.Add(srno, i.Key)
-    '            If i.Key(0) <> CoustmerIdTB.Text Then Continue For
-    '            If i.Key(1) <> KittyIdTB.Text Then Continue For
-    '            If i.Key(2) <> KittyNo Then Continue For
-    '            current_id = srno
-    '        Next
-    '        If current_id = BookDict.Count Then NextKittyButton.Enabled = False Else NextKittyButton.Enabled = True
-    '        If current_id = 1 Then PrevKittyButton.Enabled = False Else PrevKittyButton.Enabled = True
-    '    End Sub
+    Private Sub UpdateBookMode()
+        If Not BookMode Then Exit Sub
+        KittyInfoLabel.Text = $"{New Kitty(BookList.First, True).KittyType.ToCurrency(RemoveSpaces:=True)} : #{New Kitty(KittyIdTB.Text, True).KittyNo}: {New Kitty(BookList.First, True).KittyNo}-{New Kitty(BookList.Last, True).KittyNo}"
+        If CurrentIndex() = 0 Then PrevKittyButton.Enabled = False Else PrevKittyButton.Enabled = True
+        If CurrentIndex() = BookList.Count - 1 Then NextKittyButton.Enabled = False Else NextKittyButton.Enabled = True
+        _KittyID_Book = KittyIdTB.Text
+    End Sub
 
-    '    Public Sub BookModeButton_Click() Handles BookModeButton.Click
-    '        If KittyIdTB.Text.Length = 0 Or CoustmerIdTB.Text.Length = 0 Then Exit Sub
-    '        BookMode = Not BookMode
-    '        If BookMode Then
-    '            OpenBookMode()
-    '        End If
-    '        If Not BookMode Then
-    '            BookModeButton.IconColor = Color.Silver
-    '            KittyInfoLabel.Visible = False : PrevKittyButton.Visible = False : NextKittyButton.Visible = False
-    '        End If
-    '    End Sub
+    Private Function CurrentIndex() As Integer
+        Return BookList.IndexOf(_KittyID_Book)
+    End Function
 
-    '    Private Sub NextKittyButton_Click(sender As Object, e As EventArgs) Handles NextKittyButton.Click
-    '        Try
-    '            current_id += 1
-    '            CoustmerIdTB.Text = BookDict.Item(current_id)(0)
-    '            KittyIdTB.Text = ""
-    '            KittyIdTB.Text = BookDict.Item(current_id)(1)
-    '        Catch ex As Exception
-    '        End Try
-    '        If current_id = BookDict.Count Then NextKittyButton.Enabled = False Else NextKittyButton.Enabled = True
-    '        If current_id = 1 Then PrevKittyButton.Enabled = False Else PrevKittyButton.Enabled = True
-    '    End Sub
+    Private Sub NextKittyButton_Click(sender As Object, e As EventArgs) Handles NextKittyButton.Click
+        Dim _currentIndex As Integer = CurrentIndex()
+        KittyIdTB.Text = BookList.Item(_currentIndex + 1)
+        UpdateBookMode()
+    End Sub
 
-    '    Private Sub PrevKittyButton_Click(sender As Object, e As EventArgs) Handles PrevKittyButton.Click
-    '        Try
-    '            current_id -= 1
-    '            CoustmerIdTB.Text = BookDict.Item(current_id)(0)
-    '            KittyIdTB.Text = ""
-    '            KittyIdTB.Text = BookDict.Item(current_id)(1)
-    '        Catch ex As Exception
-    '        End Try
-    '        If current_id = BookDict.Count Then NextKittyButton.Enabled = False Else NextKittyButton.Enabled = True
-    '        If current_id = 1 Then PrevKittyButton.Enabled = False Else PrevKittyButton.Enabled = True
-    '    End Sub
+    Private Sub PrevKittyButton_Click(sender As Object, e As EventArgs) Handles PrevKittyButton.Click
+        KittyIdTB.Text = New Kitty(BookList.Item(CurrentIndex() - 1)).KittyUID
+        UpdateBookMode()
+    End Sub
+
+    Private Sub JumpToKittyNoButton_Click(sender As Object, e As EventArgs) Handles JumpToKittyNoButton.Click
+        Dim EnteredKittyNo As String = InputBox("Enter The New KittyNo To Which You Want To Jump To.", "Enter KittyNo")
+        If Not IsNumeric(EnteredKittyNo) Then
+            If EnteredKittyNo = "" Then Exit Sub
+            MessageBox.Show("KittyNo Must Be An Integer. Try Again", "Illegal Selection", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            JumpToKittyNoButton_Click(sender, e)
+            Exit Sub
+        End If
+        For Each id In BookList
+            Dim _tempKitty As New Kitty(id, InitializeKitty:=True)
+            If _tempKitty.KittyNo = EnteredKittyNo Then
+                KittyIdTB.Text = BookList.Item(BookList.IndexOf(_tempKitty.KittyUID))
+                UpdateBookMode()
+                Exit Sub
+            End If
+        Next
+        MessageBox.Show($"There Is No Kitty Saved With KittyType-{New Kitty(_KittyID_Book, True).KittyType} And KittyNo-{EnteredKittyNo}. Try Changing KittyType Or Use Another KittyNo.", "No Result Found", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+    End Sub
+
+#End Region
+
+    Private Sub ContextMenuStrip1_Opening(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles ContextMenuStrip1.Opening
+        Dim dr As OleDb.OleDbDataReader = DataReader("SELECT * From Coustmers_Data")
+        Dim SessionNo As Integer = -1
+
+        While dr.Read
+            Try
+                SessionNo = dr("Review").ToString.Split("_")(0)
+                If SessionNo <= 0 Then
+                    SessionNo = -1
+                End If
+            Catch ex As Exception
+            End Try
+            Exit While
+        End While
+
+        If SessionNo = -1 Then
+            Prev_SessionToolStripMenuItem.Visible = False
+        Else
+            Prev_SessionToolStripMenuItem.Visible = True
+            Prev_SessionToolStripMenuItem.Text = $"Prev_Sess: SessionID:{SessionNo}"
+        End If
+    End Sub
+
+    Private Sub Prev_SessionToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles Prev_SessionToolStripMenuItem.Click
+        ReviewMode = True
+        ReviewButton.Visible = True
+        If ReviewMode Then
+            Dim dr As OleDb.OleDbDataReader = DataReader($"Select Review From Coustmers_Data Where SrNo={_Customer.CustomerID}")
+            While dr.Read
+                Try
+                    If dr("Review").ToString.Split("_")(1) = "False" Then
+                        _reviewed = False
+                    Else
+                        _reviewed = True
+                    End If
+                Catch ex As Exception
+                End Try
+            End While
+            UpdateReview()
+        End If
+    End Sub
+
+    Private Sub StartNewReviewSessionToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles StartNewReviewSessionToolStripMenuItem.Click
+        Dim dr As OleDb.OleDbDataReader = DataReader("SELECT * From Coustmers_Data")
+        Dim SessionNo As Integer = -1
+
+        While dr.Read
+            Try
+                SessionNo = dr("Review").ToString.Split("_")(0)
+                If SessionNo <= 0 Then
+                    SessionNo = -1
+                End If
+            Catch ex As Exception
+            End Try
+            Exit While
+        End While
+        If SessionNo <> -1 Then
+            SqlCommand($"UPDATE Coustmers_Data set Review='{SessionNo + 1}_False'")
+        Else
+            SqlCommand($"UPDATE Coustmers_Data set Review='1_False'")
+        End If
+    End Sub
+
+    Private Sub IconButton1_Click(sender As Object, e As EventArgs) Handles ReviewButton.Click
+        If ReviewMode Then
+            _reviewed = Not _reviewed
+            UpdateReview()
+        End If
+    End Sub
+
+    Sub UpdateReview()
+        Dim dr As OleDb.OleDbDataReader = DataReader("SELECT * From Coustmers_Data")
+        Dim SessionNo As Integer = -1
+
+        While dr.Read
+            Try
+                SessionNo = dr("Review").ToString.Split("_")(0)
+                If SessionNo <= 0 Then
+                    SessionNo = -1
+                End If
+            Catch ex As Exception
+            End Try
+            Exit While
+        End While
+
+        If SessionNo = -1 Then Exit Sub
+
+        If _reviewed Then
+            ReviewButton.IconFont = FontAwesome.Sharp.IconFont.Solid
+            ReviewButton.IconColor = Color.Gold
+            SqlCommand($"UPDATE Coustmers_Data set Review='{SessionNo}_True' WHERE SrNo={_Customer.CustomerID}")
+        Else
+            ReviewButton.IconFont = FontAwesome.Sharp.IconFont.Auto
+            ReviewButton.IconColor = Color.MediumPurple
+            SqlCommand($"UPDATE Coustmers_Data set Review='{SessionNo}_False' WHERE SrNo={_Customer.CustomerID}")
+        End If
+    End Sub
+
 End Class

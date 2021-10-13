@@ -12,7 +12,7 @@ const {
 } = require('./index'), fs = require('fs'), IsOnlineEmitter = require('is-online-emitter')
 
 const emitter = new IsOnlineEmitter({}) // npm Module to detect change in internet connection
-let testing = false
+let testing = true
 let previousSessionUsable;
 
 let ServerSideKnowledge = {
@@ -29,6 +29,8 @@ let ServerSideKnowledge = {
         phoneno: ''
     }
 }
+
+serverlog(".............||||||||||||")
 
 function clearKnowledge() {
     ServerSideKnowledge.serverState = ""
@@ -93,6 +95,8 @@ app.post('*', async (req, res) => {
             msg: "not provided",
             img: "not provided"
         }
+
+        // Checking If Connection is established
         try {
             let statePromise = current_Web.web.getState().then((state) => {
                 return state
@@ -110,6 +114,7 @@ app.post('*', async (req, res) => {
             serverResponse.servermsg = "Server Not Connected To Whatsapp"
             return res.end(JSON.stringify(serverResponse))
         }
+
         let chatId = req.query.phno + "@c.us"
         current_Web.web.isRegisteredUser(chatId).then(async (isRegistered) => {
             if (isRegistered) {
@@ -118,33 +123,35 @@ app.post('*', async (req, res) => {
                     msg += "🙏"
                 }
 
-                if (req.query.img.length > 0) {
-                    let media = new MessageMedia("image/jpg", fs.readFileSync(req.query.img, 'base64'), req.query.img)
-                    await current_Web.web.sendMessage(chatId, media).then((msgDetails) => {
-                        if (msgDetails.ack >= 0) {
-                            serverResponse.img = "image_sent"
-                        } else {
-                            serverResponse.servermsg = "Image Not Sent, Reason: ack < 0 Try connecting to internet"
-                        }
-                    })
-                }
-
                 if (msg.length > 0) {
                     await current_Web.web.sendMessage(chatId, msg).then((msgDetails) => {
                         if (msgDetails.ack >= 0) {
                             serverResponse.msg = "message_sent"
+                            serverResponse.result = "pass"
                         } else {
                             serverResponse.servermsg = "Message Not Sent, Reason: ack < 0 Try connecting to internet"
                         }
                     })
                 }
 
-                if (serverResponse.msg == "message_sent" & serverResponse.img == "image_sent") {
-                    serverResponse.result = "pass"
+                if (req.query.img.length > 1) {
+                    let media = new MessageMedia("image/jpg", fs.readFileSync(req.query.img, 'base64'), req.query.img)
+                    await current_Web.web.sendMessage(chatId, media).then((msgDetails) => {
+                        if (msgDetails.ack >= 0) {
+                            serverResponse.img = "image_sent"
+                            serverResponse.result = "pass"
+                        } else {
+                            serverResponse.servermsg = "Image Not Sent, Reason: ack < 0 Try connecting to internet"
+                        }
+                    })
                 }
+
+                serverlog(JSON.stringify(serverResponse))
                 res.end(JSON.stringify(serverResponse))
             } else {
+                serverResponse.result = "UnRegistered"
                 serverResponse.servermsg = `Invalid phoneno (${req.query.phno}): This Phno Is Not Registered With Whatsapp`
+                serverlog(JSON.stringify(serverResponse))
                 return res.end(JSON.stringify(serverResponse))
             }
         })
@@ -177,6 +184,7 @@ app.post('*', async (req, res) => {
         }
     }
 
+
     if (req.query.purpose == "search_request") {
         let response = {
             servermsg: "",
@@ -203,6 +211,7 @@ app.post('*', async (req, res) => {
         }
     }
 
+    //TO Get Profile Image Of Customer
     if (req.query.purpose == "get_profile") {
         let response = {
             servermsg: "",
@@ -234,6 +243,7 @@ app.post('*', async (req, res) => {
         }
     }
 
+    //To Check If Connection Is Alive
     if (req.query.purpose == "test") {
         try {
             return res.send(true)
@@ -277,17 +287,17 @@ let initializeWebEvents = async () => {
         await current_Web.web.removeAllListeners('disconnected')
         await current_Web.web.removeAllListeners('change_state')
 
-        current_Web.web.on('message', async msg => {
-            try {
-                ServerSideKnowledge.msgInfo.sender = "initializeWebEvents/message"
-                ServerSideKnowledge.msgInfo.purpose = "new_msg"
-                ServerSideKnowledge.msgInfo.msg = msg.body
-                serverlog(ServerSideKnowledge)
-                current_wsClient.wsClient.send(JSON.stringify(ServerSideKnowledge))
-            } catch (error) {
-                serverlog(`initializeWebEvents/message error: ${error}`)
-            }
-        })
+        // current_Web.web.on('message', async msg => {
+        //     try {
+        //         ServerSideKnowledge.msgInfo.sender = "initializeWebEvents/message"
+        //         ServerSideKnowledge.msgInfo.purpose = "new_msg"
+        //         ServerSideKnowledge.msgInfo.msg = msg.body
+        //         serverlog(ServerSideKnowledge)
+        //         current_wsClient.wsClient.send(JSON.stringify(ServerSideKnowledge))
+        //     } catch (error) {
+        //         serverlog(`initializeWebEvents/message error: ${error}`)
+        //     }
+        // })
 
         current_Web.web.on('change_battery', async () => {
             try {
@@ -380,7 +390,7 @@ let initializeWebEvents = async () => {
     }
 }
 
-function createNewWeb(HeadlessOption = true) {
+function createNewWeb(HeadlessOption) {
     const SESSION_FILE_PATH = './session.json'
     let web = new Client({
         puppeteer: {
@@ -459,9 +469,9 @@ function NewWeb(HeadlessOption = true, ignorePrevious = false, createNewWebBol =
             previousSessionInfoAvailable = false;
         }
 
-        console.log(`Ignore Previous Session ${ignorePrevious}`)
-        console.log(`Previous Session Info Available ${previousSessionInfoAvailable}`)
-        console.log(`Create New Session ${createNewWebBol}`)
+        serverlog(`Ignore Previous Session ${ignorePrevious}`)
+        serverlog(`Previous Session Info Available ${previousSessionInfoAvailable}`)
+        serverlog(`Create New Session ${createNewWebBol}`)
 
 
         if (previousSessionInfoAvailable) {
