@@ -265,9 +265,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DevUse\FirstApp_database.accdb">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Resources\AccountInfo.jpg" />
     <Content Include="Resources\Bis_Logo.jpg" />
     <Content Include="Resources\Google_PhonePe.png" />
