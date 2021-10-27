@@ -505,4 +505,34 @@ Public Class KittyForm
         _currentKitty.Notes = NotesTB.Text
     End Sub
 
+    Private Sub TransferKittyToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TransferKittyToolStripMenuItem.Click
+        Dim Fm As New ShortCustomerSearch
+        AddHandler Fm.CustomerClicked, AddressOf CustomerSelected
+        Fm.Show()
+    End Sub
+
+    Private Sub CustomerSelected(NewCustomerId As Integer)
+        If MessageBox.Show($"Are You Sure You Want To Transfer KittyNo:{_currentKitty.KittyNo} And Type:{_currentKitty.KittyType} To Customer:{New Customer(NewCustomerId).FullName} ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then Exit Sub
+        _currentKitty.CustomerID = NewCustomerId
+        SaveButton_Click(SaveButton, EventArgs.Empty)
+
+        For Each ExistingFm As Form In Frame.MdiChildren
+            If ExistingFm.Name <> "Main" Then
+                ExistingFm.Dispose()
+            End If
+        Next
+
+        Dim Fm As New KittyModeCoustView With {
+            .MdiParent = Frame,
+            .Dock = DockStyle.Fill,
+            .Tag = NewCustomerId.ToString + "_" + _currentKitty.KittyUID.ToString
+        }
+
+        Fm.Show()
+
+    End Sub
+
+    Private Sub IconPictureBox1_Click(sender As Object, e As EventArgs) Handles IconPictureBox1.Click
+        ContextMenuStrip1.Show(IconPictureBox1, 0, IconPictureBox1.Size.Height)
+    End Sub
 End Class

@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class Messenger
+Partial Class Form2
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -58,18 +58,15 @@ Partial Class Messenger
         Me.DataGridViewTextBoxColumn6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewButtonColumn1 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.Panel1 = New System.Windows.Forms.Panel()
         Me.WarningLabel = New System.Windows.Forms.Label()
         Me.MessageTB = New ProBaseAdvancedTextBox.ProBaseAdvancedTextBox.RichTextBoxPrintCtrl()
-        Me.CloseButton = New FontAwesome.Sharp.IconButton()
-        Me.NextButton = New FontAwesome.Sharp.IconButton()
-        Me.BackButton = New FontAwesome.Sharp.IconButton()
-        Me.SendButton = New FontAwesome.Sharp.IconButton()
-        Me.ImgBox = New System.Windows.Forms.PictureBox()
         Me.HandsCheckBox = New System.Windows.Forms.CheckBox()
-        Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
-        Me.MessageResultLB = New System.Windows.Forms.Label()
-        CType(Me.ImgBox, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.IconButton1 = New FontAwesome.Sharp.IconButton()
+        Me.CloseButton = New FontAwesome.Sharp.IconButton()
+        Me.SendButton = New FontAwesome.Sharp.IconButton()
+        Me.ImageBox = New System.Windows.Forms.PictureBox()
+        CType(Me.ImageBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Column10
@@ -318,38 +315,78 @@ Partial Class Messenger
         Me.DataGridViewButtonColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DataGridViewButtonColumn1.Width = 27
         '
-        'Panel1
-        '
-        Me.Panel1.BackColor = System.Drawing.Color.White
-        Me.Panel1.Location = New System.Drawing.Point(13, 15)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(534, 902)
-        Me.Panel1.TabIndex = 236
-        '
         'WarningLabel
         '
         Me.WarningLabel.AutoSize = True
         Me.WarningLabel.BackColor = System.Drawing.Color.Transparent
         Me.WarningLabel.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.WarningLabel.ForeColor = System.Drawing.Color.Goldenrod
-        Me.WarningLabel.Location = New System.Drawing.Point(577, 78)
+        Me.WarningLabel.Location = New System.Drawing.Point(277, 83)
         Me.WarningLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.WarningLabel.Name = "WarningLabel"
-        Me.WarningLabel.Size = New System.Drawing.Size(511, 30)
+        Me.WarningLabel.Size = New System.Drawing.Size(331, 30)
         Me.WarningLabel.TabIndex = 252
-        Me.WarningLabel.Text = "Please Scan QrCode From Whatsapp First!"
-        Me.WarningLabel.Visible = False
+        Me.WarningLabel.Text = "First Create New Messages"
         '
         'MessageTB
         '
         Me.MessageTB.AutoWordSelection = True
         Me.MessageTB.BackColor = System.Drawing.Color.Lavender
         Me.MessageTB.Font = New System.Drawing.Font("Century Schoolbook", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.MessageTB.Location = New System.Drawing.Point(563, 111)
+        Me.MessageTB.Location = New System.Drawing.Point(282, 116)
         Me.MessageTB.Name = "MessageTB"
         Me.MessageTB.Size = New System.Drawing.Size(535, 433)
         Me.MessageTB.TabIndex = 261
         Me.MessageTB.Text = ""
+        '
+        'HandsCheckBox
+        '
+        Me.HandsCheckBox.AutoSize = True
+        Me.HandsCheckBox.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.HandsCheckBox.ForeColor = System.Drawing.Color.Orange
+        Me.HandsCheckBox.Location = New System.Drawing.Point(674, 633)
+        Me.HandsCheckBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.HandsCheckBox.Name = "HandsCheckBox"
+        Me.HandsCheckBox.Size = New System.Drawing.Size(153, 27)
+        Me.HandsCheckBox.TabIndex = 9991
+        Me.HandsCheckBox.Text = "Hands Emoji"
+        Me.HandsCheckBox.UseVisualStyleBackColor = True
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.BackColor = System.Drawing.Color.Transparent
+        Me.Label1.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.Color.Goldenrod
+        Me.Label1.Location = New System.Drawing.Point(71, 526)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(123, 28)
+        Me.Label1.TabIndex = 9994
+        Me.Label1.Text = "25 OF 100"
+        Me.Label1.Visible = False
+        '
+        'IconButton1
+        '
+        Me.IconButton1.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.IconButton1.FlatAppearance.BorderSize = 0
+        Me.IconButton1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Lime
+        Me.IconButton1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.IconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.IconButton1.Font = New System.Drawing.Font("Century Gothic", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.IconButton1.ForeColor = System.Drawing.Color.Linen
+        Me.IconButton1.IconChar = FontAwesome.Sharp.IconChar.PaperPlane
+        Me.IconButton1.IconColor = System.Drawing.Color.White
+        Me.IconButton1.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.IconButton1.IconSize = 36
+        Me.IconButton1.Location = New System.Drawing.Point(13, 462)
+        Me.IconButton1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.IconButton1.Name = "IconButton1"
+        Me.IconButton1.Size = New System.Drawing.Size(239, 59)
+        Me.IconButton1.TabIndex = 9993
+        Me.IconButton1.Text = "Create New"
+        Me.IconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.IconButton1.UseVisualStyleBackColor = False
         '
         'CloseButton
         '
@@ -365,54 +402,13 @@ Partial Class Messenger
         Me.CloseButton.IconColor = System.Drawing.Color.White
         Me.CloseButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
         Me.CloseButton.IconSize = 32
-        Me.CloseButton.Location = New System.Drawing.Point(1061, 11)
+        Me.CloseButton.Location = New System.Drawing.Point(798, 14)
         Me.CloseButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.CloseButton.Name = "CloseButton"
         Me.CloseButton.Size = New System.Drawing.Size(47, 40)
         Me.CloseButton.TabIndex = 262
         Me.CloseButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.CloseButton.UseVisualStyleBackColor = False
-        Me.CloseButton.Visible = False
-        '
-        'NextButton
-        '
-        Me.NextButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(70, Byte), Integer))
-        Me.NextButton.FlatAppearance.BorderSize = 0
-        Me.NextButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.NextButton.Font = New System.Drawing.Font("Cambria", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.NextButton.ForeColor = System.Drawing.Color.MediumPurple
-        Me.NextButton.IconChar = FontAwesome.Sharp.IconChar.ArrowCircleRight
-        Me.NextButton.IconColor = System.Drawing.Color.MediumPurple
-        Me.NextButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.NextButton.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.NextButton.Location = New System.Drawing.Point(646, 554)
-        Me.NextButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.NextButton.Name = "NextButton"
-        Me.NextButton.Size = New System.Drawing.Size(54, 62)
-        Me.NextButton.TabIndex = 249
-        Me.NextButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
-        Me.NextButton.UseVisualStyleBackColor = False
-        Me.NextButton.Visible = False
-        '
-        'BackButton
-        '
-        Me.BackButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(70, Byte), Integer))
-        Me.BackButton.FlatAppearance.BorderSize = 0
-        Me.BackButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BackButton.Font = New System.Drawing.Font("Cambria", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BackButton.ForeColor = System.Drawing.Color.MediumPurple
-        Me.BackButton.IconChar = FontAwesome.Sharp.IconChar.ArrowCircleLeft
-        Me.BackButton.IconColor = System.Drawing.Color.MediumPurple
-        Me.BackButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.BackButton.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.BackButton.Location = New System.Drawing.Point(584, 552)
-        Me.BackButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.BackButton.Name = "BackButton"
-        Me.BackButton.Size = New System.Drawing.Size(54, 62)
-        Me.BackButton.TabIndex = 250
-        Me.BackButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.BackButton.UseVisualStyleBackColor = False
-        Me.BackButton.Visible = False
         '
         'SendButton
         '
@@ -428,88 +424,46 @@ Partial Class Messenger
         Me.SendButton.IconColor = System.Drawing.Color.White
         Me.SendButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
         Me.SendButton.IconSize = 36
-        Me.SendButton.Location = New System.Drawing.Point(827, 556)
+        Me.SendButton.Location = New System.Drawing.Point(508, 561)
         Me.SendButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.SendButton.Name = "SendButton"
-        Me.SendButton.Size = New System.Drawing.Size(277, 62)
+        Me.SendButton.Size = New System.Drawing.Size(315, 62)
         Me.SendButton.TabIndex = 243
-        Me.SendButton.Text = "Send Message"
+        Me.SendButton.Text = "Send Remaining"
         Me.SendButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.SendButton.UseVisualStyleBackColor = False
         '
-        'ImgBox
+        'ImageBox
         '
-        Me.ImgBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.ImgBox.Location = New System.Drawing.Point(13, 11)
-        Me.ImgBox.Name = "ImgBox"
-        Me.ImgBox.Size = New System.Drawing.Size(534, 902)
-        Me.ImgBox.TabIndex = 0
-        Me.ImgBox.TabStop = False
-        Me.ImgBox.Visible = False
+        Me.ImageBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.ImageBox.Image = Global.FirstApp.My.Resources.Resources.addSign
+        Me.ImageBox.Location = New System.Drawing.Point(13, 11)
+        Me.ImageBox.Name = "ImageBox"
+        Me.ImageBox.Size = New System.Drawing.Size(222, 222)
+        Me.ImageBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.ImageBox.TabIndex = 0
+        Me.ImageBox.TabStop = False
         '
-        'HandsCheckBox
-        '
-        Me.HandsCheckBox.AutoSize = True
-        Me.HandsCheckBox.Checked = True
-        Me.HandsCheckBox.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.HandsCheckBox.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.HandsCheckBox.ForeColor = System.Drawing.Color.Orange
-        Me.HandsCheckBox.Location = New System.Drawing.Point(955, 628)
-        Me.HandsCheckBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.HandsCheckBox.Name = "HandsCheckBox"
-        Me.HandsCheckBox.Size = New System.Drawing.Size(153, 27)
-        Me.HandsCheckBox.TabIndex = 9991
-        Me.HandsCheckBox.Text = "Hands Emoji"
-        Me.HandsCheckBox.UseVisualStyleBackColor = True
-        '
-        'FlowLayoutPanel1
-        '
-        Me.FlowLayoutPanel1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.FlowLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(60, Byte), Integer))
-        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(570, 678)
-        Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(447, 235)
-        Me.FlowLayoutPanel1.TabIndex = 9992
-        '
-        'MessageResultLB
-        '
-        Me.MessageResultLB.AutoSize = True
-        Me.MessageResultLB.BackColor = System.Drawing.Color.Transparent
-        Me.MessageResultLB.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.MessageResultLB.ForeColor = System.Drawing.Color.ForestGreen
-        Me.MessageResultLB.Location = New System.Drawing.Point(577, 647)
-        Me.MessageResultLB.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.MessageResultLB.Name = "MessageResultLB"
-        Me.MessageResultLB.Size = New System.Drawing.Size(244, 28)
-        Me.MessageResultLB.TabIndex = 226
-        Me.MessageResultLB.Text = "+919816057863: Sent"
-        Me.MessageResultLB.Visible = False
-        '
-        'Messenger
+        'Form2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(60, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(1117, 932)
-        Me.Controls.Add(Me.MessageResultLB)
-        Me.Controls.Add(Me.FlowLayoutPanel1)
+        Me.ClientSize = New System.Drawing.Size(858, 932)
+        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.IconButton1)
         Me.Controls.Add(Me.HandsCheckBox)
         Me.Controls.Add(Me.CloseButton)
         Me.Controls.Add(Me.MessageTB)
-        Me.Controls.Add(Me.NextButton)
-        Me.Controls.Add(Me.BackButton)
         Me.Controls.Add(Me.WarningLabel)
         Me.Controls.Add(Me.SendButton)
-        Me.Controls.Add(Me.Panel1)
-        Me.Controls.Add(Me.ImgBox)
+        Me.Controls.Add(Me.ImageBox)
         Me.ForeColor = System.Drawing.SystemColors.Desktop
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.Name = "Messenger"
-        Me.ShowInTaskbar = False
+        Me.Name = "Form2"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        CType(Me.ImgBox, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ImageBox, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -534,15 +488,12 @@ Partial Class Messenger
     Friend WithEvents DataGridViewTextBoxColumn6 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn7 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewButtonColumn1 As DataGridViewCheckBoxColumn
-    Friend WithEvents Panel1 As Panel
     Friend WithEvents SendButton As FontAwesome.Sharp.IconButton
-    Friend WithEvents NextButton As FontAwesome.Sharp.IconButton
-    Friend WithEvents BackButton As FontAwesome.Sharp.IconButton
-    Friend WithEvents ImgBox As PictureBox
+    Friend WithEvents ImageBox As PictureBox
     Friend WithEvents WarningLabel As Label
     Friend WithEvents MessageTB As ProBaseAdvancedTextBox.ProBaseAdvancedTextBox.RichTextBoxPrintCtrl
     Friend WithEvents CloseButton As FontAwesome.Sharp.IconButton
     Friend WithEvents HandsCheckBox As CheckBox
-    Friend WithEvents FlowLayoutPanel1 As FlowLayoutPanel
-    Friend WithEvents MessageResultLB As Label
+    Friend WithEvents IconButton1 As FontAwesome.Sharp.IconButton
+    Friend WithEvents Label1 As Label
 End Class

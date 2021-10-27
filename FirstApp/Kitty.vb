@@ -1,4 +1,5 @@
 ﻿Imports System.Data.OleDb
+Imports FirstApp.Utility
 
 Public Class Kitty
 
@@ -72,9 +73,10 @@ Public Class Kitty
                 "INSERT INTO Kitty_Data (CoustID,KittyNo,KittyType,Dates,Interest,Duration,Availed,Notes)" &
                 $"VALUES({CustomerID},{KittyNo},{KittyType},'{RecordString()}',{KittyInterest},{Duration},'{IsAvailed}','{Notes.Replace("'", apostrope)}')")
         Else
+            If CustomerID = -1 Then Exit Sub
             If MessageBox.Show("[Kitty] Do You Want To Update This Kitty ?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then Exit Sub
             SqlCommand(
-                $"UPDATE Kitty_Data set KittyNo={KittyNo},KittyType={KittyType},Dates='{RecordString()}',Interest={KittyInterest},Duration={Duration}" &
+                $"UPDATE Kitty_Data set CoustID={CustomerID},KittyNo={KittyNo},KittyType={KittyType},Dates='{RecordString()}',Interest={KittyInterest},Duration={Duration}" &
                 $",Availed ='{IsAvailed()}',Notes='{Notes.Replace("'", apostrope)}' WHERE KittyUID={KittyUID}")
         End If
     End Sub
@@ -170,12 +172,13 @@ Public Class Kitty
     Public Function GetInstalmentsPending() As Integer  'Instalments Pending Till Date
         Try
             If Record.Count = 0 Then Return -1
-            Dim LastDate As Date = Record.Last.Key
-            Dim daysbetween As TimeSpan = Today - LastDate
-            Dim monthsbetweeen As Integer = Int(daysbetween.Days / 31) '#Instalments Left
+            Dim FirstDate As Date = Record.First.Key
+            Dim monthsbetweeen As Integer = MonthDifference(Today, FirstDate) '#Expected Given Instalments
 
-            If monthsbetweeen + GetInstalmentsCompleted() > Duration Then 'If There Are More Months Between Last Instalment
-                monthsbetweeen = Duration - GetInstalmentsCompleted()
+            monthsbetweeen -= GetInstalmentsCompleted() - 1
+
+            If monthsbetweeen > GetInstalments_LeftForMaturity() Then
+                monthsbetweeen = GetInstalments_LeftForMaturity()
             End If
 
             If GetInstalments_LeftForMaturity() = 0 Then Return -1 ' If Matured -> Return -1

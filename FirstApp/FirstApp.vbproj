@@ -121,11 +121,47 @@
     <Compile Include="FormView\QrCodeView.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormView\Report.Designer.vb">
+      <DependentUpon>Report.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormView\Report.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormView\ShortCustomerSearch.Designer.vb">
+      <DependentUpon>ShortCustomerSearch.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormView\ShortCustomerSearch.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Kitty.vb" />
+    <Compile Include="FormView\BookMode.Designer.vb">
+      <DependentUpon>BookMode.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormView\BookMode.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Messenger\AddNewMessage.Designer.vb">
       <DependentUpon>AddNewMessage.vb</DependentUpon>
     </Compile>
     <Compile Include="Messenger\AddNewMessage.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Messenger\Form1.Designer.vb">
+      <DependentUpon>Form1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Messenger\Form1.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Messenger\Form2.Designer.vb">
+      <DependentUpon>Form2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Messenger\Form2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Messenger\Form3.Designer.vb">
+      <DependentUpon>Form3.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Messenger\Form3.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Messenger\KittyRecievedReciept.Designer.vb">
@@ -237,8 +273,26 @@
     <EmbeddedResource Include="DevUse\LoadingForm.resx">
       <DependentUpon>LoadingForm.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormView\Report.resx">
+      <DependentUpon>Report.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormView\BookMode.resx">
+      <DependentUpon>BookMode.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormView\ShortCustomerSearch.resx">
+      <DependentUpon>ShortCustomerSearch.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Messenger\AddNewMessage.resx">
       <DependentUpon>AddNewMessage.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Messenger\Form1.resx">
+      <DependentUpon>Form1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Messenger\Form2.resx">
+      <DependentUpon>Form2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Messenger\Form3.resx">
+      <DependentUpon>Form3.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Messenger\KittyRecievedReciept.resx">
       <DependentUpon>KittyRecievedReciept.vb</DependentUpon>
@@ -346,6 +400,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />

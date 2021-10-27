@@ -87,19 +87,10 @@
         End Set
     End Property
 
-    Public Sub DetailsButton_Click() Handles DetailsButton.Click
-        For Each ExistingFm As Form In Frame.MdiChildren
-            If ExistingFm.Name <> "Main" Then
-                ExistingFm.Dispose()
-            End If
-        Next
+    Public Event DetailsButton_Clicked(CustomerId As Integer, KittyID As Integer)
 
-        Dim Fm As New KittyModeCoustView With {
-            .MdiParent = Frame,
-            .Dock = DockStyle.Fill,
-            .Tag = CoustID.ToString + "_" + KittyID.ToString
-        }
-        Fm.Show()
+    Public Sub DetailsButton_Click() Handles DetailsButton.Click
+        RaiseEvent DetailsButton_Clicked(CoustID, KittyID)
     End Sub
 
     Private Sub CloseButton_Click(sender As Object, e As EventArgs) Handles CloseButton.Click

@@ -1,4 +1,4 @@
-﻿Public Class Main
+﻿Public Class ShortCustomerSearch
     Private Const MaxLimit As Integer = 6
 
     Private Sub Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -62,35 +62,14 @@
                 Next
                 FlowLayoutPanel1.Visible = True
                 GC.Collect()
-                If FlowLayoutPanel1.Controls.Count = 1 Then
-                    For Each i In FlowLayoutPanel1.Controls
-                        Try
-                            i.DetailsButton_Click()
-                        Catch ex As Exception
-                            MessageBox.Show(ex.Message)
-                        End Try
-                    Next
-                End If
             End If
         End If
     End Sub
 
+    Public Event CustomerClicked(CustomerID As Integer)
+
     Private Sub ControlButton_Clicked(CustomerID As Integer, Optional KittyID As Integer = -1)
-        For Each ExistingFm As Form In Frame.MdiChildren
-            If ExistingFm.Name <> "Main" Then
-                ExistingFm.Dispose()
-            End If
-        Next
-
-        Dim Fm As New KittyModeCoustView With {
-            .MdiParent = Frame,
-            .Dock = DockStyle.Fill,
-            .Tag = CustomerID.ToString
-        }
-
-        If KittyID <> -1 Then Fm.Tag += "_" + KittyID.ToString
-
-        Fm.Show()
+        RaiseEvent CustomerClicked(CustomerID)
     End Sub
 
     Private Sub SearchTextBoxes_TextChanged(sender As TextBox, e As EventArgs) Handles NameTB.TextChanged, PhNoTB.TextChanged, KittyNoTB.TextChanged
@@ -145,4 +124,5 @@
         FindCoustmerButton_Click(FindCoustmerButton, EventArgs.Empty)
         NameTB.Select()
     End Sub
+
 End Class

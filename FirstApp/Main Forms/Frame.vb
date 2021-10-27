@@ -69,19 +69,19 @@ Public Class Frame
         QuickSearchButton_Click(QuickSearchButton, e)
         KeyPreview = True
 
-        If My.Settings.server_headless Then
-            WhatsappWebVisibilityToolStripMenuItem.Text = "WhatsappWeb: Hidden"
-        Else
-            WhatsappWebVisibilityToolStripMenuItem.Text = "WhatsappWeb: Visible"
-        End If
-
+        'If My.Settings.server_headless Then
+        '    WhatsappWebVisibilityToolStripMenuItem.Text = "WhatsappWeb: Hidden"
+        'Else
+        '    WhatsappWebVisibilityToolStripMenuItem.Text = "WhatsappWeb: Visible"
+        'End If
         'Dim x1 As Threading.Thread = New Threading.Thread(Async Sub()
         '                                                      Await StartServer(True)
         '                                                  End Sub) With {
         '    .Priority = Threading.ThreadPriority.Lowest
         '                                                  }
         'x1.Start()
-        'MessageBox.Show(Directory.GetCurrentDirectory())
+
+        'Form2.Show()
 
     End Sub
 #End Region
@@ -419,10 +419,6 @@ Public Class Frame
 #Region "All KeyDown Events Ex.-Ctrl+S"
     Private Sub Frame_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
         Try
-            If (e.Control And e.KeyCode = Keys.R) Then
-                'Report.Show()
-                Exit Sub
-            End If
             If e.Control And e.KeyCode = Keys.N Then
                 NewCoustmerButton_Click()
                 Exit Sub
@@ -431,6 +427,12 @@ Public Class Frame
                 QuickSearchButton_Click(QuickSearchButton, e)
                 Main.NameTB.Select()
                 Exit Sub
+            End If
+            If e.Control And e.KeyCode = Keys.R Then
+                Report.Show()
+            End If
+            If e.Control And e.KeyCode = Keys.B Then
+                BookMode.Show()
             End If
         Catch ex As Exception
         End Try

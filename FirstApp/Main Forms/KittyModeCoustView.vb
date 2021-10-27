@@ -284,7 +284,7 @@ Public Class KittyModeCoustView
 #End Region
 
 #Region "BookMode"
-    Private Sub BookModeButton_Click(sender As Object, e As EventArgs) Handles BookModeButton.Click
+    Public Sub BookModeButton_Click(sender As Object, e As EventArgs) Handles BookModeButton.Click
         If KittyIdTB.Text.Length = 0 Then Exit Sub
 
         Dim dr As OleDb.OleDbDataReader = DataReader($"Select KittyUID From Kitty_Data Where KittyType={_KittyForm._currentKitty.KittyType} ORDER BY KittyNo ASC")
@@ -305,10 +305,11 @@ Public Class KittyModeCoustView
 
     Private Sub UpdateBookMode()
         If Not BookMode Then Exit Sub
-        KittyInfoLabel.Text = $"{New Kitty(BookList.First, True).KittyType.ToCurrency(RemoveSpaces:=True)} : #{New Kitty(KittyIdTB.Text, True).KittyNo}: {New Kitty(BookList.First, True).KittyNo}-{New Kitty(BookList.Last, True).KittyNo}"
-        If CurrentIndex() = 0 Then PrevKittyButton.Enabled = False Else PrevKittyButton.Enabled = True
-        If CurrentIndex() = BookList.Count - 1 Then NextKittyButton.Enabled = False Else NextKittyButton.Enabled = True
         _KittyID_Book = KittyIdTB.Text
+        KittyInfoLabel.Text = $"{New Kitty(BookList.First, True).KittyType.ToCurrency(RemoveSpaces:=True)} : #{New Kitty(KittyIdTB.Text, True).KittyNo}: {New Kitty(BookList.First, True).KittyNo}-{New Kitty(BookList.Last, True).KittyNo}"
+        Dim Index As Integer = CurrentIndex()
+        If Index = 0 Then PrevKittyButton.Enabled = False Else PrevKittyButton.Enabled = True
+        If Index = BookList.Count - 1 Then NextKittyButton.Enabled = False Else NextKittyButton.Enabled = True
     End Sub
 
     Private Function CurrentIndex() As Integer

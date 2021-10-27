@@ -304,6 +304,7 @@ Public Class Customer
 #Region "CustomerProfession"
     Public Function Profession() As String
         Try
+            If CustomerID = -1 Then Return Nothing
             Dim dr_profession As OleDbDataReader = DataReader("Select Prof From Coustmers_Data Where SrNo=" & CustomerID)
             Dim temp_profession As String = Nothing
             While dr_profession.Read
@@ -312,7 +313,6 @@ Public Class Customer
                 Catch ex As Exception
                 End Try
             End While
-            dr_profession.Close()
             Return temp_profession.Replace(apostrope, "'")
         Catch ex As Exception
             MessageBox.Show($"Error [Customer/Profession()]: {ex.Message}", "Error In Customer Class", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -505,5 +505,9 @@ Public Class Utility
             MessageBox.Show($"Class: [Utility/Error]: {ex.Message}", "Error In Utility Class", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+
+    Public Shared Function MonthDifference(ByVal first As DateTime, ByVal second As DateTime) As Integer
+        Return Math.Abs((first.Month - second.Month) + 12 * (first.Year - second.Year))
+    End Function
 
 End Class

@@ -23,7 +23,7 @@ Public Class Messenger
                     .AmountBeforePayment = _kitty.GivenAmount - _kitty.Record.Last.Value
                     .Total = _kitty.GivenAmount
                     .First_Month = _kitty.Record.First.Key
-                    .CompletedTill_Month = _kitty.Record.First.Key.AddMonths(_kitty.GetInstalmentsCompleted)
+                    .CompletedTill_Month = _kitty.Record.First.Key.AddMonths(_kitty.GetInstalmentsCompleted - 1)
                     .Status = _kitty.GetInstalmentsPending
                     .BarCodeData = $"{ _kitty.KittyUID}000{ _kitty.Owner.CustomerID}000{New Random(_kitty.GivenAmount).Next}"
                 End With

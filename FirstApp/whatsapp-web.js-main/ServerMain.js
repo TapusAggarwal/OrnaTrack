@@ -123,17 +123,6 @@ app.post('*', async (req, res) => {
                     msg += "🙏"
                 }
 
-                if (msg.length > 0) {
-                    await current_Web.web.sendMessage(chatId, msg).then((msgDetails) => {
-                        if (msgDetails.ack >= 0) {
-                            serverResponse.msg = "message_sent"
-                            serverResponse.result = "pass"
-                        } else {
-                            serverResponse.servermsg = "Message Not Sent, Reason: ack < 0 Try connecting to internet"
-                        }
-                    })
-                }
-
                 if (req.query.img.length > 1) {
                     let media = new MessageMedia("image/jpg", fs.readFileSync(req.query.img, 'base64'), req.query.img)
                     await current_Web.web.sendMessage(chatId, media).then((msgDetails) => {
@@ -142,6 +131,17 @@ app.post('*', async (req, res) => {
                             serverResponse.result = "pass"
                         } else {
                             serverResponse.servermsg = "Image Not Sent, Reason: ack < 0 Try connecting to internet"
+                        }
+                    })
+                }
+
+                if (msg.length > 0) {
+                    await current_Web.web.sendMessage(chatId, msg).then((msgDetails) => {
+                        if (msgDetails.ack >= 0) {
+                            serverResponse.msg = "message_sent"
+                            serverResponse.result = "pass"
+                        } else {
+                            serverResponse.servermsg = "Message Not Sent, Reason: ack < 0 Try connecting to internet"
                         }
                     })
                 }

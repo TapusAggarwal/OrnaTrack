@@ -70,19 +70,10 @@
         Dispose()
     End Sub
 
-    Public Sub DetailsButton_Click() Handles DetailsButton.Click
-        For Each ExistingFm As Form In Frame.MdiChildren
-            If ExistingFm.Name <> "Main" Then
-                ExistingFm.Dispose()
-            End If
-        Next
+    Public Event DetailsButton_Clicked(CustomerID As Integer)
 
-        Dim Fm As New CoustProfileUpdated With {
-            .MdiParent = Frame,
-            .Dock = DockStyle.Fill,
-            .Tag = CoustID
-        }
-        Fm.Show()
+    Public Sub DetailsButton_Click() Handles DetailsButton.Click
+        RaiseEvent DetailsButton_Clicked(CoustID)
     End Sub
 
 End Class
