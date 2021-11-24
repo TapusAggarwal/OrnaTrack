@@ -171,44 +171,37 @@ Public Class Kitty
 
     Public Function GetInstalmentsPending() As Integer  'Instalments Pending Till Date
         Try
-            If Record.Count = 0 Then Return -1
+            If Record.Count = 0 Then Return Nothing
             Dim FirstDate As Date = Record.First.Key
-            Dim monthsbetweeen As Integer = MonthDifference(Today, FirstDate) '#Expected Given Instalments
 
-            monthsbetweeen -= GetInstalmentsCompleted() - 1
+            Dim ExpectedDate As Date = FirstDate
+            Dim ExpectedInstalments As Integer = 0
 
-            If monthsbetweeen > GetInstalments_LeftForMaturity() Then
-                monthsbetweeen = GetInstalments_LeftForMaturity()
+            While ExpectedDate < Today  ' Adding One To Get Instalments Expected Until Today (It Will Add One Extra Month At Last)
+                ExpectedDate = ExpectedDate.AddMonths(1)
+                ExpectedInstalments += 1
+            End While
+
+            ExpectedInstalments -= 1 ' Subtracting One To Get Instalments Expected Until Today
+
+            ExpectedInstalments -= GetInstalmentsCompleted() - 1 ' Subtracting Instalments Given And One More Instalment That Is The First Instalment
+
+            If ExpectedInstalments > GetInstalments_LeftForMaturity() Then ' If Instalments Due Past The Date Of Maturity
+                ExpectedInstalments = GetInstalments_LeftForMaturity()
             End If
 
             If GetInstalments_LeftForMaturity() = 0 Then Return -1 ' If Matured -> Return -1
 
-            If monthsbetweeen < 0 Then Return 0 Else Return monthsbetweeen 'If SomeBody Paid More Than Necessary
+            If ExpectedInstalments < 0 Then 'If SomeBody Paid More Than Necessary
+                Return 0
+            Else
+                Return ExpectedInstalments
+            End If
         Catch ex As Exception
             MessageBox.Show("Can't Get Pending Instalments [Kitty]: " + ex.Message)
-            Return -1
+            Return Nothing
         End Try
     End Function
-
-    'Public Function GetInstalmentsPending1() As Integer  'Instalments Pending Till Date
-    '    Try
-    '        If Record.Count = 0 Then Return -1
-    '        Dim FirstMonth As Integer = Record.First.Key.Month
-    '        Dim daysbetween As TimeSpan = Today - LastDate
-    '        Dim monthsbetweeen As Integer = Int(daysbetween.Days / 31) '#Instalments Left
-
-    '        If monthsbetweeen + GetInstalmentsCompleted() > Duration Then 'If There Are More Months Between Last Instalment
-    '            monthsbetweeen = Duration - GetInstalmentsCompleted()
-    '        End If
-
-    '        If GetInstalments_LeftForMaturity() = 0 Then Return -1 ' If Matured -> Return -1
-
-    '        If monthsbetweeen < 0 Then Return 0 Else Return monthsbetweeen 'If SomeBody Paid More Than Necessary
-    '    Catch ex As Exception
-    '        MessageBox.Show("Can't Get Pending Instalments [Kitty]: " + ex.Message)
-    '        Return -1
-    '    End Try
-    'End Function
 
     Public Function GetInstalments_LeftForMaturity() As Integer 'Instalments Pending For Maturity
         Try

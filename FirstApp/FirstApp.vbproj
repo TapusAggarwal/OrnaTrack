@@ -109,10 +109,28 @@
     <Compile Include="DevUse\LoadingForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Extras\Form4.Designer.vb">
+      <DependentUpon>Form4.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Extras\Form4.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormView\DgvForExistingPhNo.Designer.vb">
       <DependentUpon>DgvForExistingPhNo.vb</DependentUpon>
     </Compile>
     <Compile Include="FormView\DgvForExistingPhNo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormView\PreviewCustomers.Designer.vb">
+      <DependentUpon>PreviewCustomers.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormView\PreviewCustomers.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormView\PreviewKitty.Designer.vb">
+      <DependentUpon>PreviewKitty.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormView\PreviewKitty.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormView\QrCodeView.Designer.vb">
@@ -273,6 +291,18 @@
     <EmbeddedResource Include="DevUse\LoadingForm.resx">
       <DependentUpon>LoadingForm.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Extras\Form4.resx">
+      <DependentUpon>Form4.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormView\PreviewCustomers.resx">
+      <DependentUpon>PreviewCustomers.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormView\PreviewKitty.resx">
+      <DependentUpon>PreviewKitty.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormView\QrCodeView.resx">
+      <DependentUpon>QrCodeView.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormView\Report.resx">
       <DependentUpon>Report.vb</DependentUpon>
     </EmbeddedResource>
@@ -345,6 +375,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Extras\app.config" />
     <None Include="Extras\app.manifest" />
     <None Include="My Project\app.manifest" />
@@ -402,6 +433,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />

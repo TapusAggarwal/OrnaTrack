@@ -126,4 +126,8 @@
         Dim dr As OleDb.OleDbDataReader = DataReader("Select SrNo From Coustmers_Data")
 
     End Sub
+
+    Private Sub MessageSender_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
 End Class

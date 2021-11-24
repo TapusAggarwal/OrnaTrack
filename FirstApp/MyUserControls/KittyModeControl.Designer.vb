@@ -23,6 +23,7 @@ Partial Class KittyModeControl
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.ImagePanel2 = New System.Windows.Forms.Panel()
+        Me.ImageParam = New System.Windows.Forms.PictureBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.KittyIDParam = New System.Windows.Forms.Label()
         Me.KittyNoParam = New System.Windows.Forms.Label()
@@ -30,17 +31,16 @@ Partial Class KittyModeControl
         Me.KittyTypeParam = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.CoustmerIdParam = New System.Windows.Forms.Label()
+        Me.DetailsButton = New FontAwesome.Sharp.IconButton()
         Me.SrNoParam = New System.Windows.Forms.Label()
+        Me.CloseButton = New FontAwesome.Sharp.IconButton()
         Me.LastInstalmentParam = New System.Windows.Forms.Label()
         Me.LastInstallmentLabel = New System.Windows.Forms.Label()
         Me.PhNoParam = New System.Windows.Forms.Label()
         Me.NameParam = New System.Windows.Forms.Label()
-        Me.ImageParam = New System.Windows.Forms.PictureBox()
-        Me.DetailsButton = New FontAwesome.Sharp.IconButton()
-        Me.CloseButton = New FontAwesome.Sharp.IconButton()
         Me.ImagePanel2.SuspendLayout()
-        Me.Panel2.SuspendLayout()
         CType(Me.ImageParam, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel2.SuspendLayout()
         Me.SuspendLayout()
         '
         'ImagePanel2
@@ -52,6 +52,18 @@ Partial Class KittyModeControl
         Me.ImagePanel2.Name = "ImagePanel2"
         Me.ImagePanel2.Size = New System.Drawing.Size(180, 228)
         Me.ImagePanel2.TabIndex = 175
+        '
+        'ImageParam
+        '
+        Me.ImageParam.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.ImageParam.Image = Global.FirstApp.My.Resources.Resources.addSign
+        Me.ImageParam.Location = New System.Drawing.Point(3, 26)
+        Me.ImageParam.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.ImageParam.Name = "ImageParam"
+        Me.ImageParam.Size = New System.Drawing.Size(174, 177)
+        Me.ImageParam.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.ImageParam.TabIndex = 7
+        Me.ImageParam.TabStop = False
         '
         'Panel2
         '
@@ -145,6 +157,27 @@ Partial Class KittyModeControl
         Me.CoustmerIdParam.TabIndex = 168
         Me.CoustmerIdParam.Visible = False
         '
+        'DetailsButton
+        '
+        Me.DetailsButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.DetailsButton.BackColor = System.Drawing.Color.DarkGoldenrod
+        Me.DetailsButton.FlatAppearance.BorderSize = 0
+        Me.DetailsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.DetailsButton.Font = New System.Drawing.Font("Century Schoolbook", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DetailsButton.ForeColor = System.Drawing.Color.Black
+        Me.DetailsButton.IconChar = FontAwesome.Sharp.IconChar.InfoCircle
+        Me.DetailsButton.IconColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
+        Me.DetailsButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.DetailsButton.IconSize = 35
+        Me.DetailsButton.Location = New System.Drawing.Point(641, 100)
+        Me.DetailsButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.DetailsButton.Name = "DetailsButton"
+        Me.DetailsButton.Size = New System.Drawing.Size(146, 46)
+        Me.DetailsButton.TabIndex = 164
+        Me.DetailsButton.Text = "Details"
+        Me.DetailsButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
+        Me.DetailsButton.UseVisualStyleBackColor = False
+        '
         'SrNoParam
         '
         Me.SrNoParam.AutoSize = True
@@ -159,29 +192,49 @@ Partial Class KittyModeControl
         Me.SrNoParam.Text = "#1"
         Me.SrNoParam.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
+        'CloseButton
+        '
+        Me.CloseButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.CloseButton.BackColor = System.Drawing.Color.Transparent
+        Me.CloseButton.FlatAppearance.BorderSize = 0
+        Me.CloseButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Red
+        Me.CloseButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Snow
+        Me.CloseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.CloseButton.IconChar = FontAwesome.Sharp.IconChar.WindowClose
+        Me.CloseButton.IconColor = System.Drawing.Color.DarkRed
+        Me.CloseButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.CloseButton.IconSize = 45
+        Me.CloseButton.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.CloseButton.Location = New System.Drawing.Point(730, 2)
+        Me.CloseButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.CloseButton.Name = "CloseButton"
+        Me.CloseButton.Size = New System.Drawing.Size(51, 46)
+        Me.CloseButton.TabIndex = 160
+        Me.CloseButton.UseVisualStyleBackColor = False
+        '
         'LastInstalmentParam
         '
         Me.LastInstalmentParam.BackColor = System.Drawing.Color.Transparent
         Me.LastInstalmentParam.Font = New System.Drawing.Font("Century Schoolbook", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LastInstalmentParam.ForeColor = System.Drawing.Color.FromArgb(CType(CType(200, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.LastInstalmentParam.Location = New System.Drawing.Point(442, 60)
+        Me.LastInstalmentParam.ForeColor = System.Drawing.Color.Gray
+        Me.LastInstalmentParam.Location = New System.Drawing.Point(486, 63)
         Me.LastInstalmentParam.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LastInstalmentParam.Name = "LastInstalmentParam"
-        Me.LastInstalmentParam.Size = New System.Drawing.Size(345, 31)
+        Me.LastInstalmentParam.Size = New System.Drawing.Size(296, 31)
         Me.LastInstalmentParam.TabIndex = 156
-        Me.LastInstalmentParam.Text = "1 Month And 7 days Ago."
+        Me.LastInstalmentParam.Text = "Availed"
         Me.LastInstalmentParam.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'LastInstallmentLabel
         '
         Me.LastInstallmentLabel.Font = New System.Drawing.Font("Century Schoolbook", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LastInstallmentLabel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(150, Byte), Integer), CType(CType(150, Byte), Integer))
-        Me.LastInstallmentLabel.Location = New System.Drawing.Point(238, 56)
+        Me.LastInstallmentLabel.Location = New System.Drawing.Point(233, 59)
         Me.LastInstallmentLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LastInstallmentLabel.Name = "LastInstallmentLabel"
-        Me.LastInstallmentLabel.Size = New System.Drawing.Size(218, 35)
+        Me.LastInstallmentLabel.Size = New System.Drawing.Size(257, 35)
         Me.LastInstallmentLabel.TabIndex = 153
-        Me.LastInstallmentLabel.Text = "Last Installment:"
+        Me.LastInstallmentLabel.Text = "Instalment Pending:"
         Me.LastInstallmentLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'PhNoParam
@@ -208,59 +261,6 @@ Partial Class KittyModeControl
         Me.NameParam.Text = "Dhananjaysd Aggarwalxsa"
         Me.NameParam.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'ImageParam
-        '
-        Me.ImageParam.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.ImageParam.Image = Global.FirstApp.My.Resources.Resources.addSign
-        Me.ImageParam.Location = New System.Drawing.Point(3, 26)
-        Me.ImageParam.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.ImageParam.Name = "ImageParam"
-        Me.ImageParam.Size = New System.Drawing.Size(174, 177)
-        Me.ImageParam.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.ImageParam.TabIndex = 7
-        Me.ImageParam.TabStop = False
-        '
-        'DetailsButton
-        '
-        Me.DetailsButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.DetailsButton.BackColor = System.Drawing.Color.DarkGoldenrod
-        Me.DetailsButton.FlatAppearance.BorderSize = 0
-        Me.DetailsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.DetailsButton.Font = New System.Drawing.Font("Century Schoolbook", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DetailsButton.ForeColor = System.Drawing.Color.Black
-        Me.DetailsButton.IconChar = FontAwesome.Sharp.IconChar.InfoCircle
-        Me.DetailsButton.IconColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(20, Byte), Integer))
-        Me.DetailsButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.DetailsButton.IconSize = 35
-        Me.DetailsButton.Location = New System.Drawing.Point(641, 100)
-        Me.DetailsButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.DetailsButton.Name = "DetailsButton"
-        Me.DetailsButton.Size = New System.Drawing.Size(146, 46)
-        Me.DetailsButton.TabIndex = 164
-        Me.DetailsButton.Text = "Details"
-        Me.DetailsButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
-        Me.DetailsButton.UseVisualStyleBackColor = False
-        '
-        'CloseButton
-        '
-        Me.CloseButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.CloseButton.BackColor = System.Drawing.Color.Transparent
-        Me.CloseButton.FlatAppearance.BorderSize = 0
-        Me.CloseButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Red
-        Me.CloseButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Snow
-        Me.CloseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.CloseButton.IconChar = FontAwesome.Sharp.IconChar.WindowClose
-        Me.CloseButton.IconColor = System.Drawing.Color.DarkRed
-        Me.CloseButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.CloseButton.IconSize = 45
-        Me.CloseButton.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.CloseButton.Location = New System.Drawing.Point(730, 2)
-        Me.CloseButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.CloseButton.Name = "CloseButton"
-        Me.CloseButton.Size = New System.Drawing.Size(51, 46)
-        Me.CloseButton.TabIndex = 160
-        Me.CloseButton.UseVisualStyleBackColor = False
-        '
         'KittyModeControl
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
@@ -272,9 +272,9 @@ Partial Class KittyModeControl
         Me.Name = "KittyModeControl"
         Me.Size = New System.Drawing.Size(799, 234)
         Me.ImagePanel2.ResumeLayout(False)
+        CType(Me.ImageParam, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
-        CType(Me.ImageParam, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -288,11 +288,11 @@ Partial Class KittyModeControl
     Private WithEvents KittyTypeParam As Label
     Private WithEvents Label7 As Label
     Private WithEvents CoustmerIdParam As Label
-    Private WithEvents DetailsButton As FontAwesome.Sharp.IconButton
     Private WithEvents SrNoParam As Label
     Private WithEvents CloseButton As FontAwesome.Sharp.IconButton
     Private WithEvents LastInstalmentParam As Label
     Private WithEvents LastInstallmentLabel As Label
     Private WithEvents PhNoParam As Label
     Private WithEvents NameParam As Label
+    Public WithEvents DetailsButton As FontAwesome.Sharp.IconButton
 End Class

@@ -33,7 +33,7 @@ Partial Class KittyForm
         Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.MainPanel = New System.Windows.Forms.Panel()
         Me.NotesTB = New System.Windows.Forms.RichTextBox()
-        Me.IconPictureBox1 = New FontAwesome.Sharp.IconPictureBox()
+        Me.DotsButton = New FontAwesome.Sharp.IconPictureBox()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.CrackThisKittyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TransferKittyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -75,7 +75,7 @@ Partial Class KittyForm
         Me.AvailButton = New FontAwesome.Sharp.IconButton()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.MainPanel.SuspendLayout()
-        CType(Me.IconPictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DotsButton, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.NotificationButton, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Dgv, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -85,7 +85,7 @@ Partial Class KittyForm
         'MainPanel
         '
         Me.MainPanel.Controls.Add(Me.NotesTB)
-        Me.MainPanel.Controls.Add(Me.IconPictureBox1)
+        Me.MainPanel.Controls.Add(Me.DotsButton)
         Me.MainPanel.Controls.Add(Me.CloseButton)
         Me.MainPanel.Controls.Add(Me.NotificationButton)
         Me.MainPanel.Controls.Add(Me.Dgv)
@@ -132,23 +132,23 @@ Partial Class KittyForm
         Me.ToolTip1.SetToolTip(Me.NotesTB, "Enter Notes That You Want To Keep On This Kitty.")
         Me.NotesTB.ZoomFactor = 1.2!
         '
-        'IconPictureBox1
+        'DotsButton
         '
-        Me.IconPictureBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.IconPictureBox1.BackColor = System.Drawing.Color.Transparent
-        Me.IconPictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.IconPictureBox1.ContextMenuStrip = Me.ContextMenuStrip1
-        Me.IconPictureBox1.ForeColor = System.Drawing.Color.Silver
-        Me.IconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.EllipsisV
-        Me.IconPictureBox1.IconColor = System.Drawing.Color.Silver
-        Me.IconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Solid
-        Me.IconPictureBox1.IconSize = 47
-        Me.IconPictureBox1.Location = New System.Drawing.Point(1338, 140)
-        Me.IconPictureBox1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.IconPictureBox1.Name = "IconPictureBox1"
-        Me.IconPictureBox1.Size = New System.Drawing.Size(47, 47)
-        Me.IconPictureBox1.TabIndex = 266
-        Me.IconPictureBox1.TabStop = False
+        Me.DotsButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.DotsButton.BackColor = System.Drawing.Color.Transparent
+        Me.DotsButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.DotsButton.ContextMenuStrip = Me.ContextMenuStrip1
+        Me.DotsButton.ForeColor = System.Drawing.Color.Silver
+        Me.DotsButton.IconChar = FontAwesome.Sharp.IconChar.EllipsisV
+        Me.DotsButton.IconColor = System.Drawing.Color.Silver
+        Me.DotsButton.IconFont = FontAwesome.Sharp.IconFont.Solid
+        Me.DotsButton.IconSize = 47
+        Me.DotsButton.Location = New System.Drawing.Point(1338, 140)
+        Me.DotsButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.DotsButton.Name = "DotsButton"
+        Me.DotsButton.Size = New System.Drawing.Size(47, 47)
+        Me.DotsButton.TabIndex = 266
+        Me.DotsButton.TabStop = False
         '
         'ContextMenuStrip1
         '
@@ -517,7 +517,7 @@ Partial Class KittyForm
         Me.PaymentButton.IconColor = System.Drawing.Color.White
         Me.PaymentButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
         Me.PaymentButton.IconSize = 32
-        Me.PaymentButton.Location = New System.Drawing.Point(800, 369)
+        Me.PaymentButton.Location = New System.Drawing.Point(801, 373)
         Me.PaymentButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.PaymentButton.Name = "PaymentButton"
         Me.PaymentButton.Size = New System.Drawing.Size(232, 58)
@@ -715,7 +715,7 @@ Partial Class KittyForm
         Me.AvailButton.IconColor = System.Drawing.Color.White
         Me.AvailButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
         Me.AvailButton.IconSize = 35
-        Me.AvailButton.Location = New System.Drawing.Point(800, 373)
+        Me.AvailButton.Location = New System.Drawing.Point(801, 373)
         Me.AvailButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.AvailButton.Name = "AvailButton"
         Me.AvailButton.Size = New System.Drawing.Size(198, 58)
@@ -741,7 +741,7 @@ Partial Class KittyForm
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.MainPanel.ResumeLayout(False)
         Me.MainPanel.PerformLayout()
-        CType(Me.IconPictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DotsButton, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.NotificationButton, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Dgv, System.ComponentModel.ISupportInitialize).EndInit()
@@ -788,7 +788,7 @@ Partial Class KittyForm
     Friend WithEvents GivenAmountLabel As Label
     Friend WithEvents DeleteButton As FontAwesome.Sharp.IconButton
     Friend WithEvents AvailButton As FontAwesome.Sharp.IconButton
-    Friend WithEvents IconPictureBox1 As FontAwesome.Sharp.IconPictureBox
+    Friend WithEvents DotsButton As FontAwesome.Sharp.IconPictureBox
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents CrackThisKittyToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents TransferKittyToolStripMenuItem As ToolStripMenuItem

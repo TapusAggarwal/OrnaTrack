@@ -29,15 +29,18 @@ Partial Class Form1
         Me.NewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UpToDateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AvailedToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.CheckedListBox1 = New System.Windows.Forms.CheckedListBox()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
-        Me.CheckBox2 = New System.Windows.Forms.CheckBox()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.WarningLabel = New System.Windows.Forms.Label()
-        Me.CheckedListBox3 = New System.Windows.Forms.CheckedListBox()
-        Me.CheckedListBox2 = New System.Windows.Forms.CheckedListBox()
+        Me.CustomerSelectionChB = New System.Windows.Forms.CheckBox()
+        Me.KittySelectionChB = New System.Windows.Forms.CheckBox()
+        Me.SendButton = New FontAwesome.Sharp.IconButton()
+        Me.PreviewBT = New FontAwesome.Sharp.IconButton()
+        Me.KittyTypeCList = New System.Windows.Forms.CheckedListBox()
+        Me.InstalmentsPendingCList = New System.Windows.Forms.CheckedListBox()
+        Me.MaturedChB = New System.Windows.Forms.CheckBox()
+        Me.AvailedChB = New System.Windows.Forms.CheckBox()
+        Me.InstalmentsLeftCList = New System.Windows.Forms.CheckedListBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.SelectedCustomersLB = New System.Windows.Forms.Label()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -79,110 +82,185 @@ Partial Class Form1
         Me.AvailedToolStripMenuItem.Size = New System.Drawing.Size(162, 32)
         Me.AvailedToolStripMenuItem.Text = "Availed"
         '
-        'Button2
-        '
-        Me.Button2.ContextMenuStrip = Me.ContextMenuStrip1
-        Me.Button2.Location = New System.Drawing.Point(21, 86)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(118, 46)
-        Me.Button2.TabIndex = 3
-        Me.Button2.Text = "Kitty"
-        Me.Button2.UseVisualStyleBackColor = True
-        '
-        'CheckedListBox1
-        '
-        Me.CheckedListBox1.FormattingEnabled = True
-        Me.CheckedListBox1.Items.AddRange(New Object() {"Active", "Passive", "Never"})
-        Me.CheckedListBox1.Location = New System.Drawing.Point(637, 70)
-        Me.CheckedListBox1.Name = "CheckedListBox1"
-        Me.CheckedListBox1.Size = New System.Drawing.Size(96, 73)
-        Me.CheckedListBox1.TabIndex = 4
-        '
-        'ComboBox1
-        '
-        Me.ComboBox1.Location = New System.Drawing.Point(150, 96)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(121, 28)
-        Me.ComboBox1.TabIndex = 0
-        '
-        'CheckBox1
-        '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Location = New System.Drawing.Point(185, 150)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(86, 24)
-        Me.CheckBox1.TabIndex = 8
-        Me.CheckBox1.Text = "Availed"
-        Me.CheckBox1.UseVisualStyleBackColor = True
-        '
-        'CheckBox2
-        '
-        Me.CheckBox2.AutoSize = True
-        Me.CheckBox2.Location = New System.Drawing.Point(85, 150)
-        Me.CheckBox2.Name = "CheckBox2"
-        Me.CheckBox2.Size = New System.Drawing.Size(94, 24)
-        Me.CheckBox2.TabIndex = 9
-        Me.CheckBox2.Text = "Matured"
-        Me.CheckBox2.UseVisualStyleBackColor = True
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(500, 86)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(118, 46)
-        Me.Button1.TabIndex = 2
-        Me.Button1.Text = "Customer"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
         'WarningLabel
         '
         Me.WarningLabel.AutoSize = True
         Me.WarningLabel.BackColor = System.Drawing.Color.Transparent
         Me.WarningLabel.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.WarningLabel.ForeColor = System.Drawing.Color.Goldenrod
-        Me.WarningLabel.Location = New System.Drawing.Point(234, 9)
+        Me.WarningLabel.Location = New System.Drawing.Point(164, 9)
         Me.WarningLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.WarningLabel.Name = "WarningLabel"
         Me.WarningLabel.Size = New System.Drawing.Size(413, 30)
         Me.WarningLabel.TabIndex = 253
         Me.WarningLabel.Text = "Sort Customers To Send Messages"
-        Me.WarningLabel.Visible = False
         '
-        'CheckedListBox3
+        'CustomerSelectionChB
         '
-        Me.CheckedListBox3.FormattingEnabled = True
-        Me.CheckedListBox3.Items.AddRange(New Object() {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"})
-        Me.CheckedListBox3.Location = New System.Drawing.Point(23, 203)
-        Me.CheckedListBox3.Name = "CheckedListBox3"
-        Me.CheckedListBox3.Size = New System.Drawing.Size(234, 349)
-        Me.CheckedListBox3.TabIndex = 6
+        Me.CustomerSelectionChB.AutoSize = True
+        Me.CustomerSelectionChB.Location = New System.Drawing.Point(16, 79)
+        Me.CustomerSelectionChB.Name = "CustomerSelectionChB"
+        Me.CustomerSelectionChB.Size = New System.Drawing.Size(133, 24)
+        Me.CustomerSelectionChB.TabIndex = 255
+        Me.CustomerSelectionChB.Text = "All Customers"
+        Me.CustomerSelectionChB.UseVisualStyleBackColor = True
         '
-        'CheckedListBox2
+        'KittySelectionChB
         '
-        Me.CheckedListBox2.FormattingEnabled = True
-        Me.CheckedListBox2.Location = New System.Drawing.Point(278, 203)
-        Me.CheckedListBox2.Name = "CheckedListBox2"
-        Me.CheckedListBox2.Size = New System.Drawing.Size(234, 349)
-        Me.CheckedListBox2.TabIndex = 10
+        Me.KittySelectionChB.AutoSize = True
+        Me.KittySelectionChB.Location = New System.Drawing.Point(169, 79)
+        Me.KittySelectionChB.Name = "KittySelectionChB"
+        Me.KittySelectionChB.Size = New System.Drawing.Size(145, 24)
+        Me.KittySelectionChB.TabIndex = 257
+        Me.KittySelectionChB.Text = "Selected Kitties"
+        Me.KittySelectionChB.UseVisualStyleBackColor = True
+        '
+        'SendButton
+        '
+        Me.SendButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.SendButton.Enabled = False
+        Me.SendButton.FlatAppearance.BorderSize = 0
+        Me.SendButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Lime
+        Me.SendButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.SendButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.SendButton.Font = New System.Drawing.Font("Century Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SendButton.ForeColor = System.Drawing.Color.Linen
+        Me.SendButton.IconChar = FontAwesome.Sharp.IconChar.PaperPlane
+        Me.SendButton.IconColor = System.Drawing.Color.White
+        Me.SendButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.SendButton.IconSize = 25
+        Me.SendButton.Location = New System.Drawing.Point(366, 114)
+        Me.SendButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.SendButton.Name = "SendButton"
+        Me.SendButton.Size = New System.Drawing.Size(191, 45)
+        Me.SendButton.TabIndex = 258
+        Me.SendButton.Text = "Send Message"
+        Me.SendButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.SendButton.UseVisualStyleBackColor = False
+        '
+        'PreviewBT
+        '
+        Me.PreviewBT.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.PreviewBT.Enabled = False
+        Me.PreviewBT.FlatAppearance.BorderSize = 0
+        Me.PreviewBT.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Lime
+        Me.PreviewBT.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.PreviewBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.PreviewBT.Font = New System.Drawing.Font("Century Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.PreviewBT.ForeColor = System.Drawing.Color.Linen
+        Me.PreviewBT.IconChar = FontAwesome.Sharp.IconChar.PaperPlane
+        Me.PreviewBT.IconColor = System.Drawing.Color.White
+        Me.PreviewBT.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.PreviewBT.IconSize = 25
+        Me.PreviewBT.Location = New System.Drawing.Point(565, 114)
+        Me.PreviewBT.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.PreviewBT.Name = "PreviewBT"
+        Me.PreviewBT.Size = New System.Drawing.Size(127, 45)
+        Me.PreviewBT.TabIndex = 259
+        Me.PreviewBT.Text = "Preview"
+        Me.PreviewBT.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.PreviewBT.UseVisualStyleBackColor = False
+        '
+        'KittyTypeCList
+        '
+        Me.KittyTypeCList.FormattingEnabled = True
+        Me.KittyTypeCList.Items.AddRange(New Object() {"All", "500", "1000", "2000", "3000", "5000"})
+        Me.KittyTypeCList.Location = New System.Drawing.Point(22, 186)
+        Me.KittyTypeCList.Name = "KittyTypeCList"
+        Me.KittyTypeCList.Size = New System.Drawing.Size(118, 142)
+        Me.KittyTypeCList.TabIndex = 264
+        Me.KittyTypeCList.Visible = False
+        '
+        'InstalmentsPendingCList
+        '
+        Me.InstalmentsPendingCList.FormattingEnabled = True
+        Me.InstalmentsPendingCList.Items.AddRange(New Object() {"1 Instalment Pending", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13"})
+        Me.InstalmentsPendingCList.Location = New System.Drawing.Point(458, 186)
+        Me.InstalmentsPendingCList.Name = "InstalmentsPendingCList"
+        Me.InstalmentsPendingCList.Size = New System.Drawing.Size(257, 349)
+        Me.InstalmentsPendingCList.TabIndex = 263
+        Me.InstalmentsPendingCList.Visible = False
+        '
+        'MaturedChB
+        '
+        Me.MaturedChB.AutoSize = True
+        Me.MaturedChB.Location = New System.Drawing.Point(22, 337)
+        Me.MaturedChB.Name = "MaturedChB"
+        Me.MaturedChB.Size = New System.Drawing.Size(94, 24)
+        Me.MaturedChB.TabIndex = 262
+        Me.MaturedChB.Text = "Matured"
+        Me.MaturedChB.UseVisualStyleBackColor = True
+        Me.MaturedChB.Visible = False
+        '
+        'AvailedChB
+        '
+        Me.AvailedChB.AutoSize = True
+        Me.AvailedChB.Location = New System.Drawing.Point(22, 370)
+        Me.AvailedChB.Name = "AvailedChB"
+        Me.AvailedChB.Size = New System.Drawing.Size(86, 24)
+        Me.AvailedChB.TabIndex = 261
+        Me.AvailedChB.Text = "Availed"
+        Me.AvailedChB.UseVisualStyleBackColor = True
+        Me.AvailedChB.Visible = False
+        '
+        'InstalmentsLeftCList
+        '
+        Me.InstalmentsLeftCList.FormattingEnabled = True
+        Me.InstalmentsLeftCList.Items.AddRange(New Object() {"1 Instalment Left", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"})
+        Me.InstalmentsLeftCList.Location = New System.Drawing.Point(193, 186)
+        Me.InstalmentsLeftCList.Name = "InstalmentsLeftCList"
+        Me.InstalmentsLeftCList.Size = New System.Drawing.Size(234, 326)
+        Me.InstalmentsLeftCList.TabIndex = 260
+        Me.InstalmentsLeftCList.Visible = False
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.BackColor = System.Drawing.Color.Transparent
+        Me.Label1.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.Color.Goldenrod
+        Me.Label1.Location = New System.Drawing.Point(392, 71)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(126, 30)
+        Me.Label1.TabIndex = 265
+        Me.Label1.Text = "Selected:"
+        '
+        'SelectedCustomersLB
+        '
+        Me.SelectedCustomersLB.AutoSize = True
+        Me.SelectedCustomersLB.BackColor = System.Drawing.Color.Transparent
+        Me.SelectedCustomersLB.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SelectedCustomersLB.ForeColor = System.Drawing.Color.Goldenrod
+        Me.SelectedCustomersLB.Location = New System.Drawing.Point(522, 71)
+        Me.SelectedCustomersLB.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.SelectedCustomersLB.Name = "SelectedCustomersLB"
+        Me.SelectedCustomersLB.Size = New System.Drawing.Size(26, 30)
+        Me.SelectedCustomersLB.TabIndex = 266
+        Me.SelectedCustomersLB.Text = "0"
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(60, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(915, 564)
+        Me.ClientSize = New System.Drawing.Size(740, 569)
+        Me.Controls.Add(Me.SelectedCustomersLB)
+        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.KittyTypeCList)
+        Me.Controls.Add(Me.InstalmentsPendingCList)
+        Me.Controls.Add(Me.MaturedChB)
+        Me.Controls.Add(Me.AvailedChB)
+        Me.Controls.Add(Me.InstalmentsLeftCList)
+        Me.Controls.Add(Me.PreviewBT)
+        Me.Controls.Add(Me.SendButton)
+        Me.Controls.Add(Me.KittySelectionChB)
+        Me.Controls.Add(Me.CustomerSelectionChB)
         Me.Controls.Add(Me.WarningLabel)
-        Me.Controls.Add(Me.CheckedListBox2)
-        Me.Controls.Add(Me.CheckBox2)
-        Me.Controls.Add(Me.CheckBox1)
-        Me.Controls.Add(Me.CheckedListBox3)
-        Me.Controls.Add(Me.ComboBox1)
-        Me.Controls.Add(Me.CheckedListBox1)
-        Me.Controls.Add(Me.Button2)
-        Me.Controls.Add(Me.Button1)
         Me.ForeColor = System.Drawing.SystemColors.ActiveCaption
         Me.HelpButton = True
         Me.Name = "Form1"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Form1"
         Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
@@ -195,13 +273,16 @@ Partial Class Form1
     Friend WithEvents NewToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents UpToDateToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AvailedToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents Button2 As Button
-    Friend WithEvents CheckedListBox1 As CheckedListBox
-    Friend WithEvents ComboBox1 As ComboBox
-    Friend WithEvents CheckBox1 As CheckBox
-    Friend WithEvents CheckBox2 As CheckBox
-    Friend WithEvents Button1 As Button
     Friend WithEvents WarningLabel As Label
-    Friend WithEvents CheckedListBox3 As CheckedListBox
-    Friend WithEvents CheckedListBox2 As CheckedListBox
+    Friend WithEvents CustomerSelectionChB As CheckBox
+    Friend WithEvents KittySelectionChB As CheckBox
+    Friend WithEvents SendButton As FontAwesome.Sharp.IconButton
+    Friend WithEvents PreviewBT As FontAwesome.Sharp.IconButton
+    Friend WithEvents KittyTypeCList As CheckedListBox
+    Friend WithEvents InstalmentsPendingCList As CheckedListBox
+    Friend WithEvents MaturedChB As CheckBox
+    Friend WithEvents AvailedChB As CheckBox
+    Friend WithEvents InstalmentsLeftCList As CheckedListBox
+    Friend WithEvents Label1 As Label
+    Friend WithEvents SelectedCustomersLB As Label
 End Class

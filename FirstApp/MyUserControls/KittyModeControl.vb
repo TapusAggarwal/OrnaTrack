@@ -47,12 +47,39 @@
         End Set
     End Property
 
-    Public Property LastInstalmentDate As String
+    ' -2 = Availed(Gray), -1 = Matured(Goldenrod), 0 = None Pending(Green), 1 = 1 Instalment Pending, 2 = 2 Instalments Pending
+    Public Property LastInstalmentDate As Integer
         Get
             Return LastInstalmentParam.Text
         End Get
         Set
-            LastInstalmentParam.Text = Value
+            If Value = -2 Then
+                LastInstalmentParam.Text = "Availed"
+                LastInstalmentParam.ForeColor = Color.Gray
+                KittyTypeParam.ForeColor = Color.Gray
+                KittyNoParam.ForeColor = Color.Gray
+            ElseIf Value = -1 Then
+                LastInstalmentParam.Text = "Matured"
+                LastInstalmentParam.ForeColor = Color.Goldenrod
+                KittyTypeParam.ForeColor = Color.Goldenrod
+                KittyNoParam.ForeColor = Color.Goldenrod
+            ElseIf Value = 0 Then
+                LastInstalmentParam.Text = "None Pending"
+                LastInstalmentParam.ForeColor = Color.Green
+                KittyTypeParam.ForeColor = Color.Green
+                KittyNoParam.ForeColor = Color.Green
+            ElseIf Value = 1 Then
+                LastInstalmentParam.Text = "1 Instalment Pending"
+                LastInstalmentParam.ForeColor = Color.FromArgb(200, 0, 0)
+                KittyTypeParam.ForeColor = Color.FromArgb(200, 0, 0)
+                KittyNoParam.ForeColor = Color.FromArgb(200, 0, 0)
+            Else
+                LastInstalmentParam.Text = $"{Value} Instalments Pending"
+                LastInstalmentParam.ForeColor = Color.FromArgb(200, 0, 0)
+                KittyTypeParam.ForeColor = Color.FromArgb(200, 0, 0)
+                KittyNoParam.ForeColor = Color.FromArgb(200, 0, 0)
+            End If
+
         End Set
     End Property
 

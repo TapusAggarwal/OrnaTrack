@@ -6,22 +6,22 @@
 
         Dim dr As OleDb.OleDbDataReader = DataReader($"Select KittyUID from Kitty_Data where KittyType={KittyType}")
 
-        Dim dictAbsolute As New Dictionary(Of Integer, List(Of Integer)) From {{0, New List(Of Integer) From {0, 0, 0}}}
+        Dim dictRelative As New Dictionary(Of Integer, List(Of Integer)) From {{0, New List(Of Integer) From {0, 0, 0}}}
 
         While dr.Read
             Dim _kitty As New Kitty(UID:=dr("KittyUID"), InitializeKitty:=True, completely:=True)
             If _kitty.IsAvailed OrElse _kitty.IsMatured OrElse _kitty.GivenAmount = 0 Then Continue While
 
-            If dictAbsolute.ContainsKey(_kitty.GetInstalmentsPending) Then
-                With dictAbsolute.Item(_kitty.GetInstalmentsPending)
-                    dictAbsolute.Item(_kitty.GetInstalmentsPending) = New List(Of Integer) From { .Item(0) + 1, .Item(1) + _kitty.GivenAmount, .Item(2) + _kitty.KittyInterest}
+            If dictRelative.ContainsKey(_kitty.GetInstalmentsPending) Then
+                With dictRelative.Item(_kitty.GetInstalmentsPending)
+                    dictRelative.Item(_kitty.GetInstalmentsPending) = New List(Of Integer) From { .Item(0) + 1, .Item(1) + _kitty.GivenAmount, .Item(2) + _kitty.KittyInterest}
                 End With
             Else
-                dictAbsolute.Add(_kitty.GetInstalmentsPending, New List(Of Integer) From {1, _kitty.GivenAmount, _kitty.KittyInterest})
+                dictRelative.Add(_kitty.GetInstalmentsPending, New List(Of Integer) From {1, _kitty.GivenAmount, _kitty.KittyInterest})
             End If
         End While
 
-        Dim sorted = From pair In dictAbsolute
+        Dim sorted = From pair In dictRelative
                      Order By pair.Key
 
         For Each i As KeyValuePair(Of Integer, List(Of Integer)) In sorted
@@ -46,7 +46,7 @@
         Dim TotalKitties As Integer = 0
         Dim TotalAmount As Integer = 0
         Dim TotalInterest As Integer = 0
-        For Each i In dictAbsolute.Values
+        For Each i In dictRelative.Values
             TotalKitties += i(0)
             TotalAmount += i(1)
             TotalInterest += i(2)
@@ -71,15 +71,15 @@
             .Cells(2).Value = 0
             .Cells(3).Value = 0
 
-            If dictAbsolute.ContainsKey(0) Then
-                .Cells(1).Value += dictAbsolute.Item(0)(0)
-                .Cells(2).Value += dictAbsolute.Item(0)(1)
-                .Cells(3).Value += dictAbsolute.Item(0)(2)
+            If dictRelative.ContainsKey(0) Then
+                .Cells(1).Value += dictRelative.Item(0)(0)
+                .Cells(2).Value += dictRelative.Item(0)(1)
+                .Cells(3).Value += dictRelative.Item(0)(2)
             End If
-            If dictAbsolute.ContainsKey(1) Then
-                .Cells(1).Value += dictAbsolute.Item(1)(0)
-                .Cells(2).Value += dictAbsolute.Item(1)(1)
-                .Cells(3).Value += dictAbsolute.Item(1)(2)
+            If dictRelative.ContainsKey(1) Then
+                .Cells(1).Value += dictRelative.Item(1)(0)
+                .Cells(2).Value += dictRelative.Item(1)(1)
+                .Cells(3).Value += dictRelative.Item(1)(2)
             End If
 
             .Cells(2).Value = .Cells(2).Value.ToString.ToCurrency(RemoveSpaces:=True)
@@ -95,15 +95,15 @@
             .Cells(2).Value = TotalAmount
             .Cells(3).Value = TotalInterest
 
-            If dictAbsolute.ContainsKey(0) Then
-                .Cells(1).Value -= dictAbsolute.Item(0)(0)
-                .Cells(2).Value -= dictAbsolute.Item(0)(1)
-                .Cells(3).Value -= dictAbsolute.Item(0)(2)
+            If dictRelative.ContainsKey(0) Then
+                .Cells(1).Value -= dictRelative.Item(0)(0)
+                .Cells(2).Value -= dictRelative.Item(0)(1)
+                .Cells(3).Value -= dictRelative.Item(0)(2)
             End If
-            If dictAbsolute.ContainsKey(1) Then
-                .Cells(1).Value -= dictAbsolute.Item(1)(0)
-                .Cells(2).Value -= dictAbsolute.Item(1)(1)
-                .Cells(3).Value -= dictAbsolute.Item(1)(2)
+            If dictRelative.ContainsKey(1) Then
+                .Cells(1).Value -= dictRelative.Item(1)(0)
+                .Cells(2).Value -= dictRelative.Item(1)(1)
+                .Cells(3).Value -= dictRelative.Item(1)(2)
             End If
 
             .Cells(2).Value = .Cells(2).Value.ToString.ToCurrency(RemoveSpaces:=True)

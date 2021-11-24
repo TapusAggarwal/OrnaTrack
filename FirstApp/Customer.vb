@@ -94,12 +94,12 @@ Public Class Customer
 
         If isKittyID Then
             For Each Id As Integer In IDs
-                KittyIds.Add(New Kitty(Id, True))
+                KittyIds.Add(New Kitty(Id, True, True))
             Next
         Else
             For Each Id As Integer In IDs
                 Dim i As New Customer(Id)
-                KittyIds.AddRange(i.OwnedKitties(True))
+                KittyIds.AddRange(i.OwnedKitties(True, True))
             Next
         End If
 
@@ -110,7 +110,13 @@ Public Class Customer
                                         .CoustName = KittyId.Owner.FullName
                                         .PhNo = KittyId.Owner.PhNo(",")
                                         .SetImage = ""
-                                        .LastInstalmentDate = ""
+                                        If KittyId.IsAvailed Then
+                                            .LastInstalmentDate = -2
+                                        ElseIf KittyId.IsMatured Then
+                                            .LastInstalmentDate = -1
+                                        Else
+                                            .LastInstalmentDate = KittyId.GetInstalmentsPending
+                                        End If
                                         .KittyType = KittyId.KittyType()
                                         Try
                                             .KittyNo = KittyId.KittyNo
@@ -507,6 +513,8 @@ Public Class Utility
     End Sub
 
     Public Shared Function MonthDifference(ByVal first As DateTime, ByVal second As DateTime) As Integer
+        Dim x = DateDiff(DateInterval.Day, second.Date, first.Date)
+        Return x / 31
         Return Math.Abs((first.Month - second.Month) + 12 * (first.Year - second.Year))
     End Function
 

@@ -69,19 +69,22 @@ Public Class KittyModeCoustView
                 PhNo.Text = .PhNo(",")
             Catch : End Try
             Try
+                Gender.Text = .Gender
+            Catch : End Try
+            Try
+                Married.Text = .IsMarried
+            Catch : End Try
+            Try
                 Profession.Text = .Profession
             Catch : End Try
             Try
                 Address.Text = .Address
             Catch : End Try
             Try
-                Gender.Text = .Gender
+                Region.Text = .Region
             Catch : End Try
             Try
                 'ImageBox.BackgroundImage = Image.FromFile(dr("img"))    'Adding Profile Iamge
-            Catch : End Try
-            Try
-                Married.Text = .IsMarried
             Catch : End Try
             If Customer.SharedPhNo(_Customer.GetPhNo.ToArray).Count > 1 Then
                 ExistingPhNosButton.Visible = True
@@ -99,7 +102,7 @@ Public Class KittyModeCoustView
             .Tag = _Customer
         }
 
-        _KittyView.DgvMain.Columns(9).Visible = False
+        _KittyView.DgvMain.Columns(9).Visible = False ' Button That Makes Direct Entry "Make Entry" Button
         PanelView.Controls.Clear()
         Dim Pnl As Panel = _KittyView.SharingPanel
         Pnl.Dock = DockStyle.Fill
@@ -107,6 +110,7 @@ Public Class KittyModeCoustView
         _KittyView.KittyView_Load()
 
         AddHandler _KittyView.ShowDetailsClicked, Sub(_kitty As Kitty)
+                                                      KittyIdTB.Text = ""
                                                       KittyIdTB.Text = _kitty.KittyUID
                                                   End Sub
 

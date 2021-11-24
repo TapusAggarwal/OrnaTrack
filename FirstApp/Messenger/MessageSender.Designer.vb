@@ -23,22 +23,22 @@ Partial Class MessageSender
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle33 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle34 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle35 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle36 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle37 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle38 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle39 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle40 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle41 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle42 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle43 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle44 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle45 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle46 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle47 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle48 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle22 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle24 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle25 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle26 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle27 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle28 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle29 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle30 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle31 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle32 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Column10 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -104,12 +104,12 @@ Partial Class MessageSender
         'Column1
         '
         Me.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        DataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle33.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle33.NullValue = Nothing
-        DataGridViewCellStyle33.SelectionBackColor = System.Drawing.Color.White
-        DataGridViewCellStyle33.SelectionForeColor = System.Drawing.Color.Black
-        Me.Column1.DefaultCellStyle = DataGridViewCellStyle33
+        DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle17.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle17.NullValue = Nothing
+        DataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.White
+        DataGridViewCellStyle17.SelectionForeColor = System.Drawing.Color.Black
+        Me.Column1.DefaultCellStyle = DataGridViewCellStyle17
         Me.Column1.Frozen = True
         Me.Column1.HeaderText = "SrNo"
         Me.Column1.MinimumWidth = 8
@@ -120,9 +120,9 @@ Partial Class MessageSender
         '
         'Column9
         '
-        DataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle34.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Column9.DefaultCellStyle = DataGridViewCellStyle34
+        DataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle18.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Column9.DefaultCellStyle = DataGridViewCellStyle18
         Me.Column9.Frozen = True
         Me.Column9.HeaderText = "KittyNo"
         Me.Column9.MinimumWidth = 8
@@ -133,9 +133,9 @@ Partial Class MessageSender
         'Column5
         '
         Me.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        DataGridViewCellStyle35.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle35.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Column5.DefaultCellStyle = DataGridViewCellStyle35
+        DataGridViewCellStyle19.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle19.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Column5.DefaultCellStyle = DataGridViewCellStyle19
         Me.Column5.Frozen = True
         Me.Column5.HeaderText = "KittyType"
         Me.Column5.MinimumWidth = 8
@@ -145,12 +145,12 @@ Partial Class MessageSender
         '
         'Column2
         '
-        DataGridViewCellStyle36.Font = New System.Drawing.Font("Century Schoolbook", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle36.Format = "d"
-        DataGridViewCellStyle36.NullValue = Nothing
-        DataGridViewCellStyle36.SelectionBackColor = System.Drawing.Color.White
-        DataGridViewCellStyle36.SelectionForeColor = System.Drawing.Color.Black
-        Me.Column2.DefaultCellStyle = DataGridViewCellStyle36
+        DataGridViewCellStyle20.Font = New System.Drawing.Font("Century Schoolbook", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle20.Format = "d"
+        DataGridViewCellStyle20.NullValue = Nothing
+        DataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.White
+        DataGridViewCellStyle20.SelectionForeColor = System.Drawing.Color.Black
+        Me.Column2.DefaultCellStyle = DataGridViewCellStyle20
         Me.Column2.Frozen = True
         Me.Column2.HeaderText = "Last Installment"
         Me.Column2.MinimumWidth = 8
@@ -160,9 +160,9 @@ Partial Class MessageSender
         '
         'Column6
         '
-        DataGridViewCellStyle37.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle37.ForeColor = System.Drawing.Color.Red
-        Me.Column6.DefaultCellStyle = DataGridViewCellStyle37
+        DataGridViewCellStyle21.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle21.ForeColor = System.Drawing.Color.Red
+        Me.Column6.DefaultCellStyle = DataGridViewCellStyle21
         Me.Column6.Frozen = True
         Me.Column6.HeaderText = "Given Amt."
         Me.Column6.MinimumWidth = 8
@@ -172,9 +172,9 @@ Partial Class MessageSender
         '
         'Column4
         '
-        DataGridViewCellStyle38.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle38.NullValue = Nothing
-        Me.Column4.DefaultCellStyle = DataGridViewCellStyle38
+        DataGridViewCellStyle22.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle22.NullValue = Nothing
+        Me.Column4.DefaultCellStyle = DataGridViewCellStyle22
         Me.Column4.Frozen = True
         Me.Column4.HeaderText = "Total Amt+Intrst"
         Me.Column4.MinimumWidth = 8
@@ -184,8 +184,8 @@ Partial Class MessageSender
         '
         'Status
         '
-        DataGridViewCellStyle39.Font = New System.Drawing.Font("Century Schoolbook", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Status.DefaultCellStyle = DataGridViewCellStyle39
+        DataGridViewCellStyle23.Font = New System.Drawing.Font("Century Schoolbook", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Status.DefaultCellStyle = DataGridViewCellStyle23
         Me.Status.Frozen = True
         Me.Status.HeaderText = "Status"
         Me.Status.MinimumWidth = 8
@@ -194,12 +194,12 @@ Partial Class MessageSender
         '
         'Column7
         '
-        DataGridViewCellStyle40.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle40.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(80, Byte), Integer))
-        DataGridViewCellStyle40.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle40.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle40.SelectionBackColor = System.Drawing.Color.ForestGreen
-        Me.Column7.DefaultCellStyle = DataGridViewCellStyle40
+        DataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle24.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(80, Byte), Integer))
+        DataGridViewCellStyle24.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle24.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.ForestGreen
+        Me.Column7.DefaultCellStyle = DataGridViewCellStyle24
         Me.Column7.Frozen = True
         Me.Column7.HeaderText = "Show Details"
         Me.Column7.MinimumWidth = 8
@@ -240,12 +240,12 @@ Partial Class MessageSender
         'DataGridViewTextBoxColumn1
         '
         Me.DataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        DataGridViewCellStyle41.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle41.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle41.NullValue = Nothing
-        DataGridViewCellStyle41.SelectionBackColor = System.Drawing.Color.White
-        DataGridViewCellStyle41.SelectionForeColor = System.Drawing.Color.Black
-        Me.DataGridViewTextBoxColumn1.DefaultCellStyle = DataGridViewCellStyle41
+        DataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle25.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle25.NullValue = Nothing
+        DataGridViewCellStyle25.SelectionBackColor = System.Drawing.Color.White
+        DataGridViewCellStyle25.SelectionForeColor = System.Drawing.Color.Black
+        Me.DataGridViewTextBoxColumn1.DefaultCellStyle = DataGridViewCellStyle25
         Me.DataGridViewTextBoxColumn1.HeaderText = "SrNo"
         Me.DataGridViewTextBoxColumn1.MinimumWidth = 8
         Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
@@ -255,9 +255,9 @@ Partial Class MessageSender
         '
         'DataGridViewTextBoxColumn2
         '
-        DataGridViewCellStyle42.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle42.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DataGridViewTextBoxColumn2.DefaultCellStyle = DataGridViewCellStyle42
+        DataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle26.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DataGridViewTextBoxColumn2.DefaultCellStyle = DataGridViewCellStyle26
         Me.DataGridViewTextBoxColumn2.HeaderText = "KittyNo"
         Me.DataGridViewTextBoxColumn2.MinimumWidth = 8
         Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
@@ -267,9 +267,9 @@ Partial Class MessageSender
         'DataGridViewTextBoxColumn3
         '
         Me.DataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        DataGridViewCellStyle43.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle43.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DataGridViewTextBoxColumn3.DefaultCellStyle = DataGridViewCellStyle43
+        DataGridViewCellStyle27.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle27.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DataGridViewTextBoxColumn3.DefaultCellStyle = DataGridViewCellStyle27
         Me.DataGridViewTextBoxColumn3.HeaderText = "KittyType"
         Me.DataGridViewTextBoxColumn3.MinimumWidth = 8
         Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
@@ -278,12 +278,12 @@ Partial Class MessageSender
         '
         'DataGridViewTextBoxColumn4
         '
-        DataGridViewCellStyle44.Font = New System.Drawing.Font("Century Schoolbook", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle44.Format = "d"
-        DataGridViewCellStyle44.NullValue = Nothing
-        DataGridViewCellStyle44.SelectionBackColor = System.Drawing.Color.White
-        DataGridViewCellStyle44.SelectionForeColor = System.Drawing.Color.Black
-        Me.DataGridViewTextBoxColumn4.DefaultCellStyle = DataGridViewCellStyle44
+        DataGridViewCellStyle28.Font = New System.Drawing.Font("Century Schoolbook", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle28.Format = "d"
+        DataGridViewCellStyle28.NullValue = Nothing
+        DataGridViewCellStyle28.SelectionBackColor = System.Drawing.Color.White
+        DataGridViewCellStyle28.SelectionForeColor = System.Drawing.Color.Black
+        Me.DataGridViewTextBoxColumn4.DefaultCellStyle = DataGridViewCellStyle28
         Me.DataGridViewTextBoxColumn4.HeaderText = "Last Installment"
         Me.DataGridViewTextBoxColumn4.MinimumWidth = 8
         Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
@@ -292,9 +292,9 @@ Partial Class MessageSender
         '
         'DataGridViewTextBoxColumn5
         '
-        DataGridViewCellStyle45.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle45.ForeColor = System.Drawing.Color.Red
-        Me.DataGridViewTextBoxColumn5.DefaultCellStyle = DataGridViewCellStyle45
+        DataGridViewCellStyle29.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle29.ForeColor = System.Drawing.Color.Red
+        Me.DataGridViewTextBoxColumn5.DefaultCellStyle = DataGridViewCellStyle29
         Me.DataGridViewTextBoxColumn5.HeaderText = "Given Amt."
         Me.DataGridViewTextBoxColumn5.MinimumWidth = 8
         Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
@@ -303,9 +303,9 @@ Partial Class MessageSender
         '
         'DataGridViewTextBoxColumn6
         '
-        DataGridViewCellStyle46.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle46.NullValue = Nothing
-        Me.DataGridViewTextBoxColumn6.DefaultCellStyle = DataGridViewCellStyle46
+        DataGridViewCellStyle30.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle30.NullValue = Nothing
+        Me.DataGridViewTextBoxColumn6.DefaultCellStyle = DataGridViewCellStyle30
         Me.DataGridViewTextBoxColumn6.HeaderText = "Total Amt+Intrst"
         Me.DataGridViewTextBoxColumn6.MinimumWidth = 8
         Me.DataGridViewTextBoxColumn6.Name = "DataGridViewTextBoxColumn6"
@@ -314,8 +314,8 @@ Partial Class MessageSender
         '
         'DataGridViewTextBoxColumn7
         '
-        DataGridViewCellStyle47.Font = New System.Drawing.Font("Century Schoolbook", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DataGridViewTextBoxColumn7.DefaultCellStyle = DataGridViewCellStyle47
+        DataGridViewCellStyle31.Font = New System.Drawing.Font("Century Schoolbook", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DataGridViewTextBoxColumn7.DefaultCellStyle = DataGridViewCellStyle31
         Me.DataGridViewTextBoxColumn7.HeaderText = "Status"
         Me.DataGridViewTextBoxColumn7.MinimumWidth = 8
         Me.DataGridViewTextBoxColumn7.Name = "DataGridViewTextBoxColumn7"
@@ -324,13 +324,13 @@ Partial Class MessageSender
         '
         'DataGridViewButtonColumn1
         '
-        DataGridViewCellStyle48.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle48.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(80, Byte), Integer))
-        DataGridViewCellStyle48.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle48.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle48.NullValue = False
-        DataGridViewCellStyle48.SelectionBackColor = System.Drawing.Color.ForestGreen
-        Me.DataGridViewButtonColumn1.DefaultCellStyle = DataGridViewCellStyle48
+        DataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle32.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(80, Byte), Integer))
+        DataGridViewCellStyle32.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle32.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle32.NullValue = False
+        DataGridViewCellStyle32.SelectionBackColor = System.Drawing.Color.ForestGreen
+        Me.DataGridViewButtonColumn1.DefaultCellStyle = DataGridViewCellStyle32
         Me.DataGridViewButtonColumn1.HeaderText = ""
         Me.DataGridViewButtonColumn1.MinimumWidth = 8
         Me.DataGridViewButtonColumn1.Name = "DataGridViewButtonColumn1"
@@ -344,7 +344,7 @@ Partial Class MessageSender
         Me.WarningLabel.BackColor = System.Drawing.Color.Transparent
         Me.WarningLabel.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.WarningLabel.ForeColor = System.Drawing.Color.Goldenrod
-        Me.WarningLabel.Location = New System.Drawing.Point(675, 234)
+        Me.WarningLabel.Location = New System.Drawing.Point(651, 234)
         Me.WarningLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.WarningLabel.Name = "WarningLabel"
         Me.WarningLabel.Size = New System.Drawing.Size(511, 30)
@@ -358,7 +358,7 @@ Partial Class MessageSender
         Me.MessageTB.AutoWordSelection = True
         Me.MessageTB.BackColor = System.Drawing.Color.Lavender
         Me.MessageTB.Font = New System.Drawing.Font("Century Schoolbook", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.MessageTB.Location = New System.Drawing.Point(652, 267)
+        Me.MessageTB.Location = New System.Drawing.Point(628, 267)
         Me.MessageTB.Name = "MessageTB"
         Me.MessageTB.Size = New System.Drawing.Size(554, 297)
         Me.MessageTB.TabIndex = 260
@@ -468,7 +468,7 @@ Partial Class MessageSender
         Me.ProfileLabel.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(60, Byte), Integer))
         Me.ProfileLabel.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ProfileLabel.ForeColor = System.Drawing.SystemColors.ActiveCaption
-        Me.ProfileLabel.Location = New System.Drawing.Point(675, 584)
+        Me.ProfileLabel.Location = New System.Drawing.Point(651, 584)
         Me.ProfileLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.ProfileLabel.Name = "ProfileLabel"
         Me.ProfileLabel.Size = New System.Drawing.Size(107, 30)
@@ -480,7 +480,7 @@ Partial Class MessageSender
         Me.Panel3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel3.BackColor = System.Drawing.Color.White
         Me.Panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel3.Location = New System.Drawing.Point(652, 599)
+        Me.Panel3.Location = New System.Drawing.Point(628, 599)
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(554, 3)
         Me.Panel3.TabIndex = 274
@@ -491,7 +491,7 @@ Partial Class MessageSender
         Me.PreviewTB.AutoWordSelection = True
         Me.PreviewTB.BackColor = System.Drawing.Color.Lavender
         Me.PreviewTB.Font = New System.Drawing.Font("Century Schoolbook", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.PreviewTB.Location = New System.Drawing.Point(652, 617)
+        Me.PreviewTB.Location = New System.Drawing.Point(628, 617)
         Me.PreviewTB.Name = "PreviewTB"
         Me.PreviewTB.Size = New System.Drawing.Size(554, 297)
         Me.PreviewTB.TabIndex = 275
@@ -863,6 +863,7 @@ Partial Class MessageSender
         Me.Name = "MessageSender"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
+        Me.Text = " "
         Me.Panel2.ResumeLayout(False)
         CType(Me.ImgBox, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)

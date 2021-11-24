@@ -40,6 +40,7 @@ Public Class KittyForm
     End Sub
 
     Private Sub DisplayRecord()
+        If _currentKitty.Duration < 0 Then Exit Sub
         Dgv.Rows.Clear()
         Dgv.Rows.Add(count:=_currentKitty.Duration)
         Try
@@ -403,7 +404,6 @@ Public Class KittyForm
 
         _currentKitty.Save()
         RaiseEvent ReloadKittyView()
-        Close()
     End Sub
 
     Private Sub NotificationButton_Click(sender As IconPictureBox, e As EventArgs) Handles NotificationButton.Click
@@ -494,11 +494,11 @@ Public Class KittyForm
 
         _currentKitty.IsAvailed = Not _currentKitty.IsAvailed
         AvailButton.Enabled = True
-        If _currentKitty.IsAvailed Then
-            BlockFurtherPayment()
-        Else
-            ContinueFurtherPayment()
-        End If
+        BlockFurtherPayment()
+        'If _currentKitty.IsAvailed Then
+        'Else
+        '    ContinueFurtherPayment()
+        'End If
     End Sub
 
     Private Sub NotesTB_TextChanged(sender As Object, e As EventArgs) Handles NotesTB.TextChanged
@@ -506,12 +506,14 @@ Public Class KittyForm
     End Sub
 
     Private Sub TransferKittyToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TransferKittyToolStripMenuItem.Click
-        Dim Fm As New ShortCustomerSearch
+        Dim Fm As New ShortCustomerSearch With {
+            .HideCustomerID = _currentKitty.CustomerID
+        }
         AddHandler Fm.CustomerClicked, AddressOf CustomerSelected
         Fm.Show()
     End Sub
 
-    Private Sub CustomerSelected(NewCustomerId As Integer)
+    Private Sub CustomerSelected(NewCustomerId As Integer, Optional KittID As Integer = -1)
         If MessageBox.Show($"Are You Sure You Want To Transfer KittyNo:{_currentKitty.KittyNo} And Type:{_currentKitty.KittyType} To Customer:{New Customer(NewCustomerId).FullName} ?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then Exit Sub
         _currentKitty.CustomerID = NewCustomerId
         SaveButton_Click(SaveButton, EventArgs.Empty)
@@ -532,7 +534,8 @@ Public Class KittyForm
 
     End Sub
 
-    Private Sub IconPictureBox1_Click(sender As Object, e As EventArgs) Handles IconPictureBox1.Click
-        ContextMenuStrip1.Show(IconPictureBox1, 0, IconPictureBox1.Size.Height)
+    Private Sub IconPictureBox1_Click(sender As Object, e As EventArgs) Handles DotsButton.Click
+        ContextMenuStrip1.Show(DotsButton, 0, DotsButton.Size.Height)
     End Sub
+
 End Class

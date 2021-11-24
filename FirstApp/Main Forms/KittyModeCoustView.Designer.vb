@@ -39,10 +39,11 @@ Partial Class KittyModeCoustView
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.Prev_SessionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StartNewReviewSessionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ReviewButton = New FontAwesome.Sharp.IconButton()
         Me.FullName = New System.Windows.Forms.Label()
         Me.PhNoLabel = New System.Windows.Forms.Label()
         Me.Profession = New System.Windows.Forms.Label()
-        Me.CoustRegion = New System.Windows.Forms.Label()
+        Me.Region = New System.Windows.Forms.Label()
         Me.RegionLabel = New System.Windows.Forms.Label()
         Me.Address = New System.Windows.Forms.Label()
         Me.AddressLabel = New System.Windows.Forms.Label()
@@ -63,7 +64,6 @@ Partial Class KittyModeCoustView
         Me.BookModeButton = New FontAwesome.Sharp.IconButton()
         Me.AddKittyButton = New FontAwesome.Sharp.IconButton()
         Me.JumpToKittyNoButton = New FontAwesome.Sharp.IconButton()
-        Me.ReviewButton = New FontAwesome.Sharp.IconButton()
         Me.KittyPanel.SuspendLayout()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.ProfilePanel.SuspendLayout()
@@ -223,6 +223,31 @@ Partial Class KittyModeCoustView
         Me.StartNewReviewSessionToolStripMenuItem.Size = New System.Drawing.Size(284, 32)
         Me.StartNewReviewSessionToolStripMenuItem.Text = "Start New Review Session"
         '
+        'ReviewButton
+        '
+        Me.ReviewButton.BackColor = System.Drawing.Color.Transparent
+        Me.ReviewButton.ContextMenuStrip = Me.ContextMenuStrip1
+        Me.ReviewButton.FlatAppearance.BorderSize = 0
+        Me.ReviewButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(55, Byte), Integer), CType(CType(90, Byte), Integer))
+        Me.ReviewButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(90, Byte), Integer))
+        Me.ReviewButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ReviewButton.Font = New System.Drawing.Font("Century Schoolbook", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ReviewButton.ForeColor = System.Drawing.Color.MediumPurple
+        Me.ReviewButton.IconChar = FontAwesome.Sharp.IconChar.Star
+        Me.ReviewButton.IconColor = System.Drawing.Color.MediumPurple
+        Me.ReviewButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.ReviewButton.IconSize = 45
+        Me.ReviewButton.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.ReviewButton.Location = New System.Drawing.Point(413, 14)
+        Me.ReviewButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.ReviewButton.Name = "ReviewButton"
+        Me.ReviewButton.Size = New System.Drawing.Size(43, 46)
+        Me.ReviewButton.TabIndex = 2988
+        Me.ReviewButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
+        Me.ToolTip1.SetToolTip(Me.ReviewButton, "Here You Can Connect Kitties With This Customer")
+        Me.ReviewButton.UseVisualStyleBackColor = False
+        Me.ReviewButton.Visible = False
+        '
         'FullName
         '
         Me.FullName.AutoSize = True
@@ -262,18 +287,18 @@ Partial Class KittyModeCoustView
         Me.Profession.TabIndex = 267
         Me.Profession.Text = "Lawyer"
         '
-        'CoustRegion
+        'Region
         '
-        Me.CoustRegion.AutoSize = True
-        Me.CoustRegion.BackColor = System.Drawing.Color.Transparent
-        Me.CoustRegion.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CoustRegion.ForeColor = System.Drawing.SystemColors.ControlLightLight
-        Me.CoustRegion.Location = New System.Drawing.Point(117, 610)
-        Me.CoustRegion.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.CoustRegion.Name = "CoustRegion"
-        Me.CoustRegion.Size = New System.Drawing.Size(171, 30)
-        Me.CoustRegion.TabIndex = 269
-        Me.CoustRegion.Text = "Bhojpur Bazar"
+        Me.Region.AutoSize = True
+        Me.Region.BackColor = System.Drawing.Color.Transparent
+        Me.Region.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Region.ForeColor = System.Drawing.SystemColors.ControlLightLight
+        Me.Region.Location = New System.Drawing.Point(117, 610)
+        Me.Region.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Region.Name = "Region"
+        Me.Region.Size = New System.Drawing.Size(171, 30)
+        Me.Region.TabIndex = 269
+        Me.Region.Text = "Bhojpur Bazar"
         '
         'RegionLabel
         '
@@ -372,7 +397,7 @@ Partial Class KittyModeCoustView
         Me.ProfilePanel.Controls.Add(Me.ProfileLabel)
         Me.ProfilePanel.Controls.Add(Me.ImageBox)
         Me.ProfilePanel.Controls.Add(Me.Address)
-        Me.ProfilePanel.Controls.Add(Me.CoustRegion)
+        Me.ProfilePanel.Controls.Add(Me.Region)
         Me.ProfilePanel.Controls.Add(Me.Married)
         Me.ProfilePanel.Controls.Add(Me.Gender)
         Me.ProfilePanel.Controls.Add(Me.Profession)
@@ -582,31 +607,6 @@ Partial Class KittyModeCoustView
         Me.JumpToKittyNoButton.UseVisualStyleBackColor = False
         Me.JumpToKittyNoButton.Visible = False
         '
-        'ReviewButton
-        '
-        Me.ReviewButton.BackColor = System.Drawing.Color.Transparent
-        Me.ReviewButton.ContextMenuStrip = Me.ContextMenuStrip1
-        Me.ReviewButton.FlatAppearance.BorderSize = 0
-        Me.ReviewButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(55, Byte), Integer), CType(CType(90, Byte), Integer))
-        Me.ReviewButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(90, Byte), Integer))
-        Me.ReviewButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ReviewButton.Font = New System.Drawing.Font("Century Schoolbook", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ReviewButton.ForeColor = System.Drawing.Color.MediumPurple
-        Me.ReviewButton.IconChar = FontAwesome.Sharp.IconChar.Star
-        Me.ReviewButton.IconColor = System.Drawing.Color.MediumPurple
-        Me.ReviewButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.ReviewButton.IconSize = 45
-        Me.ReviewButton.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.ReviewButton.Location = New System.Drawing.Point(413, 14)
-        Me.ReviewButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.ReviewButton.Name = "ReviewButton"
-        Me.ReviewButton.Size = New System.Drawing.Size(43, 46)
-        Me.ReviewButton.TabIndex = 2988
-        Me.ReviewButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
-        Me.ToolTip1.SetToolTip(Me.ReviewButton, "Here You Can Connect Kitties With This Customer")
-        Me.ReviewButton.UseVisualStyleBackColor = False
-        Me.ReviewButton.Visible = False
-        '
         'KittyModeCoustView
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
@@ -659,7 +659,7 @@ Partial Class KittyModeCoustView
     Friend WithEvents FullName As Label
     Friend WithEvents PhNoLabel As Label
     Friend WithEvents Profession As Label
-    Friend WithEvents CoustRegion As Label
+    Friend WithEvents Region As Label
     Friend WithEvents RegionLabel As Label
     Friend WithEvents Address As Label
     Friend WithEvents AddressLabel As Label

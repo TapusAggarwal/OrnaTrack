@@ -1,5 +1,6 @@
 ﻿Public Class ShortCustomerSearch
     Private Const MaxLimit As Integer = 6
+    Public HideCustomerID As Integer = -1
 
     Private Sub Main_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         NameTB.Select()
@@ -55,9 +56,17 @@
                     Try
                         Dim x As KittyModeControl = i
                         AddHandler x.DetailsButton_Clicked, AddressOf ControlButton_Clicked
+                        x.DetailsButton.Text = "Select"
+                        If HideCustomerID <> -1 AndAlso x.CoustID = HideCustomerID Then
+                            x.Enabled = False
+                        End If
                     Catch ex As Exception
                         Dim x As ActiveKittyControl = i
                         AddHandler x.DetailsButton_Clicked, AddressOf ControlButton_Clicked
+                        x.DetailsButton.Text = "Select"
+                        If HideCustomerID <> -1 AndAlso x.CoustID = HideCustomerID Then
+                            x.Enabled = False
+                        End If
                     End Try
                 Next
                 FlowLayoutPanel1.Visible = True
@@ -66,10 +75,10 @@
         End If
     End Sub
 
-    Public Event CustomerClicked(CustomerID As Integer)
+    Public Event CustomerClicked(CustomerID As Integer, KittyID As Integer)
 
     Private Sub ControlButton_Clicked(CustomerID As Integer, Optional KittyID As Integer = -1)
-        RaiseEvent CustomerClicked(CustomerID)
+        RaiseEvent CustomerClicked(CustomerID, KittyID)
     End Sub
 
     Private Sub SearchTextBoxes_TextChanged(sender As TextBox, e As EventArgs) Handles NameTB.TextChanged, PhNoTB.TextChanged, KittyNoTB.TextChanged

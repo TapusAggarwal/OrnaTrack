@@ -60,20 +60,16 @@ Public Class KittyRecievedReciept
 
     Public WriteOnly Property Status As Integer
         Set(value As Integer)
-            If value < 0 Then
-                MessageBox.Show("Pending Instalments For This Kitty Is Negative Which Means Their Is Some Internal Issue -> In The Way Which Pending Instalments Is Being Calculated", "Internal Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                Exit Property
-            End If
-
-            If value = 0 Then
+            If value = -1 Then
+                StatusLB.Text = "Matured"
+                StatusLB.ForeColor = Color.Goldenrod
+            ElseIf value = 0 Then
                 StatusLB.Text = "UpTo Date"
                 StatusLB.ForeColor = Color.MediumSeaGreen
+            ElseIf value = 1 Then
+                StatusLB.Text = "1 Instalment Pending."
             Else
-                If value = 1 Then
-                    StatusLB.Text = "1 Instalment Pending."
-                Else
-                    StatusLB.Text = value & " Instalments Pending."
-                End If
+                StatusLB.Text = value & " Instalments Pending."
                 StatusLB.ForeColor = Color.Firebrick
             End If
         End Set

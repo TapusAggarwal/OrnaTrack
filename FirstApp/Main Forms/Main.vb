@@ -45,19 +45,28 @@
 
         FlowLayoutPanel1.Controls.Clear()
 
+        With Me
+            .Cursor = Cursors.AppStarting
+            .Refresh()
+        End With
+
         If T_List IsNot Nothing AndAlso T_List.Count Then
             Dim res = Await Task.WhenAll(T_List)
             FlowLayoutPanel1.Visible = False
             FlowLayoutPanel1.Controls.Clear()
             If NameTB.Text = InitalName And PhNoTB.Text = InitalPhNo And KittyNoTB.Text = InitalKittyNo Then
+                Dim a As Integer = 0
                 For Each i In res
+                    a += 1
                     FlowLayoutPanel1.Controls.Add(i)
                     Try
                         Dim x As KittyModeControl = i
-                        AddHandler x.DetailsButton_Clicked, AddressOf ControlButton_Clicked
+                        x.SrNo = a
+                        AddHandler x.DetailsButton_Clicked, AddressOf KittyNoControl_Clicked
                     Catch ex As Exception
                         Dim x As ActiveKittyControl = i
-                        AddHandler x.DetailsButton_Clicked, AddressOf ControlButton_Clicked
+                        x.SrNo = a
+                        AddHandler x.DetailsButton_Clicked, AddressOf KittyNoControl_Clicked
                     End Try
                 Next
                 FlowLayoutPanel1.Visible = True
@@ -73,24 +82,38 @@
                 End If
             End If
         End If
+
+        With Me
+            .Cursor = Cursors.Default
+            .Refresh()
+        End With
+
     End Sub
 
-    Private Sub ControlButton_Clicked(CustomerID As Integer, Optional KittyID As Integer = -1)
+    Private Sub KittyNoControl_Clicked(CustomerID As Integer, Optional KittyID As Integer = -1)
         For Each ExistingFm As Form In Frame.MdiChildren
             If ExistingFm.Name <> "Main" Then
                 ExistingFm.Dispose()
             End If
         Next
 
-        Dim Fm As New KittyModeCoustView With {
-            .MdiParent = Frame,
-            .Dock = DockStyle.Fill,
-            .Tag = CustomerID.ToString
-        }
+        If KittyID <> -1 Then
+            Dim Fm As New KittyModeCoustView With {
+                .MdiParent = Frame,
+                .Dock = DockStyle.Fill,
+                .Tag = CustomerID.ToString
+            }
+            Fm.Tag += "_" + KittyID.ToString
+            Fm.Show()
+        Else
+            Dim Fm As New CoustProfileUpdated With {
+                .MdiParent = Frame,
+                .Dock = DockStyle.Fill,
+                .Tag = CustomerID.ToString
+            }
+            Fm.Show()
+        End If
 
-        If KittyID <> -1 Then Fm.Tag += "_" + KittyID.ToString
-
-        Fm.Show()
     End Sub
 
     Private Sub SearchTextBoxes_TextChanged(sender As TextBox, e As EventArgs) Handles NameTB.TextChanged, PhNoTB.TextChanged, KittyNoTB.TextChanged
@@ -145,4 +168,5 @@
         FindCoustmerButton_Click(FindCoustmerButton, EventArgs.Empty)
         NameTB.Select()
     End Sub
+
 End Class
