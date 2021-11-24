@@ -53,8 +53,8 @@
 // });
 
 // app.listen(8080);
-let asd = []
-console.log(asd[0])
+// let asd = []
+// console.log(asd[0])
 
 
 // '*⚖ CHD SARAFA ASSO.®⚖*\n' +
@@ -73,3 +73,36 @@ console.log(asd[0])
 //       'SURAJ CHAUHAN\n' +
 //       '09815699311'
 
+const express = require('express');
+const app = express();
+const multer = require('multer');
+const path = require('path');
+
+const storage = multer.diskStorage({
+    destination: './images',
+    filename: (req, file, cb) => {
+        return cb(null, `${Date.now()}_${file.originalname}`);
+    }
+})
+
+const upload = multer({
+    storage: storage
+})
+
+// app.post('*', async (req, res) => {
+
+//     console.log(req.query)
+//     res.send("recieved")
+// }
+// )
+
+app.post("/upload", upload.single('tapus'), (req, res) => {
+    console.log(req.body)
+    console.log(req.file)
+    // console.log(req)
+    res.send("hello")
+})
+
+app.listen(4000, () => {
+    console.log("server listening on port 4000")
+})

@@ -39,8 +39,12 @@ Partial Class Frame
         Me.WhatsappWebVisibilityToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NotificationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RestartToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CloseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.CleanPreviousSessionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ForceRestartToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SoftRestartToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CloseServerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CleanAllSessionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ChangeServerAddressToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TestConnectionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SidePanelButton = New FontAwesome.Sharp.IconPictureBox()
         Me.LeftArrowButton = New FontAwesome.Sharp.IconPictureBox()
         Me.RightArrowButton = New FontAwesome.Sharp.IconPictureBox()
@@ -246,17 +250,17 @@ Partial Class Frame
         Me.BatteryStatus.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
         Me.BatteryStatus.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BatteryStatus.Font = New System.Drawing.Font("Comic Sans MS", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BatteryStatus.ForeColor = System.Drawing.Color.Maroon
+        Me.BatteryStatus.ForeColor = System.Drawing.Color.Green
         Me.BatteryStatus.IconChar = FontAwesome.Sharp.IconChar.ChargingStation
-        Me.BatteryStatus.IconColor = System.Drawing.Color.Maroon
+        Me.BatteryStatus.IconColor = System.Drawing.Color.Green
         Me.BatteryStatus.IconFont = FontAwesome.Sharp.IconFont.[Auto]
         Me.BatteryStatus.IconSize = 60
-        Me.BatteryStatus.Location = New System.Drawing.Point(1294, 3)
+        Me.BatteryStatus.Location = New System.Drawing.Point(1272, 3)
         Me.BatteryStatus.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.BatteryStatus.Name = "BatteryStatus"
         Me.BatteryStatus.Size = New System.Drawing.Size(170, 58)
         Me.BatteryStatus.TabIndex = 167
-        Me.BatteryStatus.Text = "49%"
+        Me.BatteryStatus.Text = "0%"
         Me.BatteryStatus.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.BatteryStatus.UseVisualStyleBackColor = False
         Me.BatteryStatus.Visible = False
@@ -276,7 +280,7 @@ Partial Class Frame
         Me.ConnectionLabel.IconColor = System.Drawing.Color.Goldenrod
         Me.ConnectionLabel.IconFont = FontAwesome.Sharp.IconFont.[Auto]
         Me.ConnectionLabel.IconSize = 60
-        Me.ConnectionLabel.Location = New System.Drawing.Point(1451, 3)
+        Me.ConnectionLabel.Location = New System.Drawing.Point(1449, 3)
         Me.ConnectionLabel.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.ConnectionLabel.Name = "ConnectionLabel"
         Me.ConnectionLabel.Size = New System.Drawing.Size(325, 58)
@@ -289,7 +293,7 @@ Partial Class Frame
         '
         Me.ServerContextMenuStrip.Font = New System.Drawing.Font("Century Schoolbook", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ServerContextMenuStrip.ImageScalingSize = New System.Drawing.Size(24, 24)
-        Me.ServerContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.WhatsappWebVisibilityToolStripMenuItem, Me.NotificationToolStripMenuItem, Me.RestartToolStripMenuItem, Me.CloseToolStripMenuItem, Me.CleanPreviousSessionToolStripMenuItem})
+        Me.ServerContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.WhatsappWebVisibilityToolStripMenuItem, Me.NotificationToolStripMenuItem, Me.RestartToolStripMenuItem, Me.ChangeServerAddressToolStripMenuItem, Me.TestConnectionToolStripMenuItem})
         Me.ServerContextMenuStrip.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
         Me.ServerContextMenuStrip.Name = "ServerContextMenuStrip"
         Me.ServerContextMenuStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional
@@ -299,7 +303,7 @@ Partial Class Frame
         '
         Me.WhatsappWebVisibilityToolStripMenuItem.Name = "WhatsappWebVisibilityToolStripMenuItem"
         Me.WhatsappWebVisibilityToolStripMenuItem.Size = New System.Drawing.Size(311, 30)
-        Me.WhatsappWebVisibilityToolStripMenuItem.Text = "WhatsappWeb: Hidden"
+        Me.WhatsappWebVisibilityToolStripMenuItem.Text = "Change Visibilty"
         '
         'NotificationToolStripMenuItem
         '
@@ -309,21 +313,46 @@ Partial Class Frame
         '
         'RestartToolStripMenuItem
         '
+        Me.RestartToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ForceRestartToolStripMenuItem, Me.SoftRestartToolStripMenuItem, Me.CloseServerToolStripMenuItem, Me.CleanAllSessionsToolStripMenuItem})
         Me.RestartToolStripMenuItem.Name = "RestartToolStripMenuItem"
         Me.RestartToolStripMenuItem.Size = New System.Drawing.Size(311, 30)
-        Me.RestartToolStripMenuItem.Text = "Restart Server"
+        Me.RestartToolStripMenuItem.Text = "Server Options"
         '
-        'CloseToolStripMenuItem
+        'ForceRestartToolStripMenuItem
         '
-        Me.CloseToolStripMenuItem.Name = "CloseToolStripMenuItem"
-        Me.CloseToolStripMenuItem.Size = New System.Drawing.Size(311, 30)
-        Me.CloseToolStripMenuItem.Text = "Close Server"
+        Me.ForceRestartToolStripMenuItem.Name = "ForceRestartToolStripMenuItem"
+        Me.ForceRestartToolStripMenuItem.Size = New System.Drawing.Size(279, 34)
+        Me.ForceRestartToolStripMenuItem.Text = "Force Restart"
         '
-        'CleanPreviousSessionToolStripMenuItem
+        'SoftRestartToolStripMenuItem
         '
-        Me.CleanPreviousSessionToolStripMenuItem.Name = "CleanPreviousSessionToolStripMenuItem"
-        Me.CleanPreviousSessionToolStripMenuItem.Size = New System.Drawing.Size(311, 30)
-        Me.CleanPreviousSessionToolStripMenuItem.Text = "Clean All Sessions"
+        Me.SoftRestartToolStripMenuItem.Name = "SoftRestartToolStripMenuItem"
+        Me.SoftRestartToolStripMenuItem.Size = New System.Drawing.Size(279, 34)
+        Me.SoftRestartToolStripMenuItem.Text = "Soft Restart"
+        '
+        'CloseServerToolStripMenuItem
+        '
+        Me.CloseServerToolStripMenuItem.Name = "CloseServerToolStripMenuItem"
+        Me.CloseServerToolStripMenuItem.Size = New System.Drawing.Size(279, 34)
+        Me.CloseServerToolStripMenuItem.Text = "Close Server"
+        '
+        'CleanAllSessionsToolStripMenuItem
+        '
+        Me.CleanAllSessionsToolStripMenuItem.Name = "CleanAllSessionsToolStripMenuItem"
+        Me.CleanAllSessionsToolStripMenuItem.Size = New System.Drawing.Size(279, 34)
+        Me.CleanAllSessionsToolStripMenuItem.Text = "Clean All Sessions"
+        '
+        'ChangeServerAddressToolStripMenuItem
+        '
+        Me.ChangeServerAddressToolStripMenuItem.Name = "ChangeServerAddressToolStripMenuItem"
+        Me.ChangeServerAddressToolStripMenuItem.Size = New System.Drawing.Size(311, 30)
+        Me.ChangeServerAddressToolStripMenuItem.Text = "Change Server Address"
+        '
+        'TestConnectionToolStripMenuItem
+        '
+        Me.TestConnectionToolStripMenuItem.Name = "TestConnectionToolStripMenuItem"
+        Me.TestConnectionToolStripMenuItem.Size = New System.Drawing.Size(311, 30)
+        Me.TestConnectionToolStripMenuItem.Text = "Test Connection"
         '
         'SidePanelButton
         '
@@ -506,8 +535,12 @@ Partial Class Frame
     Friend WithEvents WhatsappWebVisibilityToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents NotificationToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents RestartToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents CloseToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents CleanPreviousSessionToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents WindowsRestoreButton As FontAwesome.Sharp.IconButton
     Friend WithEvents WindowsMinimizeButton As FontAwesome.Sharp.IconButton
+    Friend WithEvents ChangeServerAddressToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ForceRestartToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SoftRestartToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CloseServerToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents TestConnectionToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CleanAllSessionsToolStripMenuItem As ToolStripMenuItem
 End Class

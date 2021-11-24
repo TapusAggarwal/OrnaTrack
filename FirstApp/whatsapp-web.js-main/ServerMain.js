@@ -12,6 +12,7 @@ const {
 } = require('./index'), fs = require('fs'), IsOnlineEmitter = require('is-online-emitter')
 
 const emitter = new IsOnlineEmitter({}) // npm Module to detect change in internet connection
+const path = require('path')
 let testing = true
 let previousSessionUsable;
 
@@ -85,77 +86,93 @@ current_wsClient.registerListener(() => {
     }
 })
 
-app.post('*', async (req, res) => {
-    serverlog(req.query)
+const multer = require('multer');
 
-    if (req.query.purpose == "wts_msg") {
-        let serverResponse = {
-            result: "fail",
-            servermsg: "",
-            msg: "not provided",
-            img: "not provided"
+const storage = multer.diskStorage({
+    destination: './images',
+    filename: (req, file, cb) => {
+        return cb(null, `${Date.now()}_${file.originalname}`);
+    }
+})
+
+const upload = multer({
+    storage: storage
+})
+
+app.post("/upload", upload.single('image'), async (req, res) => {
+
+    let serverResponse = {
+        result: "fail",
+        servermsg: "",
+        msg: "not_provided",
+        img: "not_provided"
+    }
+
+    // Checking If Connection is established
+    try {
+        let statePromise = current_Web.web.getState().then((state) => {
+            return state
+        })
+        const getPromisedState = async () => {
+            let state = await statePromise
+            return state
         }
-
-        // Checking If Connection is established
-        try {
-            let statePromise = current_Web.web.getState().then((state) => {
-                return state
-            })
-            const getPromisedState = async () => {
-                let state = await statePromise
-                return state
-            }
-            const globalValue = await getPromisedState()
-            if (globalValue != 'CONNECTED') {
-                serverResponse.servermsg = "Server Not Connected To Whatsapp"
-                return res.end(JSON.stringify(serverResponse))
-            }
-        } catch (error) {
+        const globalValue = await getPromisedState()
+        if (globalValue != 'CONNECTED') {
             serverResponse.servermsg = "Server Not Connected To Whatsapp"
             return res.end(JSON.stringify(serverResponse))
         }
-
-        let chatId = req.query.phno + "@c.us"
-        current_Web.web.isRegisteredUser(chatId).then(async (isRegistered) => {
-            if (isRegistered) {
-                let msg = req.query.msg
-                if (req.query.hands == "true") {
-                    msg += "🙏"
-                }
-
-                if (req.query.img.length > 1) {
-                    let media = new MessageMedia("image/jpg", fs.readFileSync(req.query.img, 'base64'), req.query.img)
-                    await current_Web.web.sendMessage(chatId, media).then((msgDetails) => {
-                        if (msgDetails.ack >= 0) {
-                            serverResponse.img = "image_sent"
-                            serverResponse.result = "pass"
-                        } else {
-                            serverResponse.servermsg = "Image Not Sent, Reason: ack < 0 Try connecting to internet"
-                        }
-                    })
-                }
-
-                if (msg.length > 0) {
-                    await current_Web.web.sendMessage(chatId, msg).then((msgDetails) => {
-                        if (msgDetails.ack >= 0) {
-                            serverResponse.msg = "message_sent"
-                            serverResponse.result = "pass"
-                        } else {
-                            serverResponse.servermsg = "Message Not Sent, Reason: ack < 0 Try connecting to internet"
-                        }
-                    })
-                }
-
-                serverlog(JSON.stringify(serverResponse))
-                res.end(JSON.stringify(serverResponse))
-            } else {
-                serverResponse.result = "UnRegistered"
-                serverResponse.servermsg = `Invalid phoneno (${req.query.phno}): This Phno Is Not Registered With Whatsapp`
-                serverlog(JSON.stringify(serverResponse))
-                return res.end(JSON.stringify(serverResponse))
-            }
-        })
+    } catch (error) {
+        serverResponse.servermsg = "Server Not Connected To Whatsapp"
+        return res.end(JSON.stringify(serverResponse))
     }
+
+    let chatId = req.body.phno + "@c.us"
+    current_Web.web.isRegisteredUser(chatId).then(async (isRegistered) => {
+        if (isRegistered) {
+            let msg = req.body.msg
+            if (req.body.hands == "true") {
+                msg += "🙏"
+            }
+
+            if (fs.existsSync(req.file.path)) {
+                let media = new MessageMedia("image/jpg", fs.readFileSync(req.file.path, 'base64'), req.file.path)
+                await current_Web.web.sendMessage(chatId, media).then((msgDetails) => {
+                    if (msgDetails.ack >= 0) {
+                        serverResponse.img = "image_sent"
+                        serverResponse.result = "pass"
+                        fs.rmSync(req.file.path, { recursive: false, force: true })
+                    } else {
+                        serverResponse.servermsg = "Image Not Sent, Reason: ack < 0 Try connecting to internet"
+                    }
+                })
+            }
+
+            if (msg.length > 0) {
+                await current_Web.web.sendMessage(chatId, msg).then((msgDetails) => {
+                    if (msgDetails.ack >= 0) {
+                        serverResponse.msg = "message_sent"
+                        if (serverResponse.result != "pass" && serverResponse.img != "not_provided") {
+                            serverResponse.result = "fail"
+                        }
+                    } else {
+                        serverResponse.servermsg = "Message Not Sent, Reason: ack < 0 Try connecting to internet"
+                    }
+                })
+            }
+
+            serverlog(JSON.stringify(serverResponse))
+            res.end(JSON.stringify(serverResponse))
+        } else {
+            serverResponse.result = "UnRegistered"
+            serverResponse.servermsg = `Invalid phoneno (${req.body.phno}): This Phno Is Not Registered With Whatsapp`
+            serverlog(JSON.stringify(serverResponse))
+            return res.end(JSON.stringify(serverResponse))
+        }
+    })
+})
+
+app.post('*', async (req, res) => {
 
     if (req.query.purpose == "state") {
         try {
@@ -191,9 +208,6 @@ app.post('*', async (req, res) => {
             result: "",
         }
         try {
-            // let x = ["this_key", "this_value", "this_key1", "this_value1", "this_key2", "this_value2"]
-            // response.result = x
-            // return res.send(JSON.stringify(response))
             current_Web.web.searchMessages(req.query.search_request, {
                 limit: req.query.limit
             }).then((results) => {
@@ -262,6 +276,7 @@ app.post('*', async (req, res) => {
 
     if (req.query.purpose == "new_web") {
         try { current_Web.web.destroy() } catch (error) { }
+        serverlog(req.query)
         let x = JSON.parse(JSON.stringify(req.query))
         let headless = x.headless == "false" ? false : (x.headless == "true" ? true : undefined);
         let ignorePrevious = x.ignorePrevious == "false" ? false : (x.ignorePrevious == "true" ? true : undefined);
@@ -287,17 +302,17 @@ let initializeWebEvents = async () => {
         await current_Web.web.removeAllListeners('disconnected')
         await current_Web.web.removeAllListeners('change_state')
 
-        // current_Web.web.on('message', async msg => {
-        //     try {
-        //         ServerSideKnowledge.msgInfo.sender = "initializeWebEvents/message"
-        //         ServerSideKnowledge.msgInfo.purpose = "new_msg"
-        //         ServerSideKnowledge.msgInfo.msg = msg.body
-        //         serverlog(ServerSideKnowledge)
-        //         current_wsClient.wsClient.send(JSON.stringify(ServerSideKnowledge))
-        //     } catch (error) {
-        //         serverlog(`initializeWebEvents/message error: ${error}`)
-        //     }
-        // })
+        current_Web.web.on('message', async msg => {
+            try {
+                ServerSideKnowledge.msgInfo.sender = "initializeWebEvents/message"
+                ServerSideKnowledge.msgInfo.purpose = "new_msg"
+                ServerSideKnowledge.msgInfo.msg = msg.body
+                serverlog(ServerSideKnowledge)
+                current_wsClient.wsClient.send(JSON.stringify(ServerSideKnowledge))
+            } catch (error) {
+                serverlog(`initializeWebEvents/message error: ${error}`)
+            }
+        })
 
         current_Web.web.on('change_battery', async () => {
             try {

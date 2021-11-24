@@ -1,4 +1,6 @@
 ﻿Imports System.IO
+Imports System.Net.Http
+Imports System.Net.Http.Headers
 Imports Newtonsoft.Json.Linq
 
 Public Class Messenger
@@ -122,23 +124,33 @@ Public Class Messenger
         Cursor.Show()
     End Sub
 
-    Private Sub SendButton_Click(sender As Object, e As EventArgs) Handles SendButton.Click
+    Private Async Sub SendButton_Click(sender As Object, e As EventArgs) Handles SendButton.Click
         With Me
             .Cursor = Cursors.AppStarting
             .Refresh()
         End With
+        SendButton.Enabled = False
         For Each _entry In MessageImgs_Dict
-            For Each img In _entry.Value
+            For Each imgPath In _entry.Value
 
                 Dim dict As New Dictionary(Of String, String) From {
                         {"purpose", "wts_msg"},
                         {"phno", "91" + _entry.Key.Trim},
                         {"msg", MessageTB.Text},
                         {"hands", IIf(HandsCheckBox.Checked, "true", "false")},
-                        {"img", img}
+                        {"img", imgPath}
                         }
 
-                Dim ResponseString As String = ServerHttpRequest(dict)
+
+                Dim request As New MultipartFormDataContent From {
+                    {New StringContent("91" + _entry.Key.Trim), "phno"},
+                    {New StringContent(MessageTB.Text), "msg"},
+                    {New StringContent(IIf(HandsCheckBox.Checked, "true", "false")), "hands"},
+                    {New StreamContent(File.OpenRead(imgPath)), "image", New FileInfo(imgPath).Name}
+                }
+
+
+                Dim ResponseString As String = Await ServerHttpRequest(Nothing, request, $"http://{My.Settings.connection_url}/upload")
                 If ResponseString IsNot Nothing Then
                     Dim response As JObject = JObject.Parse(ResponseString)
 
@@ -168,6 +180,6 @@ Public Class Messenger
             .Cursor = Cursors.Default
             .Refresh()
         End With
-
+        SendButton.Enabled = True
     End Sub
 End Class

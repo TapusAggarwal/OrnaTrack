@@ -136,9 +136,9 @@
 
     Public Function CheckRegistration()
         Dim Registered_Numbers As New List(Of String)
-        FlowLayoutPanel1.Invoke(Sub()
+        FlowLayoutPanel1.Invoke(Async Sub()
                                     For Each TB As TextBox In FlowLayoutPanel1.Controls
-                                        Dim status As String = Isregistered(TB.Text.Trim)
+                                        Dim status As String = Await Isregistered(TB.Text.Trim)
 
                                         If status = "true" Then
                                             Registered_Numbers.Add(TB.Text.Trim)
