@@ -14,7 +14,7 @@ Public Class Form2
         End Try
     End Sub
 
-    Private Sub SendButton_Click(sender As Object, e As EventArgs) Handles SendButton.Click
+    Private Async Sub SendButton_Click(sender As Object, e As EventArgs) Handles SendButton.Click
 
         Dim dr_Inital As OleDb.OleDbDataReader = DataReader("Select Initial From Message_Data")
         Dim InitialString As String = ""
@@ -53,7 +53,7 @@ Public Class Form2
 
         Try
             For Each i In InitialList.Except(SentList)
-                If SendMessage(i, ImageBox.ImageLocation) = "pass" Then
+                If Await SendMessage(i, ImageBox.ImageLocation) = "pass" Then
                     SentList.Add(i)
                 End If
             Next
@@ -64,7 +64,7 @@ Public Class Form2
         UpDate_Data()
     End Sub
 
-    Private Function SendMessage(_customerID As Integer, imgPath As String)
+    Private Async Function SendMessage(_customerID As Integer, imgPath As String) As Task(Of String)
         Dim _customer As New Customer(_customerID)
         Dim result As String = ""
         For Each PhNo In _customer.GetPhNo
@@ -76,7 +76,7 @@ Public Class Form2
                         {"img", imgPath}
                         }
 
-            Dim ResponseString As String = ServerHttpRequest(dict)
+            Dim ResponseString As String = Await ServerHttpRequest(dict)
             If ResponseString IsNot Nothing Then
                 Dim response As JObject = JObject.Parse(ResponseString)
 

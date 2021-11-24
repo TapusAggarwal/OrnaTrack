@@ -21,7 +21,7 @@ Public Class Frame
     End Property
 
 #Region "Me.Load"
-    Private Sub Frame_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Async Sub Frame_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         '' Fade in when started
         Me.Opacity = 0
         Dim tmr As New Timer With {
@@ -69,39 +69,32 @@ Public Class Frame
         QuickSearchButton_Click(QuickSearchButton, e)
         KeyPreview = True
 
-        'If My.Settings.server_headless Then
-        '    WhatsappWebVisibilityToolStripMenuItem.Text = "WhatsappWeb: Hidden"
-        'Else
-        '    WhatsappWebVisibilityToolStripMenuItem.Text = "WhatsappWeb: Visible"
-        'End If
-        'Dim x1 As Threading.Thread = New Threading.Thread(Async Sub()
-        '                                                      Await StartServer(True)
-        '                                                  End Sub) With {
-        '    .Priority = Threading.ThreadPriority.Lowest
-        '                                                  }
-        'x1.Start()
-
-        'Form2.Show()
+        Await StartServer(False)
 
     End Sub
 #End Region
 
+#Region "Server"
     Async Function StartServer(fresh As Boolean) As Task
         Dim server_path As String = "C:\Users\hp\source\repos\TapusAggarwal\FirstApp-ReBuild\FirstApp\whatsapp-web.js-main\Server.vbs"
         Dim rawresponse As String = Nothing
 
         Try
             Dim dict As New Dictionary(Of String, String) From {{"purpose", "test"}}
-            rawresponse = ServerHttpRequest(dict)
+            rawresponse = Await ServerHttpRequest(dict)
         Catch ex As Exception
         End Try
 
         If rawresponse = "true" Then
+            state = "STANDBY"
+            InitialiseStates()
+            'ServerStateIndicator.IconColor = Color.Green
+
             Dim dict As New Dictionary(Of String, String) From {{"purpose", "state"}}
-            rawresponse = ServerHttpRequest(dict)
+            rawresponse = Await ServerHttpRequest(dict)
             If rawresponse <> "NOTCONNECTED" And rawresponse <> "OPENING" And rawresponse <> "PAIRING" And rawresponse <> "CONNECTED" Then
                 dict = New Dictionary(Of String, String) From {{"purpose", "close"}}
-                rawresponse = ServerHttpRequest(dict)
+                rawresponse = Await ServerHttpRequest(dict)
 
                 Dim p = New Process()
                 Dim pi = New ProcessStartInfo With {
@@ -112,15 +105,15 @@ Public Class Frame
             ElseIf rawresponse = "NOTCONNECTED" Then
                 dict = New Dictionary(Of String, String) From {
                 {"purpose", "new_web"},
-                {"headless", IIf(My.Settings.server_headless, "true", "false")},
+                {"headless", "true"},
                 {"ignorePrevious", "false"},
                 {"createNewWebBol", "true"}
                 }
-                rawresponse = ServerHttpRequest(dict)
+                rawresponse = Await ServerHttpRequest(dict)
                 If rawresponse <> "started" Then MessageBox.Show("Unable To Perform The Action: '" & rawresponse & "'")
             End If
 
-            Dim url = "ws://localhost:3966"
+            Dim url = $"ws://{My.Settings.connection_url}"
             WebSocket = New WebSocket(url)
             AddHandler WebSocket.Opened, Sub(s, Eventargs) SocketOpened(s, Eventargs)
             AddHandler WebSocket.Error, Sub(s, Eventargs) SocketError(s, Eventargs)
@@ -129,15 +122,19 @@ Public Class Frame
             AddHandler WebSocket.DataReceived, Sub(s, Eventargs) SocketDataReceived(s, Eventargs)
             WebSocket.Open()
         Else
-            Dim p = New Process()
-            Dim pi = New ProcessStartInfo With {
-                .FileName = server_path}
-            '.WindowStyle = ProcessWindowStyle.Hidden,
-            '.CreateNoWindow = True
-            '}
-            p.StartInfo = pi
-            p.Start()
-            Await StartServer(fresh:=True)
+            'ServerStateIndicator.IconColor = Color.Red
+            MessageBox.Show($"Unable To Get A Response From Server. Either Server Is Not Running Or Server Address Is Not Correct.{vbNewLine}Make Sure Server Is Running And Address Provided Is Correct.", "Server Not Responding", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            'If fresh Then
+            '    Dim p = New Process()
+            '    Dim pi = New ProcessStartInfo With {
+            '        .FileName = server_path}
+            '    '.WindowStyle = ProcessWindowStyle.Hidden,
+            '    '.CreateNoWindow = True
+            '    '}
+            '    p.StartInfo = pi
+            '    p.Start()
+            '    Await StartServer(fresh:=True)
+            'End If
         End If
 
     End Function
@@ -162,8 +159,6 @@ Public Class Frame
         MsgBox("Message From Server This Must Be Informed To The Developer: " + e.ToString)
     End Sub
 
-#Region "Socket Messages"
-
     Async Sub SocketMessage(s As Object, e As MessageReceivedEventArgs)
         'Try
         Dim recievedData_string As String = e.Message.ToString
@@ -173,7 +168,7 @@ Public Class Frame
         state = recievedData.SelectToken("serverState").ToString
 
         InitialiseStates()
-        If msgInfo.SelectToken("purpose") = "connection_welcome_msg" Then
+        If msgInfo.SelectToken("purpose") = "connection_welcome_msg" Or msgInfo.SelectToken("purpose") = "battery update" Then
             BatteryUpdate(clientInfo.SelectToken("battery").ToString, clientInfo.SelectToken("plugged").ToString)
         End If
 
@@ -226,8 +221,6 @@ Public Class Frame
         '    MessageBox.Show(ex.Message)
         'End Try
     End Sub
-
-#End Region
 
 #Region "BatteryUpdate"
 
@@ -289,14 +282,14 @@ Public Class Frame
 
         If state = "STANDBY" Then
             Dim local_state As String = Nothing
-            ConnectionLabel.Invoke(Sub()
+            ConnectionLabel.Invoke(Async Sub()
                                        ConnectionLabel.IconChar = IconChar.Spinner
                                        ConnectionLabel.IconColor = Color.Goldenrod
                                        ConnectionLabel.Text = "Connecting..."
                                        ConnectionLabel.ForeColor = Color.Olive
                                        BatteryStatus.Visible = False
                                        Dim dict As New Dictionary(Of String, String) From {{"purpose", "state"}}
-                                       local_state = ServerHttpRequest(dict)
+                                       local_state = Await ServerHttpRequest(dict)
                                        If local_state = "CONNECTED" Then state = local_state
                                    End Sub)
             If local_state <> "CONNECTED" Then
@@ -365,6 +358,124 @@ Public Class Frame
         Catch ex As Exception
         End Try
     End Sub
+
+#Region "Tool Strip Methods"
+
+    Private Sub WhatsappWebVisibilityToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles WhatsappWebVisibilityToolStripMenuItem.Click
+        Dim ans As Integer = MessageBox.Show($"Currently Visible:{If(My.Settings.server_headless = True, "False", "True")}.{vbNewLine}Do You Want To Turn Visiblity To: {If(My.Settings.server_headless = True, "On", "Off")}.{If(My.Settings.server_headless = True, $"{vbNewLine}Note: Press 'Yes' Only If Machine On Which Server Is Running Is Capable Of Displaying Content.", "")}", "Confirm Selection", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        If ans = 7 Then Exit Sub
+        My.Settings.server_headless = Not My.Settings.server_headless
+    End Sub
+
+    Private Sub NotificationToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NotificationToolStripMenuItem.Click
+        Exit Sub
+        If sender.Text.Split(":")(1).Trim = "Turned On" Then
+            Dim ans As Integer = MessageBox.Show("This Selection Will Turn Of Whatsapp Web Notifications. Do You Want To Continue?", "Confirm Selection", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            If ans = 7 Then Exit Sub
+            sender.Text = "Notifications: Turned Off"
+            My.Settings.server_notify = False
+            ServerContextMenuStrip.Show()
+        Else
+            Dim ans As Integer = MessageBox.Show("This Selection Will Turn On Whatsapp Web Notifications. Do You Want To Continue?", "Confirm Selection", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            If ans = 7 Then Exit Sub
+            sender.Text = "Notifications: Turned On"
+            ServerContextMenuStrip.Show()
+        End If
+    End Sub
+
+    Private Async Sub ForceRestartToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ForceRestartToolStripMenuItem.Click
+        Dim ans As Integer = MessageBox.Show("This Selection Will Force Restart The Server i.e All Previous Sessions Will Be Lost And You Have To Scan Whatsapp QR Code Again. Do You Want To Continue?", "Confirm Selection", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        If ans = 7 Then Exit Sub
+
+        state = "STANDBY"
+        InitialiseStates()
+
+        Dim server_path As String = "C:\Users\hp\source\repos\TapusAggarwal\FirstApp-ReBuild\FirstApp\whatsapp-web.js-main\Server.vbs"
+
+        Dim p = New Process()
+        Dim pi = New ProcessStartInfo With {
+                .FileName = server_path}
+        '.WindowStyle = ProcessWindowStyle.Hidden,
+        '.CreateNoWindow = True
+        '}
+        p.StartInfo = pi
+        p.Start()
+
+        Dim dict = New Dictionary(Of String, String) From {
+                {"purpose", "new_web"},
+                {"headless", "true"},
+                {"ignorePrevious", "true"},
+                {"createNewWebBol", "true"}
+                }
+        Dim rawresponse = Await ServerHttpRequest(dict)
+        If rawresponse <> "started" Then MessageBox.Show($"Unable To Perform The Action: '{rawresponse}'")
+
+        Dim url = $"ws://{My.Settings.connection_url}"
+        WebSocket = New WebSocket(url)
+        AddHandler WebSocket.Opened, Sub(s, Eventargs) SocketOpened(s, Eventargs)
+        AddHandler WebSocket.Error, Sub(s, Eventargs) SocketError(s, Eventargs)
+        AddHandler WebSocket.Closed, Sub(s, Eventargs) SocketClosed(s, Eventargs)
+        AddHandler WebSocket.MessageReceived, Sub(s, Eventargs) SocketMessage(s, Eventargs)
+        AddHandler WebSocket.DataReceived, Sub(s, Eventargs) SocketDataReceived(s, Eventargs)
+        WebSocket.Open()
+    End Sub
+
+    Private Async Sub SofteRestartToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SoftRestartToolStripMenuItem.Click
+        Dim ans As Integer = MessageBox.Show("This Selection Will Soft Restart The Server i.e Previous Sessions Will Not Be Removed. Do You Want To Continue?", "Confirm Selection", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        If ans = 7 Then Exit Sub
+
+        state = "STANDBY"
+        InitialiseStates()
+
+        Await StartServer(True)
+    End Sub
+
+    Private Sub CloseServerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CloseServerToolStripMenuItem.Click
+        Dim ans As Integer = MessageBox.Show("This Selection Will Close The Server. Do You Want To Continue?", "Confirm Selection", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        If ans = 7 Then Exit Sub
+        Dim dict As New Dictionary(Of String, String) From {{"purpose", "close"}}
+        ServerHttpRequest(dict)
+        state = "NOTCONNECTED"
+        InitialiseStates()
+    End Sub
+
+    Private Sub CleanAllSessionsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CleanAllSessionsToolStripMenuItem.Click
+        Dim ans As Integer = MessageBox.Show("This Selection Will Clean All The Sessions, Including The Existing Session. Do You Still Want To Continue?", "Confirm Selection", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        If ans = 7 Then Exit Sub
+        Dim CleanerBat As New Process()
+        Dim info As New ProcessStartInfo With {
+                .FileName = "C:\Users\hp\source\repos\TapusAggarwal\FirstApp-ReBuild\FirstApp\whatsapp-web.js-main\ServerClear.bat"
+        }
+        CleanerBat.StartInfo = info
+        CleanerBat.Start()
+    End Sub
+
+    Private Sub ChangeServerAddressToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ChangeServerAddressToolStripMenuItem.Click
+        Dim ans As Integer = MessageBox.Show("This Selection Will Allow You To Change Server Address, Do You Want To Continue.", "Confirm Selection", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        If ans = 7 Then Exit Sub
+        Dim newAddress As String = InputBox($"Enter New Address Which Will Be Used To Send All Http Requests.{vbNewLine}Connection Format -> 'Address:Port'.{vbNewLine}Current Address->'{My.Settings.connection_url}'.{vbNewLine}(Enter Correct Address To Avoid Future Errors.)", "New Server Address")
+        If newAddress.Length <> 0 Then
+            My.Settings.connection_url = newAddress.Trim
+        End If
+    End Sub
+
+    Private Async Sub TestConnectionToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TestConnectionToolStripMenuItem.Click
+        Dim rawresponse As String = "false"
+        Try
+            Dim dict As New Dictionary(Of String, String) From {{"purpose", "test"}}
+            rawresponse = Await ServerHttpRequest(dict)
+        Catch ex As Exception
+        End Try
+        If rawresponse <> "false" AndAlso Not String.IsNullOrEmpty(rawresponse) Then
+            MessageBox.Show($"The Server Is Responding Appropriately. All Good!!", "Server Response", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
+        Else
+            MessageBox.Show("The Server Is Not Responding Appropriately. SomeThing Went Wrong", "Server Response", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End If
+    End Sub
+
+#End Region
+
+#End Region
 
     Public Sub New()
         InitializeComponent()
@@ -527,90 +638,7 @@ Public Class Frame
         Next
     End Sub
 
-    Private Sub WhatsappWebVisibilityToolStripMenuItem_Click(sender As ToolStripMenuItem, e As EventArgs) Handles WhatsappWebVisibilityToolStripMenuItem.Click
-        If sender.Text.Split(":")(1).Trim = "Hidden" Then
-            Dim ans As Integer = MessageBox.Show("This Selection Will Re-Open Whatsapp Web In Visible Mode. Do You Want To Continue?", "Confirm Selection", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-            If ans = 7 Then Exit Sub
-            sender.Text = "WhatsappWeb: Visible"
-            My.Settings.server_headless = False
-            ServerContextMenuStrip.Show()
-        Else
-            Dim ans As Integer = MessageBox.Show("This Selection Will Re-Open Whatsapp Web In Hidden Mode. Do You Want To Continue?", "Confirm Selection", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-            If ans = 7 Then Exit Sub
-            sender.Text = "WhatsappWeb: Hidden"
-            My.Settings.server_headless = True
-            ServerContextMenuStrip.Show()
-        End If
+    Private Sub ServerContextMenuStrip_Opened(sender As Object, e As EventArgs) Handles ServerContextMenuStrip.Opened
+
     End Sub
-
-    Private Sub NotificationToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NotificationToolStripMenuItem.Click
-        Exit Sub
-        If sender.Text.Split(":")(1).Trim = "Turned On" Then
-            Dim ans As Integer = MessageBox.Show("This Selection Will Turn Of Whatsapp Web Notifications. Do You Want To Continue?", "Confirm Selection", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-            If ans = 7 Then Exit Sub
-            sender.Text = "Notifications: Turned Off"
-            My.Settings.server_notify = False
-            ServerContextMenuStrip.Show()
-        Else
-            Dim ans As Integer = MessageBox.Show("This Selection Will Turn On Whatsapp Web Notifications. Do You Want To Continue?", "Confirm Selection", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-            If ans = 7 Then Exit Sub
-            sender.Text = "Notifications: Turned On"
-            ServerContextMenuStrip.Show()
-        End If
-    End Sub
-
-    Private Sub RestartToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RestartToolStripMenuItem.Click
-        Dim ans As Integer = MessageBox.Show("This Selection Will Restart The Server. Do You Want To Continue?", "Confirm Selection", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-        If ans = 7 Then Exit Sub
-
-        Dim server_path As String = "C:\Users\hp\source\repos\TapusAggarwal\FirstApp-ReBuild\FirstApp\whatsapp-web.js-main\Server.vbs"
-
-        Dim p = New Process()
-        Dim pi = New ProcessStartInfo With {
-                .FileName = server_path}
-        '.WindowStyle = ProcessWindowStyle.Hidden,
-        '.CreateNoWindow = True
-        '}
-        p.StartInfo = pi
-        p.Start()
-
-        Dim dict = New Dictionary(Of String, String) From {
-                {"purpose", "new_web"},
-                {"headless", IIf(My.Settings.server_headless, "true", "false")},
-                {"ignorePrevious", "true"},
-                {"createNewWebBol", "true"}
-                }
-        Dim rawresponse = ServerHttpRequest(dict)
-        If rawresponse <> "started" Then MessageBox.Show($"Unable To Perform The Action: '{rawresponse}'")
-
-        Dim url = "ws://localhost:3966"
-        WebSocket = New WebSocket(url)
-        AddHandler WebSocket.Opened, Sub(s, Eventargs) SocketOpened(s, Eventargs)
-        AddHandler WebSocket.Error, Sub(s, Eventargs) SocketError(s, Eventargs)
-        AddHandler WebSocket.Closed, Sub(s, Eventargs) SocketClosed(s, Eventargs)
-        AddHandler WebSocket.MessageReceived, Sub(s, Eventargs) SocketMessage(s, Eventargs)
-        AddHandler WebSocket.DataReceived, Sub(s, Eventargs) SocketDataReceived(s, Eventargs)
-        WebSocket.Open()
-    End Sub
-
-    Private Sub CloseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CloseToolStripMenuItem.Click
-        Dim ans As Integer = MessageBox.Show("This Selection Will Close The Server. Do You Want To Continue?", "Confirm Selection", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-        If ans = 7 Then Exit Sub
-        Dim dict As New Dictionary(Of String, String) From {{"purpose", "close"}}
-        ServerHttpRequest(dict)
-        state = "NOTCONNECTED"
-        InitialiseStates()
-    End Sub
-
-    Private Sub CleanPreviousSessionToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CleanPreviousSessionToolStripMenuItem.Click
-        Dim ans As Integer = MessageBox.Show("This Selection Will Clean All The Sessions, Including The Existing Session. Do You Still Want To Continue?", "Confirm Selection", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-        If ans = 7 Then Exit Sub
-        Dim CleanerBat As New Process()
-        Dim info As New ProcessStartInfo With {
-                .FileName = "C:\Users\hp\source\repos\TapusAggarwal\FirstApp-ReBuild\FirstApp\whatsapp-web.js-main\ServerClear.bat"
-        }
-        CleanerBat.StartInfo = info
-        CleanerBat.Start()
-    End Sub
-
 End Class

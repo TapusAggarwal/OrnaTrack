@@ -3,6 +3,8 @@ Imports System.Net
 Imports System.Runtime.CompilerServices
 Imports System.IO
 Imports WebSocket4Net
+Imports System.Net.Http
+Imports System.Net.Http.Headers
 
 Module ProjectModule
     Public myconnection As New OleDbConnection
@@ -55,44 +57,81 @@ Module ProjectModule
         Next
     End Sub
 
+
     'Function: General Function That takes Dictionary Of Commands As Input And Returns Server Respons As String
-    Function ServerHttpRequest(command As Dictionary(Of String, String)) As String
-        Dim rawresponse As String = Nothing
-        Try
-            Dim url = "http://localhost:3966?"
-            For Each comm In command
-                url += comm.Key + "=" + comm.Value + "&"
+    Function ServerHttpRequest(Optional requestPrams As Dictionary(Of String, String) = Nothing, Optional request_headres As MultipartFormDataContent = Nothing, Optional _uri As String = Nothing) As Task(Of String)
+
+        If _uri Is Nothing Then _uri = $"http://{My.Settings.connection_url}"
+
+        If requestPrams IsNot Nothing Then
+            Dim url = $"{_uri}?"
+            For Each comm In requestPrams
+                url += $"{comm.Key}={comm.Value}&"
             Next
-            url = url.Substring(0, url.Length - 1)
-            If String.IsNullOrWhiteSpace(url) Then Return Nothing
-            Dim req As WebRequest = WebRequest.Create(url.Trim)
-            req.Method = "POST"
-            Dim response = DirectCast(req.GetResponse(), HttpWebResponse)
-            Dim reader = New StreamReader(response.GetResponseStream())
-            rawresponse = reader.ReadToEnd().ToString()
+            _uri = url.Substring(0, url.Length - 1)
+        End If
+
+        If String.IsNullOrEmpty(_uri) Then Return Nothing
+
+        Dim client As New HttpClient
+        client.DefaultRequestHeaders.Accept.Clear()
+        client.DefaultRequestHeaders.Accept.Add(New MediaTypeWithQualityHeaderValue("application/json"))
+        client.Timeout = TimeSpan.FromSeconds(5)
+
+        Try
+
+            Dim response As HttpResponseMessage = client.PostAsync(New Uri(_uri), request_headres).Result
+
+            If response.IsSuccessStatusCode Then
+                Dim resposeTask As Task(Of String) = response.Content.ReadAsStringAsync()
+                Return resposeTask
+            Else
+                Return Nothing
+            End If
         Catch ex As Exception
-            'MessageBox.Show(String.Format("An error occurred:{0}{0}{1}",
-            '                                  vbCrLf, ex.Message),
-            '                    "Exception Thrown",
-            '                    MessageBoxButtons.OK,
-            '                    MessageBoxIcon.Warning)
+            MessageBox.Show($"Error Occurred: While Sending Request To Server: {ex.Message}.", "Exception Thrown", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return Nothing
         End Try
-        Return rawresponse
+
     End Function
 
 
+    'Function ServerHttpRequest(command As Dictionary(Of String, String)) As String
+    '    Dim rawresponse As String = Nothing
+    '    Try
+    '        Dim url = $"http://{My.Settings.connection_url}?"
+    '        For Each comm In command
+    '            url += $"{comm.Key}={comm.Value}&"
+    '        Next
+    '        url = url.Substring(0, url.Length - 1)
+    '        If String.IsNullOrWhiteSpace(url) Then Return Nothing
+    '        Dim req As WebRequest = WebRequest.Create(url.Trim)
+    '        req.Method = "POST"
+    '        Dim response = DirectCast(req.GetResponse(), HttpWebResponse)
+    '        Dim reader = New StreamReader(response.GetResponseStream())
+    '        rawresponse = reader.ReadToEnd().ToString()
+    '    Catch ex As Exception
+    '        'MessageBox.Show(String.Format("An error occurred:{0}{0}{1}",
+    '        '                                  vbCrLf, ex.Message),
+    '        '                    "Exception Thrown",
+    '        '                    MessageBoxButtons.OK,
+    '        '                    MessageBoxIcon.Warning)
+    '    End Try
+    '    Return rawresponse
+    'End Function
+
+
     'Function: Check's If A Number Is Registered With Watsapp Returns true, false or Nothing In Case When Server Does Not Respond
-    Function Isregistered(PhNo As String)
-        Dim ResponseString As String = Nothing
+    Async Function Isregistered(PhNo As String) As Task(Of String)
         Dim dict As New Dictionary(Of String, String) From {
                 {"purpose", "is_registered"},
                 {"phno", "91" & PhNo}
             }
         Try
-            ResponseString = ServerHttpRequest(dict)
-            Return ResponseString
+            'Dim ResponseString As String = Await 
+            Return Await ServerHttpRequest(dict)
         Catch ex As Exception
-            Return ResponseString
+            Return Nothing
             'MessageBox.Show(String.Format("An error occurred:{0}{0}{1}",
             '                              vbCrLf, ex.Message),
             '                    "Exception Thrown",

@@ -45,8 +45,10 @@ Partial Class QrCodeView
         Me.Controls.Add(Me.QrBox)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Name = "QrCodeView"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Scan The QrCode"
+        Me.TopMost = True
         CType(Me.QrBox, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
