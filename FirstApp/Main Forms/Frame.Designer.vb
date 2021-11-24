@@ -53,7 +53,6 @@ Partial Class Frame
         Me.NewCoustmerButton = New FontAwesome.Sharp.IconButton()
         Me.QuickSearchButton = New FontAwesome.Sharp.IconButton()
         Me.PanelMenu = New System.Windows.Forms.Panel()
-        Me.IconButton1 = New FontAwesome.Sharp.IconButton()
         Me.PanelTitleBar.SuspendLayout()
         Me.ServerContextMenuStrip.SuspendLayout()
         CType(Me.SidePanelButton, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -66,7 +65,6 @@ Partial Class Frame
         'PanelTitleBar
         '
         Me.PanelTitleBar.BackColor = System.Drawing.Color.FromArgb(CType(CType(24, Byte), Integer), CType(CType(24, Byte), Integer), CType(CType(60, Byte), Integer))
-        Me.PanelTitleBar.Controls.Add(Me.IconButton1)
         Me.PanelTitleBar.Controls.Add(Me.WindowsRestoreButton)
         Me.PanelTitleBar.Controls.Add(Me.WindowsMinimizeButton)
         Me.PanelTitleBar.Controls.Add(Me.CloseButton)
@@ -490,21 +488,6 @@ Partial Class Frame
         Me.PanelMenu.TabIndex = 170
         Me.PanelMenu.Visible = False
         '
-        'IconButton1
-        '
-        Me.IconButton1.BackColor = System.Drawing.Color.Transparent
-        Me.IconButton1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(24, Byte), Integer), CType(CType(24, Byte), Integer), CType(CType(60, Byte), Integer))
-        Me.IconButton1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(24, Byte), Integer), CType(CType(24, Byte), Integer), CType(CType(60, Byte), Integer))
-        Me.IconButton1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(24, Byte), Integer), CType(CType(24, Byte), Integer), CType(CType(60, Byte), Integer))
-        Me.IconButton1.IconChar = FontAwesome.Sharp.IconChar.Circle
-        Me.IconButton1.IconColor = System.Drawing.Color.Black
-        Me.IconButton1.IconFont = FontAwesome.Sharp.IconFont.Solid
-        Me.IconButton1.Location = New System.Drawing.Point(1164, 10)
-        Me.IconButton1.Name = "IconButton1"
-        Me.IconButton1.Size = New System.Drawing.Size(58, 44)
-        Me.IconButton1.TabIndex = 267
-        Me.IconButton1.UseVisualStyleBackColor = False
-        '
         'Frame
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
@@ -560,5 +543,4 @@ Partial Class Frame
     Friend WithEvents CloseServerToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents TestConnectionToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents CleanAllSessionsToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents IconButton1 As FontAwesome.Sharp.IconButton
 End Class

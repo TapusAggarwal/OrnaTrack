@@ -112,16 +112,16 @@
 
     End Sub
 
-    Private Sub TextBox1_KeyDown(sender As Object, e As KeyEventArgs) _
-        Handles PhNoTB.KeyDown, KittyNoTB.KeyDown, NameTB.KeyDown
-        If e.KeyCode = Keys.Enter Then
-            FindCoustmerButton_Click(FindCoustmerButton, e)
-            Exit Sub
-        ElseIf e.KeyCode = Keys.Up Then
-            SendKeys.Send("+{Tab}")
-        ElseIf e.KeyCode = Keys.Down Then
-            SendKeys.Send("{Tab}")
-        End If
+    Private Sub TextBox1_KeyDown(sender As Object, e As KeyEventArgs) Handles PhNoTB.KeyDown, KittyNoTB.KeyDown, NameTB.KeyDown
+        Select Case e.KeyCode
+            Case Keys.Enter
+                FindCoustmerButton_Click(FindCoustmerButton, e)
+                Exit Sub
+            Case Keys.Up
+                SendKeys.Send("+{Tab}")
+            Case Keys.Down
+                SendKeys.Send("{Tab}")
+        End Select
     End Sub
 
     Private Sub KittyNoTB_TextChanged(sender As TextBox, e As EventArgs) Handles KittyNoTB.TextChanged, PhNoTB.TextChanged
