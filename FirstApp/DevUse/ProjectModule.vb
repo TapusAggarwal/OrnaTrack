@@ -11,7 +11,7 @@ Module ProjectModule
 
     Public Structure Variables
         Shared ConnectionString As String =
-                "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\hp\source\repos\TapusAggarwal\FirstApp-ReBuild\FirstApp_database.accdb"
+                "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\hp\Desktop\FirstApp_database.accdb"
     End Structure
 
     Sub InitaliseConnection()
