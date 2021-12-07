@@ -196,8 +196,12 @@ Public Class Customer
                 Try : temp_name = dr_firstName("CName") : Catch ex As Exception : End Try
             End While
             dr_firstName.Close()
-            temp_name = temp_name.Replace(apostrope, "'")
-            Return temp_name.Trim
+            Try
+                temp_name = temp_name.Replace(apostrope, "'")
+                Return temp_name.Trim
+            Catch ex As Exception
+                Return Nothing
+            End Try
         Catch ex As Exception
             MessageBox.Show($"Error [Customer/FirstName]: {ex.Message}", "Error In Customer Class", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return Nothing
@@ -224,8 +228,12 @@ Public Class Customer
                 End Try
             End While
             dr_sirName.Close()
-            temp_name = temp_name.Replace(apostrope, "'")
-            Return temp_name.Trim
+            Try
+                temp_name = temp_name.Replace(apostrope, "'")
+                Return temp_name.Trim
+            Catch ex As Exception
+                Return Nothing
+            End Try
         Catch ex As Exception
             MessageBox.Show($"Error [Customer/LastName]: {ex.Message}", "Error In Customer Class", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return Nothing
@@ -319,7 +327,11 @@ Public Class Customer
                 Catch ex As Exception
                 End Try
             End While
-            Return temp_profession.Replace(apostrope, "'")
+            Try
+                Return temp_profession.Replace(apostrope, "'")
+            Catch ex As Exception
+                Return Nothing
+            End Try
         Catch ex As Exception
             MessageBox.Show($"Error [Customer/Profession()]: {ex.Message}", "Error In Customer Class", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return Nothing
@@ -362,7 +374,11 @@ Public Class Customer
                 End Try
             End While
             dr_region.Close()
-            Return temp_region.Replace(apostrope, "'")
+            Try
+                Return temp_region.Replace(apostrope, "'")
+            Catch ex As Exception
+                Return Nothing
+            End Try
         Catch ex As Exception
             MessageBox.Show($"Error [Customer/Region]: {ex.Message}", "Error In Customer Class", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return Nothing
@@ -436,7 +452,11 @@ Public Class Customer
                 End Try
             End While
             dr_description.Close()
-            Return temp_description.Replace(apostrope, "'")
+            Try
+                Return temp_description.Replace(apostrope, "'")
+            Catch ex As Exception
+                Return Nothing
+            End Try
         Catch ex As Exception
             MessageBox.Show($"Error [Customer/Description]: {ex.Message}", "Error In Customer Class", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return Nothing

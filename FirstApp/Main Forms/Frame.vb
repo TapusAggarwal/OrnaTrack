@@ -544,7 +544,9 @@ Public Class Frame
                 Report.Show()
             End If
             If e.Control And e.KeyCode = Keys.B Then
-                BookMode.Show()
+                If ActiveMdiChild Is Main Then
+                    BookMode.Show()
+                End If
             End If
         Catch ex As Exception
         End Try
