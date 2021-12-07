@@ -111,11 +111,12 @@ Public Class Customer
                                         .PhNo = KittyId.Owner.PhNo(",")
                                         .SetImage = ""
                                         If KittyId.IsAvailed Then
-                                            .LastInstalmentDate = -2
+                                            .InstalmentsPending = -2
                                         ElseIf KittyId.IsMatured Then
-                                            .LastInstalmentDate = -1
+                                            .InstalmentsPending = -1
                                         Else
-                                            .LastInstalmentDate = KittyId.GetInstalmentsPending
+                                            .InstalmentsPending = KittyId.GetInstalmentsPending
+                                            .InstalmentsLeft = KittyId.GetInstalments_LeftForMaturity
                                         End If
                                         .KittyType = KittyId.KittyType()
                                         Try

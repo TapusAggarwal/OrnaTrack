@@ -1,12 +1,11 @@
 ﻿Public Class Form1
+    ReadOnly Kitties As New Dictionary(Of Integer, Dictionary(Of String, List(Of Kitty)))
+    ReadOnly SelectedMatured As New List(Of Kitty)
+    ReadOnly SelectedAvailed As New List(Of Kitty)
+    ReadOnly instalmentsLeft As New Dictionary(Of Integer, List(Of Kitty))
+    ReadOnly instalmentsPending As New Dictionary(Of Integer, List(Of Kitty))
 
-    Dim Kitties As New Dictionary(Of Integer, Dictionary(Of String, List(Of Kitty)))
-    Dim SelectedMatured As New List(Of Kitty)
-    Dim SelectedAvailed As New List(Of Kitty)
-    Dim instalmentsLeft As New Dictionary(Of Integer, List(Of Kitty))
-    Dim instalmentsPending As New Dictionary(Of Integer, List(Of Kitty))
-
-    Dim SelectedKitties As New List(Of Kitty)
+    ReadOnly SelectedKitties As New List(Of Kitty)
 
     Private Sub KittyItemsVisibility(state As Boolean)
         KittyTypeCList.Visible = state
@@ -102,6 +101,9 @@
 
         Next
 
+        For Each i In x
+            MessageBox.Show(i)
+        Next
 
         Try
             If AddSelection <> -1 Then

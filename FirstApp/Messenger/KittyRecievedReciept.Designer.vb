@@ -24,11 +24,16 @@ Partial Class KittyRecievedReciept
     Private Sub InitializeComponent()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.PictureBox8 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox6 = New System.Windows.Forms.PictureBox()
         Me.Label34 = New System.Windows.Forms.Label()
         Me.Label35 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
+        Me.PictureBox3 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Label5 = New System.Windows.Forms.Label()
+        Me.PictureBox4 = New System.Windows.Forms.PictureBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.RecievedLB = New System.Windows.Forms.Label()
@@ -36,11 +41,13 @@ Partial Class KittyRecievedReciept
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Label19 = New System.Windows.Forms.Label()
         Me.Label24 = New System.Windows.Forms.Label()
+        Me.PictureBox5 = New System.Windows.Forms.PictureBox()
         Me.KittyNoLB = New System.Windows.Forms.Label()
         Me.NameLB = New System.Windows.Forms.Label()
         Me.PhNoLB = New System.Windows.Forms.Label()
         Me.DateLB = New System.Windows.Forms.Label()
         Me.Label30 = New System.Windows.Forms.Label()
+        Me.Barcode = New System.Windows.Forms.PictureBox()
         Me.Label36 = New System.Windows.Forms.Label()
         Me.Label32 = New System.Windows.Forms.Label()
         Me.CashInWalletLB = New System.Windows.Forms.Label()
@@ -55,17 +62,10 @@ Partial Class KittyRecievedReciept
         Me.Label14 = New System.Windows.Forms.Label()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.TotalLB = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.PictureBox8 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox6 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox3 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox4 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox5 = New System.Windows.Forms.PictureBox()
-        Me.Barcode = New System.Windows.Forms.PictureBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.PictureBox7 = New System.Windows.Forms.PictureBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.PictureBox8, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -138,6 +138,30 @@ Partial Class KittyRecievedReciept
         Me.Panel2.Size = New System.Drawing.Size(513, 880)
         Me.Panel2.TabIndex = 137
         '
+        'PictureBox8
+        '
+        Me.PictureBox8.BackColor = System.Drawing.Color.Transparent
+        Me.PictureBox8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.PictureBox8.Image = Global.FirstApp.My.Resources.Resources.phnIcon
+        Me.PictureBox8.Location = New System.Drawing.Point(19, 335)
+        Me.PictureBox8.Name = "PictureBox8"
+        Me.PictureBox8.Size = New System.Drawing.Size(39, 39)
+        Me.PictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox8.TabIndex = 193
+        Me.PictureBox8.TabStop = False
+        '
+        'PictureBox6
+        '
+        Me.PictureBox6.BackColor = System.Drawing.Color.Transparent
+        Me.PictureBox6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.PictureBox6.Image = Global.FirstApp.My.Resources.Resources.phnIcon
+        Me.PictureBox6.Location = New System.Drawing.Point(3, 59)
+        Me.PictureBox6.Name = "PictureBox6"
+        Me.PictureBox6.Size = New System.Drawing.Size(31, 31)
+        Me.PictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox6.TabIndex = 192
+        Me.PictureBox6.TabStop = False
+        '
         'Label34
         '
         Me.Label34.AutoSize = True
@@ -173,6 +197,30 @@ Partial Class KittyRecievedReciept
         Me.Label3.Text = "9816057863" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "9882960863"
         Me.Label3.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
+        'PictureBox3
+        '
+        Me.PictureBox3.BackColor = System.Drawing.Color.Black
+        Me.PictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.PictureBox3.Image = Global.FirstApp.My.Resources.Resources.AccountInfo
+        Me.PictureBox3.Location = New System.Drawing.Point(23, 676)
+        Me.PictureBox3.Name = "PictureBox3"
+        Me.PictureBox3.Size = New System.Drawing.Size(229, 99)
+        Me.PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox3.TabIndex = 185
+        Me.PictureBox3.TabStop = False
+        '
+        'PictureBox2
+        '
+        Me.PictureBox2.BackColor = System.Drawing.Color.Black
+        Me.PictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.PictureBox2.Image = Global.FirstApp.My.Resources.Resources.LogoMata
+        Me.PictureBox2.Location = New System.Drawing.Point(202, 16)
+        Me.PictureBox2.Name = "PictureBox2"
+        Me.PictureBox2.Size = New System.Drawing.Size(107, 139)
+        Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox2.TabIndex = 140
+        Me.PictureBox2.TabStop = False
+        '
         'Panel3
         '
         Me.Panel3.BackColor = System.Drawing.Color.Black
@@ -191,6 +239,18 @@ Partial Class KittyRecievedReciept
         Me.Label5.Size = New System.Drawing.Size(132, 27)
         Me.Label5.TabIndex = 183
         Me.Label5.Text = "9882960863"
+        '
+        'PictureBox4
+        '
+        Me.PictureBox4.BackColor = System.Drawing.Color.Black
+        Me.PictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.PictureBox4.Image = Global.FirstApp.My.Resources.Resources.Google_PhonePe
+        Me.PictureBox4.Location = New System.Drawing.Point(-1, 747)
+        Me.PictureBox4.Name = "PictureBox4"
+        Me.PictureBox4.Size = New System.Drawing.Size(184, 142)
+        Me.PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox4.TabIndex = 182
+        Me.PictureBox4.TabStop = False
         '
         'Label2
         '
@@ -268,7 +328,19 @@ Partial Class KittyRecievedReciept
         Me.Label24.Name = "Label24"
         Me.Label24.Size = New System.Drawing.Size(233, 31)
         Me.Label24.TabIndex = 147
-        Me.Label24.Text = "Installment Reciept"
+        Me.Label24.Text = "Installment Receipt"
+        '
+        'PictureBox5
+        '
+        Me.PictureBox5.BackColor = System.Drawing.Color.Black
+        Me.PictureBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.PictureBox5.Image = Global.FirstApp.My.Resources.Resources.signatureUsed
+        Me.PictureBox5.Location = New System.Drawing.Point(354, 766)
+        Me.PictureBox5.Name = "PictureBox5"
+        Me.PictureBox5.Size = New System.Drawing.Size(123, 70)
+        Me.PictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox5.TabIndex = 176
+        Me.PictureBox5.TabStop = False
         '
         'KittyNoLB
         '
@@ -326,6 +398,15 @@ Partial Class KittyRecievedReciept
         Me.Label30.Size = New System.Drawing.Size(61, 23)
         Me.Label30.TabIndex = 170
         Me.Label30.Text = "Date:"
+        '
+        'Barcode
+        '
+        Me.Barcode.BackColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.Barcode.Location = New System.Drawing.Point(333, 681)
+        Me.Barcode.Name = "Barcode"
+        Me.Barcode.Size = New System.Drawing.Size(160, 79)
+        Me.Barcode.TabIndex = 148
+        Me.Barcode.TabStop = False
         '
         'Label36
         '
@@ -482,107 +563,6 @@ Partial Class KittyRecievedReciept
         Me.TotalLB.TabIndex = 159
         Me.TotalLB.Text = "₹14,000.00"
         '
-        'Label4
-        '
-        Me.Label4.BackColor = System.Drawing.Color.Transparent
-        Me.Label4.Font = New System.Drawing.Font("Century Schoolbook", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(67, 440)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(376, 27)
-        Me.Label4.TabIndex = 190
-        Me.Label4.Text = "-------------------------------------------------------"
-        '
-        'Label6
-        '
-        Me.Label6.BackColor = System.Drawing.Color.Transparent
-        Me.Label6.Font = New System.Drawing.Font("Century Schoolbook", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(67, 542)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(376, 27)
-        Me.Label6.TabIndex = 191
-        Me.Label6.Text = "-------------------------------------------------------"
-        '
-        'PictureBox8
-        '
-        Me.PictureBox8.BackColor = System.Drawing.Color.Transparent
-        Me.PictureBox8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.PictureBox8.Image = Global.FirstApp.My.Resources.Resources.phnIcon
-        Me.PictureBox8.Location = New System.Drawing.Point(19, 335)
-        Me.PictureBox8.Name = "PictureBox8"
-        Me.PictureBox8.Size = New System.Drawing.Size(39, 39)
-        Me.PictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox8.TabIndex = 193
-        Me.PictureBox8.TabStop = False
-        '
-        'PictureBox6
-        '
-        Me.PictureBox6.BackColor = System.Drawing.Color.Transparent
-        Me.PictureBox6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.PictureBox6.Image = Global.FirstApp.My.Resources.Resources.phnIcon
-        Me.PictureBox6.Location = New System.Drawing.Point(3, 59)
-        Me.PictureBox6.Name = "PictureBox6"
-        Me.PictureBox6.Size = New System.Drawing.Size(31, 31)
-        Me.PictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox6.TabIndex = 192
-        Me.PictureBox6.TabStop = False
-        '
-        'PictureBox3
-        '
-        Me.PictureBox3.BackColor = System.Drawing.Color.Black
-        Me.PictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.PictureBox3.Image = Global.FirstApp.My.Resources.Resources.AccountInfo
-        Me.PictureBox3.Location = New System.Drawing.Point(23, 676)
-        Me.PictureBox3.Name = "PictureBox3"
-        Me.PictureBox3.Size = New System.Drawing.Size(229, 99)
-        Me.PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox3.TabIndex = 185
-        Me.PictureBox3.TabStop = False
-        '
-        'PictureBox2
-        '
-        Me.PictureBox2.BackColor = System.Drawing.Color.Black
-        Me.PictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.PictureBox2.Image = Global.FirstApp.My.Resources.Resources.LogoMata
-        Me.PictureBox2.Location = New System.Drawing.Point(202, 16)
-        Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(107, 139)
-        Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox2.TabIndex = 140
-        Me.PictureBox2.TabStop = False
-        '
-        'PictureBox4
-        '
-        Me.PictureBox4.BackColor = System.Drawing.Color.Black
-        Me.PictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.PictureBox4.Image = Global.FirstApp.My.Resources.Resources.Google_PhonePe
-        Me.PictureBox4.Location = New System.Drawing.Point(-1, 747)
-        Me.PictureBox4.Name = "PictureBox4"
-        Me.PictureBox4.Size = New System.Drawing.Size(184, 142)
-        Me.PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox4.TabIndex = 182
-        Me.PictureBox4.TabStop = False
-        '
-        'PictureBox5
-        '
-        Me.PictureBox5.BackColor = System.Drawing.Color.Black
-        Me.PictureBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.PictureBox5.Image = Global.FirstApp.My.Resources.Resources.signatureUsed
-        Me.PictureBox5.Location = New System.Drawing.Point(354, 766)
-        Me.PictureBox5.Name = "PictureBox5"
-        Me.PictureBox5.Size = New System.Drawing.Size(123, 70)
-        Me.PictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox5.TabIndex = 176
-        Me.PictureBox5.TabStop = False
-        '
-        'Barcode
-        '
-        Me.Barcode.BackColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.Barcode.Location = New System.Drawing.Point(333, 681)
-        Me.Barcode.Name = "Barcode"
-        Me.Barcode.Size = New System.Drawing.Size(160, 79)
-        Me.Barcode.TabIndex = 148
-        Me.Barcode.TabStop = False
-        '
         'PictureBox1
         '
         Me.PictureBox1.BackColor = System.Drawing.Color.White
@@ -605,6 +585,26 @@ Partial Class KittyRecievedReciept
         Me.PictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox7.TabIndex = 168
         Me.PictureBox7.TabStop = False
+        '
+        'Label4
+        '
+        Me.Label4.BackColor = System.Drawing.Color.Transparent
+        Me.Label4.Font = New System.Drawing.Font("Century Schoolbook", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(67, 440)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(376, 27)
+        Me.Label4.TabIndex = 190
+        Me.Label4.Text = "-------------------------------------------------------"
+        '
+        'Label6
+        '
+        Me.Label6.BackColor = System.Drawing.Color.Transparent
+        Me.Label6.Font = New System.Drawing.Font("Century Schoolbook", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.Location = New System.Drawing.Point(67, 542)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(376, 27)
+        Me.Label6.TabIndex = 191
+        Me.Label6.Text = "-------------------------------------------------------"
         '
         'KittyRecievedReciept
         '

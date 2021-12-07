@@ -69,7 +69,9 @@ Partial Class Messenger
         Me.HandsCheckBox = New System.Windows.Forms.CheckBox()
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         Me.MessageResultLB = New System.Windows.Forms.Label()
+        Me.SendRecieptCB = New System.Windows.Forms.CheckBox()
         CType(Me.ImgBox, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.FlowLayoutPanel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'Column10
@@ -433,7 +435,7 @@ Partial Class Messenger
         Me.SendButton.Name = "SendButton"
         Me.SendButton.Size = New System.Drawing.Size(277, 62)
         Me.SendButton.TabIndex = 243
-        Me.SendButton.Text = "Send Message"
+        Me.SendButton.Text = "Send Receipt"
         Me.SendButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.SendButton.UseVisualStyleBackColor = False
         '
@@ -467,6 +469,7 @@ Partial Class Messenger
         Me.FlowLayoutPanel1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.FlowLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(60, Byte), Integer))
+        Me.FlowLayoutPanel1.Controls.Add(Me.MessageResultLB)
         Me.FlowLayoutPanel1.Location = New System.Drawing.Point(570, 678)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
         Me.FlowLayoutPanel1.Size = New System.Drawing.Size(447, 235)
@@ -478,7 +481,7 @@ Partial Class Messenger
         Me.MessageResultLB.BackColor = System.Drawing.Color.Transparent
         Me.MessageResultLB.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.MessageResultLB.ForeColor = System.Drawing.Color.ForestGreen
-        Me.MessageResultLB.Location = New System.Drawing.Point(577, 647)
+        Me.MessageResultLB.Location = New System.Drawing.Point(4, 0)
         Me.MessageResultLB.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.MessageResultLB.Name = "MessageResultLB"
         Me.MessageResultLB.Size = New System.Drawing.Size(244, 28)
@@ -486,13 +489,28 @@ Partial Class Messenger
         Me.MessageResultLB.Text = "+919816057863: Sent"
         Me.MessageResultLB.Visible = False
         '
+        'SendRecieptCB
+        '
+        Me.SendRecieptCB.AutoSize = True
+        Me.SendRecieptCB.Checked = True
+        Me.SendRecieptCB.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.SendRecieptCB.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SendRecieptCB.ForeColor = System.Drawing.Color.Orange
+        Me.SendRecieptCB.Location = New System.Drawing.Point(781, 628)
+        Me.SendRecieptCB.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.SendRecieptCB.Name = "SendRecieptCB"
+        Me.SendRecieptCB.Size = New System.Drawing.Size(166, 27)
+        Me.SendRecieptCB.TabIndex = 9993
+        Me.SendRecieptCB.Text = "Send Reciept"
+        Me.SendRecieptCB.UseVisualStyleBackColor = True
+        '
         'Messenger
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(60, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1117, 932)
-        Me.Controls.Add(Me.MessageResultLB)
+        Me.Controls.Add(Me.SendRecieptCB)
         Me.Controls.Add(Me.FlowLayoutPanel1)
         Me.Controls.Add(Me.HandsCheckBox)
         Me.Controls.Add(Me.CloseButton)
@@ -509,8 +527,9 @@ Partial Class Messenger
         Me.Name = "Messenger"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.TopMost = True
         CType(Me.ImgBox, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.FlowLayoutPanel1.ResumeLayout(False)
+        Me.FlowLayoutPanel1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -546,4 +565,5 @@ Partial Class Messenger
     Friend WithEvents HandsCheckBox As CheckBox
     Friend WithEvents FlowLayoutPanel1 As FlowLayoutPanel
     Friend WithEvents MessageResultLB As Label
+    Friend WithEvents SendRecieptCB As CheckBox
 End Class

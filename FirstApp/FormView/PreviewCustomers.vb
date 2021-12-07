@@ -15,11 +15,12 @@
                                         .PhNo = _kitty.Owner.PhNo(",")
                                         .SetImage = ""
                                         If _kitty.IsAvailed Then
-                                            .LastInstalmentDate = -2
+                                            .InstalmentsPending = -2
                                         ElseIf _kitty.IsMatured Then
-                                            .LastInstalmentDate = -1
+                                            .InstalmentsPending = -1
                                         Else
-                                            .LastInstalmentDate = _kitty.GetInstalmentsPending
+                                            .InstalmentsPending = _kitty.GetInstalmentsPending
+                                            .InstalmentsLeft = _kitty.GetInstalments_LeftForMaturity
                                         End If
                                         .KittyType = _kitty.KittyType()
                                         Try

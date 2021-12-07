@@ -1,4 +1,6 @@
-﻿Imports Newtonsoft.Json.Linq
+﻿Imports System.IO
+Imports System.Net.Http
+Imports Newtonsoft.Json.Linq
 
 Public Class Form2
     Private Sub ImgBox_Click(sender As Object, e As EventArgs) Handles ImageBox.Click
@@ -47,9 +49,7 @@ Public Class Form2
             SentList.Add(i)
         Next
 
-
         If MessageBox.Show($"Sending Message To Remaining {InitialList.Count - SentList.Count} Customers.", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then Exit Sub
-
 
         Try
             For Each i In InitialList.Except(SentList)
@@ -68,18 +68,37 @@ Public Class Form2
         Dim _customer As New Customer(_customerID)
         Dim result As String = ""
         For Each PhNo In _customer.GetPhNo
+
             Dim dict As New Dictionary(Of String, String) From {
                         {"purpose", "wts_msg"},
-                        {"phno", $"91{PhNo}"},
+                        {"phno", "91" + PhNo},
                         {"msg", MessageTB.Text},
                         {"hands", IIf(HandsCheckBox.Checked, "true", "false")},
                         {"img", imgPath}
                         }
 
-            Dim ResponseString As String = Await ServerHttpRequest(dict)
+            Dim request As New MultipartFormDataContent From {
+                        {New StringContent("91" + PhNo.Trim), "phno"},
+                        {New StringContent(MessageTB.Text), "msg"},
+                        {New StringContent(IIf(HandsCheckBox.Checked, "true", "false")), "hands"}
+                    }
+
+            If imgPath IsNot Nothing Then
+                request = New MultipartFormDataContent From {
+                        {New StringContent("91" + PhNo.Trim), "phno"},
+                        {New StringContent(MessageTB.Text), "msg"},
+                        {New StringContent(IIf(HandsCheckBox.Checked, "true", "false")), "hands"},
+                        {New StreamContent(File.OpenRead(imgPath)), "image", New FileInfo(imgPath).Name}
+                    }
+            End If
+
+
+
+
+            Dim ResponseString As String = Await ServerHttpRequest(Nothing, request, $"http://{My.Settings.connection_url}/upload")
+
             If ResponseString IsNot Nothing Then
                 Dim response As JObject = JObject.Parse(ResponseString)
-
                 If result <> "pass" Then
                     result = response.SelectToken("result").ToString()
                 Else
@@ -132,7 +151,8 @@ Public Class Form2
     Private Sub IconButton1_Click(sender As Object, e As EventArgs) Handles IconButton1.Click
         If MessageBox.Show("Do You Want To Conitue?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then Exit Sub
 
-        Dim _list As List(Of Integer) = Customer.SearchByPhNo("").ToList
+        Dim _list As List(Of Integer) = Customer.SearchByName("").ToList
+        _list = _list.Distinct.ToList
         SqlCommand("Delete * From Message_Data")
         SqlCommand($"Insert INTO Message_Data (Initial) Values('{String.Join(",", _list)}')")
         UpDate_Data()
@@ -142,7 +162,4 @@ Public Class Form2
         Close()
     End Sub
 
-    Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
-
-    End Sub
 End Class

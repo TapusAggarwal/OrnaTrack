@@ -25,6 +25,7 @@ Partial Class KittyModeControl
         Me.ImagePanel2 = New System.Windows.Forms.Panel()
         Me.ImageParam = New System.Windows.Forms.PictureBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.InstLeftParam = New System.Windows.Forms.Label()
         Me.KittyIDParam = New System.Windows.Forms.Label()
         Me.KittyNoParam = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -34,8 +35,8 @@ Partial Class KittyModeControl
         Me.DetailsButton = New FontAwesome.Sharp.IconButton()
         Me.SrNoParam = New System.Windows.Forms.Label()
         Me.CloseButton = New FontAwesome.Sharp.IconButton()
-        Me.LastInstalmentParam = New System.Windows.Forms.Label()
-        Me.LastInstallmentLabel = New System.Windows.Forms.Label()
+        Me.InstPendingParam = New System.Windows.Forms.Label()
+        Me.InstallmentsLabel = New System.Windows.Forms.Label()
         Me.PhNoParam = New System.Windows.Forms.Label()
         Me.NameParam = New System.Windows.Forms.Label()
         Me.ImagePanel2.SuspendLayout()
@@ -68,6 +69,7 @@ Partial Class KittyModeControl
         'Panel2
         '
         Me.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(32, Byte), Integer), CType(CType(32, Byte), Integer), CType(CType(32, Byte), Integer))
+        Me.Panel2.Controls.Add(Me.InstLeftParam)
         Me.Panel2.Controls.Add(Me.KittyIDParam)
         Me.Panel2.Controls.Add(Me.KittyNoParam)
         Me.Panel2.Controls.Add(Me.Label3)
@@ -77,8 +79,8 @@ Partial Class KittyModeControl
         Me.Panel2.Controls.Add(Me.DetailsButton)
         Me.Panel2.Controls.Add(Me.SrNoParam)
         Me.Panel2.Controls.Add(Me.CloseButton)
-        Me.Panel2.Controls.Add(Me.LastInstalmentParam)
-        Me.Panel2.Controls.Add(Me.LastInstallmentLabel)
+        Me.Panel2.Controls.Add(Me.InstPendingParam)
+        Me.Panel2.Controls.Add(Me.InstallmentsLabel)
         Me.Panel2.Controls.Add(Me.PhNoParam)
         Me.Panel2.Controls.Add(Me.NameParam)
         Me.Panel2.Location = New System.Drawing.Point(8, 24)
@@ -86,6 +88,18 @@ Partial Class KittyModeControl
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(787, 186)
         Me.Panel2.TabIndex = 174
+        '
+        'InstLeftParam
+        '
+        Me.InstLeftParam.Font = New System.Drawing.Font("Century Schoolbook", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.InstLeftParam.ForeColor = System.Drawing.Color.FromArgb(CType(CType(200, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.InstLeftParam.Location = New System.Drawing.Point(554, 60)
+        Me.InstLeftParam.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.InstLeftParam.Name = "InstLeftParam"
+        Me.InstLeftParam.Size = New System.Drawing.Size(142, 35)
+        Me.InstLeftParam.TabIndex = 181
+        Me.InstLeftParam.Text = "Left: 4"
+        Me.InstLeftParam.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'KittyIDParam
         '
@@ -212,30 +226,32 @@ Partial Class KittyModeControl
         Me.CloseButton.TabIndex = 160
         Me.CloseButton.UseVisualStyleBackColor = False
         '
-        'LastInstalmentParam
+        'InstPendingParam
         '
-        Me.LastInstalmentParam.BackColor = System.Drawing.Color.Transparent
-        Me.LastInstalmentParam.Font = New System.Drawing.Font("Century Schoolbook", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LastInstalmentParam.ForeColor = System.Drawing.Color.Gray
-        Me.LastInstalmentParam.Location = New System.Drawing.Point(486, 63)
-        Me.LastInstalmentParam.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.LastInstalmentParam.Name = "LastInstalmentParam"
-        Me.LastInstalmentParam.Size = New System.Drawing.Size(296, 31)
-        Me.LastInstalmentParam.TabIndex = 156
-        Me.LastInstalmentParam.Text = "Availed"
-        Me.LastInstalmentParam.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.InstPendingParam.AutoSize = True
+        Me.InstPendingParam.BackColor = System.Drawing.Color.Transparent
+        Me.InstPendingParam.Font = New System.Drawing.Font("Century Schoolbook", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.InstPendingParam.ForeColor = System.Drawing.Color.FromArgb(CType(CType(200, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.InstPendingParam.Location = New System.Drawing.Point(381, 64)
+        Me.InstPendingParam.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.InstPendingParam.Name = "InstPendingParam"
+        Me.InstPendingParam.Size = New System.Drawing.Size(138, 27)
+        Me.InstPendingParam.TabIndex = 156
+        Me.InstPendingParam.Text = "Pending: 0"
+        Me.InstPendingParam.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'LastInstallmentLabel
+        'InstallmentsLabel
         '
-        Me.LastInstallmentLabel.Font = New System.Drawing.Font("Century Schoolbook", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LastInstallmentLabel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(150, Byte), Integer), CType(CType(150, Byte), Integer))
-        Me.LastInstallmentLabel.Location = New System.Drawing.Point(233, 59)
-        Me.LastInstallmentLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.LastInstallmentLabel.Name = "LastInstallmentLabel"
-        Me.LastInstallmentLabel.Size = New System.Drawing.Size(257, 35)
-        Me.LastInstallmentLabel.TabIndex = 153
-        Me.LastInstallmentLabel.Text = "Instalment Pending:"
-        Me.LastInstallmentLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.InstallmentsLabel.AutoSize = True
+        Me.InstallmentsLabel.Font = New System.Drawing.Font("Century Schoolbook", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.InstallmentsLabel.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(150, Byte), Integer), CType(CType(150, Byte), Integer))
+        Me.InstallmentsLabel.Location = New System.Drawing.Point(233, 64)
+        Me.InstallmentsLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.InstallmentsLabel.Name = "InstallmentsLabel"
+        Me.InstallmentsLabel.Size = New System.Drawing.Size(149, 27)
+        Me.InstallmentsLabel.TabIndex = 153
+        Me.InstallmentsLabel.Text = "Instalment:"
+        Me.InstallmentsLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'PhNoParam
         '
@@ -290,9 +306,10 @@ Partial Class KittyModeControl
     Private WithEvents CoustmerIdParam As Label
     Private WithEvents SrNoParam As Label
     Private WithEvents CloseButton As FontAwesome.Sharp.IconButton
-    Private WithEvents LastInstalmentParam As Label
-    Private WithEvents LastInstallmentLabel As Label
+    Private WithEvents InstPendingParam As Label
+    Private WithEvents InstallmentsLabel As Label
     Private WithEvents PhNoParam As Label
     Private WithEvents NameParam As Label
     Public WithEvents DetailsButton As FontAwesome.Sharp.IconButton
+    Private WithEvents InstLeftParam As Label
 End Class

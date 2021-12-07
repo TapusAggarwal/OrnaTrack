@@ -4,9 +4,8 @@ Imports System.Net.Http.Headers
 Imports Newtonsoft.Json.Linq
 
 Public Class Messenger
-
-    Dim MessageImgs_Dict As New Dictionary(Of String, List(Of String))
-    Dim MessageImgs_List As New List(Of Bitmap)
+    ReadOnly MessageImgs_Dict As New Dictionary(Of String, List(Of String))
+    ReadOnly MessageImgs_List As New List(Of Bitmap)
 
     Private Async Sub MakeBills()
         Dim Fm As New KittyRecievedReciept
@@ -125,6 +124,7 @@ Public Class Messenger
     End Sub
 
     Private Async Sub SendButton_Click(sender As Object, e As EventArgs) Handles SendButton.Click
+        FlowLayoutPanel1.Controls.Clear()
         With Me
             .Cursor = Cursors.AppStarting
             .Refresh()
@@ -133,22 +133,15 @@ Public Class Messenger
         For Each _entry In MessageImgs_Dict
             For Each imgPath In _entry.Value
 
-                Dim dict As New Dictionary(Of String, String) From {
-                        {"purpose", "wts_msg"},
-                        {"phno", "91" + _entry.Key.Trim},
-                        {"msg", MessageTB.Text},
-                        {"hands", IIf(HandsCheckBox.Checked, "true", "false")},
-                        {"img", imgPath}
-                        }
-
-
                 Dim request As New MultipartFormDataContent From {
                     {New StringContent("91" + _entry.Key.Trim), "phno"},
                     {New StringContent(MessageTB.Text), "msg"},
-                    {New StringContent(IIf(HandsCheckBox.Checked, "true", "false")), "hands"},
-                    {New StreamContent(File.OpenRead(imgPath)), "image", New FileInfo(imgPath).Name}
+                    {New StringContent(IIf(HandsCheckBox.Checked, "true", "false")), "hands"}
                 }
 
+                If SendRecieptCB.Checked Then
+                    request.Add(New StreamContent(File.OpenRead(imgPath)), "image", New FileInfo(imgPath).Name)
+                End If
 
                 Dim ResponseString As String = Await ServerHttpRequest(Nothing, request, $"http://{My.Settings.connection_url}/upload")
                 If ResponseString IsNot Nothing Then
@@ -162,13 +155,13 @@ Public Class Messenger
 
                     If response.SelectToken("result").ToString = "pass" Then
                         _temp.ForeColor = Color.ForestGreen
-                        _temp.Text = $"+{dict.Item("phno")}: Sent"
+                        _temp.Text = $"+{_entry.Key.Trim}: Sent"
                     ElseIf response.SelectToken("result").ToString = "fail" Then
                         _temp.ForeColor = Color.Firebrick
-                        _temp.Text = $"+{dict.Item("phno")}: Failed"
+                        _temp.Text = $"+{_entry.Key.Trim}: Failed"
                     Else
                         _temp.ForeColor = Color.Firebrick
-                        _temp.Text = $"+{dict.Item("phno")}: NotRegistered"
+                        _temp.Text = $"+{_entry.Key.Trim}: NotRegistered"
                     End If
                     FlowLayoutPanel1.Controls.Add(_temp)
                 End If
@@ -181,5 +174,39 @@ Public Class Messenger
             .Refresh()
         End With
         SendButton.Enabled = True
+    End Sub
+
+    Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles SendRecieptCB.CheckedChanged
+        If SendRecieptCB.Checked Then
+            Panel1.Enabled = True
+            ImgBox.Enabled = True
+            NextButton.Enabled = True
+            BackButton.Enabled = True
+            SendButton.Text = "Send Receipt"
+            Try
+                ImgBox.Image = MessageImgs_List(0)
+            Catch ex As Exception
+            End Try
+        Else
+            Panel1.Enabled = False
+            ImgBox.Enabled = False
+            NextButton.Enabled = False
+            BackButton.Enabled = False
+            Dim OrignalImage As New Bitmap(ImgBox.Image)
+            Dim BlackAndWhite As New Bitmap(OrignalImage.Width, OrignalImage.Height)
+
+            For i As Integer = 0 To OrignalImage.Width - 1
+                For y As Integer = 0 To OrignalImage.Height - 1
+                    Dim c As Color = OrignalImage.GetPixel(i, y)
+                    Dim sum As Integer = Int(c.R) + Int(c.B) + Int(c.G)
+                    Dim av As Integer = sum / 3
+                    Dim v As Color = Color.FromArgb(c.A, av, av, av)
+                    BlackAndWhite.SetPixel(i, y, v)
+                Next
+            Next
+
+            ImgBox.Image = BlackAndWhite
+            SendButton.Text = "Send Message"
+        End If
     End Sub
 End Class
