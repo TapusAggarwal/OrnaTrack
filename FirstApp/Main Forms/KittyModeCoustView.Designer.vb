@@ -136,7 +136,7 @@ Partial Class KittyModeCoustView
         '
         Me.KittyPanel.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(60, Byte), Integer))
         Me.KittyPanel.Controls.Add(Me.ShowLabel)
-        Me.KittyPanel.Location = New System.Drawing.Point(500, 84)
+        Me.KittyPanel.Location = New System.Drawing.Point(497, 84)
         Me.KittyPanel.Name = "KittyPanel"
         Me.KittyPanel.Size = New System.Drawing.Size(1404, 523)
         Me.KittyPanel.TabIndex = 264
@@ -463,9 +463,9 @@ Partial Class KittyModeCoustView
         'PanelView
         '
         Me.PanelView.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(60, Byte), Integer))
-        Me.PanelView.Location = New System.Drawing.Point(75, 6)
+        Me.PanelView.Location = New System.Drawing.Point(33, 3)
         Me.PanelView.Name = "PanelView"
-        Me.PanelView.Size = New System.Drawing.Size(1283, 361)
+        Me.PanelView.Size = New System.Drawing.Size(1338, 367)
         Me.PanelView.TabIndex = 264
         '
         'KittyIdTB
@@ -483,9 +483,9 @@ Partial Class KittyModeCoustView
         '
         Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(60, Byte), Integer))
         Me.Panel1.Controls.Add(Me.PanelView)
-        Me.Panel1.Location = New System.Drawing.Point(499, 616)
+        Me.Panel1.Location = New System.Drawing.Point(496, 615)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1405, 373)
+        Me.Panel1.Size = New System.Drawing.Size(1405, 374)
         Me.Panel1.TabIndex = 265
         '
         'KittyInfoLabel

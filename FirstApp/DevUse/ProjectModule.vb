@@ -10,6 +10,8 @@ Module ProjectModule
     Public myconnection As New OleDbConnection
     Public WebSocket As WebSocket
     Public state As String = ""
+    Public ReadOnly apostropheReplacer As String = "{#}"
+
 
     Public Structure Variables
         Shared ConnectionString As String =
@@ -150,10 +152,10 @@ Module ProjectModule
         'Adding Kitty To Respective Lists
         For Each _kitty As Kitty In _list
             _kitty.Initialize()
-            If _kitty.IsMatured Then
-                Matured.Add(_kitty)
-            ElseIf _kitty.IsAvailed Then
+            If _kitty.IsAvailed Then
                 Availed.Add(_kitty)
+            ElseIf _kitty.IsMatured Then
+                Matured.Add(_kitty)
             Else
                 imMature.Add(_kitty)
             End If

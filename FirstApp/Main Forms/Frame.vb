@@ -70,7 +70,6 @@ Public Class Frame
         KeyPreview = True
 
         'Await StartServer(False)
-        'Form1.Show()
 
     End Sub
 #End Region

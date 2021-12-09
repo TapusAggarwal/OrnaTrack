@@ -101,10 +101,6 @@
 
         Next
 
-        For Each i In x
-            MessageBox.Show(i)
-        Next
-
         Try
             If AddSelection <> -1 Then
                 x.Add(AddSelection)
@@ -121,6 +117,10 @@
         SelectedAvailed.Clear()
 
         Dim _active As New List(Of Kitty)
+
+        For Each i In x
+            MessageBox.Show(i)
+        Next
 
         For Each i In x
             SelectedMatured.AddRange(Kitties.Item(i).Item("matured"))

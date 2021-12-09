@@ -238,6 +238,44 @@ Public Class CoustProfileUpdated
         PhoneNoTag1.CheckRegistration()
     End Sub
 
+    Private Sub ProfessionCB_KeyDown(sender As Object, e As KeyEventArgs) Handles ProfessionCB.KeyDown
+        If (e.KeyCode = Keys.Enter AndAlso e.Modifiers = Keys.Shift) Then 'SHIFT + ENTER
+            Dim Rtrn_Data As New List(Of String) From {
+                    "Profession",
+                    "Profession",
+                    "Add Profession"
+                    }
+            CBoxForm.Tag = Rtrn_Data
+            CBoxForm.ShowDialog()
+            LoadComboBoxData(ProfessionCB, Customer.ListOfProfessions)
+            Exit Sub
+        End If
+
+        If e.KeyCode = Keys.Enter Then 'ENTER CLICK
+            SendKeys.Send("{Tab}")
+            Exit Sub
+        End If
+    End Sub
+
+    Private Sub RegionCB_KeyDown(sender As Object, e As KeyEventArgs) Handles RegionCB.KeyDown
+        If (e.KeyCode = Keys.Enter AndAlso e.Modifiers = Keys.Shift) Then 'Enter
+            Dim Rtrn_Data As New List(Of String) From {
+                    "Region",
+                    "Region",
+                    "Add Region"
+                    }
+            CBoxForm.Tag = Rtrn_Data
+            CBoxForm.ShowDialog()
+            LoadComboBoxData(RegionCB, Customer.ListOfRegions)
+            Exit Sub
+        End If
+
+        If e.KeyCode = Keys.Enter Then 'ENTER
+            SendKeys.Send("{Tab}")
+            Exit Sub
+        End If
+    End Sub
+
 #End Region
 
 End Class

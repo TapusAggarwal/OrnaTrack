@@ -11,11 +11,11 @@
         Dim newSearchRecord As Integer() = Nothing
 
         Dim InitalName As String = NameTB.Text
-        Dim InitalPhNo As String = PhNoTB.Text
-        Dim InitalKittyNo As String = KittyNoTB.Text
+        Dim InitalPhNo As String = PhNoTB.Text.Replace("'", "")
+        Dim InitalKittyNo As String = KittyNoTB.Text.Replace("'", "")
 
         If NameTB.TextLength Then
-            newSearchRecord = Customer.SearchByName(NameTB.Text)
+            newSearchRecord = Customer.SearchByName(InitalName)
             KittyNoTB.Clear()
             PhNoTB.Clear()
         ElseIf PhNoTB.TextLength Then

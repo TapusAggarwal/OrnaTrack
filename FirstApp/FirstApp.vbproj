@@ -151,6 +151,12 @@
     <Compile Include="FormView\ShortCustomerSearch.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormView\TransactionDetails.Designer.vb">
+      <DependentUpon>TransactionDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormView\TransactionDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Kitty.vb" />
     <Compile Include="FormView\BookMode.Designer.vb">
       <DependentUpon>BookMode.vb</DependentUpon>
@@ -312,6 +318,9 @@
     <EmbeddedResource Include="FormView\ShortCustomerSearch.resx">
       <DependentUpon>ShortCustomerSearch.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormView\TransactionDetails.resx">
+      <DependentUpon>TransactionDetails.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Messenger\AddNewMessage.resx">
       <DependentUpon>AddNewMessage.vb</DependentUpon>
     </EmbeddedResource>
@@ -430,11 +439,13 @@
       <HintPath>..\TextEditor\ProBaseAdvancedTextBox.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />

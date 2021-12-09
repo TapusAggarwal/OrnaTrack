@@ -5,14 +5,11 @@ Public Class CBoxForm
     Dim passed_Data As New List(Of String)
 
     Sub Form5_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        myconnection.Close()
         DataGridView1.Rows.Clear()
         TextBox6.Select()
         passed_Data = Tag
         Label1.Text = passed_Data(2)
         DataGridView1.Columns(1).HeaderText = passed_Data(1)
-
-        myconnection.Open()
 
         Dim dr As OleDbDataReader =
                 DataReader("select " & passed_Data(0) & " from CBox_Data Where (NOT (" & passed_Data(0) & " = ''))")
@@ -152,16 +149,6 @@ Public Class CBoxForm
         End If
     End Sub
 
-    Private Sub SqlCommand(cmd As String)
-        Try
-            Dim comnd = New OleDbCommand(cmd, myconnection)
-            comnd.ExecuteNonQuery()
-            comnd.Dispose()
-        Catch ex As Exception
-            MessageBox.Show(ex.Message)
-        End Try
-    End Sub
-
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
         Dim my_str As String
 
@@ -193,7 +180,6 @@ Public Class CBoxForm
                     "' where SrNo=" & i + 1)
             End If
         Next
-        myconnection.Close()
         Close()
     End Sub
 

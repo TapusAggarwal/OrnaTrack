@@ -26,6 +26,10 @@ Partial Class KittyView
         Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle24 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle25 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -35,10 +39,6 @@ Partial Class KittyView
         Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle24 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle25 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -48,6 +48,11 @@ Partial Class KittyView
         Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle22 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.DgvMain = New System.Windows.Forms.DataGridView()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.MessageCheckBox = New System.Windows.Forms.CheckBox()
+        Me.DgvMessage = New System.Windows.Forms.DataGridView()
+        Me.SendMessageButton = New FontAwesome.Sharp.IconButton()
+        Me.SharingPanel = New System.Windows.Forms.Panel()
         Me.Column10 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -59,9 +64,6 @@ Partial Class KittyView
         Me.Column7 = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.Entry = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.MessageCheckBox = New System.Windows.Forms.CheckBox()
-        Me.DgvMessage = New System.Windows.Forms.DataGridView()
         Me.DataGridViewCheckBoxColumn1 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -72,8 +74,6 @@ Partial Class KittyView
         Me.DataGridViewTextBoxColumn7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewButtonColumn1 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.DataGridViewTextBoxColumn8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SendMessageButton = New FontAwesome.Sharp.IconButton()
-        Me.SharingPanel = New System.Windows.Forms.Panel()
         CType(Me.DgvMain, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DgvMessage, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SharingPanel.SuspendLayout()
@@ -130,148 +130,6 @@ Partial Class KittyView
         Me.DgvMain.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
         Me.DgvMain.Size = New System.Drawing.Size(1317, 238)
         Me.DgvMain.TabIndex = 1
-        '
-        'Column10
-        '
-        Me.Column10.Frozen = True
-        Me.Column10.HeaderText = ""
-        Me.Column10.MinimumWidth = 8
-        Me.Column10.Name = "Column10"
-        Me.Column10.ReadOnly = True
-        Me.Column10.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.Column10.Width = 27
-        '
-        'Column1
-        '
-        Me.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.NullValue = Nothing
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black
-        Me.Column1.DefaultCellStyle = DataGridViewCellStyle2
-        Me.Column1.Frozen = True
-        Me.Column1.HeaderText = ""
-        Me.Column1.MinimumWidth = 8
-        Me.Column1.Name = "Column1"
-        Me.Column1.ReadOnly = True
-        Me.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.Column1.Width = 30
-        '
-        'Column9
-        '
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Column9.DefaultCellStyle = DataGridViewCellStyle3
-        Me.Column9.Frozen = True
-        Me.Column9.HeaderText = "KittyNo"
-        Me.Column9.MinimumWidth = 8
-        Me.Column9.Name = "Column9"
-        Me.Column9.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
-        Me.Column9.Width = 91
-        '
-        'Column5
-        '
-        Me.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        DataGridViewCellStyle4.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Column5.DefaultCellStyle = DataGridViewCellStyle4
-        Me.Column5.Frozen = True
-        Me.Column5.HeaderText = "KittyType"
-        Me.Column5.MinimumWidth = 8
-        Me.Column5.Name = "Column5"
-        Me.Column5.ReadOnly = True
-        Me.Column5.Width = 113
-        '
-        'Column2
-        '
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("Century Schoolbook", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle5.Format = "d"
-        DataGridViewCellStyle5.NullValue = Nothing
-        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.White
-        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black
-        Me.Column2.DefaultCellStyle = DataGridViewCellStyle5
-        Me.Column2.Frozen = True
-        Me.Column2.HeaderText = "Pending Instalments"
-        Me.Column2.MinimumWidth = 8
-        Me.Column2.Name = "Column2"
-        Me.Column2.ReadOnly = True
-        Me.Column2.Width = 244
-        '
-        'Column6
-        '
-        DataGridViewCellStyle6.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle6.ForeColor = System.Drawing.Color.Red
-        Me.Column6.DefaultCellStyle = DataGridViewCellStyle6
-        Me.Column6.Frozen = True
-        Me.Column6.HeaderText = "Given Amt."
-        Me.Column6.MinimumWidth = 8
-        Me.Column6.Name = "Column6"
-        Me.Column6.ReadOnly = True
-        Me.Column6.Width = 156
-        '
-        'Column4
-        '
-        DataGridViewCellStyle7.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle7.NullValue = Nothing
-        Me.Column4.DefaultCellStyle = DataGridViewCellStyle7
-        Me.Column4.Frozen = True
-        Me.Column4.HeaderText = "Total Amt+Intrst"
-        Me.Column4.MinimumWidth = 8
-        Me.Column4.Name = "Column4"
-        Me.Column4.ReadOnly = True
-        Me.Column4.Width = 206
-        '
-        'Status
-        '
-        DataGridViewCellStyle8.Font = New System.Drawing.Font("Century Schoolbook", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Status.DefaultCellStyle = DataGridViewCellStyle8
-        Me.Status.Frozen = True
-        Me.Status.HeaderText = "Status"
-        Me.Status.MinimumWidth = 8
-        Me.Status.Name = "Status"
-        Me.Status.Width = 135
-        '
-        'Column7
-        '
-        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(80, Byte), Integer))
-        DataGridViewCellStyle9.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle9.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.ForestGreen
-        Me.Column7.DefaultCellStyle = DataGridViewCellStyle9
-        Me.Column7.Frozen = True
-        Me.Column7.HeaderText = "Show Details"
-        Me.Column7.MinimumWidth = 8
-        Me.Column7.Name = "Column7"
-        Me.Column7.Text = "Show Details"
-        Me.Column7.UseColumnTextForButtonValue = True
-        Me.Column7.Width = 145
-        '
-        'Entry
-        '
-        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle10.Font = New System.Drawing.Font("Century Schoolbook", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Entry.DefaultCellStyle = DataGridViewCellStyle10
-        Me.Entry.Frozen = True
-        Me.Entry.HeaderText = "Entry"
-        Me.Entry.MinimumWidth = 8
-        Me.Entry.Name = "Entry"
-        Me.Entry.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Entry.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.Entry.Text = "MakeEntry"
-        Me.Entry.UseColumnTextForButtonValue = True
-        Me.Entry.Width = 125
-        '
-        'Column8
-        '
-        Me.Column8.Frozen = True
-        Me.Column8.HeaderText = "KittyID"
-        Me.Column8.MinimumWidth = 8
-        Me.Column8.Name = "Column8"
-        Me.Column8.ReadOnly = True
-        Me.Column8.Visible = False
-        Me.Column8.Width = 119
         '
         'Label3
         '
@@ -351,6 +209,181 @@ Partial Class KittyView
         Me.DgvMessage.TabIndex = 229
         Me.DgvMessage.Visible = False
         '
+        'SendMessageButton
+        '
+        Me.SendMessageButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(70, Byte), Integer))
+        Me.SendMessageButton.Enabled = False
+        Me.SendMessageButton.FlatAppearance.BorderSize = 0
+        Me.SendMessageButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.SendMessageButton.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SendMessageButton.ForeColor = System.Drawing.Color.DimGray
+        Me.SendMessageButton.IconChar = FontAwesome.Sharp.IconChar.AddressCard
+        Me.SendMessageButton.IconColor = System.Drawing.Color.Black
+        Me.SendMessageButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.SendMessageButton.IconSize = 40
+        Me.SendMessageButton.Location = New System.Drawing.Point(961, 288)
+        Me.SendMessageButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.SendMessageButton.Name = "SendMessageButton"
+        Me.SendMessageButton.Size = New System.Drawing.Size(340, 70)
+        Me.SendMessageButton.TabIndex = 230
+        Me.SendMessageButton.Text = "Send Message"
+        Me.SendMessageButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
+        Me.SendMessageButton.UseVisualStyleBackColor = False
+        '
+        'SharingPanel
+        '
+        Me.SharingPanel.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(60, Byte), Integer))
+        Me.SharingPanel.Controls.Add(Me.SendMessageButton)
+        Me.SharingPanel.Controls.Add(Me.MessageCheckBox)
+        Me.SharingPanel.Controls.Add(Me.DgvMain)
+        Me.SharingPanel.Controls.Add(Me.DgvMessage)
+        Me.SharingPanel.Location = New System.Drawing.Point(137, 2)
+        Me.SharingPanel.Name = "SharingPanel"
+        Me.SharingPanel.Size = New System.Drawing.Size(1338, 367)
+        Me.SharingPanel.TabIndex = 231
+        '
+        'Column10
+        '
+        Me.Column10.Frozen = True
+        Me.Column10.HeaderText = ""
+        Me.Column10.MinimumWidth = 8
+        Me.Column10.Name = "Column10"
+        Me.Column10.ReadOnly = True
+        Me.Column10.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.Column10.Width = 27
+        '
+        'Column1
+        '
+        Me.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.NullValue = Nothing
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black
+        Me.Column1.DefaultCellStyle = DataGridViewCellStyle2
+        Me.Column1.Frozen = True
+        Me.Column1.HeaderText = ""
+        Me.Column1.MinimumWidth = 8
+        Me.Column1.Name = "Column1"
+        Me.Column1.ReadOnly = True
+        Me.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.Column1.Width = 40
+        '
+        'Column9
+        '
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Column9.DefaultCellStyle = DataGridViewCellStyle3
+        Me.Column9.Frozen = True
+        Me.Column9.HeaderText = "KittyNo"
+        Me.Column9.MinimumWidth = 8
+        Me.Column9.Name = "Column9"
+        Me.Column9.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
+        Me.Column9.Width = 91
+        '
+        'Column5
+        '
+        Me.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
+        DataGridViewCellStyle4.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Column5.DefaultCellStyle = DataGridViewCellStyle4
+        Me.Column5.Frozen = True
+        Me.Column5.HeaderText = "KittyType"
+        Me.Column5.MinimumWidth = 8
+        Me.Column5.Name = "Column5"
+        Me.Column5.ReadOnly = True
+        Me.Column5.Width = 113
+        '
+        'Column2
+        '
+        DataGridViewCellStyle5.Font = New System.Drawing.Font("Century Schoolbook", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle5.Format = "d"
+        DataGridViewCellStyle5.NullValue = Nothing
+        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.White
+        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black
+        Me.Column2.DefaultCellStyle = DataGridViewCellStyle5
+        Me.Column2.Frozen = True
+        Me.Column2.HeaderText = "Pending Instalments"
+        Me.Column2.MinimumWidth = 8
+        Me.Column2.Name = "Column2"
+        Me.Column2.ReadOnly = True
+        Me.Column2.Width = 244
+        '
+        'Column6
+        '
+        DataGridViewCellStyle6.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle6.ForeColor = System.Drawing.Color.Red
+        Me.Column6.DefaultCellStyle = DataGridViewCellStyle6
+        Me.Column6.Frozen = True
+        Me.Column6.HeaderText = "Given Amt"
+        Me.Column6.MinimumWidth = 8
+        Me.Column6.Name = "Column6"
+        Me.Column6.ReadOnly = True
+        Me.Column6.Width = 146
+        '
+        'Column4
+        '
+        DataGridViewCellStyle7.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle7.NullValue = Nothing
+        Me.Column4.DefaultCellStyle = DataGridViewCellStyle7
+        Me.Column4.Frozen = True
+        Me.Column4.HeaderText = "Total Amt+Intrst"
+        Me.Column4.MinimumWidth = 8
+        Me.Column4.Name = "Column4"
+        Me.Column4.ReadOnly = True
+        Me.Column4.Width = 226
+        '
+        'Status
+        '
+        DataGridViewCellStyle8.Font = New System.Drawing.Font("Century Schoolbook", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Status.DefaultCellStyle = DataGridViewCellStyle8
+        Me.Status.Frozen = True
+        Me.Status.HeaderText = "Status"
+        Me.Status.MinimumWidth = 8
+        Me.Status.Name = "Status"
+        Me.Status.Width = 135
+        '
+        'Column7
+        '
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(80, Byte), Integer))
+        DataGridViewCellStyle9.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle9.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.ForestGreen
+        Me.Column7.DefaultCellStyle = DataGridViewCellStyle9
+        Me.Column7.Frozen = True
+        Me.Column7.HeaderText = "Show Details"
+        Me.Column7.MinimumWidth = 8
+        Me.Column7.Name = "Column7"
+        Me.Column7.Text = "Show Details"
+        Me.Column7.UseColumnTextForButtonValue = True
+        Me.Column7.Width = 145
+        '
+        'Entry
+        '
+        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle10.Font = New System.Drawing.Font("Century Schoolbook", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Entry.DefaultCellStyle = DataGridViewCellStyle10
+        Me.Entry.Frozen = True
+        Me.Entry.HeaderText = "Entry"
+        Me.Entry.MinimumWidth = 8
+        Me.Entry.Name = "Entry"
+        Me.Entry.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Entry.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.Entry.Text = "MakeEntry"
+        Me.Entry.UseColumnTextForButtonValue = True
+        Me.Entry.Width = 125
+        '
+        'Column8
+        '
+        Me.Column8.Frozen = True
+        Me.Column8.HeaderText = "KittyID"
+        Me.Column8.MinimumWidth = 8
+        Me.Column8.Name = "Column8"
+        Me.Column8.ReadOnly = True
+        Me.Column8.Visible = False
+        Me.Column8.Width = 119
+        '
         'DataGridViewCheckBoxColumn1
         '
         Me.DataGridViewCheckBoxColumn1.Frozen = True
@@ -375,7 +408,7 @@ Partial Class KittyView
         Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
         Me.DataGridViewTextBoxColumn1.ReadOnly = True
         Me.DataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridViewTextBoxColumn1.Width = 30
+        Me.DataGridViewTextBoxColumn1.Width = 40
         '
         'DataGridViewTextBoxColumn2
         '
@@ -419,11 +452,11 @@ Partial Class KittyView
         DataGridViewCellStyle19.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         DataGridViewCellStyle19.ForeColor = System.Drawing.Color.Red
         Me.DataGridViewTextBoxColumn5.DefaultCellStyle = DataGridViewCellStyle19
-        Me.DataGridViewTextBoxColumn5.HeaderText = "Given Amt."
+        Me.DataGridViewTextBoxColumn5.HeaderText = "Given Amt"
         Me.DataGridViewTextBoxColumn5.MinimumWidth = 8
         Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
         Me.DataGridViewTextBoxColumn5.ReadOnly = True
-        Me.DataGridViewTextBoxColumn5.Width = 156
+        Me.DataGridViewTextBoxColumn5.Width = 146
         '
         'DataGridViewTextBoxColumn6
         '
@@ -434,7 +467,7 @@ Partial Class KittyView
         Me.DataGridViewTextBoxColumn6.MinimumWidth = 8
         Me.DataGridViewTextBoxColumn6.Name = "DataGridViewTextBoxColumn6"
         Me.DataGridViewTextBoxColumn6.ReadOnly = True
-        Me.DataGridViewTextBoxColumn6.Width = 206
+        Me.DataGridViewTextBoxColumn6.Width = 216
         '
         'DataGridViewTextBoxColumn7
         '
@@ -469,39 +502,6 @@ Partial Class KittyView
         Me.DataGridViewTextBoxColumn8.ReadOnly = True
         Me.DataGridViewTextBoxColumn8.Visible = False
         Me.DataGridViewTextBoxColumn8.Width = 119
-        '
-        'SendMessageButton
-        '
-        Me.SendMessageButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(70, Byte), Integer))
-        Me.SendMessageButton.Enabled = False
-        Me.SendMessageButton.FlatAppearance.BorderSize = 0
-        Me.SendMessageButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.SendMessageButton.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SendMessageButton.ForeColor = System.Drawing.Color.DimGray
-        Me.SendMessageButton.IconChar = FontAwesome.Sharp.IconChar.AddressCard
-        Me.SendMessageButton.IconColor = System.Drawing.Color.Black
-        Me.SendMessageButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.SendMessageButton.IconSize = 40
-        Me.SendMessageButton.Location = New System.Drawing.Point(961, 288)
-        Me.SendMessageButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.SendMessageButton.Name = "SendMessageButton"
-        Me.SendMessageButton.Size = New System.Drawing.Size(340, 70)
-        Me.SendMessageButton.TabIndex = 230
-        Me.SendMessageButton.Text = "Send Message"
-        Me.SendMessageButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
-        Me.SendMessageButton.UseVisualStyleBackColor = False
-        '
-        'SharingPanel
-        '
-        Me.SharingPanel.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(60, Byte), Integer))
-        Me.SharingPanel.Controls.Add(Me.SendMessageButton)
-        Me.SharingPanel.Controls.Add(Me.MessageCheckBox)
-        Me.SharingPanel.Controls.Add(Me.DgvMain)
-        Me.SharingPanel.Controls.Add(Me.DgvMessage)
-        Me.SharingPanel.Location = New System.Drawing.Point(137, 2)
-        Me.SharingPanel.Name = "SharingPanel"
-        Me.SharingPanel.Size = New System.Drawing.Size(1338, 367)
-        Me.SharingPanel.TabIndex = 231
         '
         'KittyView
         '

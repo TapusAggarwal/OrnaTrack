@@ -2,8 +2,6 @@
 
 Public Class Customer
 
-    Private ReadOnly apostrope As String = "{#}"
-
     Sub New(CustID As Integer)
         CustomerID = CustID
     End Sub
@@ -198,7 +196,7 @@ Public Class Customer
             End While
             dr_firstName.Close()
             Try
-                temp_name = temp_name.Replace(apostrope, "'")
+                temp_name = temp_name.Replace(apostropheReplacer, "'")
                 Return temp_name.Trim
             Catch ex As Exception
                 Return Nothing
@@ -212,7 +210,7 @@ Public Class Customer
     Public WriteOnly Property UpdatedFirstName As String
         Set(value As String)
             If String.IsNullOrEmpty(value) Then Exit Property
-            value = value.Replace("'", apostrope)
+            value = value.Replace("'", apostropheReplacer)
             SqlCommand("UPDATE Coustmers_Data set CName='" & value.Trim & "' Where SrNo=" & CustomerID)
         End Set
     End Property
@@ -230,7 +228,7 @@ Public Class Customer
             End While
             dr_sirName.Close()
             Try
-                temp_name = temp_name.Replace(apostrope, "'")
+                temp_name = temp_name.Replace(apostropheReplacer, "'")
                 Return temp_name.Trim
             Catch ex As Exception
                 Return Nothing
@@ -244,7 +242,7 @@ Public Class Customer
     Public WriteOnly Property UpdatedLastName As String
         Set(value As String)
             If String.IsNullOrEmpty(value) Then Exit Property
-            value = value.Replace("'", apostrope)
+            value = value.Replace("'", apostropheReplacer)
             SqlCommand("UPDATE Coustmers_Data set CsName='" & value.Trim & "' Where SrNo=" & CustomerID)
         End Set
     End Property
@@ -329,7 +327,7 @@ Public Class Customer
                 End Try
             End While
             Try
-                Return temp_profession.Replace(apostrope, "'")
+                Return temp_profession.Replace(apostropheReplacer, "'")
             Catch ex As Exception
                 Return Nothing
             End Try
@@ -342,7 +340,7 @@ Public Class Customer
     Public WriteOnly Property UpdatedProfession As String
         Set(value As String)
             If String.IsNullOrEmpty(value) Then Exit Property
-            value = value.Replace("'", apostrope)
+            value = value.Replace("'", apostropheReplacer)
             SqlCommand("UPDATE Coustmers_Data set Prof='" & value & "' Where SrNo=" & CustomerID)
         End Set
     End Property
@@ -376,7 +374,7 @@ Public Class Customer
             End While
             dr_region.Close()
             Try
-                Return temp_region.Replace(apostrope, "'")
+                Return temp_region.Replace(apostropheReplacer, "'")
             Catch ex As Exception
                 Return Nothing
             End Try
@@ -389,7 +387,7 @@ Public Class Customer
     Public WriteOnly Property UpdatedRegion As String
         Set(value As String)
             If String.IsNullOrEmpty(value) Then Exit Property
-            value = value.Replace("'", apostrope)
+            value = value.Replace("'", apostropheReplacer)
             SqlCommand("UPDATE Coustmers_Data set Region='" & value & "' Where SrNo=" & CustomerID)
         End Set
     End Property
@@ -423,7 +421,7 @@ Public Class Customer
             End While
             dr_address.Close()
             Try
-                Return temp_address.Replace(apostrope, "'")
+                Return temp_address.Replace(apostropheReplacer, "'")
             Catch ex As Exception
                 Return Nothing
             End Try
@@ -435,7 +433,7 @@ Public Class Customer
 
     Public WriteOnly Property UpdatedAddress As String
         Set(value As String)
-            value = value.Replace("'", apostrope)
+            value = value.Replace("'", apostropheReplacer)
             SqlCommand("UPDATE Coustmers_Data set Address='" & value & "' Where SrNo=" & CustomerID)
         End Set
     End Property
@@ -454,7 +452,7 @@ Public Class Customer
             End While
             dr_description.Close()
             Try
-                Return temp_description.Replace(apostrope, "'")
+                Return temp_description.Replace(apostropheReplacer, "'")
             Catch ex As Exception
                 Return Nothing
             End Try
@@ -466,7 +464,7 @@ Public Class Customer
 
     Public WriteOnly Property UpdatedDescription As String
         Set(value As String)
-            value = value.Replace("'", apostrope)
+            value = value.Replace("'", apostropheReplacer)
             SqlCommand("UPDATE Coustmers_Data set dscrp='" & value & "' Where SrNo=" & CustomerID)
         End Set
     End Property

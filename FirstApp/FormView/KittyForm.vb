@@ -12,6 +12,7 @@ Public Class KittyForm
         DateColumn = 3
         AmountColumn = 4
         KittyTypeColumn = 5
+        TrnsDetails = 6
     End Enum
 
     Public _currentKitty As New Kitty
@@ -48,6 +49,29 @@ Public Class KittyForm
                 Dim L1 As Integer = LastEmptyRow()
                 Dgv.Rows(L1).Cells(DgvEnum.DateColumn).Value = i.Key
                 Dgv.Rows(L1).Cells(DgvEnum.AmountColumn).Value = i.Value
+
+                Dim newDgvButton As New DataGridViewButtonCell
+
+                'newDgvButton.FlatStyle = FlatStyle.Popup
+
+
+                Dgv.Rows(L1).Cells(DgvEnum.TrnsDetails).Style.Alignment = DataGridViewContentAlignment.MiddleCenter
+                Dgv.Rows(L1).Cells(DgvEnum.TrnsDetails) = newDgvButton
+
+
+                With Dgv.Rows(L1).Cells(DgvEnum.TrnsDetails)
+                    If _currentKitty.TransactionsRecord.Item(i.Key).Length < 1 Then
+                        .Value = "Add"
+                        .ToolTipText = "Add Transaction Details."
+                        '.Style.ForeColor = Color.White
+                        '.Style.BackColor = SystemColors.Highlight
+                    Else
+                        .Value = "Show"
+                        .ToolTipText = _currentKitty.TransactionsRecord.Item(i.Key)
+                        '.Style.ForeColor = Color.Black
+                        '.Style.BackColor = Color.LimeGreen
+                    End If
+                End With
 
                 For j = L1 To L1 + Int(i.Value / _currentKitty.KittyType) - 1
                     Dgv.Rows(j).Cells(DgvEnum.KittyTypeColumn).Value = _currentKitty.KittyType
@@ -162,6 +186,7 @@ Public Class KittyForm
 
             If _currentKitty.KittyUID <> -1 Then
                 _currentKitty.Initialize()
+                _currentKitty.InitializeTransactions()
                 KittyTypeCB.SelectedIndex = KittyTypeCB.FindStringExact(_currentKitty.KittyType)
                 KittyIntrestCB.SelectedIndex = KittyIntrestCB.FindStringExact(_currentKitty.KittyInterest)
                 KittyNoTB.Text = _currentKitty.KittyNo
@@ -249,14 +274,14 @@ Public Class KittyForm
 
     Private Sub KittyTypeCB_KeyDown(sender As Object, e As KeyEventArgs) Handles KittyTypeCB.KeyDown
         If (e.KeyCode = Keys.Enter AndAlso e.Modifiers = Keys.Shift) Then
-            'Dim Rtrn_Data As New List(Of String) From {
-            '        "KittyType",
-            '        "Kitty Type",
-            '        "Add Kitty Type"
-            '        }
-            'CBoxForm.Tag = Rtrn_Data
-            'CBoxForm.ShowDialog()
-            'LoadCombobox("KittyType", KittyTypeCB)
+            Dim Rtrn_Data As New List(Of String) From {
+                    "KittyType",
+                    "Kitty Type",
+                    "Add Kitty Type"
+                    }
+            CBoxForm.Tag = Rtrn_Data
+            CBoxForm.ShowDialog()
+            LoadComboBoxData(KittyTypeCB, Kitty.GetListOfKittyTypes)
         ElseIf (e.KeyCode = Keys.Enter) Then
             Try
                 Dim dr As OleDbDataReader = DataReader($"Select * From DefaultSetter Where KittyType={_currentKitty.KittyType}")
@@ -274,6 +299,20 @@ Public Class KittyForm
         End If
     End Sub
 
+    Private Sub KittyIntrestCB_KeyDown(sender As Object, e As KeyEventArgs) Handles KittyIntrestCB.KeyDown
+        If (e.KeyCode = Keys.Enter AndAlso e.Modifiers = Keys.Shift) Then
+            Dim Rtrn_Data As New List(Of String) From {
+                    "KittyIntrest",
+                    "Kitty Intrest",
+                    "Add Kitty Intrest"
+                    }
+            CBoxForm.Tag = Rtrn_Data
+            CBoxForm.ShowDialog()
+            LoadComboBoxData(KittyIntrestCB, Kitty.GetListOfKittyIntrests)
+        ElseIf (e.KeyCode = Keys.Enter) Then
+            TotalInstalmentsTB.Select()
+        End If
+    End Sub
     Private Sub Controls_GotFocus(sender As TextBox, e As EventArgs) Handles TotalInstalmentsTB.GotFocus, KittyNoTB.GotFocus, EntryTB.GotFocus
         sender.BackColor = SystemColors.GradientActiveCaption
     End Sub
@@ -323,7 +362,10 @@ Public Class KittyForm
             Exit Sub
         End If
 
-        _currentKitty.Record.Remove(_currentKitty.Record.Last.Key)
+        Dim dateToRemove As Date = _currentKitty.Record.Last.Key
+
+        _currentKitty.Record.Remove(dateToRemove)
+        _currentKitty.TransactionsRecord.Remove(dateToRemove)
         DisplayRecord()
     End Sub
 
@@ -403,6 +445,8 @@ Public Class KittyForm
         If _currentKitty.Record.Count = 0 AndAlso MessageBox.Show("You Are Saving An Empty Kitty, Do You Want To Continue ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) = DialogResult.No Then Exit Sub
 
         _currentKitty.Save()
+        If _currentKitty.KittyUID = -1 Then Close()
+
         RaiseEvent ReloadKittyView()
     End Sub
 
@@ -536,6 +580,41 @@ Public Class KittyForm
 
     Private Sub IconPictureBox1_Click(sender As Object, e As EventArgs) Handles DotsButton.Click
         ContextMenuStrip1.Show(DotsButton, 0, DotsButton.Size.Height)
+    End Sub
+
+    Private Sub Dgv_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles Dgv.CellClick
+        If e.RowIndex < 0 OrElse e.ColumnIndex <> DgvEnum.TrnsDetails Then Exit Sub
+
+        Dim Fm As New TransactionDetails
+        Dim SelectedRowDate As Date = Nothing
+
+        If Dgv.Rows(e.RowIndex).Cells(6).GetType <> GetType(DataGridViewButtonCell) Then Exit Sub
+
+
+        Try
+            SelectedRowDate = Dgv.Rows(e.RowIndex).Cells(DgvEnum.DateColumn).Value
+        Catch ex As Exception
+            MessageBox.Show("Error Occured In KittyForm While Handling TransactionsDetailButton_Click Event.")
+        End Try
+
+        Fm.Tag = _currentKitty.TransactionsRecord.Item(SelectedRowDate)
+
+        AddHandler Fm.SaveButton_Clicked, Sub(EntryDetails)
+                                              _currentKitty.TransactionsRecord.Item(SelectedRowDate) = EntryDetails
+                                              Fm.Close()
+                                              DisplayRecord()
+                                          End Sub
+
+        AddHandler Fm.RemoveDetails, Sub()
+                                         _currentKitty.TransactionsRecord.Item(SelectedRowDate) = ""
+                                         Fm.Close()
+                                         DisplayRecord()
+                                     End Sub
+        Fm.TransactionDate = SelectedRowDate
+        Fm.ShowDialog()
+
+
+
     End Sub
 
 End Class

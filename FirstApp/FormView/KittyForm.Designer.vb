@@ -25,12 +25,13 @@ Partial Class KittyForm
         Me.components = New System.ComponentModel.Container()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.MainPanel = New System.Windows.Forms.Panel()
         Me.NotesTB = New System.Windows.Forms.RichTextBox()
         Me.DotsButton = New FontAwesome.Sharp.IconPictureBox()
@@ -46,6 +47,7 @@ Partial Class KittyForm
         Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Mode = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.RightArrowButton = New FontAwesome.Sharp.IconPictureBox()
         Me.KittyTypeLabel = New System.Windows.Forms.Label()
         Me.StatusLabel = New System.Windows.Forms.Label()
@@ -226,29 +228,29 @@ Partial Class KittyForm
         DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.Dgv.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.Dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.Dgv.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column3, Me.Column1, Me.Column6, Me.Column2, Me.Column4, Me.Column5})
-        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle7.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.Dgv.DefaultCellStyle = DataGridViewCellStyle7
+        Me.Dgv.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column3, Me.Column1, Me.Column6, Me.Column2, Me.Column4, Me.Column5, Me.Mode})
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle8.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.Dgv.DefaultCellStyle = DataGridViewCellStyle8
         Me.Dgv.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.Dgv.Location = New System.Drawing.Point(0, 0)
         Me.Dgv.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Dgv.MultiSelect = False
         Me.Dgv.Name = "Dgv"
         Me.Dgv.ReadOnly = True
-        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle8.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Dgv.RowHeadersDefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle9.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Dgv.RowHeadersDefaultCellStyle = DataGridViewCellStyle9
         Me.Dgv.RowHeadersVisible = False
         Me.Dgv.RowHeadersWidth = 62
         Me.Dgv.Size = New System.Drawing.Size(663, 523)
@@ -264,15 +266,15 @@ Partial Class KittyForm
         '
         'Column1
         '
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
         DataGridViewCellStyle3.NullValue = Nothing
         Me.Column1.DefaultCellStyle = DataGridViewCellStyle3
-        Me.Column1.HeaderText = "SrNo"
+        Me.Column1.HeaderText = ""
         Me.Column1.MinimumWidth = 8
         Me.Column1.Name = "Column1"
         Me.Column1.ReadOnly = True
         Me.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.Column1.Width = 63
+        Me.Column1.Width = 40
         '
         'Column6
         '
@@ -299,26 +301,37 @@ Partial Class KittyForm
         '
         'Column4
         '
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         DataGridViewCellStyle5.NullValue = Nothing
         Me.Column4.DefaultCellStyle = DataGridViewCellStyle5
-        Me.Column4.HeaderText = "Amount Paid"
+        Me.Column4.HeaderText = "Paid"
         Me.Column4.MinimumWidth = 8
         Me.Column4.Name = "Column4"
         Me.Column4.ReadOnly = True
         Me.Column4.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.Column4.Width = 165
+        Me.Column4.Width = 130
         '
         'Column5
         '
         DataGridViewCellStyle6.BackColor = System.Drawing.Color.White
         Me.Column5.DefaultCellStyle = DataGridViewCellStyle6
-        Me.Column5.HeaderText = "KittyType"
+        Me.Column5.HeaderText = "Type"
         Me.Column5.MinimumWidth = 8
         Me.Column5.Name = "Column5"
         Me.Column5.ReadOnly = True
         Me.Column5.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.Column5.Width = 136
+        Me.Column5.Width = 116
+        '
+        'Mode
+        '
+        DataGridViewCellStyle7.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Mode.DefaultCellStyle = DataGridViewCellStyle7
+        Me.Mode.HeaderText = "Trns."
+        Me.Mode.MinimumWidth = 8
+        Me.Mode.Name = "Mode"
+        Me.Mode.ReadOnly = True
+        Me.Mode.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.Mode.Width = 70
         '
         'RightArrowButton
         '
@@ -385,7 +398,7 @@ Partial Class KittyForm
         Me.KittyNoLabel.AutoSize = True
         Me.KittyNoLabel.Font = New System.Drawing.Font("Century Schoolbook", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KittyNoLabel.ForeColor = System.Drawing.Color.Peru
-        Me.KittyNoLabel.Location = New System.Drawing.Point(1025, 93)
+        Me.KittyNoLabel.Location = New System.Drawing.Point(1045, 93)
         Me.KittyNoLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.KittyNoLabel.Name = "KittyNoLabel"
         Me.KittyNoLabel.Size = New System.Drawing.Size(131, 30)
@@ -533,10 +546,10 @@ Partial Class KittyForm
         Me.KittyTypeCB.Font = New System.Drawing.Font("Century", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KittyTypeCB.FormattingEnabled = True
         Me.KittyTypeCB.ImeMode = System.Windows.Forms.ImeMode.Off
-        Me.KittyTypeCB.Location = New System.Drawing.Point(898, 25)
+        Me.KittyTypeCB.Location = New System.Drawing.Point(882, 25)
         Me.KittyTypeCB.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.KittyTypeCB.Name = "KittyTypeCB"
-        Me.KittyTypeCB.Size = New System.Drawing.Size(100, 36)
+        Me.KittyTypeCB.Size = New System.Drawing.Size(117, 36)
         Me.KittyTypeCB.TabIndex = 235
         '
         'ResetButton
@@ -637,7 +650,7 @@ Partial Class KittyForm
         '
         Me.KittyNoTB.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.KittyNoTB.Font = New System.Drawing.Font("Century", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.KittyNoTB.Location = New System.Drawing.Point(1165, 87)
+        Me.KittyNoTB.Location = New System.Drawing.Point(1182, 87)
         Me.KittyNoTB.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.KittyNoTB.Name = "KittyNoTB"
         Me.KittyNoTB.Size = New System.Drawing.Size(100, 36)
@@ -665,7 +678,7 @@ Partial Class KittyForm
         Me.KittyIntrestCB.Location = New System.Drawing.Point(1165, 25)
         Me.KittyIntrestCB.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.KittyIntrestCB.Name = "KittyIntrestCB"
-        Me.KittyIntrestCB.Size = New System.Drawing.Size(100, 36)
+        Me.KittyIntrestCB.Size = New System.Drawing.Size(117, 36)
         Me.KittyIntrestCB.TabIndex = 236
         '
         'GivenAmountLabel
@@ -754,12 +767,6 @@ Partial Class KittyForm
     Private WithEvents CloseButton As FontAwesome.Sharp.IconButton
     Friend WithEvents NotificationButton As FontAwesome.Sharp.IconPictureBox
     Protected WithEvents Dgv As DataGridView
-    Friend WithEvents Column3 As DataGridViewCheckBoxColumn
-    Friend WithEvents Column1 As DataGridViewTextBoxColumn
-    Friend WithEvents Column6 As DataGridViewTextBoxColumn
-    Friend WithEvents Column2 As DataGridViewTextBoxColumn
-    Friend WithEvents Column4 As DataGridViewTextBoxColumn
-    Friend WithEvents Column5 As DataGridViewTextBoxColumn
     Friend WithEvents RightArrowButton As FontAwesome.Sharp.IconPictureBox
     Friend WithEvents ToolTip1 As ToolTip
     Friend WithEvents KittyTypeLabel As Label
@@ -793,4 +800,11 @@ Partial Class KittyForm
     Friend WithEvents CrackThisKittyToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents TransferKittyToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents NotesTB As RichTextBox
+    Friend WithEvents Column3 As DataGridViewCheckBoxColumn
+    Friend WithEvents Column1 As DataGridViewTextBoxColumn
+    Friend WithEvents Column6 As DataGridViewTextBoxColumn
+    Friend WithEvents Column2 As DataGridViewTextBoxColumn
+    Friend WithEvents Column4 As DataGridViewTextBoxColumn
+    Friend WithEvents Column5 As DataGridViewTextBoxColumn
+    Friend WithEvents Mode As DataGridViewTextBoxColumn
 End Class

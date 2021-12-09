@@ -3,9 +3,6 @@ Imports FirstApp.Utility
 
 Public Class Kitty
 
-    Private _record As New Dictionary(Of Date, Integer)
-    Private ReadOnly apostrope As String = "{#}"
-
 #Region "Properties"
     Public ReadOnly Property KittyUID As Integer = -1
 
@@ -23,14 +20,11 @@ Public Class Kitty
 
     Public Property IsAvailed As Boolean = False
 
-    Public Property Record As Dictionary(Of Date, Integer)
-        Get
-            Return _record
-        End Get
-        Set(value As Dictionary(Of Date, Integer))
-            _record = value
-        End Set
-    End Property
+    Public Property Record As New Dictionary(Of Date, Integer)
+
+    Public Property TransactionsRecord As New Dictionary(Of Date, String)
+
+    Private Property Initialized As Boolean = False
 
 #End Region
 
@@ -42,6 +36,7 @@ Public Class Kitty
 
     Sub Initialize(Optional InitializeCompletely As Boolean = True)
         If KittyUID = -1 Then Exit Sub
+        If Initialized Then Exit Sub
         Try
             Dim dr As OleDbDataReader = DataReader("Select * From Kitty_Data Where KittyUID=" & KittyUID)
             While dr.Read
@@ -51,10 +46,10 @@ Public Class Kitty
                 KittyInterest = dr("Interest")
                 Duration = dr("Duration")
                 IsAvailed = If(dr("Availed") = "False", False, True)
-                Try : Notes = dr("Notes").ToString.Replace(apostrope, "'") : Catch : End Try
+                Try : Notes = dr("Notes").ToString.Replace(apostropheReplacer, "'") : Catch : End Try
                 If InitializeCompletely Then
-                    Record.Clear()
                     AddRecord(dr("Dates"))
+                    Initialized = True
                 End If
             End While
         Catch ex As Exception
@@ -70,14 +65,14 @@ Public Class Kitty
             End If
             If MessageBox.Show("[Kitty] Do You Want To Add New Kitty ?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then Exit Sub
             SqlCommand(
-                "INSERT INTO Kitty_Data (CoustID,KittyNo,KittyType,Dates,Interest,Duration,Availed,Notes)" &
-                $"VALUES({CustomerID},{KittyNo},{KittyType},'{RecordString()}',{KittyInterest},{Duration},'{IsAvailed}','{Notes.Replace("'", apostrope)}')")
+                "INSERT INTO Kitty_Data (CoustID,KittyNo,KittyType,Dates,Interest,Duration,Availed,Notes,TransactionDetails)" &
+                $"VALUES({CustomerID},{KittyNo},{KittyType},'{RecordString()}',{KittyInterest},{Duration},'{IsAvailed}','{Notes.Replace("'", apostropheReplacer)}', '{TransactionDetailsString()}')")
         Else
             If CustomerID = -1 Then Exit Sub
             If MessageBox.Show("[Kitty] Do You Want To Update This Kitty ?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then Exit Sub
             SqlCommand(
                 $"UPDATE Kitty_Data set CoustID={CustomerID},KittyNo={KittyNo},KittyType={KittyType},Dates='{RecordString()}',Interest={KittyInterest},Duration={Duration}" &
-                $",Availed ='{IsAvailed()}',Notes='{Notes.Replace("'", apostrope)}' WHERE KittyUID={KittyUID}")
+                $",Availed ='{IsAvailed()}',Notes='{Notes.Replace("'", apostropheReplacer)}',TransactionDetails='{TransactionDetailsString()}' WHERE KittyUID={KittyUID}")
         End If
     End Sub
 
@@ -101,6 +96,49 @@ Public Class Kitty
         End Get
     End Property
 
+    Sub InitializeTransactions()
+        Dim Transactions As String = ""
+        Try
+            Dim dr As OleDbDataReader = DataReader("Select TransactionDetails From Kitty_Data Where KittyUID=" & KittyUID)
+            While dr.Read
+                Try : Transactions = dr("TransactionDetails") : Catch ex As Exception : End Try
+            End While
+        Catch ex As Exception
+            MessageBox.Show("[Kitty]/Initialize Transactions Error: " + ex.Message)
+        End Try
+        If Transactions IsNot Nothing AndAlso Transactions.Length > 1 Then
+            AddTransactionDetails(Transactions)
+        End If
+    End Sub
+
+    Sub AddTransactionDetails(entry As String)
+        Try
+            For Each _transaction In Split(entry, "|,|", , CompareMethod.Text)
+                If _transaction.Length < 11 Then Continue For
+                Dim _date = _transaction.Substring(0, 10).Trim
+                Dim _details As String = _transaction.Substring(10)
+                TransactionsRecord.Item(_date) = _details
+            Next
+        Catch ex As Exception
+            MessageBox.Show("[Kitty]/AddTransactionDetails Error: " + ex.Message)
+        End Try
+    End Sub
+
+    Function TransactionDetailsString(Optional Seperator As String = "|,|")
+        Try
+            If TransactionsRecord Is Nothing Then Return ""
+            For Each i In TransactionsRecord.Values
+                If i.Length > 1 Then
+                    Return String.Join(Seperator, TransactionsRecord.Select(Function(Kvp) $"{Kvp.Key.ToShortDateString}{Kvp.Value}").ToArray)
+                End If
+            Next
+            Return ""
+        Catch ex As Exception
+            MessageBox.Show("Can't Get TransactionsRecord As List [Kitty]: " + ex.Message)
+            Return ""
+        End Try
+    End Function
+
     Public Function AddRecord(_entry As String) As Boolean
         Try
             If String.IsNullOrEmpty(_entry) Then Return False
@@ -110,12 +148,16 @@ Public Class Kitty
                 If Record.ContainsKey(_entryDate) Then
                     If Record.Item(_entryDate) + _entryAmount < KittyType Then
                         Record.Remove(_entryDate)
+                        If TransactionsRecord.ContainsKey(_entryDate) Then TransactionsRecord.Remove(_entryDate)
                     Else
                         Record.Item(_entryDate) += _entryAmount
                     End If
                 Else
                     If _entryAmount >= KittyType Then
                         Record.Add(_entryDate, _entryAmount)
+                        If Not TransactionsRecord.ContainsKey(_entryDate) Then
+                            TransactionsRecord.Add(_entryDate, "")
+                        End If
                     End If
                 End If
             Next
@@ -134,7 +176,7 @@ Public Class Kitty
     Public Function RecordString(Optional Seperator As String = ",") As String
         Try
             If Record Is Nothing Then Return Nothing
-            Return String.Join(",", Record.Select(Function(Kvp) $"{Kvp.Key.ToShortDateString}{Kvp.Value}").ToArray)
+            Return String.Join(Seperator, Record.Select(Function(Kvp) $"{Kvp.Key.ToShortDateString}{Kvp.Value}").ToArray)
         Catch ex As Exception
             MessageBox.Show("Can't Get Record As List [Kitty]: " + ex.Message)
             Return Nothing
@@ -266,6 +308,34 @@ Public Class Kitty
             dr_kittyInterest.Close()
         Catch ex As Exception
             MessageBox.Show("Can't Get List Of KittyInterests [Kitty]: " + ex.Message)
+        End Try
+        Return temp_list
+    End Function
+
+    Friend Shared Function GetListOfPaymentModes() As List(Of String)
+        Dim temp_list As New List(Of String)
+        Try
+            Dim dr_Modes As OleDbDataReader = DataReader("Select PaymentModes from CBox_Data Where (NOT (PaymentModes = ''))")
+            While dr_Modes.Read
+                temp_list.Add(dr_Modes("PaymentModes"))
+            End While
+            dr_Modes.Close()
+        Catch ex As Exception
+            MessageBox.Show("Can't Get List Of PaymentModes [Kitty]: " + ex.Message)
+        End Try
+        Return temp_list
+    End Function
+
+    Friend Shared Function GetListOfAccounts() As List(Of String)
+        Dim temp_list As New List(Of String)
+        Try
+            Dim dr_Accounts As OleDbDataReader = DataReader("Select Accounts from CBox_Data Where (NOT (Accounts = ''))")
+            While dr_Accounts.Read
+                temp_list.Add(dr_Accounts("Accounts"))
+            End While
+            dr_Accounts.Close()
+        Catch ex As Exception
+            MessageBox.Show("Can't Get List Of Accounts [Kitty]: " + ex.Message)
         End Try
         Return temp_list
     End Function
