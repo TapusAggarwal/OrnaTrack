@@ -61,7 +61,6 @@ Partial Class Messenger
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.WarningLabel = New System.Windows.Forms.Label()
         Me.MessageTB = New ProBaseAdvancedTextBox.ProBaseAdvancedTextBox.RichTextBoxPrintCtrl()
-        Me.CloseButton = New FontAwesome.Sharp.IconButton()
         Me.NextButton = New FontAwesome.Sharp.IconButton()
         Me.BackButton = New FontAwesome.Sharp.IconButton()
         Me.SendButton = New FontAwesome.Sharp.IconButton()
@@ -353,29 +352,6 @@ Partial Class Messenger
         Me.MessageTB.TabIndex = 261
         Me.MessageTB.Text = ""
         '
-        'CloseButton
-        '
-        Me.CloseButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.CloseButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(65, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.CloseButton.FlatAppearance.BorderSize = 0
-        Me.CloseButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Red
-        Me.CloseButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(75, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.CloseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.CloseButton.Font = New System.Drawing.Font("Century Gothic", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CloseButton.ForeColor = System.Drawing.Color.Linen
-        Me.CloseButton.IconChar = FontAwesome.Sharp.IconChar.Times
-        Me.CloseButton.IconColor = System.Drawing.Color.White
-        Me.CloseButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.CloseButton.IconSize = 32
-        Me.CloseButton.Location = New System.Drawing.Point(1061, 11)
-        Me.CloseButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.CloseButton.Name = "CloseButton"
-        Me.CloseButton.Size = New System.Drawing.Size(47, 40)
-        Me.CloseButton.TabIndex = 262
-        Me.CloseButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.CloseButton.UseVisualStyleBackColor = False
-        Me.CloseButton.Visible = False
-        '
         'NextButton
         '
         Me.NextButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(70, Byte), Integer))
@@ -513,7 +489,6 @@ Partial Class Messenger
         Me.Controls.Add(Me.SendRecieptCB)
         Me.Controls.Add(Me.FlowLayoutPanel1)
         Me.Controls.Add(Me.HandsCheckBox)
-        Me.Controls.Add(Me.CloseButton)
         Me.Controls.Add(Me.MessageTB)
         Me.Controls.Add(Me.NextButton)
         Me.Controls.Add(Me.BackButton)
@@ -522,7 +497,7 @@ Partial Class Messenger
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.ImgBox)
         Me.ForeColor = System.Drawing.SystemColors.Desktop
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Name = "Messenger"
         Me.ShowInTaskbar = False
@@ -561,7 +536,6 @@ Partial Class Messenger
     Friend WithEvents ImgBox As PictureBox
     Friend WithEvents WarningLabel As Label
     Friend WithEvents MessageTB As ProBaseAdvancedTextBox.ProBaseAdvancedTextBox.RichTextBoxPrintCtrl
-    Friend WithEvents CloseButton As FontAwesome.Sharp.IconButton
     Friend WithEvents HandsCheckBox As CheckBox
     Friend WithEvents FlowLayoutPanel1 As FlowLayoutPanel
     Friend WithEvents MessageResultLB As Label

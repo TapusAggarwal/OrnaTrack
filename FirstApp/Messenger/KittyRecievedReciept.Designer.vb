@@ -29,11 +29,8 @@ Partial Class KittyRecievedReciept
         Me.Label34 = New System.Windows.Forms.Label()
         Me.Label35 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.PictureBox3 = New System.Windows.Forms.PictureBox()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.Panel3 = New System.Windows.Forms.Panel()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.PictureBox4 = New System.Windows.Forms.PictureBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.RecievedLB = New System.Windows.Forms.Label()
@@ -66,17 +63,26 @@ Partial Class KittyRecievedReciept
         Me.PictureBox7 = New System.Windows.Forms.PictureBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Panel4 = New System.Windows.Forms.Panel()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.Label17 = New System.Windows.Forms.Label()
+        Me.Label18 = New System.Windows.Forms.Label()
+        Me.Label20 = New System.Windows.Forms.Label()
+        Me.PictureBox4 = New System.Windows.Forms.PictureBox()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.PictureBox8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox6, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Barcode, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox7, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel4.SuspendLayout()
+        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel1
@@ -91,16 +97,16 @@ Partial Class KittyRecievedReciept
         'Panel2
         '
         Me.Panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel2.Controls.Add(Me.Panel3)
+        Me.Panel2.Controls.Add(Me.Label5)
+        Me.Panel2.Controls.Add(Me.Panel4)
+        Me.Panel2.Controls.Add(Me.PictureBox4)
         Me.Panel2.Controls.Add(Me.PictureBox8)
         Me.Panel2.Controls.Add(Me.PictureBox6)
         Me.Panel2.Controls.Add(Me.Label34)
         Me.Panel2.Controls.Add(Me.Label35)
         Me.Panel2.Controls.Add(Me.Label3)
-        Me.Panel2.Controls.Add(Me.PictureBox3)
         Me.Panel2.Controls.Add(Me.PictureBox2)
-        Me.Panel2.Controls.Add(Me.Panel3)
-        Me.Panel2.Controls.Add(Me.Label5)
-        Me.Panel2.Controls.Add(Me.PictureBox4)
         Me.Panel2.Controls.Add(Me.Label2)
         Me.Panel2.Controls.Add(Me.Label1)
         Me.Panel2.Controls.Add(Me.RecievedLB)
@@ -197,18 +203,6 @@ Partial Class KittyRecievedReciept
         Me.Label3.Text = "9816057863" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "9882960863"
         Me.Label3.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
-        'PictureBox3
-        '
-        Me.PictureBox3.BackColor = System.Drawing.Color.Black
-        Me.PictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.PictureBox3.Image = Global.FirstApp.My.Resources.Resources.AccountInfo
-        Me.PictureBox3.Location = New System.Drawing.Point(23, 676)
-        Me.PictureBox3.Name = "PictureBox3"
-        Me.PictureBox3.Size = New System.Drawing.Size(229, 99)
-        Me.PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox3.TabIndex = 185
-        Me.PictureBox3.TabStop = False
-        '
         'PictureBox2
         '
         Me.PictureBox2.BackColor = System.Drawing.Color.Black
@@ -228,29 +222,6 @@ Partial Class KittyRecievedReciept
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(477, 2)
         Me.Panel3.TabIndex = 180
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.BackColor = System.Drawing.Color.Transparent
-        Me.Label5.Font = New System.Drawing.Font("Century Schoolbook", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(170, 802)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(132, 27)
-        Me.Label5.TabIndex = 183
-        Me.Label5.Text = "9882960863"
-        '
-        'PictureBox4
-        '
-        Me.PictureBox4.BackColor = System.Drawing.Color.Black
-        Me.PictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.PictureBox4.Image = Global.FirstApp.My.Resources.Resources.Google_PhonePe
-        Me.PictureBox4.Location = New System.Drawing.Point(-1, 747)
-        Me.PictureBox4.Name = "PictureBox4"
-        Me.PictureBox4.Size = New System.Drawing.Size(184, 142)
-        Me.PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox4.TabIndex = 182
-        Me.PictureBox4.TabStop = False
         '
         'Label2
         '
@@ -606,6 +577,113 @@ Partial Class KittyRecievedReciept
         Me.Label6.TabIndex = 191
         Me.Label6.Text = "-------------------------------------------------------"
         '
+        'Label5
+        '
+        Me.Label5.BackColor = System.Drawing.Color.Transparent
+        Me.Label5.Font = New System.Drawing.Font("Century Schoolbook", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.ForeColor = System.Drawing.Color.Red
+        Me.Label5.Location = New System.Drawing.Point(12, 800)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(145, 69)
+        Me.Label5.TabIndex = 197
+        Me.Label5.Text = "Add Above A/C In G-Pay Or PhonePay"
+        '
+        'Panel4
+        '
+        Me.Panel4.Controls.Add(Me.Label7)
+        Me.Panel4.Controls.Add(Me.Label8)
+        Me.Panel4.Controls.Add(Me.Label12)
+        Me.Panel4.Controls.Add(Me.Label17)
+        Me.Panel4.Controls.Add(Me.Label18)
+        Me.Panel4.Controls.Add(Me.Label20)
+        Me.Panel4.Location = New System.Drawing.Point(14, 663)
+        Me.Panel4.Name = "Panel4"
+        Me.Panel4.Size = New System.Drawing.Size(238, 128)
+        Me.Panel4.TabIndex = 195
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.BackColor = System.Drawing.Color.Transparent
+        Me.Label7.Font = New System.Drawing.Font("Century Schoolbook", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(39, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(163, Byte), Integer))
+        Me.Label7.Location = New System.Drawing.Point(-1, 103)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(216, 21)
+        Me.Label7.TabIndex = 199
+        Me.Label7.Text = "Central Bank Of India"
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.BackColor = System.Drawing.Color.Transparent
+        Me.Label8.Font = New System.Drawing.Font("Century Schoolbook", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(39, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(163, Byte), Integer))
+        Me.Label8.Location = New System.Drawing.Point(0, 82)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(237, 21)
+        Me.Label8.TabIndex = 195
+        Me.Label8.Text = "Prop. :  Meenu Aggarwal"
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.BackColor = System.Drawing.Color.Transparent
+        Me.Label12.Font = New System.Drawing.Font("Century Schoolbook", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label12.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(2, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.Label12.Location = New System.Drawing.Point(71, 31)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(153, 30)
+        Me.Label12.TabIndex = 198
+        Me.Label12.Text = "4016023691"
+        '
+        'Label17
+        '
+        Me.Label17.AutoSize = True
+        Me.Label17.BackColor = System.Drawing.Color.Transparent
+        Me.Label17.Font = New System.Drawing.Font("Century Schoolbook", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label17.Location = New System.Drawing.Point(48, 10)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(143, 19)
+        Me.Label17.TabIndex = 194
+        Me.Label17.Text = "BANK DETAILS"
+        '
+        'Label18
+        '
+        Me.Label18.AutoSize = True
+        Me.Label18.BackColor = System.Drawing.Color.Transparent
+        Me.Label18.Font = New System.Drawing.Font("Century Schoolbook", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label18.ForeColor = System.Drawing.Color.FromArgb(CType(CType(39, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(163, Byte), Integer))
+        Me.Label18.Location = New System.Drawing.Point(-2, 36)
+        Me.Label18.Name = "Label18"
+        Me.Label18.Size = New System.Drawing.Size(73, 21)
+        Me.Label18.TabIndex = 197
+        Me.Label18.Text = "A/C     :"
+        '
+        'Label20
+        '
+        Me.Label20.AutoSize = True
+        Me.Label20.BackColor = System.Drawing.Color.Transparent
+        Me.Label20.Font = New System.Drawing.Font("Century Schoolbook", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label20.ForeColor = System.Drawing.Color.FromArgb(CType(CType(39, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(163, Byte), Integer))
+        Me.Label20.Location = New System.Drawing.Point(-1, 61)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(188, 21)
+        Me.Label20.TabIndex = 196
+        Me.Label20.Text = "IFSC  :  CBI0280421"
+        '
+        'PictureBox4
+        '
+        Me.PictureBox4.BackColor = System.Drawing.Color.Black
+        Me.PictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.PictureBox4.Image = Global.FirstApp.My.Resources.Resources.Google_PhonePe
+        Me.PictureBox4.Location = New System.Drawing.Point(139, 759)
+        Me.PictureBox4.Name = "PictureBox4"
+        Me.PictureBox4.Size = New System.Drawing.Size(184, 142)
+        Me.PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox4.TabIndex = 196
+        Me.PictureBox4.TabStop = False
+        '
         'KittyRecievedReciept
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
@@ -622,13 +700,14 @@ Partial Class KittyRecievedReciept
         Me.Panel2.PerformLayout()
         CType(Me.PictureBox8, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox6, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Barcode, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox7, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel4.ResumeLayout(False)
+        Me.Panel4.PerformLayout()
+        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -664,9 +743,6 @@ Partial Class KittyRecievedReciept
     Private WithEvents Label14 As Label
     Private WithEvents Label15 As Label
     Private WithEvents TotalLB As Label
-    Private WithEvents Label5 As Label
-    Private WithEvents PictureBox4 As PictureBox
-    Private WithEvents PictureBox3 As PictureBox
     Private WithEvents PhNoLB As Label
     Private WithEvents Label3 As Label
     Private WithEvents Label34 As Label
@@ -676,4 +752,13 @@ Partial Class KittyRecievedReciept
     Private WithEvents PictureBox8 As PictureBox
     Private WithEvents PictureBox6 As PictureBox
     Friend WithEvents Panel1 As Panel
+    Private WithEvents Label5 As Label
+    Friend WithEvents Panel4 As Panel
+    Private WithEvents Label7 As Label
+    Private WithEvents Label8 As Label
+    Private WithEvents Label12 As Label
+    Private WithEvents Label17 As Label
+    Private WithEvents Label18 As Label
+    Private WithEvents Label20 As Label
+    Private WithEvents PictureBox4 As PictureBox
 End Class

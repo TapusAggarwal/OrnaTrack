@@ -59,7 +59,6 @@ Module ProjectModule
         Next
     End Sub
 
-
     'Function: General Function That takes Dictionary Of Commands As Input And Returns Server Respons As String
     Function ServerHttpRequest(Optional requestPrams As Dictionary(Of String, String) = Nothing, Optional request_headres As MultipartFormDataContent = Nothing, Optional _uri As String = Nothing)
 
@@ -96,7 +95,6 @@ Module ProjectModule
         End Try
 
     End Function
-
 
     'Function ServerHttpRequest(command As Dictionary(Of String, String)) As String
     '    Dim rawresponse As String = Nothing
