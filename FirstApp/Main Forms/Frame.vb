@@ -540,7 +540,7 @@ Public Class Frame
                 Exit Sub
             End If
             If e.Control And e.KeyCode = Keys.R Then
-                Report.Show()
+                Form2.Show()
             End If
             If e.Control And e.KeyCode = Keys.B Then
                 If ActiveMdiChild Is Main Then

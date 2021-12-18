@@ -28,30 +28,30 @@ Public Class CoustProfileUpdated
         End If
     End Sub
 
-    Private Sub LoadProfileData()
-        NameTB.Text = _currentCustomer.FirstName
-        SirNameTB.Text = _currentCustomer.LastName
-        PhoneNoTag1.TagData = _currentCustomer.PhNo(",")
-        ProfessionCB.SelectedIndex = ProfessionCB.FindStringExact(_currentCustomer.Profession)
-        RegionCB.SelectedIndex = RegionCB.FindStringExact(_currentCustomer.Region)
-        AddressTB.Text = _currentCustomer.Address
-        If _currentCustomer.IsMarried() Then MarriedCheckBox.Checked = True Else MarriedCheckBox.Checked = False
-        If _currentCustomer.Gender() = "Male" Then
+    Public Sub LoadProfileData(_customer As Customer)
+        NameTB.Text = _customer.FirstName
+        SirNameTB.Text = _customer.LastName
+        PhoneNoTag1.TagData = _customer.PhNo(",")
+        ProfessionCB.SelectedIndex = ProfessionCB.FindStringExact(_customer.Profession)
+        RegionCB.SelectedIndex = RegionCB.FindStringExact(_customer.Region)
+        AddressTB.Text = _customer.Address
+        If _customer.IsMarried() Then MarriedCheckBox.Checked = True Else MarriedCheckBox.Checked = False
+        If _customer.Gender() = "Male" Then
             MaleRB.Checked = True
-        ElseIf _currentCustomer.Gender() = "Female" Then
+        ElseIf _customer.Gender() = "Female" Then
             FemaleRB.Checked = True
         Else
             MaleRB.Checked = False
             FemaleRB.Checked = False
         End If
-        NotesTB.Text = _currentCustomer.Description()
+        NotesTB.Text = _customer.Description()
         'CheckRegistrationButton_Click(CheckRegistrationButton, EventArgs.Empty)
     End Sub
 
     Private Sub CustomerIdTB_TextChanged(sender As TextBox, e As EventArgs) Handles CustomerIdTB.TextChanged
         If Not sender.TextLength = 0 Then
             _currentCustomer = New Customer(sender.Text)
-            LoadProfileData()
+            LoadProfileData(_currentCustomer)
             CheckForSimilarPhNo()
         End If
     End Sub

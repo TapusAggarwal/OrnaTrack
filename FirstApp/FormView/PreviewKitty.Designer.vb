@@ -24,6 +24,8 @@ Partial Class PreviewKitty
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(PreviewKitty))
         Me.ProfilePanel = New System.Windows.Forms.Panel()
+        Me.AllKittiesBT = New FontAwesome.Sharp.IconButton()
+        Me.SaveCoustmerButton = New FontAwesome.Sharp.IconButton()
         Me.ProfileLabel = New System.Windows.Forms.Label()
         Me.ImageBox = New System.Windows.Forms.PictureBox()
         Me.Address = New System.Windows.Forms.Label()
@@ -41,6 +43,7 @@ Partial Class PreviewKitty
         Me.AddressLabel = New System.Windows.Forms.Label()
         Me.RegionLabel = New System.Windows.Forms.Label()
         Me.KittyPanel = New System.Windows.Forms.Panel()
+        Me.Panel1 = New System.Windows.Forms.Panel()
         Me.ProfilePanel.SuspendLayout()
         CType(Me.ImageBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -48,6 +51,8 @@ Partial Class PreviewKitty
         'ProfilePanel
         '
         Me.ProfilePanel.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(60, Byte), Integer))
+        Me.ProfilePanel.Controls.Add(Me.AllKittiesBT)
+        Me.ProfilePanel.Controls.Add(Me.SaveCoustmerButton)
         Me.ProfilePanel.Controls.Add(Me.ProfileLabel)
         Me.ProfilePanel.Controls.Add(Me.ImageBox)
         Me.ProfilePanel.Controls.Add(Me.Address)
@@ -65,10 +70,54 @@ Partial Class PreviewKitty
         Me.ProfilePanel.Controls.Add(Me.AddressLabel)
         Me.ProfilePanel.Controls.Add(Me.RegionLabel)
         Me.ProfilePanel.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.ProfilePanel.Location = New System.Drawing.Point(0, 527)
+        Me.ProfilePanel.Location = New System.Drawing.Point(0, 529)
         Me.ProfilePanel.Name = "ProfilePanel"
-        Me.ProfilePanel.Size = New System.Drawing.Size(1405, 294)
+        Me.ProfilePanel.Size = New System.Drawing.Size(1405, 368)
         Me.ProfilePanel.TabIndex = 252
+        '
+        'AllKittiesBT
+        '
+        Me.AllKittiesBT.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.AllKittiesBT.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(70, Byte), Integer))
+        Me.AllKittiesBT.FlatAppearance.BorderSize = 0
+        Me.AllKittiesBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.AllKittiesBT.Font = New System.Drawing.Font("Cambria", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.AllKittiesBT.ForeColor = System.Drawing.Color.MediumPurple
+        Me.AllKittiesBT.IconChar = FontAwesome.Sharp.IconChar.AddressBook
+        Me.AllKittiesBT.IconColor = System.Drawing.Color.Black
+        Me.AllKittiesBT.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.AllKittiesBT.Location = New System.Drawing.Point(1092, 159)
+        Me.AllKittiesBT.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.AllKittiesBT.Name = "AllKittiesBT"
+        Me.AllKittiesBT.Padding = New System.Windows.Forms.Padding(15, 0, 30, 0)
+        Me.AllKittiesBT.Size = New System.Drawing.Size(313, 76)
+        Me.AllKittiesBT.TabIndex = 2989
+        Me.AllKittiesBT.Text = "All Kitties"
+        Me.AllKittiesBT.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.AllKittiesBT.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.AllKittiesBT.UseVisualStyleBackColor = False
+        '
+        'SaveCoustmerButton
+        '
+        Me.SaveCoustmerButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.SaveCoustmerButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(70, Byte), Integer))
+        Me.SaveCoustmerButton.FlatAppearance.BorderSize = 0
+        Me.SaveCoustmerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.SaveCoustmerButton.Font = New System.Drawing.Font("Cambria", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SaveCoustmerButton.ForeColor = System.Drawing.Color.MediumPurple
+        Me.SaveCoustmerButton.IconChar = FontAwesome.Sharp.IconChar.AddressBook
+        Me.SaveCoustmerButton.IconColor = System.Drawing.Color.Black
+        Me.SaveCoustmerButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.SaveCoustmerButton.Location = New System.Drawing.Point(1092, 74)
+        Me.SaveCoustmerButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.SaveCoustmerButton.Name = "SaveCoustmerButton"
+        Me.SaveCoustmerButton.Padding = New System.Windows.Forms.Padding(15, 0, 30, 0)
+        Me.SaveCoustmerButton.Size = New System.Drawing.Size(313, 76)
+        Me.SaveCoustmerButton.TabIndex = 2988
+        Me.SaveCoustmerButton.Text = "Save Record"
+        Me.SaveCoustmerButton.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.SaveCoustmerButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.SaveCoustmerButton.UseVisualStyleBackColor = False
         '
         'ProfileLabel
         '
@@ -89,7 +138,7 @@ Partial Class PreviewKitty
         Me.ImageBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.ImageBox.ErrorImage = CType(resources.GetObject("ImageBox.ErrorImage"), System.Drawing.Image)
         Me.ImageBox.InitialImage = CType(resources.GetObject("ImageBox.InitialImage"), System.Drawing.Image)
-        Me.ImageBox.Location = New System.Drawing.Point(66, 43)
+        Me.ImageBox.Location = New System.Drawing.Point(13, 68)
         Me.ImageBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.ImageBox.Name = "ImageBox"
         Me.ImageBox.Size = New System.Drawing.Size(226, 233)
@@ -107,6 +156,7 @@ Partial Class PreviewKitty
         Me.Address.Size = New System.Drawing.Size(358, 136)
         Me.Address.TabIndex = 271
         Me.Address.Text = "Introduced By kamla Kambosh"
+        Me.Address.Visible = False
         '
         'Region
         '
@@ -261,6 +311,7 @@ Partial Class PreviewKitty
         Me.AddressLabel.Size = New System.Drawing.Size(112, 30)
         Me.AddressLabel.TabIndex = 270
         Me.AddressLabel.Text = "Address:"
+        Me.AddressLabel.Visible = False
         '
         'RegionLabel
         '
@@ -286,12 +337,21 @@ Partial Class PreviewKitty
         Me.KittyPanel.Size = New System.Drawing.Size(1404, 523)
         Me.KittyPanel.TabIndex = 265
         '
+        'Panel1
+        '
+        Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(70, Byte), Integer))
+        Me.Panel1.Location = New System.Drawing.Point(246, 529)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(839, 359)
+        Me.Panel1.TabIndex = 6
+        '
         'PreviewKitty
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(80, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(1405, 821)
+        Me.ClientSize = New System.Drawing.Size(1405, 897)
+        Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.KittyPanel)
         Me.Controls.Add(Me.ProfilePanel)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
@@ -323,4 +383,7 @@ Partial Class PreviewKitty
     Friend WithEvents AddressLabel As Label
     Friend WithEvents RegionLabel As Label
     Friend WithEvents KittyPanel As Panel
+    Friend WithEvents Panel1 As Panel
+    Friend WithEvents AllKittiesBT As FontAwesome.Sharp.IconButton
+    Friend WithEvents SaveCoustmerButton As FontAwesome.Sharp.IconButton
 End Class

@@ -58,7 +58,7 @@
             KittyTypeCList.Items.Add($"All({total})")
 
             For Each i In Kitties
-                KittyTypeCList.Items.Add($"{i.Key} ({i.Value.Item("active").Count})")
+                KittyTypeCList.Items.Add($"{i.Key} ({i.Value.Item("active").Count + i.Value.Item("matured").Count + i.Value.Item("availed").Count})")
             Next
 
             With Me
@@ -117,10 +117,6 @@
         SelectedAvailed.Clear()
 
         Dim _active As New List(Of Kitty)
-
-        For Each i In x
-            MessageBox.Show(i)
-        Next
 
         For Each i In x
             SelectedMatured.AddRange(Kitties.Item(i).Item("matured"))
@@ -273,9 +269,11 @@
         If SelectedKitties.Count = 0 Then
             SelectedCustomersLB.Text = 0
             PreviewBT.Enabled = False
+            SendButton.Enabled = False
         Else
             SelectedCustomersLB.Text = SelectedKitties.Count
             PreviewBT.Enabled = True
+            SendButton.Enabled = True
         End If
 
 
@@ -423,4 +421,83 @@
         UpdateSelectedKitty()
     End Sub
 
+    Private Sub SendButton_Click(sender As Object, e As EventArgs) Handles SendButton.Click
+        Using Fm As New MessageSender
+            Fm.SelectedKitties = SelectedKitties
+            Fm.ShowDialog()
+        End Using
+    End Sub
+
+    Private Sub IconButton1_Click(sender As Object, e As EventArgs) Handles IconButton1.Click
+        Dim Fm As New PreviewForm
+
+        Try
+            Dim x As String = ""
+            Dim dr As OleDb.OleDbDataReader = DataReader("Select Sent From Message_Data where id=1")
+            While dr.Read
+                x = dr(0)
+            End While
+            If x.Length > 10 Then
+                Fm.SentList = x.Split(",").ToList
+            End If
+        Catch ex As Exception
+        End Try
+
+        Try
+            Dim x As String = ""
+            Dim dr As OleDb.OleDbDataReader = DataReader("Select Failed From Message_Data where id=1")
+            While dr.Read
+                x = dr(0)
+            End While
+            If x.Length > 10 Then
+                Fm.FailedList = x.Split(",").ToList
+            End If
+        Catch ex As Exception
+        End Try
+
+        Try
+            Dim x As String = ""
+            Dim dr As OleDb.OleDbDataReader = DataReader("Select UnRegistered From Message_Data where id=1")
+            While dr.Read
+                x = dr(0)
+            End While
+            If x.Length > 10 Then
+                Fm.UnRegisteredList = x.Split(",").ToList
+            End If
+        Catch ex As Exception
+        End Try
+
+        Try
+            Dim x As String = ""
+            Dim dr As OleDb.OleDbDataReader = DataReader("Select Removed From Message_Data where id=1")
+            While dr.Read
+                x = dr(0)
+            End While
+            If x.Length > 10 Then
+                Fm.RemovedList = x.Split(",").ToList
+            End If
+        Catch ex As Exception
+        End Try
+
+        Try
+            Dim x As String = ""
+            Dim dr As OleDb.OleDbDataReader = DataReader("Select Initial From Message_Data where id=1")
+            While dr.Read
+                x = dr(0)
+            End While
+
+            Dim Messages As New List(Of Tuple(Of String, Kitty))
+
+            For Each i In x.Split(",")
+                Messages.Add(New Tuple(Of String, Kitty)(i.Split("_")(0), New Kitty(i.Split("_")(1), True, True)))
+            Next
+
+            Fm.Messages = Messages
+
+        Catch ex As Exception
+        End Try
+
+        Fm.ShowDialog()
+
+    End Sub
 End Class

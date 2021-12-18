@@ -163,6 +163,7 @@
     <Compile Include="FormView\TransactionDetails.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Item.vb" />
     <Compile Include="Kitty.vb" />
     <Compile Include="FormView\BookMode.Designer.vb">
       <DependentUpon>BookMode.vb</DependentUpon>
@@ -210,6 +211,18 @@
       <DependentUpon>Messenger.vb</DependentUpon>
     </Compile>
     <Compile Include="Messenger\Messenger.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Messenger\PreviewControl.Designer.vb">
+      <DependentUpon>PreviewControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Messenger\PreviewControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Messenger\PreviewForm.Designer.vb">
+      <DependentUpon>PreviewForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Messenger\PreviewForm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\Resources.Designer.vb">
@@ -351,6 +364,12 @@
     <EmbeddedResource Include="Messenger\Messenger.resx">
       <DependentUpon>Messenger.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Messenger\PreviewControl.resx">
+      <DependentUpon>PreviewControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Messenger\PreviewForm.resx">
+      <DependentUpon>PreviewForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MyUserControls\ActiveKittyControl.resx">
       <DependentUpon>ActiveKittyControl.vb</DependentUpon>
     </EmbeddedResource>
@@ -426,6 +445,8 @@
   <ItemGroup>
     <Content Include="Resources\AccountInfo.jpg" />
     <Content Include="Resources\Bis_Logo.jpg" />
+    <None Include="Resources\BJ_Logo.bmp" />
+    <None Include="Resources\BJ_Logo.png" />
     <Content Include="Resources\Google_PhonePe.png" />
     <None Include="Resources\phnIcon.png" />
     <Content Include="Resources\Splash-Screen.gif" />

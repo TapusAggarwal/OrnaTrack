@@ -47,7 +47,7 @@ Public Class KittyForm
         Try
             For Each i In _currentKitty.Record
                 Dim L1 As Integer = LastEmptyRow()
-                Dgv.Rows(L1).Cells(DgvEnum.DateColumn).Value = i.Key
+                Dgv.Rows(L1).Cells(DgvEnum.DateColumn).Value = i.Key.ToString("dd MMM,yyyy")
                 Dgv.Rows(L1).Cells(DgvEnum.AmountColumn).Value = i.Value
 
                 Dim newDgvButton As New DataGridViewButtonCell
@@ -213,14 +213,17 @@ Public Class KittyForm
 
     End Sub
 
-    Private Sub KittyTypeCB_SelectedIndexChanged(sender As Object, e As EventArgs) Handles KittyTypeCB.SelectedIndexChanged
+    Private Sub KittyTypeCB_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles KittyTypeCB.SelectionChangeCommitted
         Dim actualType As Integer = _currentKitty.KittyType
         Dim selectionType As Integer = KittyTypeCB.SelectedItem
 
         If _currentKitty.Record.Count = 0 Then
             _currentKitty.KittyType = selectionType
         ElseIf actualType <> selectionType Then
-            If MessageBox.Show($"This Selection Will Change Kitty Type From { actualType.ToCurrency} To {selectionType.ToCurrency}", "Do You Want To Continue ?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then Exit Sub
+            If MessageBox.Show($"This Selection Will Change Kitty Type From { actualType.ToCurrency} To {selectionType.ToCurrency}", "Do You Want To Continue ?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then
+                KittyTypeCB.SelectedIndex = KittyTypeCB.FindStringExact(_currentKitty.KittyType)
+                Exit Sub
+            End If
             Dim _temp = (From _entries In _currentKitty.Record Select _entries).ToDictionary(Function(k) k.Key, Function(v) v.Value)
 
             For Each _entry In _temp
@@ -230,7 +233,6 @@ Public Class KittyForm
             DisplayRecord()
         End If
     End Sub
-
     Private Sub KittyIntrestCB_SelectedIndexChanged(sender As Object, e As EventArgs) Handles KittyIntrestCB.SelectedIndexChanged
         _currentKitty.KittyInterest = KittyIntrestCB.SelectedItem
         DisplayRecord()
