@@ -43,7 +43,6 @@ Public Class Messenger
             NextButton.Visible = False
             BackButton.Visible = False
         End If
-        CloseButton.Visible = True
         SendButton.Enabled = True
         'ServerCall(state)
     End Sub
@@ -108,10 +107,6 @@ Public Class Messenger
         Catch ex As Exception
             MessageBox.Show("Error: " + ex.Message)
         End Try
-    End Sub
-
-    Private Sub DissolveButton_Click_1(sender As Object, e As EventArgs) Handles CloseButton.Click
-        Close()
     End Sub
 
     Private Async Sub GlobalKittyBillView_Load(sender As Object, e As EventArgs) Handles MyBase.Load

@@ -32,7 +32,6 @@ Partial Class Form3
         Me.PictureBox3 = New System.Windows.Forms.PictureBox()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.Panel3 = New System.Windows.Forms.Panel()
-        Me.Label5 = New System.Windows.Forms.Label()
         Me.PictureBox4 = New System.Windows.Forms.PictureBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -46,6 +45,14 @@ Partial Class Form3
         Me.Label36 = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.PictureBox7 = New System.Windows.Forms.PictureBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.Panel4 = New System.Windows.Forms.Panel()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.PictureBox8, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -57,6 +64,7 @@ Partial Class Form3
         CType(Me.Barcode, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox7, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel4.SuspendLayout()
         Me.SuspendLayout()
         '
         'Panel1
@@ -71,6 +79,9 @@ Partial Class Form3
         'Panel2
         '
         Me.Panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel2.Controls.Add(Me.Panel3)
+        Me.Panel2.Controls.Add(Me.Label5)
+        Me.Panel2.Controls.Add(Me.Panel4)
         Me.Panel2.Controls.Add(Me.PictureBox8)
         Me.Panel2.Controls.Add(Me.PictureBox6)
         Me.Panel2.Controls.Add(Me.Label34)
@@ -78,8 +89,6 @@ Partial Class Form3
         Me.Panel2.Controls.Add(Me.Label3)
         Me.Panel2.Controls.Add(Me.PictureBox3)
         Me.Panel2.Controls.Add(Me.PictureBox2)
-        Me.Panel2.Controls.Add(Me.Panel3)
-        Me.Panel2.Controls.Add(Me.Label5)
         Me.Panel2.Controls.Add(Me.PictureBox4)
         Me.Panel2.Controls.Add(Me.Label2)
         Me.Panel2.Controls.Add(Me.Label1)
@@ -162,7 +171,7 @@ Partial Class Form3
         Me.PictureBox3.BackColor = System.Drawing.Color.Black
         Me.PictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.PictureBox3.Image = Global.FirstApp.My.Resources.Resources.AccountInfo
-        Me.PictureBox3.Location = New System.Drawing.Point(23, 676)
+        Me.PictureBox3.Location = New System.Drawing.Point(233, 352)
         Me.PictureBox3.Name = "PictureBox3"
         Me.PictureBox3.Size = New System.Drawing.Size(229, 99)
         Me.PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -189,23 +198,12 @@ Partial Class Form3
         Me.Panel3.Size = New System.Drawing.Size(477, 2)
         Me.Panel3.TabIndex = 180
         '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.BackColor = System.Drawing.Color.Transparent
-        Me.Label5.Font = New System.Drawing.Font("Century Schoolbook", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(170, 802)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(132, 27)
-        Me.Label5.TabIndex = 183
-        Me.Label5.Text = "9882960863"
-        '
         'PictureBox4
         '
         Me.PictureBox4.BackColor = System.Drawing.Color.Black
         Me.PictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.PictureBox4.Image = Global.FirstApp.My.Resources.Resources.Google_PhonePe
-        Me.PictureBox4.Location = New System.Drawing.Point(-1, 747)
+        Me.PictureBox4.Location = New System.Drawing.Point(128, 762)
         Me.PictureBox4.Name = "PictureBox4"
         Me.PictureBox4.Size = New System.Drawing.Size(184, 142)
         Me.PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -346,6 +344,101 @@ Partial Class Form3
         Me.PictureBox7.TabIndex = 168
         Me.PictureBox7.TabStop = False
         '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.BackColor = System.Drawing.Color.Transparent
+        Me.Label4.Font = New System.Drawing.Font("Century Schoolbook", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Location = New System.Drawing.Point(48, 10)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(143, 19)
+        Me.Label4.TabIndex = 194
+        Me.Label4.Text = "BANK DETAILS"
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.BackColor = System.Drawing.Color.Transparent
+        Me.Label6.Font = New System.Drawing.Font("Century Schoolbook", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(39, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(163, Byte), Integer))
+        Me.Label6.Location = New System.Drawing.Point(0, 82)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(237, 21)
+        Me.Label6.TabIndex = 195
+        Me.Label6.Text = "Prop. :  Meenu Aggarwal"
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.BackColor = System.Drawing.Color.Transparent
+        Me.Label7.Font = New System.Drawing.Font("Century Schoolbook", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(39, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(163, Byte), Integer))
+        Me.Label7.Location = New System.Drawing.Point(-1, 61)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(188, 21)
+        Me.Label7.TabIndex = 196
+        Me.Label7.Text = "IFSC  :  CBI0280421"
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.BackColor = System.Drawing.Color.Transparent
+        Me.Label8.Font = New System.Drawing.Font("Century Schoolbook", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(39, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(163, Byte), Integer))
+        Me.Label8.Location = New System.Drawing.Point(-2, 36)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(73, 21)
+        Me.Label8.TabIndex = 197
+        Me.Label8.Text = "A/C     :"
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.BackColor = System.Drawing.Color.Transparent
+        Me.Label9.Font = New System.Drawing.Font("Century Schoolbook", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(2, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.Label9.Location = New System.Drawing.Point(71, 31)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(153, 30)
+        Me.Label9.TabIndex = 198
+        Me.Label9.Text = "4016023691"
+        '
+        'Panel4
+        '
+        Me.Panel4.Controls.Add(Me.Label10)
+        Me.Panel4.Controls.Add(Me.Label6)
+        Me.Panel4.Controls.Add(Me.Label9)
+        Me.Panel4.Controls.Add(Me.Label4)
+        Me.Panel4.Controls.Add(Me.Label8)
+        Me.Panel4.Controls.Add(Me.Label7)
+        Me.Panel4.Location = New System.Drawing.Point(3, 666)
+        Me.Panel4.Name = "Panel4"
+        Me.Panel4.Size = New System.Drawing.Size(238, 128)
+        Me.Panel4.TabIndex = 138
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.BackColor = System.Drawing.Color.Transparent
+        Me.Label10.Font = New System.Drawing.Font("Century Schoolbook", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label10.ForeColor = System.Drawing.Color.FromArgb(CType(CType(39, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(163, Byte), Integer))
+        Me.Label10.Location = New System.Drawing.Point(-1, 103)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(216, 21)
+        Me.Label10.TabIndex = 199
+        Me.Label10.Text = "Central Bank Of India"
+        '
+        'Label5
+        '
+        Me.Label5.BackColor = System.Drawing.Color.Transparent
+        Me.Label5.Font = New System.Drawing.Font("Century Schoolbook", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.ForeColor = System.Drawing.Color.Red
+        Me.Label5.Location = New System.Drawing.Point(3, 807)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(145, 69)
+        Me.Label5.TabIndex = 194
+        Me.Label5.Text = "Add Above A/C In G-Pay Or PhonePay"
+        '
         'Form3
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
@@ -369,6 +462,8 @@ Partial Class Form3
         CType(Me.Barcode, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox7, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel4.ResumeLayout(False)
+        Me.Panel4.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -386,7 +481,6 @@ Partial Class Form3
     Private WithEvents Label30 As Label
     Private WithEvents Barcode As PictureBox
     Private WithEvents Label36 As Label
-    Private WithEvents Label5 As Label
     Private WithEvents PictureBox4 As PictureBox
     Private WithEvents PictureBox3 As PictureBox
     Private WithEvents PhNoLB As Label
@@ -396,4 +490,12 @@ Partial Class Form3
     Private WithEvents PictureBox8 As PictureBox
     Private WithEvents PictureBox6 As PictureBox
     Friend WithEvents Panel1 As Panel
+    Private WithEvents Label5 As Label
+    Friend WithEvents Panel4 As Panel
+    Private WithEvents Label10 As Label
+    Private WithEvents Label6 As Label
+    Private WithEvents Label9 As Label
+    Private WithEvents Label4 As Label
+    Private WithEvents Label8 As Label
+    Private WithEvents Label7 As Label
 End Class

@@ -21,7 +21,9 @@
     End Sub
 
     Private Sub CoustNameButton_MouseHover(sender As Object, e As EventArgs) Handles CoustNameButton.MouseHover
-        ToolTip1.Show("Add Coustmer's Name To The Message" & Environment.NewLine & "Ex: Tapus Aggarwal", CoustNameButton, 3000)
+        If ToolTipChB.Checked Then
+            ToolTip1.Show("Add Coustmer's Name To The Message" & Environment.NewLine & "Ex: Tapus Aggarwal", CoustNameButton, 3000)
+        End If
     End Sub
 
     Private Sub PhNo_Click(sender As Object, e As EventArgs) Handles PhNoButton.Click
@@ -31,7 +33,9 @@
     End Sub
 
     Private Sub PhNoButton_MouseHover(sender As Object, e As EventArgs) Handles PhNoButton.MouseHover
-        ToolTip1.Show("Add Coustmer's PhNo To The Message" & Environment.NewLine & "Ex: 9882960863,9816057863", PhNoButton, 3000)
+        If ToolTipChB.Checked Then
+            ToolTip1.Show("Add Coustmer's PhNo To The Message" & Environment.NewLine & "Ex: 9882960863,9816057863", PhNoButton, 3000)
+        End If
     End Sub
 
     Private Sub KittyTypeButton_Click(sender As Object, e As EventArgs) Handles KittyTypeButton.Click
@@ -41,7 +45,9 @@
     End Sub
 
     Private Sub KittyTypeButton_MouseHover(sender As Object, e As EventArgs) Handles KittyTypeButton.MouseHover
-        ToolTip1.Show("Adds KittyType To The Message" & Environment.NewLine & "Ex: ₹2,000", KittyTypeButton, 3000)
+        If ToolTipChB.Checked Then
+            ToolTip1.Show("Adds KittyType To The Message" & Environment.NewLine & "Ex: ₹2,000", KittyTypeButton, 3000)
+        End If
     End Sub
 
     Private Sub KittyNoButton_Click(sender As Object, e As EventArgs) Handles KittyNoButton.Click
@@ -51,7 +57,9 @@
     End Sub
 
     Private Sub KittyNoButton_MouseHover(sender As Object, e As EventArgs) Handles KittyNoButton.MouseHover
-        ToolTip1.Show("Adds KittyNo To The Message" & Environment.NewLine & "Ex: 984", KittyNoButton, 3000)
+        If ToolTipChB.Checked Then
+            ToolTip1.Show("Adds KittyNo To The Message" & Environment.NewLine & "Ex: 984", KittyNoButton, 3000)
+        End If
     End Sub
 
     Private Sub InstCompletedButton_Click(sender As Object, e As EventArgs) Handles InstCompletedButton.Click
@@ -61,7 +69,9 @@
     End Sub
 
     Private Sub InstCompletedButton_MouseHover(sender As Object, e As EventArgs) Handles InstCompletedButton.MouseHover
-        ToolTip1.Show("Adds Till Date Instalments Completed To The Message" & Environment.NewLine & "Ex: 3", InstCompletedButton, 3000)
+        If ToolTipChB.Checked Then
+            ToolTip1.Show("Adds Till Date Instalments Completed To The Message" & Environment.NewLine & "Ex: 3", InstCompletedButton, 3000)
+        End If
     End Sub
 
     Private Sub CompMonthButton_Click(sender As Object, e As EventArgs) Handles CompMonthButton.Click
@@ -71,7 +81,9 @@
     End Sub
 
     Private Sub CompMonthButton_MouseHover(sender As Object, e As EventArgs) Handles CompMonthButton.MouseHover
-        ToolTip1.Show($"Adds Till Date Instalments Completed As Months To The Message{Environment.NewLine}Ex1: Dec(2020){Environment.NewLine}Ex2: Dec(2020),Jan(2021){Environment.NewLine}Ex3: Dec(2020)-Feb(2021)", InstCompletedButton, 4000)
+        If ToolTipChB.Checked Then
+            ToolTip1.Show($"Adds Till Date Instalments Completed As Months To The Message{Environment.NewLine}Ex1: Dec(2020){Environment.NewLine}Ex2: Dec(2020),Jan(2021){Environment.NewLine}Ex3: Dec(2020)-Feb(2021)", InstCompletedButton, 4000)
+        End If
     End Sub
 
     Private Sub GivenAmountButton_Click(sender As Object, e As EventArgs) Handles GivenAmountButton.Click
@@ -81,7 +93,9 @@
     End Sub
 
     Private Sub GivenAmountButton_MouseHover(sender As Object, e As EventArgs) Handles GivenAmountButton.MouseHover
-        ToolTip1.Show($"Adds Till Date Given Amount To The Message{Environment.NewLine}Ex: ₹4,000", GivenAmountButton, 3000)
+        If ToolTipChB.Checked Then
+            ToolTip1.Show($"Adds Till Date Given Amount To The Message{Environment.NewLine}Ex: ₹4,000", GivenAmountButton, 3000)
+        End If
     End Sub
 
     Private Sub PendingInstButton_Click(sender As Object, e As EventArgs) Handles PendingInstButton.Click
@@ -91,7 +105,9 @@
     End Sub
 
     Private Sub PendingInstButton_MouseHover(sender As Object, e As EventArgs) Handles PendingInstButton.MouseHover
-        ToolTip1.Show("Adds Total Instalments Pending To The Message" & Environment.NewLine & "Ex: 2", InstCompletedButton, 3000)
+        If ToolTipChB.Checked Then
+            ToolTip1.Show("Adds Total Instalments Pending To The Message" & Environment.NewLine & "Ex: 2", InstCompletedButton, 3000)
+        End If
     End Sub
 
     Private Sub PendingMonthButton_Click(sender As Object, e As EventArgs) Handles PendingMonthButton.Click
@@ -101,7 +117,9 @@
     End Sub
 
     Private Sub PendingMonthButton_MouseHover(sender As Object, e As EventArgs) Handles PendingMonthButton.MouseHover
-        ToolTip1.Show($"Adds Total Instalments Pending As Months To The Message{Environment.NewLine}Ex1: Dec(2020){Environment.NewLine}Ex2: Dec(2020),Jan(2021){Environment.NewLine}Ex3: Dec(2020)-Feb(2021)", PendingMonthButton, 4000)
+        If ToolTipChB.Checked Then
+            ToolTip1.Show($"Adds Total Instalments Pending As Months To The Message{Environment.NewLine}Ex1: Dec(2020){Environment.NewLine}Ex2: Dec(2020),Jan(2021){Environment.NewLine}Ex3: Dec(2020)-Feb(2021)", PendingMonthButton, 4000)
+        End If
     End Sub
 
     Private Sub PendingAmountButton_Click(sender As Object, e As EventArgs) Handles PendingAmountButton.Click
@@ -111,11 +129,13 @@
     End Sub
 
     Private Sub PendingAmountButton_MouseHover(sender As Object, e As EventArgs) Handles PendingAmountButton.MouseHover
-        ToolTip1.Show($"Adds Total Pending Amount To The Message{Environment.NewLine}Ex: ₹3,000", GivenAmountButton, 3000)
+        If ToolTipChB.Checked Then
+            ToolTip1.Show($"Adds Total Pending Amount To The Message{Environment.NewLine}Ex: ₹3,000", GivenAmountButton, 3000)
+        End If
     End Sub
 #End Region
 
-    Public Function ReplaceTemplateWithDetails(_kitty As Kitty, _text As String)
+    Public Function ReplaceTemplateWithDetails(_kitty As Kitty, _text As String) As String
         _kitty.Initialize(True)
         With _kitty
             _text = _text.Replace(Templates.CoustName, .Owner.FullName())
@@ -129,11 +149,11 @@
             Dim InstPending As Integer = .GetInstalmentsPending
 
             If InstComp = 1 Then
-                _text = _text.Replace(Templates.PeriodInstalmentsPending, $"{ FirstDate:MMM}({ FirstDate:yyyy})")
+                _text = _text.Replace(Templates.PeriodIntalmentsCompleted, $"{ FirstDate:MMM}({ FirstDate:yyyy})")
             ElseIf InstComp = 2 Then
-                _text = _text.Replace(Templates.PeriodInstalmentsPending, $"{ FirstDate:MMM}({ FirstDate:yyyy}),{ FirstDate.AddMonths(1):MMM}({ FirstDate.AddMonths(1):yyyy})")
+                _text = _text.Replace(Templates.PeriodIntalmentsCompleted, $"{ FirstDate:MMM}({ FirstDate:yyyy}),{ FirstDate.AddMonths(1):MMM}({ FirstDate.AddMonths(1):yyyy})")
             Else
-                _text = _text.Replace(Templates.PeriodInstalmentsPending, $"{ FirstDate:MMM}({ FirstDate:yyyy})-{ FirstDate.AddMonths(InstComp - 1):MMM}({ FirstDate.AddMonths(InstComp - 1):yyyy})")
+                _text = _text.Replace(Templates.PeriodIntalmentsCompleted, $"{ FirstDate:MMM}({ FirstDate:yyyy})-{ FirstDate.AddMonths(InstComp - 1):MMM}({ FirstDate.AddMonths(InstComp - 1):yyyy})")
             End If
 
             _text = _text.Replace(Templates.GivenAmount, .GivenAmount.ToCurrency(True))
@@ -144,7 +164,7 @@
             ElseIf InstPending = 2 Then
                 _text = _text.Replace(Templates.PeriodInstalmentsPending, $"{ FirstDate.AddMonths(InstComp):MMM}({ FirstDate.AddMonths(InstComp):yyyy}),{ FirstDate.AddMonths(InstComp + 1):MMM}({ FirstDate.AddMonths(InstComp + 1):yyyy})")
             Else
-                _text = _text.Replace(Templates.PeriodInstalmentsPending, $"{ FirstDate.AddMonths(InstComp):MMM}({ FirstDate.AddMonths(InstComp):yyyy})+{ FirstDate.AddMonths(InstComp + InstPending - 1):MMM}({ FirstDate.AddMonths(InstComp + InstPending - 1):yyyy})")
+                _text = _text.Replace(Templates.PeriodInstalmentsPending, $"{ FirstDate.AddMonths(InstComp):MMM}({ FirstDate.AddMonths(InstComp):yyyy})-{ FirstDate.AddMonths(InstComp + InstPending - 1):MMM}({ FirstDate.AddMonths(InstComp + InstPending - 1):yyyy})")
             End If
 
             _text = _text.Replace(Templates.PendingAmount, Int(InstPending * .KittyType).ToCurrency(True))
@@ -154,18 +174,20 @@
         Return _text
     End Function
 
-    Private Sub MessageSender_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-    End Sub
-
-    Private Sub MessageTB_FontChanged(sender As Object, e As EventArgs) Handles MessageTB.FontChanged
-        MessageBox.Show(MessageTB.Font.Size)
-    End Sub
-
     Private Sub SendButton_Click(sender As Object, e As EventArgs) Handles SendButton.Click
-        MessageBox.Show(MessageTB.Font.Size)
+        PreviewTB.Text = ReplaceTemplateWithDetails(New Kitty(34, True, True), MessageTB.Text)
     End Sub
 
+    Private Sub MessageSender_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        InitaliseConnection()
+        Try : myconnection.Open() : Catch : End Try
+    End Sub
+
+    Private Sub ToolTipChB_CheckedChanged(sender As Object, e As EventArgs) Handles ToolTipChB.CheckedChanged
+        If Not ToolTipChB.Checked Then
+            ToolTip1.Hide(Me)
+        End If
+    End Sub
 End Class
 
 'ReadOnly SelectedColour As Color = Color.Wheat
