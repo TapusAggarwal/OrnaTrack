@@ -424,7 +424,7 @@
     Private Sub SendButton_Click(sender As Object, e As EventArgs) Handles SendButton.Click
         Using Fm As New MessageSender
             Fm.SelectedKitties = SelectedKitties
-            Fm.Show()
+            Fm.ShowDialog()
         End Using
     End Sub
 

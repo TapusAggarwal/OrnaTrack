@@ -204,7 +204,7 @@ You Can Also Pay Online Account Info Below."
             Dim MessageText As String = String.Join($"{Environment.NewLine}{Environment.NewLine}<Next Message>{Environment.NewLine}{Environment.NewLine}", MessagesList)
             SqlCommand($"Update Message_Data set MessageText='{MessageText}' where id=1")
             Fm.ClearPrevious()
-            Fm.Show()
+            Fm.ShowDialog()
         End Using
     End Sub
 
