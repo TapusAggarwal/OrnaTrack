@@ -81,7 +81,6 @@
 
     Public Sub ControlButton_Clicked(CustomerID As Integer, KittyID As Integer)
         Using Fm As New PreviewKitty With {
-            ._customer = New Customer(CustID:=CustomerID),
             ._kitty = New Kitty(KittyID, True, True)
         }
             Fm.ShowDialog()

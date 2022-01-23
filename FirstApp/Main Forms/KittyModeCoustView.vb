@@ -263,9 +263,9 @@ Public Class KittyModeCoustView
                     BookModeButton_Click(BookModeButton, EventArgs.Empty)
                 ElseIf e.Control And e.KeyCode = Keys.J Then
                     JumpToKittyNoButton_Click(JumpToKittyNoButton, EventArgs.Empty)
-                ElseIf e.Control And e.KeyCode = Keys.Right Then
+                ElseIf e.KeyCode = Keys.Right Then
                     NextKittyButton_Click(NextKittyButton, EventArgs.Empty)
-                ElseIf e.Control And e.KeyCode = Keys.Left Then
+                ElseIf e.KeyCode = Keys.Left Then
                     PrevKittyButton_Click(PrevKittyButton, EventArgs.Empty)
                 End If
             End If

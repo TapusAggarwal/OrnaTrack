@@ -241,8 +241,9 @@ Public Class Customer
 
     Public WriteOnly Property UpdatedLastName As String
         Set(value As String)
-            If String.IsNullOrEmpty(value) Then Exit Property
-            value = value.Replace("'", apostropheReplacer)
+            If Not String.IsNullOrEmpty(value) Then
+                value = value.Replace("'", apostropheReplacer)
+            End If
             SqlCommand("UPDATE Coustmers_Data set CsName='" & value.Trim & "' Where SrNo=" & CustomerID)
         End Set
     End Property

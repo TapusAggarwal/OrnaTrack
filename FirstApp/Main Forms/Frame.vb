@@ -540,11 +540,16 @@ Public Class Frame
                 Exit Sub
             End If
             If e.Control And e.KeyCode = Keys.R Then
-                Report.Show()
+                Form2.Show()
             End If
             If e.Control And e.KeyCode = Keys.B Then
                 If ActiveMdiChild Is Main Then
                     BookMode.Show()
+                End If
+            End If
+            If e.Control And e.KeyCode = Keys.M Then
+                If ActiveMdiChild() Is Main Then
+                    Form1.Show()
                 End If
             End If
         Catch ex As Exception

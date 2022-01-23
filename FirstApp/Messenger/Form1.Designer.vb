@@ -41,6 +41,7 @@ Partial Class Form1
         Me.InstalmentsLeftCList = New System.Windows.Forms.CheckedListBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.SelectedCustomersLB = New System.Windows.Forms.Label()
+        Me.IconButton1 = New FontAwesome.Sharp.IconButton()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -167,7 +168,7 @@ Partial Class Form1
         Me.KittyTypeCList.Items.AddRange(New Object() {"All", "500", "1000", "2000", "3000", "5000"})
         Me.KittyTypeCList.Location = New System.Drawing.Point(22, 186)
         Me.KittyTypeCList.Name = "KittyTypeCList"
-        Me.KittyTypeCList.Size = New System.Drawing.Size(118, 142)
+        Me.KittyTypeCList.Size = New System.Drawing.Size(145, 211)
         Me.KittyTypeCList.TabIndex = 264
         Me.KittyTypeCList.Visible = False
         '
@@ -177,14 +178,14 @@ Partial Class Form1
         Me.InstalmentsPendingCList.Items.AddRange(New Object() {"1 Instalment Pending", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13"})
         Me.InstalmentsPendingCList.Location = New System.Drawing.Point(458, 186)
         Me.InstalmentsPendingCList.Name = "InstalmentsPendingCList"
-        Me.InstalmentsPendingCList.Size = New System.Drawing.Size(257, 349)
+        Me.InstalmentsPendingCList.Size = New System.Drawing.Size(270, 349)
         Me.InstalmentsPendingCList.TabIndex = 263
         Me.InstalmentsPendingCList.Visible = False
         '
         'MaturedChB
         '
         Me.MaturedChB.AutoSize = True
-        Me.MaturedChB.Location = New System.Drawing.Point(22, 337)
+        Me.MaturedChB.Location = New System.Drawing.Point(22, 415)
         Me.MaturedChB.Name = "MaturedChB"
         Me.MaturedChB.Size = New System.Drawing.Size(94, 24)
         Me.MaturedChB.TabIndex = 262
@@ -195,7 +196,7 @@ Partial Class Form1
         'AvailedChB
         '
         Me.AvailedChB.AutoSize = True
-        Me.AvailedChB.Location = New System.Drawing.Point(22, 370)
+        Me.AvailedChB.Location = New System.Drawing.Point(22, 448)
         Me.AvailedChB.Name = "AvailedChB"
         Me.AvailedChB.Size = New System.Drawing.Size(86, 24)
         Me.AvailedChB.TabIndex = 261
@@ -209,7 +210,7 @@ Partial Class Form1
         Me.InstalmentsLeftCList.Items.AddRange(New Object() {"1 Instalment Left", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"})
         Me.InstalmentsLeftCList.Location = New System.Drawing.Point(193, 186)
         Me.InstalmentsLeftCList.Name = "InstalmentsLeftCList"
-        Me.InstalmentsLeftCList.Size = New System.Drawing.Size(234, 326)
+        Me.InstalmentsLeftCList.Size = New System.Drawing.Size(243, 349)
         Me.InstalmentsLeftCList.TabIndex = 260
         Me.InstalmentsLeftCList.Visible = False
         '
@@ -239,12 +240,35 @@ Partial Class Form1
         Me.SelectedCustomersLB.TabIndex = 266
         Me.SelectedCustomersLB.Text = "0"
         '
+        'IconButton1
+        '
+        Me.IconButton1.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.IconButton1.FlatAppearance.BorderSize = 0
+        Me.IconButton1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Lime
+        Me.IconButton1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.IconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.IconButton1.Font = New System.Drawing.Font("Century Gothic", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.IconButton1.ForeColor = System.Drawing.Color.Linen
+        Me.IconButton1.IconChar = FontAwesome.Sharp.IconChar.RedoAlt
+        Me.IconButton1.IconColor = System.Drawing.Color.White
+        Me.IconButton1.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.IconButton1.IconSize = 25
+        Me.IconButton1.Location = New System.Drawing.Point(231, 114)
+        Me.IconButton1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.IconButton1.Name = "IconButton1"
+        Me.IconButton1.Size = New System.Drawing.Size(127, 45)
+        Me.IconButton1.TabIndex = 267
+        Me.IconButton1.Text = "Previous"
+        Me.IconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.IconButton1.UseVisualStyleBackColor = False
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(60, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(740, 569)
+        Me.Controls.Add(Me.IconButton1)
         Me.Controls.Add(Me.SelectedCustomersLB)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.KittyTypeCList)
@@ -285,4 +309,5 @@ Partial Class Form1
     Friend WithEvents InstalmentsLeftCList As CheckedListBox
     Friend WithEvents Label1 As Label
     Friend WithEvents SelectedCustomersLB As Label
+    Friend WithEvents IconButton1 As FontAwesome.Sharp.IconButton
 End Class

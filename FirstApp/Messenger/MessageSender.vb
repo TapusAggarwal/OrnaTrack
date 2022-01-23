@@ -1,6 +1,11 @@
 ﻿Public Class MessageSender
 
+    Public Property SelectedKitties As New List(Of Kitty)
+
+    Dim MessagesList As New List(Of String)
+
     Structure Templates
+        Const Greeting = "{Greet}"
         Const CoustName = "{CoustName}"
         Const CoustPhNo = "{CoustPhNo}"
         Const KittyType = "{KittyType}"
@@ -133,54 +138,36 @@
             ToolTip1.Show($"Adds Total Pending Amount To The Message{Environment.NewLine}Ex: ₹3,000", GivenAmountButton, 3000)
         End If
     End Sub
-#End Region
 
-    Public Function ReplaceTemplateWithDetails(_kitty As Kitty, _text As String) As String
-        _kitty.Initialize(True)
-        With _kitty
-            _text = _text.Replace(Templates.CoustName, .Owner.FullName())
-            _text = _text.Replace(Templates.CoustPhNo, .Owner.PhNo(","))
-            _text = _text.Replace(Templates.KittyType, .KittyType.ToCurrency(True))
-            _text = _text.Replace(Templates.KittyNo, .KittyNo)
-            _text = _text.Replace(Templates.InstalmentsCompleted, .GetInstalmentsCompleted)
-
-            Dim FirstDate As Date = .Record.First.Key
-            Dim InstComp As Integer = .GetInstalmentsCompleted
-            Dim InstPending As Integer = .GetInstalmentsPending
-
-            If InstComp = 1 Then
-                _text = _text.Replace(Templates.PeriodIntalmentsCompleted, $"{ FirstDate:MMM}({ FirstDate:yyyy})")
-            ElseIf InstComp = 2 Then
-                _text = _text.Replace(Templates.PeriodIntalmentsCompleted, $"{ FirstDate:MMM}({ FirstDate:yyyy}),{ FirstDate.AddMonths(1):MMM}({ FirstDate.AddMonths(1):yyyy})")
-            Else
-                _text = _text.Replace(Templates.PeriodIntalmentsCompleted, $"{ FirstDate:MMM}({ FirstDate:yyyy})-{ FirstDate.AddMonths(InstComp - 1):MMM}({ FirstDate.AddMonths(InstComp - 1):yyyy})")
-            End If
-
-            _text = _text.Replace(Templates.GivenAmount, .GivenAmount.ToCurrency(True))
-            _text = _text.Replace(Templates.InstalmentsPending, InstPending)
-
-            If InstPending = 1 Then
-                _text = _text.Replace(Templates.PeriodInstalmentsPending, $"{ FirstDate.AddMonths(InstComp):MMM}({ FirstDate.AddMonths(InstComp):yyyy})")
-            ElseIf InstPending = 2 Then
-                _text = _text.Replace(Templates.PeriodInstalmentsPending, $"{ FirstDate.AddMonths(InstComp):MMM}({ FirstDate.AddMonths(InstComp):yyyy}),{ FirstDate.AddMonths(InstComp + 1):MMM}({ FirstDate.AddMonths(InstComp + 1):yyyy})")
-            Else
-                _text = _text.Replace(Templates.PeriodInstalmentsPending, $"{ FirstDate.AddMonths(InstComp):MMM}({ FirstDate.AddMonths(InstComp):yyyy})-{ FirstDate.AddMonths(InstComp + InstPending - 1):MMM}({ FirstDate.AddMonths(InstComp + InstPending - 1):yyyy})")
-            End If
-
-            _text = _text.Replace(Templates.PendingAmount, Int(InstPending * .KittyType).ToCurrency(True))
-
-        End With
-
-        Return _text
-    End Function
-
-    Private Sub SendButton_Click(sender As Object, e As EventArgs) Handles SendButton.Click
-        PreviewTB.Text = ReplaceTemplateWithDetails(New Kitty(34, True, True), MessageTB.Text)
+    Private Sub GreetButton_Click(sender As Object, e As EventArgs) Handles GreetButton.Click
+        MessageTB.SelectedText = Templates.Greeting
+        MessageTB.Select()
+        SendKeys.Send("{End}")
     End Sub
+
+    Private Sub GreetButton_MouseHover(sender As Object, e As EventArgs) Handles GreetButton.MouseHover
+        If ToolTipChB.Checked Then
+            ToolTip1.Show($"Adds A Greeting To Template.{Environment.NewLine}Ex: {PreviewForm.Greet()}", GreetButton, 3000)
+        End If
+    End Sub
+#End Region
 
     Private Sub MessageSender_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         InitaliseConnection()
         Try : myconnection.Open() : Catch : End Try
+
+        RecieptPanel.Visible = False
+        Size = New Point(Width - RecieptPanel.Width + 7, Height)
+
+        MessageTB.Text = "{Greet}
+Dear, {CoustName} Ji
+{CoustPhNo}
+Your Kitty Of {KittyType}({KittyNo})
+Is Due From-: {InstPendMonth}
+Instalment Pending({InstPend}) = {PendingAmt}
+Instalments Completed({InstCompl})-: {InstCompMonth}
+You Can Also Pay Online Account Info Below."
+
     End Sub
 
     Private Sub ToolTipChB_CheckedChanged(sender As Object, e As EventArgs) Handles ToolTipChB.CheckedChanged
@@ -188,6 +175,39 @@
             ToolTip1.Hide(Me)
         End If
     End Sub
+
+    Private Sub IconButton3_Click(sender As Object, e As EventArgs) Handles IconButton3.Click
+        Dim _temp As New Label With {
+            .Font = New Font("Century Gothic", 12.0!, FontStyle.Bold, GraphicsUnit.Point, 0),
+            .Visible = True,
+            .AutoSize = True,
+            .AutoEllipsis = True,
+            .ForeColor = Color.Green,
+            .BackColor = Color.FromArgb(36, 60, 60),
+            .Margin = New Padding(5)
+        }
+
+        If HandsCheckBox.Checked Then
+            MessagesList.Add(MessageTB.Text + "{hands}")
+        Else
+            MessagesList.Add(MessageTB.Text)
+        End If
+
+        _temp.Text = $"{MessagesList.Count}-" + MessageTB.Text
+        FlowLayoutPanel1.Controls.Add(_temp)
+
+    End Sub
+
+    Private Sub IconButton1_Click(sender As Object, e As EventArgs) Handles IconButton1.Click
+        Using Fm As New PreviewForm
+            Fm.SelectedKitties = SelectedKitties
+            Dim MessageText As String = String.Join($"{Environment.NewLine}{Environment.NewLine}<Next Message>{Environment.NewLine}{Environment.NewLine}", MessagesList)
+            SqlCommand($"Update Message_Data set MessageText='{MessageText}' where id=1")
+            Fm.ClearPrevious()
+            Fm.Show()
+        End Using
+    End Sub
+
 End Class
 
 'ReadOnly SelectedColour As Color = Color.Wheat
@@ -324,3 +344,12 @@ End Class
 'Private Sub IconButton4_Click(sender As Object, e As EventArgs) Handles IconButton4.Click
 
 'End Sub
+
+
+'{Greet}
+'Dear, {CoustName}
+'Your Kitty({KittyNo}-{KittyType})
+'Is Due From - {InstPendMonth}
+'Pending Amt. - {PendingAmt}
+'Instalments Completed - {InstCompl}:{InstCompMonth}
+'You Can Also Pay Online Account Info Below.
