@@ -283,19 +283,34 @@ Public Class KittyForm
             CBoxForm.ShowDialog()
             LoadComboBoxData(KittyTypeCB, Kitty.GetListOfKittyTypes)
         ElseIf (e.KeyCode = Keys.Enter) Then
+
+            Dim SelectedKittyType As Integer = 0
+
             Try
                 Dim dr As OleDbDataReader = DataReader($"Select * From DefaultSetter Where KittyType={_currentKitty.KittyType}")
                 While dr.Read
+                    SelectedKittyType = Int(dr("KittyType"))
                     KittyTypeCB.SelectedIndex = KittyTypeCB.FindStringExact(Int(dr("KittyType")))
                     TotalInstalmentsTB.Select()
                     TotalInstalmentsTB.Text = Int(dr("Duration"))
                     KittyIntrestCB.Select()
                     KittyIntrestCB.SelectedIndex = KittyIntrestCB.FindStringExact(dr("Intrest"))
-                    KittyNoTB.Select()
                 End While
                 dr.Close()
             Catch
             End Try
+
+            Try
+                Dim dr_UID As OleDbDataReader = DataReader($"Select KittyNo From Kitty_Data Where KittyType={SelectedKittyType} ORDER BY KittyNo DESC")
+                While dr_UID.Read
+                    KittyNoTB.Text = Int(dr_UID("KittyNo")) + 1
+                    KittyNoTB.Select()
+                    Exit While
+                End While
+                dr_UID.Close()
+            Catch ex As Exception
+            End Try
+
         End If
     End Sub
 
