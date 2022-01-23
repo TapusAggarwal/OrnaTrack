@@ -69,31 +69,30 @@ Public Class Form2
         Dim result As String = ""
         For Each PhNo In _customer.GetPhNo
 
+            Dim message As String = MessageTB.Text.Replace("{name}", _customer.FullName(" "))
+
             Dim dict As New Dictionary(Of String, String) From {
                         {"purpose", "wts_msg"},
                         {"phno", "91" + PhNo},
-                        {"msg", MessageTB.Text},
+                        {"msg", message},
                         {"hands", IIf(HandsCheckBox.Checked, "true", "false")},
                         {"img", imgPath}
                         }
 
             Dim request As New MultipartFormDataContent From {
                         {New StringContent("91" + PhNo.Trim), "phno"},
-                        {New StringContent(MessageTB.Text), "msg"},
+                        {New StringContent(message), "msg"},
                         {New StringContent(IIf(HandsCheckBox.Checked, "true", "false")), "hands"}
                     }
 
             If imgPath IsNot Nothing Then
                 request = New MultipartFormDataContent From {
                         {New StringContent("91" + PhNo.Trim), "phno"},
-                        {New StringContent(MessageTB.Text), "msg"},
+                        {New StringContent(message), "msg"},
                         {New StringContent(IIf(HandsCheckBox.Checked, "true", "false")), "hands"},
                         {New StreamContent(File.OpenRead(imgPath)), "image", New FileInfo(imgPath).Name}
                     }
             End If
-
-
-
 
             Dim ResponseString As String = Await ServerHttpRequest(Nothing, request, $"http://{My.Settings.connection_url}/upload")
 
@@ -110,6 +109,8 @@ Public Class Form2
     End Function
 
     Private Sub Form2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        InitaliseConnection()
+        Try : myconnection.Open() : Catch : End Try
         UpDate_Data()
     End Sub
 

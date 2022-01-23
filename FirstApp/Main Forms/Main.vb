@@ -167,6 +167,7 @@
     Private Sub KittyMode1_CheckedChanged(sender As Object, e As EventArgs) Handles KittyMode1.CheckedChanged
         FindCoustmerButton_Click(FindCoustmerButton, EventArgs.Empty)
         NameTB.Select()
+
     End Sub
 
 End Class

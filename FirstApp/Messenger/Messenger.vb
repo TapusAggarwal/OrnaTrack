@@ -1,6 +1,5 @@
 ﻿Imports System.IO
 Imports System.Net.Http
-Imports System.Net.Http.Headers
 Imports Newtonsoft.Json.Linq
 
 Public Class Messenger
@@ -150,17 +149,16 @@ Public Class Messenger
 
                     If response.SelectToken("result").ToString = "pass" Then
                         _temp.ForeColor = Color.ForestGreen
-                        _temp.Text = $"+{_entry.Key.Trim}: Sent"
+                        _temp.Text = $"+91{_entry.Key.Trim}: Sent"
                     ElseIf response.SelectToken("result").ToString = "fail" Then
                         _temp.ForeColor = Color.Firebrick
-                        _temp.Text = $"+{_entry.Key.Trim}: Failed"
+                        _temp.Text = $"+91{_entry.Key.Trim}: Failed"
                     Else
                         _temp.ForeColor = Color.Firebrick
-                        _temp.Text = $"+{_entry.Key.Trim}: NotRegistered"
+                        _temp.Text = $"+91{_entry.Key.Trim}: NotRegistered"
                     End If
                     FlowLayoutPanel1.Controls.Add(_temp)
                 End If
-
             Next
         Next
 

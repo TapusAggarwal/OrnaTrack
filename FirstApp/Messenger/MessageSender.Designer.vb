@@ -23,22 +23,22 @@ Partial Class MessageSender
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle22 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle24 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle25 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle26 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle27 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle28 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle29 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle30 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle31 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle32 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Column10 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -61,37 +61,38 @@ Partial Class MessageSender
         Me.DataGridViewButtonColumn1 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.MessageTB = New ProBaseAdvancedTextBox.ProBaseAdvancedTextBox.RichTextBoxPrintCtrl()
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.ProfileLabel = New System.Windows.Forms.Label()
-        Me.Panel3 = New System.Windows.Forms.Panel()
-        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.PreviewTB = New System.Windows.Forms.RichTextBox()
-        Me.ToolTipChB = New System.Windows.Forms.CheckBox()
-        Me.Panel4 = New System.Windows.Forms.Panel()
-        Me.Panel5 = New System.Windows.Forms.Panel()
-        Me.BackButton = New FontAwesome.Sharp.IconButton()
-        Me.ImgBox = New System.Windows.Forms.PictureBox()
-        Me.NextButton = New FontAwesome.Sharp.IconButton()
-        Me.InstCompletedButton = New FontAwesome.Sharp.IconButton()
-        Me.SendButton = New FontAwesome.Sharp.IconButton()
-        Me.GivenAmountButton = New FontAwesome.Sharp.IconButton()
-        Me.PendingAmountButton = New FontAwesome.Sharp.IconButton()
-        Me.RedoButton = New FontAwesome.Sharp.IconButton()
-        Me.PendingMonthButton = New FontAwesome.Sharp.IconButton()
         Me.StrikeoutButton = New FontAwesome.Sharp.IconButton()
         Me.UnderlinedButton = New FontAwesome.Sharp.IconButton()
         Me.ItalicButton = New FontAwesome.Sharp.IconButton()
         Me.BoldButton = New FontAwesome.Sharp.IconButton()
+        Me.ProfileLabel = New System.Windows.Forms.Label()
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.ToolTipChB = New System.Windows.Forms.CheckBox()
+        Me.MessagePanel = New System.Windows.Forms.Panel()
+        Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
+        Me.IconButton3 = New FontAwesome.Sharp.IconButton()
+        Me.IconButton1 = New FontAwesome.Sharp.IconButton()
+        Me.HandsCheckBox = New System.Windows.Forms.CheckBox()
+        Me.GreetButton = New FontAwesome.Sharp.IconButton()
+        Me.InstCompletedButton = New FontAwesome.Sharp.IconButton()
+        Me.GivenAmountButton = New FontAwesome.Sharp.IconButton()
+        Me.PendingAmountButton = New FontAwesome.Sharp.IconButton()
+        Me.PendingMonthButton = New FontAwesome.Sharp.IconButton()
         Me.KittyNoButton = New FontAwesome.Sharp.IconButton()
-        Me.UndoButton = New FontAwesome.Sharp.IconButton()
         Me.CompMonthButton = New FontAwesome.Sharp.IconButton()
         Me.KittyTypeButton = New FontAwesome.Sharp.IconButton()
         Me.PendingInstButton = New FontAwesome.Sharp.IconButton()
         Me.PhNoButton = New FontAwesome.Sharp.IconButton()
         Me.CoustNameButton = New FontAwesome.Sharp.IconButton()
+        Me.RecieptPanel = New System.Windows.Forms.Panel()
+        Me.BackButton = New FontAwesome.Sharp.IconButton()
+        Me.ImgBox = New System.Windows.Forms.PictureBox()
+        Me.NextButton = New FontAwesome.Sharp.IconButton()
         Me.Panel2.SuspendLayout()
-        Me.Panel4.SuspendLayout()
-        Me.Panel5.SuspendLayout()
+        Me.MessagePanel.SuspendLayout()
+        Me.RecieptPanel.SuspendLayout()
         CType(Me.ImgBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -108,12 +109,12 @@ Partial Class MessageSender
         'Column1
         '
         Me.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle17.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle17.NullValue = Nothing
-        DataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.White
-        DataGridViewCellStyle17.SelectionForeColor = System.Drawing.Color.Black
-        Me.Column1.DefaultCellStyle = DataGridViewCellStyle17
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.NullValue = Nothing
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black
+        Me.Column1.DefaultCellStyle = DataGridViewCellStyle1
         Me.Column1.Frozen = True
         Me.Column1.HeaderText = "SrNo"
         Me.Column1.MinimumWidth = 8
@@ -124,9 +125,9 @@ Partial Class MessageSender
         '
         'Column9
         '
-        DataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle18.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Column9.DefaultCellStyle = DataGridViewCellStyle18
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Column9.DefaultCellStyle = DataGridViewCellStyle2
         Me.Column9.Frozen = True
         Me.Column9.HeaderText = "KittyNo"
         Me.Column9.MinimumWidth = 8
@@ -137,9 +138,9 @@ Partial Class MessageSender
         'Column5
         '
         Me.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        DataGridViewCellStyle19.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle19.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Column5.DefaultCellStyle = DataGridViewCellStyle19
+        DataGridViewCellStyle3.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Column5.DefaultCellStyle = DataGridViewCellStyle3
         Me.Column5.Frozen = True
         Me.Column5.HeaderText = "KittyType"
         Me.Column5.MinimumWidth = 8
@@ -149,12 +150,12 @@ Partial Class MessageSender
         '
         'Column2
         '
-        DataGridViewCellStyle20.Font = New System.Drawing.Font("Century Schoolbook", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle20.Format = "d"
-        DataGridViewCellStyle20.NullValue = Nothing
-        DataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.White
-        DataGridViewCellStyle20.SelectionForeColor = System.Drawing.Color.Black
-        Me.Column2.DefaultCellStyle = DataGridViewCellStyle20
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Century Schoolbook", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle4.Format = "d"
+        DataGridViewCellStyle4.NullValue = Nothing
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.White
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black
+        Me.Column2.DefaultCellStyle = DataGridViewCellStyle4
         Me.Column2.Frozen = True
         Me.Column2.HeaderText = "Last Installment"
         Me.Column2.MinimumWidth = 8
@@ -164,9 +165,9 @@ Partial Class MessageSender
         '
         'Column6
         '
-        DataGridViewCellStyle21.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle21.ForeColor = System.Drawing.Color.Red
-        Me.Column6.DefaultCellStyle = DataGridViewCellStyle21
+        DataGridViewCellStyle5.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle5.ForeColor = System.Drawing.Color.Red
+        Me.Column6.DefaultCellStyle = DataGridViewCellStyle5
         Me.Column6.Frozen = True
         Me.Column6.HeaderText = "Given Amt."
         Me.Column6.MinimumWidth = 8
@@ -176,9 +177,9 @@ Partial Class MessageSender
         '
         'Column4
         '
-        DataGridViewCellStyle22.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle22.NullValue = Nothing
-        Me.Column4.DefaultCellStyle = DataGridViewCellStyle22
+        DataGridViewCellStyle6.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle6.NullValue = Nothing
+        Me.Column4.DefaultCellStyle = DataGridViewCellStyle6
         Me.Column4.Frozen = True
         Me.Column4.HeaderText = "Total Amt+Intrst"
         Me.Column4.MinimumWidth = 8
@@ -188,8 +189,8 @@ Partial Class MessageSender
         '
         'Status
         '
-        DataGridViewCellStyle23.Font = New System.Drawing.Font("Century Schoolbook", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Status.DefaultCellStyle = DataGridViewCellStyle23
+        DataGridViewCellStyle7.Font = New System.Drawing.Font("Century Schoolbook", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Status.DefaultCellStyle = DataGridViewCellStyle7
         Me.Status.Frozen = True
         Me.Status.HeaderText = "Status"
         Me.Status.MinimumWidth = 8
@@ -198,12 +199,12 @@ Partial Class MessageSender
         '
         'Column7
         '
-        DataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle24.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(80, Byte), Integer))
-        DataGridViewCellStyle24.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle24.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.ForestGreen
-        Me.Column7.DefaultCellStyle = DataGridViewCellStyle24
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(80, Byte), Integer))
+        DataGridViewCellStyle8.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle8.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.ForestGreen
+        Me.Column7.DefaultCellStyle = DataGridViewCellStyle8
         Me.Column7.Frozen = True
         Me.Column7.HeaderText = "Show Details"
         Me.Column7.MinimumWidth = 8
@@ -244,12 +245,12 @@ Partial Class MessageSender
         'DataGridViewTextBoxColumn1
         '
         Me.DataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        DataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle25.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle25.NullValue = Nothing
-        DataGridViewCellStyle25.SelectionBackColor = System.Drawing.Color.White
-        DataGridViewCellStyle25.SelectionForeColor = System.Drawing.Color.Black
-        Me.DataGridViewTextBoxColumn1.DefaultCellStyle = DataGridViewCellStyle25
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle9.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle9.NullValue = Nothing
+        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.White
+        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Black
+        Me.DataGridViewTextBoxColumn1.DefaultCellStyle = DataGridViewCellStyle9
         Me.DataGridViewTextBoxColumn1.HeaderText = "SrNo"
         Me.DataGridViewTextBoxColumn1.MinimumWidth = 8
         Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
@@ -259,9 +260,9 @@ Partial Class MessageSender
         '
         'DataGridViewTextBoxColumn2
         '
-        DataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle26.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DataGridViewTextBoxColumn2.DefaultCellStyle = DataGridViewCellStyle26
+        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle10.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DataGridViewTextBoxColumn2.DefaultCellStyle = DataGridViewCellStyle10
         Me.DataGridViewTextBoxColumn2.HeaderText = "KittyNo"
         Me.DataGridViewTextBoxColumn2.MinimumWidth = 8
         Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
@@ -271,9 +272,9 @@ Partial Class MessageSender
         'DataGridViewTextBoxColumn3
         '
         Me.DataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
-        DataGridViewCellStyle27.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle27.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DataGridViewTextBoxColumn3.DefaultCellStyle = DataGridViewCellStyle27
+        DataGridViewCellStyle11.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle11.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DataGridViewTextBoxColumn3.DefaultCellStyle = DataGridViewCellStyle11
         Me.DataGridViewTextBoxColumn3.HeaderText = "KittyType"
         Me.DataGridViewTextBoxColumn3.MinimumWidth = 8
         Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
@@ -282,12 +283,12 @@ Partial Class MessageSender
         '
         'DataGridViewTextBoxColumn4
         '
-        DataGridViewCellStyle28.Font = New System.Drawing.Font("Century Schoolbook", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle28.Format = "d"
-        DataGridViewCellStyle28.NullValue = Nothing
-        DataGridViewCellStyle28.SelectionBackColor = System.Drawing.Color.White
-        DataGridViewCellStyle28.SelectionForeColor = System.Drawing.Color.Black
-        Me.DataGridViewTextBoxColumn4.DefaultCellStyle = DataGridViewCellStyle28
+        DataGridViewCellStyle12.Font = New System.Drawing.Font("Century Schoolbook", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle12.Format = "d"
+        DataGridViewCellStyle12.NullValue = Nothing
+        DataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.White
+        DataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Black
+        Me.DataGridViewTextBoxColumn4.DefaultCellStyle = DataGridViewCellStyle12
         Me.DataGridViewTextBoxColumn4.HeaderText = "Last Installment"
         Me.DataGridViewTextBoxColumn4.MinimumWidth = 8
         Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
@@ -296,9 +297,9 @@ Partial Class MessageSender
         '
         'DataGridViewTextBoxColumn5
         '
-        DataGridViewCellStyle29.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle29.ForeColor = System.Drawing.Color.Red
-        Me.DataGridViewTextBoxColumn5.DefaultCellStyle = DataGridViewCellStyle29
+        DataGridViewCellStyle13.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle13.ForeColor = System.Drawing.Color.Red
+        Me.DataGridViewTextBoxColumn5.DefaultCellStyle = DataGridViewCellStyle13
         Me.DataGridViewTextBoxColumn5.HeaderText = "Given Amt."
         Me.DataGridViewTextBoxColumn5.MinimumWidth = 8
         Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
@@ -307,9 +308,9 @@ Partial Class MessageSender
         '
         'DataGridViewTextBoxColumn6
         '
-        DataGridViewCellStyle30.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle30.NullValue = Nothing
-        Me.DataGridViewTextBoxColumn6.DefaultCellStyle = DataGridViewCellStyle30
+        DataGridViewCellStyle14.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle14.NullValue = Nothing
+        Me.DataGridViewTextBoxColumn6.DefaultCellStyle = DataGridViewCellStyle14
         Me.DataGridViewTextBoxColumn6.HeaderText = "Total Amt+Intrst"
         Me.DataGridViewTextBoxColumn6.MinimumWidth = 8
         Me.DataGridViewTextBoxColumn6.Name = "DataGridViewTextBoxColumn6"
@@ -318,8 +319,8 @@ Partial Class MessageSender
         '
         'DataGridViewTextBoxColumn7
         '
-        DataGridViewCellStyle31.Font = New System.Drawing.Font("Century Schoolbook", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DataGridViewTextBoxColumn7.DefaultCellStyle = DataGridViewCellStyle31
+        DataGridViewCellStyle15.Font = New System.Drawing.Font("Century Schoolbook", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DataGridViewTextBoxColumn7.DefaultCellStyle = DataGridViewCellStyle15
         Me.DataGridViewTextBoxColumn7.HeaderText = "Status"
         Me.DataGridViewTextBoxColumn7.MinimumWidth = 8
         Me.DataGridViewTextBoxColumn7.Name = "DataGridViewTextBoxColumn7"
@@ -328,13 +329,13 @@ Partial Class MessageSender
         '
         'DataGridViewButtonColumn1
         '
-        DataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle32.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(80, Byte), Integer))
-        DataGridViewCellStyle32.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle32.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle32.NullValue = False
-        DataGridViewCellStyle32.SelectionBackColor = System.Drawing.Color.ForestGreen
-        Me.DataGridViewButtonColumn1.DefaultCellStyle = DataGridViewCellStyle32
+        DataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle16.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(80, Byte), Integer))
+        DataGridViewCellStyle16.Font = New System.Drawing.Font("Century Schoolbook", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle16.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle16.NullValue = False
+        DataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.ForestGreen
+        Me.DataGridViewButtonColumn1.DefaultCellStyle = DataGridViewCellStyle16
         Me.DataGridViewButtonColumn1.HeaderText = ""
         Me.DataGridViewButtonColumn1.MinimumWidth = 8
         Me.DataGridViewButtonColumn1.Name = "DataGridViewButtonColumn1"
@@ -343,302 +344,28 @@ Partial Class MessageSender
         '
         'MessageTB
         '
-        Me.MessageTB.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.MessageTB.AutoWordSelection = True
         Me.MessageTB.BackColor = System.Drawing.Color.Lavender
         Me.MessageTB.Font = New System.Drawing.Font("Century Schoolbook", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.MessageTB.Location = New System.Drawing.Point(41, 220)
+        Me.MessageTB.Location = New System.Drawing.Point(10, 190)
         Me.MessageTB.Name = "MessageTB"
         Me.MessageTB.Size = New System.Drawing.Size(554, 324)
         Me.MessageTB.TabIndex = 260
         Me.MessageTB.Text = ""
+        Me.MessageTB.ZoomFactor = 0.6!
         '
         'Panel2
         '
-        Me.Panel2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(20, Byte), Integer), CType(CType(55, Byte), Integer))
         Me.Panel2.Controls.Add(Me.StrikeoutButton)
         Me.Panel2.Controls.Add(Me.UnderlinedButton)
         Me.Panel2.Controls.Add(Me.ItalicButton)
         Me.Panel2.Controls.Add(Me.BoldButton)
-        Me.Panel2.Location = New System.Drawing.Point(649, 221)
+        Me.Panel2.Location = New System.Drawing.Point(632, 221)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(54, 217)
         Me.Panel2.TabIndex = 267
         Me.Panel2.Visible = False
-        '
-        'ProfileLabel
-        '
-        Me.ProfileLabel.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.ProfileLabel.AutoSize = True
-        Me.ProfileLabel.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(60, Byte), Integer))
-        Me.ProfileLabel.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ProfileLabel.ForeColor = System.Drawing.SystemColors.ActiveCaption
-        Me.ProfileLabel.Location = New System.Drawing.Point(64, 558)
-        Me.ProfileLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.ProfileLabel.Name = "ProfileLabel"
-        Me.ProfileLabel.Size = New System.Drawing.Size(107, 30)
-        Me.ProfileLabel.TabIndex = 273
-        Me.ProfileLabel.Text = "Preview"
-        '
-        'Panel3
-        '
-        Me.Panel3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Panel3.BackColor = System.Drawing.Color.White
-        Me.Panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel3.Location = New System.Drawing.Point(41, 580)
-        Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(554, 3)
-        Me.Panel3.TabIndex = 274
-        '
-        'ToolTip1
-        '
-        Me.ToolTip1.AutoPopDelay = 3000
-        Me.ToolTip1.InitialDelay = 500
-        Me.ToolTip1.ReshowDelay = 100
-        '
-        'Panel1
-        '
-        Me.Panel1.BackColor = System.Drawing.Color.White
-        Me.Panel1.Location = New System.Drawing.Point(12, 15)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(534, 902)
-        Me.Panel1.TabIndex = 236
-        '
-        'PreviewTB
-        '
-        Me.PreviewTB.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.PreviewTB.BackColor = System.Drawing.Color.Lavender
-        Me.PreviewTB.Location = New System.Drawing.Point(41, 593)
-        Me.PreviewTB.Name = "PreviewTB"
-        Me.PreviewTB.Size = New System.Drawing.Size(554, 324)
-        Me.PreviewTB.TabIndex = 289
-        Me.PreviewTB.Text = ""
-        '
-        'ToolTipChB
-        '
-        Me.ToolTipChB.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.ToolTipChB.AutoSize = True
-        Me.ToolTipChB.Location = New System.Drawing.Point(718, 188)
-        Me.ToolTipChB.Name = "ToolTipChB"
-        Me.ToolTipChB.Size = New System.Drawing.Size(22, 21)
-        Me.ToolTipChB.TabIndex = 290
-        Me.ToolTipChB.UseVisualStyleBackColor = True
-        '
-        'Panel4
-        '
-        Me.Panel4.Controls.Add(Me.ProfileLabel)
-        Me.Panel4.Controls.Add(Me.ToolTipChB)
-        Me.Panel4.Controls.Add(Me.MessageTB)
-        Me.Panel4.Controls.Add(Me.PreviewTB)
-        Me.Panel4.Controls.Add(Me.InstCompletedButton)
-        Me.Panel4.Controls.Add(Me.SendButton)
-        Me.Panel4.Controls.Add(Me.GivenAmountButton)
-        Me.Panel4.Controls.Add(Me.PendingAmountButton)
-        Me.Panel4.Controls.Add(Me.RedoButton)
-        Me.Panel4.Controls.Add(Me.PendingMonthButton)
-        Me.Panel4.Controls.Add(Me.Panel2)
-        Me.Panel4.Controls.Add(Me.KittyNoButton)
-        Me.Panel4.Controls.Add(Me.UndoButton)
-        Me.Panel4.Controls.Add(Me.CompMonthButton)
-        Me.Panel4.Controls.Add(Me.Panel3)
-        Me.Panel4.Controls.Add(Me.KittyTypeButton)
-        Me.Panel4.Controls.Add(Me.PendingInstButton)
-        Me.Panel4.Controls.Add(Me.PhNoButton)
-        Me.Panel4.Controls.Add(Me.CoustNameButton)
-        Me.Panel4.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel4.Location = New System.Drawing.Point(607, 0)
-        Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(750, 933)
-        Me.Panel4.TabIndex = 291
-        '
-        'Panel5
-        '
-        Me.Panel5.Controls.Add(Me.Panel1)
-        Me.Panel5.Controls.Add(Me.BackButton)
-        Me.Panel5.Controls.Add(Me.ImgBox)
-        Me.Panel5.Controls.Add(Me.NextButton)
-        Me.Panel5.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Panel5.Location = New System.Drawing.Point(0, 0)
-        Me.Panel5.Name = "Panel5"
-        Me.Panel5.Size = New System.Drawing.Size(608, 933)
-        Me.Panel5.TabIndex = 291
-        '
-        'BackButton
-        '
-        Me.BackButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(70, Byte), Integer))
-        Me.BackButton.FlatAppearance.BorderSize = 0
-        Me.BackButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BackButton.Font = New System.Drawing.Font("Cambria", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BackButton.ForeColor = System.Drawing.Color.MediumPurple
-        Me.BackButton.IconChar = FontAwesome.Sharp.IconChar.ArrowCircleLeft
-        Me.BackButton.IconColor = System.Drawing.Color.MediumPurple
-        Me.BackButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.BackButton.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.BackButton.Location = New System.Drawing.Point(546, 94)
-        Me.BackButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.BackButton.Name = "BackButton"
-        Me.BackButton.Size = New System.Drawing.Size(54, 62)
-        Me.BackButton.TabIndex = 250
-        Me.BackButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.BackButton.UseVisualStyleBackColor = False
-        '
-        'ImgBox
-        '
-        Me.ImgBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.ImgBox.Location = New System.Drawing.Point(12, 15)
-        Me.ImgBox.Name = "ImgBox"
-        Me.ImgBox.Size = New System.Drawing.Size(534, 902)
-        Me.ImgBox.TabIndex = 0
-        Me.ImgBox.TabStop = False
-        Me.ImgBox.Visible = False
-        '
-        'NextButton
-        '
-        Me.NextButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(70, Byte), Integer))
-        Me.NextButton.FlatAppearance.BorderSize = 0
-        Me.NextButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.NextButton.Font = New System.Drawing.Font("Cambria", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.NextButton.ForeColor = System.Drawing.Color.MediumPurple
-        Me.NextButton.IconChar = FontAwesome.Sharp.IconChar.ArrowCircleRight
-        Me.NextButton.IconColor = System.Drawing.Color.MediumPurple
-        Me.NextButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.NextButton.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.NextButton.Location = New System.Drawing.Point(546, 159)
-        Me.NextButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.NextButton.Name = "NextButton"
-        Me.NextButton.Size = New System.Drawing.Size(54, 62)
-        Me.NextButton.TabIndex = 249
-        Me.NextButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
-        Me.NextButton.UseVisualStyleBackColor = False
-        '
-        'InstCompletedButton
-        '
-        Me.InstCompletedButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.InstCompletedButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(70, Byte), Integer))
-        Me.InstCompletedButton.FlatAppearance.BorderSize = 0
-        Me.InstCompletedButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.InstCompletedButton.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.InstCompletedButton.ForeColor = System.Drawing.Color.MediumPurple
-        Me.InstCompletedButton.IconChar = FontAwesome.Sharp.IconChar.Table
-        Me.InstCompletedButton.IconColor = System.Drawing.Color.White
-        Me.InstCompletedButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.InstCompletedButton.IconSize = 25
-        Me.InstCompletedButton.Location = New System.Drawing.Point(6, 70)
-        Me.InstCompletedButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.InstCompletedButton.Name = "InstCompletedButton"
-        Me.InstCompletedButton.Size = New System.Drawing.Size(229, 52)
-        Me.InstCompletedButton.TabIndex = 288
-        Me.InstCompletedButton.Text = "Inst Completed"
-        Me.InstCompletedButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.InstCompletedButton.UseVisualStyleBackColor = False
-        '
-        'SendButton
-        '
-        Me.SendButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.SendButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.SendButton.FlatAppearance.BorderSize = 0
-        Me.SendButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Lime
-        Me.SendButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.SendButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.SendButton.Font = New System.Drawing.Font("Century Gothic", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SendButton.ForeColor = System.Drawing.Color.Linen
-        Me.SendButton.IconChar = FontAwesome.Sharp.IconChar.PaperPlane
-        Me.SendButton.IconColor = System.Drawing.Color.White
-        Me.SendButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.SendButton.IconSize = 36
-        Me.SendButton.Location = New System.Drawing.Point(613, 497)
-        Me.SendButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.SendButton.Name = "SendButton"
-        Me.SendButton.Size = New System.Drawing.Size(127, 47)
-        Me.SendButton.TabIndex = 243
-        Me.SendButton.Text = "Send"
-        Me.SendButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.SendButton.UseVisualStyleBackColor = False
-        '
-        'GivenAmountButton
-        '
-        Me.GivenAmountButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.GivenAmountButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(70, Byte), Integer))
-        Me.GivenAmountButton.FlatAppearance.BorderSize = 0
-        Me.GivenAmountButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.GivenAmountButton.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GivenAmountButton.ForeColor = System.Drawing.Color.MediumPurple
-        Me.GivenAmountButton.IconChar = FontAwesome.Sharp.IconChar.Clock
-        Me.GivenAmountButton.IconColor = System.Drawing.Color.White
-        Me.GivenAmountButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.GivenAmountButton.IconSize = 30
-        Me.GivenAmountButton.Location = New System.Drawing.Point(508, 70)
-        Me.GivenAmountButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.GivenAmountButton.Name = "GivenAmountButton"
-        Me.GivenAmountButton.Size = New System.Drawing.Size(223, 52)
-        Me.GivenAmountButton.TabIndex = 287
-        Me.GivenAmountButton.Text = "Given Amount"
-        Me.GivenAmountButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.GivenAmountButton.UseVisualStyleBackColor = False
-        '
-        'PendingAmountButton
-        '
-        Me.PendingAmountButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.PendingAmountButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(70, Byte), Integer))
-        Me.PendingAmountButton.FlatAppearance.BorderSize = 0
-        Me.PendingAmountButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.PendingAmountButton.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.PendingAmountButton.ForeColor = System.Drawing.Color.MediumPurple
-        Me.PendingAmountButton.IconChar = FontAwesome.Sharp.IconChar.Clock
-        Me.PendingAmountButton.IconColor = System.Drawing.Color.White
-        Me.PendingAmountButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.PendingAmountButton.IconSize = 30
-        Me.PendingAmountButton.Location = New System.Drawing.Point(456, 132)
-        Me.PendingAmountButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.PendingAmountButton.Name = "PendingAmountButton"
-        Me.PendingAmountButton.Size = New System.Drawing.Size(275, 52)
-        Me.PendingAmountButton.TabIndex = 286
-        Me.PendingAmountButton.Text = "Pending Amount"
-        Me.PendingAmountButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.PendingAmountButton.UseVisualStyleBackColor = False
-        '
-        'RedoButton
-        '
-        Me.RedoButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.RedoButton.BackColor = System.Drawing.Color.Transparent
-        Me.RedoButton.FlatAppearance.BorderSize = 0
-        Me.RedoButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.RedoButton.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RedoButton.ForeColor = System.Drawing.Color.MediumPurple
-        Me.RedoButton.IconChar = FontAwesome.Sharp.IconChar.RedoAlt
-        Me.RedoButton.IconColor = System.Drawing.Color.MediumPurple
-        Me.RedoButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.RedoButton.IconSize = 35
-        Me.RedoButton.Location = New System.Drawing.Point(680, 445)
-        Me.RedoButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.RedoButton.Name = "RedoButton"
-        Me.RedoButton.Size = New System.Drawing.Size(29, 38)
-        Me.RedoButton.TabIndex = 271
-        Me.RedoButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.RedoButton.UseVisualStyleBackColor = False
-        Me.RedoButton.Visible = False
-        '
-        'PendingMonthButton
-        '
-        Me.PendingMonthButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.PendingMonthButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(70, Byte), Integer))
-        Me.PendingMonthButton.FlatAppearance.BorderSize = 0
-        Me.PendingMonthButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.PendingMonthButton.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.PendingMonthButton.ForeColor = System.Drawing.Color.MediumPurple
-        Me.PendingMonthButton.IconChar = FontAwesome.Sharp.IconChar.Clock
-        Me.PendingMonthButton.IconColor = System.Drawing.Color.White
-        Me.PendingMonthButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.PendingMonthButton.IconSize = 30
-        Me.PendingMonthButton.Location = New System.Drawing.Point(200, 132)
-        Me.PendingMonthButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.PendingMonthButton.Name = "PendingMonthButton"
-        Me.PendingMonthButton.Size = New System.Drawing.Size(248, 52)
-        Me.PendingMonthButton.TabIndex = 285
-        Me.PendingMonthButton.Text = "Inst-Pend.-Month"
-        Me.PendingMonthButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.PendingMonthButton.UseVisualStyleBackColor = False
         '
         'StrikeoutButton
         '
@@ -724,9 +451,266 @@ Partial Class MessageSender
         Me.BoldButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.BoldButton.UseVisualStyleBackColor = False
         '
+        'ProfileLabel
+        '
+        Me.ProfileLabel.AutoSize = True
+        Me.ProfileLabel.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(60, Byte), Integer))
+        Me.ProfileLabel.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ProfileLabel.ForeColor = System.Drawing.SystemColors.ActiveCaption
+        Me.ProfileLabel.Location = New System.Drawing.Point(33, 524)
+        Me.ProfileLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.ProfileLabel.Name = "ProfileLabel"
+        Me.ProfileLabel.Size = New System.Drawing.Size(130, 30)
+        Me.ProfileLabel.TabIndex = 273
+        Me.ProfileLabel.Text = "Messages"
+        '
+        'Panel3
+        '
+        Me.Panel3.BackColor = System.Drawing.Color.White
+        Me.Panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel3.Location = New System.Drawing.Point(10, 543)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(554, 3)
+        Me.Panel3.TabIndex = 274
+        '
+        'ToolTip1
+        '
+        Me.ToolTip1.AutoPopDelay = 3000
+        Me.ToolTip1.InitialDelay = 500
+        Me.ToolTip1.ReshowDelay = 100
+        '
+        'Panel1
+        '
+        Me.Panel1.BackColor = System.Drawing.Color.White
+        Me.Panel1.Location = New System.Drawing.Point(12, 15)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(534, 902)
+        Me.Panel1.TabIndex = 236
+        '
+        'ToolTipChB
+        '
+        Me.ToolTipChB.AutoSize = True
+        Me.ToolTipChB.Location = New System.Drawing.Point(717, 190)
+        Me.ToolTipChB.Name = "ToolTipChB"
+        Me.ToolTipChB.Size = New System.Drawing.Size(22, 21)
+        Me.ToolTipChB.TabIndex = 290
+        Me.ToolTipChB.UseVisualStyleBackColor = True
+        '
+        'MessagePanel
+        '
+        Me.MessagePanel.Controls.Add(Me.FlowLayoutPanel1)
+        Me.MessagePanel.Controls.Add(Me.IconButton3)
+        Me.MessagePanel.Controls.Add(Me.IconButton1)
+        Me.MessagePanel.Controls.Add(Me.HandsCheckBox)
+        Me.MessagePanel.Controls.Add(Me.GreetButton)
+        Me.MessagePanel.Controls.Add(Me.ProfileLabel)
+        Me.MessagePanel.Controls.Add(Me.ToolTipChB)
+        Me.MessagePanel.Controls.Add(Me.MessageTB)
+        Me.MessagePanel.Controls.Add(Me.InstCompletedButton)
+        Me.MessagePanel.Controls.Add(Me.GivenAmountButton)
+        Me.MessagePanel.Controls.Add(Me.PendingAmountButton)
+        Me.MessagePanel.Controls.Add(Me.PendingMonthButton)
+        Me.MessagePanel.Controls.Add(Me.Panel2)
+        Me.MessagePanel.Controls.Add(Me.KittyNoButton)
+        Me.MessagePanel.Controls.Add(Me.CompMonthButton)
+        Me.MessagePanel.Controls.Add(Me.Panel3)
+        Me.MessagePanel.Controls.Add(Me.KittyTypeButton)
+        Me.MessagePanel.Controls.Add(Me.PendingInstButton)
+        Me.MessagePanel.Controls.Add(Me.PhNoButton)
+        Me.MessagePanel.Controls.Add(Me.CoustNameButton)
+        Me.MessagePanel.Dock = System.Windows.Forms.DockStyle.Right
+        Me.MessagePanel.Location = New System.Drawing.Point(607, 0)
+        Me.MessagePanel.Name = "MessagePanel"
+        Me.MessagePanel.Size = New System.Drawing.Size(760, 933)
+        Me.MessagePanel.TabIndex = 291
+        '
+        'FlowLayoutPanel1
+        '
+        Me.FlowLayoutPanel1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.FlowLayoutPanel1.AutoScroll = True
+        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(8, 561)
+        Me.FlowLayoutPanel1.Margin = New System.Windows.Forms.Padding(1000)
+        Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(554, 356)
+        Me.FlowLayoutPanel1.TabIndex = 9996
+        '
+        'IconButton3
+        '
+        Me.IconButton3.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.IconButton3.FlatAppearance.BorderSize = 0
+        Me.IconButton3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Lime
+        Me.IconButton3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.IconButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.IconButton3.Font = New System.Drawing.Font("Century Gothic", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.IconButton3.ForeColor = System.Drawing.Color.Linen
+        Me.IconButton3.IconChar = FontAwesome.Sharp.IconChar.Plus
+        Me.IconButton3.IconColor = System.Drawing.Color.White
+        Me.IconButton3.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.IconButton3.IconSize = 36
+        Me.IconButton3.Location = New System.Drawing.Point(579, 445)
+        Me.IconButton3.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.IconButton3.Name = "IconButton3"
+        Me.IconButton3.Size = New System.Drawing.Size(167, 44)
+        Me.IconButton3.TabIndex = 9995
+        Me.IconButton3.Text = "Add"
+        Me.IconButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.IconButton3.UseVisualStyleBackColor = False
+        '
+        'IconButton1
+        '
+        Me.IconButton1.AutoSize = True
+        Me.IconButton1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.IconButton1.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.IconButton1.FlatAppearance.BorderSize = 0
+        Me.IconButton1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Lime
+        Me.IconButton1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.IconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.IconButton1.Font = New System.Drawing.Font("Century Gothic", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.IconButton1.ForeColor = System.Drawing.Color.Linen
+        Me.IconButton1.IconChar = FontAwesome.Sharp.IconChar.Paragraph
+        Me.IconButton1.IconColor = System.Drawing.Color.White
+        Me.IconButton1.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.IconButton1.IconSize = 36
+        Me.IconButton1.Location = New System.Drawing.Point(579, 499)
+        Me.IconButton1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.IconButton1.Name = "IconButton1"
+        Me.IconButton1.Size = New System.Drawing.Size(167, 44)
+        Me.IconButton1.TabIndex = 9993
+        Me.IconButton1.Text = "Preview"
+        Me.IconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.IconButton1.UseVisualStyleBackColor = False
+        '
+        'HandsCheckBox
+        '
+        Me.HandsCheckBox.AutoSize = True
+        Me.HandsCheckBox.Checked = True
+        Me.HandsCheckBox.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.HandsCheckBox.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.HandsCheckBox.ForeColor = System.Drawing.Color.Orange
+        Me.HandsCheckBox.Location = New System.Drawing.Point(585, 555)
+        Me.HandsCheckBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.HandsCheckBox.Name = "HandsCheckBox"
+        Me.HandsCheckBox.Size = New System.Drawing.Size(153, 27)
+        Me.HandsCheckBox.TabIndex = 9992
+        Me.HandsCheckBox.Text = "Hands Emoji"
+        Me.HandsCheckBox.UseVisualStyleBackColor = True
+        '
+        'GreetButton
+        '
+        Me.GreetButton.AutoSize = True
+        Me.GreetButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.GreetButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(70, Byte), Integer))
+        Me.GreetButton.FlatAppearance.BorderSize = 0
+        Me.GreetButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.GreetButton.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GreetButton.ForeColor = System.Drawing.Color.MediumPurple
+        Me.GreetButton.IconChar = FontAwesome.Sharp.IconChar.HandHoldingHeart
+        Me.GreetButton.IconColor = System.Drawing.Color.White
+        Me.GreetButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.GreetButton.IconSize = 30
+        Me.GreetButton.Location = New System.Drawing.Point(6, 18)
+        Me.GreetButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.GreetButton.Name = "GreetButton"
+        Me.GreetButton.Size = New System.Drawing.Size(117, 37)
+        Me.GreetButton.TabIndex = 291
+        Me.GreetButton.Text = "Greet"
+        Me.GreetButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.GreetButton.UseVisualStyleBackColor = False
+        '
+        'InstCompletedButton
+        '
+        Me.InstCompletedButton.AutoSize = True
+        Me.InstCompletedButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.InstCompletedButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(70, Byte), Integer))
+        Me.InstCompletedButton.FlatAppearance.BorderSize = 0
+        Me.InstCompletedButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.InstCompletedButton.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.InstCompletedButton.ForeColor = System.Drawing.Color.MediumPurple
+        Me.InstCompletedButton.IconChar = FontAwesome.Sharp.IconChar.Check
+        Me.InstCompletedButton.IconColor = System.Drawing.Color.White
+        Me.InstCompletedButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.InstCompletedButton.IconSize = 40
+        Me.InstCompletedButton.Location = New System.Drawing.Point(1, 70)
+        Me.InstCompletedButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.InstCompletedButton.Name = "InstCompletedButton"
+        Me.InstCompletedButton.Size = New System.Drawing.Size(237, 46)
+        Me.InstCompletedButton.TabIndex = 288
+        Me.InstCompletedButton.Text = "Inst Completed"
+        Me.InstCompletedButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.InstCompletedButton.UseVisualStyleBackColor = False
+        '
+        'GivenAmountButton
+        '
+        Me.GivenAmountButton.AutoSize = True
+        Me.GivenAmountButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.GivenAmountButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(70, Byte), Integer))
+        Me.GivenAmountButton.FlatAppearance.BorderSize = 0
+        Me.GivenAmountButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.GivenAmountButton.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GivenAmountButton.ForeColor = System.Drawing.Color.MediumPurple
+        Me.GivenAmountButton.IconChar = FontAwesome.Sharp.IconChar.HandHoldingUsd
+        Me.GivenAmountButton.IconColor = System.Drawing.Color.White
+        Me.GivenAmountButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.GivenAmountButton.IconSize = 40
+        Me.GivenAmountButton.Location = New System.Drawing.Point(521, 70)
+        Me.GivenAmountButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.GivenAmountButton.Name = "GivenAmountButton"
+        Me.GivenAmountButton.Size = New System.Drawing.Size(228, 46)
+        Me.GivenAmountButton.TabIndex = 287
+        Me.GivenAmountButton.Text = "Given Amount"
+        Me.GivenAmountButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.GivenAmountButton.UseVisualStyleBackColor = False
+        '
+        'PendingAmountButton
+        '
+        Me.PendingAmountButton.AutoSize = True
+        Me.PendingAmountButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.PendingAmountButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(70, Byte), Integer))
+        Me.PendingAmountButton.FlatAppearance.BorderSize = 0
+        Me.PendingAmountButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.PendingAmountButton.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.PendingAmountButton.ForeColor = System.Drawing.Color.MediumPurple
+        Me.PendingAmountButton.IconChar = FontAwesome.Sharp.IconChar.Handshake
+        Me.PendingAmountButton.IconColor = System.Drawing.Color.White
+        Me.PendingAmountButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.PendingAmountButton.IconSize = 40
+        Me.PendingAmountButton.Location = New System.Drawing.Point(492, 132)
+        Me.PendingAmountButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.PendingAmountButton.Name = "PendingAmountButton"
+        Me.PendingAmountButton.Size = New System.Drawing.Size(252, 46)
+        Me.PendingAmountButton.TabIndex = 286
+        Me.PendingAmountButton.Text = "Pending Amount"
+        Me.PendingAmountButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.PendingAmountButton.UseVisualStyleBackColor = False
+        '
+        'PendingMonthButton
+        '
+        Me.PendingMonthButton.AutoSize = True
+        Me.PendingMonthButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.PendingMonthButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(70, Byte), Integer))
+        Me.PendingMonthButton.FlatAppearance.BorderSize = 0
+        Me.PendingMonthButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.PendingMonthButton.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.PendingMonthButton.ForeColor = System.Drawing.Color.MediumPurple
+        Me.PendingMonthButton.IconChar = FontAwesome.Sharp.IconChar.CalendarTimes
+        Me.PendingMonthButton.IconColor = System.Drawing.Color.White
+        Me.PendingMonthButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.PendingMonthButton.IconSize = 40
+        Me.PendingMonthButton.Location = New System.Drawing.Point(221, 132)
+        Me.PendingMonthButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.PendingMonthButton.Name = "PendingMonthButton"
+        Me.PendingMonthButton.Size = New System.Drawing.Size(254, 46)
+        Me.PendingMonthButton.TabIndex = 285
+        Me.PendingMonthButton.Text = "Inst-Pend.-Month"
+        Me.PendingMonthButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.PendingMonthButton.UseVisualStyleBackColor = False
+        '
         'KittyNoButton
         '
-        Me.KittyNoButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.KittyNoButton.AutoSize = True
+        Me.KittyNoButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.KittyNoButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(70, Byte), Integer))
         Me.KittyNoButton.FlatAppearance.BorderSize = 0
         Me.KittyNoButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -735,53 +719,33 @@ Partial Class MessageSender
         Me.KittyNoButton.IconChar = FontAwesome.Sharp.IconChar.FileAlt
         Me.KittyNoButton.IconColor = System.Drawing.Color.White
         Me.KittyNoButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.KittyNoButton.IconSize = 25
-        Me.KittyNoButton.Location = New System.Drawing.Point(578, 6)
+        Me.KittyNoButton.IconSize = 30
+        Me.KittyNoButton.Location = New System.Drawing.Point(610, 18)
         Me.KittyNoButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.KittyNoButton.Name = "KittyNoButton"
-        Me.KittyNoButton.Size = New System.Drawing.Size(131, 52)
+        Me.KittyNoButton.Size = New System.Drawing.Size(133, 37)
         Me.KittyNoButton.TabIndex = 283
         Me.KittyNoButton.Text = "KittyNo"
         Me.KittyNoButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.KittyNoButton.UseVisualStyleBackColor = False
         '
-        'UndoButton
-        '
-        Me.UndoButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.UndoButton.BackColor = System.Drawing.Color.Transparent
-        Me.UndoButton.FlatAppearance.BorderSize = 0
-        Me.UndoButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.UndoButton.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.UndoButton.ForeColor = System.Drawing.Color.MediumPurple
-        Me.UndoButton.IconChar = FontAwesome.Sharp.IconChar.UndoAlt
-        Me.UndoButton.IconColor = System.Drawing.Color.MediumPurple
-        Me.UndoButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.UndoButton.IconSize = 35
-        Me.UndoButton.Location = New System.Drawing.Point(643, 445)
-        Me.UndoButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.UndoButton.Name = "UndoButton"
-        Me.UndoButton.Size = New System.Drawing.Size(29, 38)
-        Me.UndoButton.TabIndex = 272
-        Me.UndoButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.UndoButton.UseVisualStyleBackColor = False
-        Me.UndoButton.Visible = False
-        '
         'CompMonthButton
         '
-        Me.CompMonthButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.CompMonthButton.AutoSize = True
+        Me.CompMonthButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.CompMonthButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(70, Byte), Integer))
         Me.CompMonthButton.FlatAppearance.BorderSize = 0
         Me.CompMonthButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.CompMonthButton.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CompMonthButton.ForeColor = System.Drawing.Color.MediumPurple
-        Me.CompMonthButton.IconChar = FontAwesome.Sharp.IconChar.TextHeight
+        Me.CompMonthButton.IconChar = FontAwesome.Sharp.IconChar.CalendarCheck
         Me.CompMonthButton.IconColor = System.Drawing.Color.White
         Me.CompMonthButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.CompMonthButton.IconSize = 25
-        Me.CompMonthButton.Location = New System.Drawing.Point(243, 70)
+        Me.CompMonthButton.IconSize = 40
+        Me.CompMonthButton.Location = New System.Drawing.Point(246, 70)
         Me.CompMonthButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.CompMonthButton.Name = "CompMonthButton"
-        Me.CompMonthButton.Size = New System.Drawing.Size(257, 52)
+        Me.CompMonthButton.Size = New System.Drawing.Size(267, 46)
         Me.CompMonthButton.TabIndex = 282
         Me.CompMonthButton.Text = "Inst-Comp.-Month"
         Me.CompMonthButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
@@ -789,7 +753,8 @@ Partial Class MessageSender
         '
         'KittyTypeButton
         '
-        Me.KittyTypeButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.KittyTypeButton.AutoSize = True
+        Me.KittyTypeButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.KittyTypeButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(70, Byte), Integer))
         Me.KittyTypeButton.FlatAppearance.BorderSize = 0
         Me.KittyTypeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -799,10 +764,10 @@ Partial Class MessageSender
         Me.KittyTypeButton.IconColor = System.Drawing.Color.White
         Me.KittyTypeButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
         Me.KittyTypeButton.IconSize = 30
-        Me.KittyTypeButton.Location = New System.Drawing.Point(408, 8)
+        Me.KittyTypeButton.Location = New System.Drawing.Point(443, 18)
         Me.KittyTypeButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.KittyTypeButton.Name = "KittyTypeButton"
-        Me.KittyTypeButton.Size = New System.Drawing.Size(162, 52)
+        Me.KittyTypeButton.Size = New System.Drawing.Size(162, 37)
         Me.KittyTypeButton.TabIndex = 280
         Me.KittyTypeButton.Text = "Kitty Type"
         Me.KittyTypeButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
@@ -810,20 +775,21 @@ Partial Class MessageSender
         '
         'PendingInstButton
         '
-        Me.PendingInstButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PendingInstButton.AutoSize = True
+        Me.PendingInstButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.PendingInstButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(70, Byte), Integer))
         Me.PendingInstButton.FlatAppearance.BorderSize = 0
         Me.PendingInstButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.PendingInstButton.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.PendingInstButton.ForeColor = System.Drawing.Color.MediumPurple
-        Me.PendingInstButton.IconChar = FontAwesome.Sharp.IconChar.Table
+        Me.PendingInstButton.IconChar = FontAwesome.Sharp.IconChar.Times
         Me.PendingInstButton.IconColor = System.Drawing.Color.White
         Me.PendingInstButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.PendingInstButton.IconSize = 25
-        Me.PendingInstButton.Location = New System.Drawing.Point(6, 132)
+        Me.PendingInstButton.IconSize = 40
+        Me.PendingInstButton.Location = New System.Drawing.Point(5, 132)
         Me.PendingInstButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.PendingInstButton.Name = "PendingInstButton"
-        Me.PendingInstButton.Size = New System.Drawing.Size(185, 52)
+        Me.PendingInstButton.Size = New System.Drawing.Size(199, 46)
         Me.PendingInstButton.TabIndex = 278
         Me.PendingInstButton.Text = "Inst Pending"
         Me.PendingInstButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
@@ -831,7 +797,8 @@ Partial Class MessageSender
         '
         'PhNoButton
         '
-        Me.PhNoButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PhNoButton.AutoSize = True
+        Me.PhNoButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.PhNoButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(70, Byte), Integer))
         Me.PhNoButton.FlatAppearance.BorderSize = 0
         Me.PhNoButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -840,11 +807,11 @@ Partial Class MessageSender
         Me.PhNoButton.IconChar = FontAwesome.Sharp.IconChar.PhoneSquareAlt
         Me.PhNoButton.IconColor = System.Drawing.Color.White
         Me.PhNoButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.PhNoButton.IconSize = 25
-        Me.PhNoButton.Location = New System.Drawing.Point(281, 8)
+        Me.PhNoButton.IconSize = 30
+        Me.PhNoButton.Location = New System.Drawing.Point(326, 18)
         Me.PhNoButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.PhNoButton.Name = "PhNoButton"
-        Me.PhNoButton.Size = New System.Drawing.Size(119, 52)
+        Me.PhNoButton.Size = New System.Drawing.Size(112, 37)
         Me.PhNoButton.TabIndex = 277
         Me.PhNoButton.Text = "PhNo" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         Me.PhNoButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
@@ -852,7 +819,8 @@ Partial Class MessageSender
         '
         'CoustNameButton
         '
-        Me.CoustNameButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.CoustNameButton.AutoSize = True
+        Me.CoustNameButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.CoustNameButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(70, Byte), Integer))
         Me.CoustNameButton.FlatAppearance.BorderSize = 0
         Me.CoustNameButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -861,24 +829,84 @@ Partial Class MessageSender
         Me.CoustNameButton.IconChar = FontAwesome.Sharp.IconChar.Signature
         Me.CoustNameButton.IconColor = System.Drawing.Color.White
         Me.CoustNameButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.CoustNameButton.IconSize = 25
-        Me.CoustNameButton.Location = New System.Drawing.Point(29, 8)
+        Me.CoustNameButton.IconSize = 30
+        Me.CoustNameButton.Location = New System.Drawing.Point(128, 18)
         Me.CoustNameButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.CoustNameButton.Name = "CoustNameButton"
-        Me.CoustNameButton.Size = New System.Drawing.Size(244, 52)
+        Me.CoustNameButton.Size = New System.Drawing.Size(193, 37)
         Me.CoustNameButton.TabIndex = 276
-        Me.CoustNameButton.Text = "Coustmer Name"
+        Me.CoustNameButton.Text = "Coust Name"
         Me.CoustNameButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.CoustNameButton.UseVisualStyleBackColor = False
+        '
+        'RecieptPanel
+        '
+        Me.RecieptPanel.Controls.Add(Me.Panel1)
+        Me.RecieptPanel.Controls.Add(Me.BackButton)
+        Me.RecieptPanel.Controls.Add(Me.ImgBox)
+        Me.RecieptPanel.Controls.Add(Me.NextButton)
+        Me.RecieptPanel.Dock = System.Windows.Forms.DockStyle.Left
+        Me.RecieptPanel.Location = New System.Drawing.Point(0, 0)
+        Me.RecieptPanel.Name = "RecieptPanel"
+        Me.RecieptPanel.Size = New System.Drawing.Size(608, 933)
+        Me.RecieptPanel.TabIndex = 291
+        '
+        'BackButton
+        '
+        Me.BackButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(70, Byte), Integer))
+        Me.BackButton.FlatAppearance.BorderSize = 0
+        Me.BackButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BackButton.Font = New System.Drawing.Font("Cambria", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BackButton.ForeColor = System.Drawing.Color.MediumPurple
+        Me.BackButton.IconChar = FontAwesome.Sharp.IconChar.ArrowCircleLeft
+        Me.BackButton.IconColor = System.Drawing.Color.MediumPurple
+        Me.BackButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.BackButton.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.BackButton.Location = New System.Drawing.Point(546, 94)
+        Me.BackButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.BackButton.Name = "BackButton"
+        Me.BackButton.Size = New System.Drawing.Size(54, 62)
+        Me.BackButton.TabIndex = 250
+        Me.BackButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.BackButton.UseVisualStyleBackColor = False
+        '
+        'ImgBox
+        '
+        Me.ImgBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.ImgBox.Location = New System.Drawing.Point(12, 15)
+        Me.ImgBox.Name = "ImgBox"
+        Me.ImgBox.Size = New System.Drawing.Size(534, 902)
+        Me.ImgBox.TabIndex = 0
+        Me.ImgBox.TabStop = False
+        Me.ImgBox.Visible = False
+        '
+        'NextButton
+        '
+        Me.NextButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(70, Byte), Integer))
+        Me.NextButton.FlatAppearance.BorderSize = 0
+        Me.NextButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.NextButton.Font = New System.Drawing.Font("Cambria", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.NextButton.ForeColor = System.Drawing.Color.MediumPurple
+        Me.NextButton.IconChar = FontAwesome.Sharp.IconChar.ArrowCircleRight
+        Me.NextButton.IconColor = System.Drawing.Color.MediumPurple
+        Me.NextButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.NextButton.ImageAlign = System.Drawing.ContentAlignment.BottomCenter
+        Me.NextButton.Location = New System.Drawing.Point(546, 159)
+        Me.NextButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.NextButton.Name = "NextButton"
+        Me.NextButton.Size = New System.Drawing.Size(54, 62)
+        Me.NextButton.TabIndex = 249
+        Me.NextButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
+        Me.NextButton.UseVisualStyleBackColor = False
         '
         'MessageSender
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(60, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(1357, 933)
-        Me.Controls.Add(Me.Panel5)
-        Me.Controls.Add(Me.Panel4)
+        Me.ClientSize = New System.Drawing.Size(1367, 933)
+        Me.Controls.Add(Me.RecieptPanel)
+        Me.Controls.Add(Me.MessagePanel)
         Me.ForeColor = System.Drawing.SystemColors.Desktop
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
@@ -888,9 +916,9 @@ Partial Class MessageSender
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = " "
         Me.Panel2.ResumeLayout(False)
-        Me.Panel4.ResumeLayout(False)
-        Me.Panel4.PerformLayout()
-        Me.Panel5.ResumeLayout(False)
+        Me.MessagePanel.ResumeLayout(False)
+        Me.MessagePanel.PerformLayout()
+        Me.RecieptPanel.ResumeLayout(False)
         CType(Me.ImgBox, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
@@ -915,14 +943,11 @@ Partial Class MessageSender
     Friend WithEvents DataGridViewTextBoxColumn6 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn7 As DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewButtonColumn1 As DataGridViewCheckBoxColumn
-    Friend WithEvents SendButton As FontAwesome.Sharp.IconButton
     Friend WithEvents NextButton As FontAwesome.Sharp.IconButton
     Friend WithEvents BackButton As FontAwesome.Sharp.IconButton
     Friend WithEvents ImgBox As PictureBox
     Friend WithEvents MessageTB As ProBaseAdvancedTextBox.ProBaseAdvancedTextBox.RichTextBoxPrintCtrl
     Friend WithEvents Panel2 As Panel
-    Friend WithEvents UndoButton As FontAwesome.Sharp.IconButton
-    Friend WithEvents RedoButton As FontAwesome.Sharp.IconButton
     Friend WithEvents StrikeoutButton As FontAwesome.Sharp.IconButton
     Friend WithEvents UnderlinedButton As FontAwesome.Sharp.IconButton
     Friend WithEvents ItalicButton As FontAwesome.Sharp.IconButton
@@ -941,8 +966,12 @@ Partial Class MessageSender
     Friend WithEvents GivenAmountButton As FontAwesome.Sharp.IconButton
     Friend WithEvents CompMonthButton As FontAwesome.Sharp.IconButton
     Friend WithEvents InstCompletedButton As FontAwesome.Sharp.IconButton
-    Friend WithEvents PreviewTB As RichTextBox
     Friend WithEvents ToolTipChB As CheckBox
-    Friend WithEvents Panel4 As Panel
-    Friend WithEvents Panel5 As Panel
+    Friend WithEvents MessagePanel As Panel
+    Friend WithEvents RecieptPanel As Panel
+    Friend WithEvents GreetButton As FontAwesome.Sharp.IconButton
+    Friend WithEvents HandsCheckBox As CheckBox
+    Friend WithEvents IconButton1 As FontAwesome.Sharp.IconButton
+    Friend WithEvents IconButton3 As FontAwesome.Sharp.IconButton
+    Friend WithEvents FlowLayoutPanel1 As FlowLayoutPanel
 End Class

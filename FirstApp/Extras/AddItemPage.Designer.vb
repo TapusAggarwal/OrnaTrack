@@ -26,7 +26,7 @@ Partial Class AddItemPage
         Me.TotalInstalmentsTB = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.AttrNameTB = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.CoustNameButton = New FontAwesome.Sharp.IconButton()
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
@@ -34,13 +34,16 @@ Partial Class AddItemPage
         Me.IconButton2 = New FontAwesome.Sharp.IconButton()
         Me.IconButton3 = New FontAwesome.Sharp.IconButton()
         Me.IconButton4 = New FontAwesome.Sharp.IconButton()
-        Me.MarriedCheckBox = New System.Windows.Forms.CheckBox()
         Me.IconButton5 = New FontAwesome.Sharp.IconButton()
+        Me.IconButton6 = New FontAwesome.Sharp.IconButton()
+        Me.MarriedCheckBox = New System.Windows.Forms.CheckBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.ProfessionCB = New System.Windows.Forms.ComboBox()
+        Me.AttrTypeCB = New System.Windows.Forms.ComboBox()
         Me.CheckBox2 = New System.Windows.Forms.CheckBox()
+        Me.ExistingPhNosButton = New FontAwesome.Sharp.IconButton()
         Me.CheckBox3 = New System.Windows.Forms.CheckBox()
+        Me.FlowLayoutPanel2 = New System.Windows.Forms.FlowLayoutPanel()
         Me.FlowLayoutPanel1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -50,7 +53,7 @@ Partial Class AddItemPage
         Me.TotalInstalmentsLabel.AutoSize = True
         Me.TotalInstalmentsLabel.Font = New System.Drawing.Font("Century Schoolbook", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TotalInstalmentsLabel.ForeColor = System.Drawing.Color.Peru
-        Me.TotalInstalmentsLabel.Location = New System.Drawing.Point(391, 16)
+        Me.TotalInstalmentsLabel.Location = New System.Drawing.Point(325, 11)
         Me.TotalInstalmentsLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.TotalInstalmentsLabel.Name = "TotalInstalmentsLabel"
         Me.TotalInstalmentsLabel.Size = New System.Drawing.Size(158, 30)
@@ -61,7 +64,7 @@ Partial Class AddItemPage
         '
         Me.TotalInstalmentsTB.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TotalInstalmentsTB.Font = New System.Drawing.Font("Century", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TotalInstalmentsTB.Location = New System.Drawing.Point(557, 14)
+        Me.TotalInstalmentsTB.Location = New System.Drawing.Point(491, 9)
         Me.TotalInstalmentsTB.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.TotalInstalmentsTB.Name = "TotalInstalmentsTB"
         Me.TotalInstalmentsTB.Size = New System.Drawing.Size(168, 36)
@@ -73,7 +76,7 @@ Partial Class AddItemPage
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Century Schoolbook", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.Peru
-        Me.Label1.Location = New System.Drawing.Point(1079, 9)
+        Me.Label1.Location = New System.Drawing.Point(294, 61)
         Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(41, 30)
@@ -86,22 +89,22 @@ Partial Class AddItemPage
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Century Schoolbook", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.Peru
-        Me.Label2.Location = New System.Drawing.Point(339, 166)
+        Me.Label2.Location = New System.Drawing.Point(273, 161)
         Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(157, 30)
         Me.Label2.TabIndex = 252
         Me.Label2.Text = "Attr.-Name:"
         '
-        'TextBox1
+        'AttrNameTB
         '
-        Me.TextBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TextBox1.Font = New System.Drawing.Font("Century", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox1.Location = New System.Drawing.Point(504, 164)
-        Me.TextBox1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(229, 36)
-        Me.TextBox1.TabIndex = 251
+        Me.AttrNameTB.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.AttrNameTB.Font = New System.Drawing.Font("Century", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.AttrNameTB.Location = New System.Drawing.Point(438, 159)
+        Me.AttrNameTB.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.AttrNameTB.Name = "AttrNameTB"
+        Me.AttrNameTB.Size = New System.Drawing.Size(229, 36)
+        Me.AttrNameTB.TabIndex = 251
         '
         'Label3
         '
@@ -109,7 +112,7 @@ Partial Class AddItemPage
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Century Schoolbook", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.Peru
-        Me.Label3.Location = New System.Drawing.Point(349, 216)
+        Me.Label3.Location = New System.Drawing.Point(283, 210)
         Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(147, 30)
@@ -126,11 +129,11 @@ Partial Class AddItemPage
         Me.CoustNameButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.CoustNameButton.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CoustNameButton.ForeColor = System.Drawing.Color.MediumPurple
-        Me.CoustNameButton.IconChar = FontAwesome.Sharp.IconChar.Signature
+        Me.CoustNameButton.IconChar = FontAwesome.Sharp.IconChar.SignInAlt
         Me.CoustNameButton.IconColor = System.Drawing.Color.White
         Me.CoustNameButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
         Me.CoustNameButton.IconSize = 45
-        Me.CoustNameButton.Location = New System.Drawing.Point(590, 354)
+        Me.CoustNameButton.Location = New System.Drawing.Point(427, 349)
         Me.CoustNameButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.CoustNameButton.Name = "CoustNameButton"
         Me.CoustNameButton.Size = New System.Drawing.Size(221, 51)
@@ -146,6 +149,7 @@ Partial Class AddItemPage
         Me.FlowLayoutPanel1.Controls.Add(Me.IconButton3)
         Me.FlowLayoutPanel1.Controls.Add(Me.IconButton4)
         Me.FlowLayoutPanel1.Controls.Add(Me.IconButton5)
+        Me.FlowLayoutPanel1.Controls.Add(Me.IconButton6)
         Me.FlowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Left
         Me.FlowLayoutPanel1.Location = New System.Drawing.Point(0, 0)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
@@ -244,22 +248,6 @@ Partial Class AddItemPage
         Me.IconButton4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.IconButton4.UseVisualStyleBackColor = False
         '
-        'MarriedCheckBox
-        '
-        Me.MarriedCheckBox.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.MarriedCheckBox.AutoSize = True
-        Me.MarriedCheckBox.BackColor = System.Drawing.Color.Transparent
-        Me.MarriedCheckBox.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.MarriedCheckBox.ForeColor = System.Drawing.SystemColors.ActiveCaption
-        Me.MarriedCheckBox.Location = New System.Drawing.Point(603, 310)
-        Me.MarriedCheckBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.MarriedCheckBox.Name = "MarriedCheckBox"
-        Me.MarriedCheckBox.Size = New System.Drawing.Size(143, 34)
-        Me.MarriedCheckBox.TabIndex = 279
-        Me.MarriedCheckBox.TabStop = False
-        Me.MarriedCheckBox.Text = "Optional"
-        Me.MarriedCheckBox.UseVisualStyleBackColor = False
-        '
         'IconButton5
         '
         Me.IconButton5.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -283,13 +271,52 @@ Partial Class AddItemPage
         Me.IconButton5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.IconButton5.UseVisualStyleBackColor = False
         '
+        'IconButton6
+        '
+        Me.IconButton6.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.IconButton6.AutoSize = True
+        Me.IconButton6.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.IconButton6.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(70, Byte), Integer))
+        Me.IconButton6.FlatAppearance.BorderSize = 0
+        Me.IconButton6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.IconButton6.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.IconButton6.ForeColor = System.Drawing.Color.MediumPurple
+        Me.IconButton6.IconChar = FontAwesome.Sharp.IconChar.Superscript
+        Me.IconButton6.IconColor = System.Drawing.Color.White
+        Me.IconButton6.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.IconButton6.IconSize = 45
+        Me.IconButton6.Location = New System.Drawing.Point(4, 310)
+        Me.IconButton6.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.IconButton6.Name = "IconButton6"
+        Me.IconButton6.Size = New System.Drawing.Size(187, 51)
+        Me.IconButton6.TabIndex = 284
+        Me.IconButton6.Text = "Int-(₹)Price"
+        Me.IconButton6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.IconButton6.UseVisualStyleBackColor = False
+        '
+        'MarriedCheckBox
+        '
+        Me.MarriedCheckBox.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.MarriedCheckBox.AutoSize = True
+        Me.MarriedCheckBox.BackColor = System.Drawing.Color.Transparent
+        Me.MarriedCheckBox.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MarriedCheckBox.ForeColor = System.Drawing.SystemColors.ActiveCaption
+        Me.MarriedCheckBox.Location = New System.Drawing.Point(438, 305)
+        Me.MarriedCheckBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.MarriedCheckBox.Name = "MarriedCheckBox"
+        Me.MarriedCheckBox.Size = New System.Drawing.Size(143, 34)
+        Me.MarriedCheckBox.TabIndex = 279
+        Me.MarriedCheckBox.TabStop = False
+        Me.MarriedCheckBox.Text = "Optional"
+        Me.MarriedCheckBox.UseVisualStyleBackColor = False
+        '
         'Label4
         '
         Me.Label4.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Century Schoolbook", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.Color.Peru
-        Me.Label4.Location = New System.Drawing.Point(306, 266)
+        Me.Label4.Location = New System.Drawing.Point(240, 261)
         Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(190, 30)
@@ -300,29 +327,29 @@ Partial Class AddItemPage
         '
         Me.TextBox2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TextBox2.Font = New System.Drawing.Font("Century", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox2.Location = New System.Drawing.Point(504, 264)
+        Me.TextBox2.Location = New System.Drawing.Point(438, 259)
         Me.TextBox2.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(229, 36)
         Me.TextBox2.TabIndex = 281
         '
-        'ProfessionCB
+        'AttrTypeCB
         '
-        Me.ProfessionCB.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.ProfessionCB.DropDownHeight = 200
-        Me.ProfessionCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ProfessionCB.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ProfessionCB.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ProfessionCB.FormattingEnabled = True
-        Me.ProfessionCB.IntegralHeight = False
-        Me.ProfessionCB.Items.AddRange(New Object() {"String", "Boolean", "List", "Integer", "Decimal"})
-        Me.ProfessionCB.Location = New System.Drawing.Point(504, 215)
-        Me.ProfessionCB.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.ProfessionCB.MaxDropDownItems = 20
-        Me.ProfessionCB.Name = "ProfessionCB"
-        Me.ProfessionCB.Size = New System.Drawing.Size(229, 34)
-        Me.ProfessionCB.TabIndex = 283
-        Me.ProfessionCB.Tag = ""
+        Me.AttrTypeCB.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.AttrTypeCB.DropDownHeight = 200
+        Me.AttrTypeCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.AttrTypeCB.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.AttrTypeCB.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.AttrTypeCB.FormattingEnabled = True
+        Me.AttrTypeCB.IntegralHeight = False
+        Me.AttrTypeCB.Items.AddRange(New Object() {"String", "Boolean", "List", "Integer"})
+        Me.AttrTypeCB.Location = New System.Drawing.Point(438, 210)
+        Me.AttrTypeCB.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.AttrTypeCB.MaxDropDownItems = 20
+        Me.AttrTypeCB.Name = "AttrTypeCB"
+        Me.AttrTypeCB.Size = New System.Drawing.Size(229, 34)
+        Me.AttrTypeCB.TabIndex = 283
+        Me.AttrTypeCB.Tag = ""
         '
         'CheckBox2
         '
@@ -331,7 +358,7 @@ Partial Class AddItemPage
         Me.CheckBox2.BackColor = System.Drawing.Color.Transparent
         Me.CheckBox2.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CheckBox2.ForeColor = System.Drawing.SystemColors.ActiveCaption
-        Me.CheckBox2.Location = New System.Drawing.Point(448, 310)
+        Me.CheckBox2.Location = New System.Drawing.Point(283, 305)
         Me.CheckBox2.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.CheckBox2.Name = "CheckBox2"
         Me.CheckBox2.Size = New System.Drawing.Size(147, 34)
@@ -340,6 +367,28 @@ Partial Class AddItemPage
         Me.CheckBox2.Text = "Constant"
         Me.CheckBox2.UseVisualStyleBackColor = False
         '
+        'ExistingPhNosButton
+        '
+        Me.ExistingPhNosButton.BackColor = System.Drawing.Color.Transparent
+        Me.ExistingPhNosButton.FlatAppearance.BorderSize = 0
+        Me.ExistingPhNosButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.ExistingPhNosButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.ExistingPhNosButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ExistingPhNosButton.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ExistingPhNosButton.ForeColor = System.Drawing.Color.Transparent
+        Me.ExistingPhNosButton.IconChar = FontAwesome.Sharp.IconChar.List
+        Me.ExistingPhNosButton.IconColor = System.Drawing.Color.Goldenrod
+        Me.ExistingPhNosButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.ExistingPhNosButton.IconSize = 35
+        Me.ExistingPhNosButton.Location = New System.Drawing.Point(675, 257)
+        Me.ExistingPhNosButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.ExistingPhNosButton.Name = "ExistingPhNosButton"
+        Me.ExistingPhNosButton.Size = New System.Drawing.Size(34, 38)
+        Me.ExistingPhNosButton.TabIndex = 286
+        Me.ExistingPhNosButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.ExistingPhNosButton.UseVisualStyleBackColor = False
+        Me.ExistingPhNosButton.Visible = False
+        '
         'CheckBox3
         '
         Me.CheckBox3.Anchor = System.Windows.Forms.AnchorStyles.Left
@@ -347,7 +396,7 @@ Partial Class AddItemPage
         Me.CheckBox3.BackColor = System.Drawing.Color.Transparent
         Me.CheckBox3.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CheckBox3.ForeColor = System.Drawing.SystemColors.ActiveCaption
-        Me.CheckBox3.Location = New System.Drawing.Point(447, 363)
+        Me.CheckBox3.Location = New System.Drawing.Point(282, 358)
         Me.CheckBox3.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.CheckBox3.Name = "CheckBox3"
         Me.CheckBox3.Size = New System.Drawing.Size(148, 34)
@@ -356,23 +405,34 @@ Partial Class AddItemPage
         Me.CheckBox3.Text = "Currency"
         Me.CheckBox3.UseVisualStyleBackColor = False
         '
+        'FlowLayoutPanel2
+        '
+        Me.FlowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Right
+        Me.FlowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown
+        Me.FlowLayoutPanel2.Location = New System.Drawing.Point(775, 0)
+        Me.FlowLayoutPanel2.Name = "FlowLayoutPanel2"
+        Me.FlowLayoutPanel2.Size = New System.Drawing.Size(358, 580)
+        Me.FlowLayoutPanel2.TabIndex = 286
+        '
         'AddItemPage
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(60, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1133, 580)
+        Me.Controls.Add(Me.ExistingPhNosButton)
         Me.Controls.Add(Me.CheckBox3)
         Me.Controls.Add(Me.CheckBox2)
-        Me.Controls.Add(Me.ProfessionCB)
+        Me.Controls.Add(Me.AttrTypeCB)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.TextBox2)
         Me.Controls.Add(Me.MarriedCheckBox)
+        Me.Controls.Add(Me.FlowLayoutPanel2)
         Me.Controls.Add(Me.FlowLayoutPanel1)
         Me.Controls.Add(Me.CoustNameButton)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.TextBox1)
+        Me.Controls.Add(Me.AttrNameTB)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.TotalInstalmentsLabel)
         Me.Controls.Add(Me.TotalInstalmentsTB)
@@ -388,7 +448,7 @@ Partial Class AddItemPage
     Friend WithEvents TotalInstalmentsTB As TextBox
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents AttrNameTB As TextBox
     Friend WithEvents Label3 As Label
     Friend WithEvents CoustNameButton As FontAwesome.Sharp.IconButton
     Friend WithEvents FlowLayoutPanel1 As FlowLayoutPanel
@@ -400,7 +460,10 @@ Partial Class AddItemPage
     Friend WithEvents MarriedCheckBox As CheckBox
     Friend WithEvents Label4 As Label
     Friend WithEvents TextBox2 As TextBox
-    Friend WithEvents ProfessionCB As ComboBox
+    Friend WithEvents AttrTypeCB As ComboBox
     Friend WithEvents CheckBox2 As CheckBox
+    Friend WithEvents IconButton6 As FontAwesome.Sharp.IconButton
+    Friend WithEvents ExistingPhNosButton As FontAwesome.Sharp.IconButton
     Friend WithEvents CheckBox3 As CheckBox
+    Friend WithEvents FlowLayoutPanel2 As FlowLayoutPanel
 End Class
