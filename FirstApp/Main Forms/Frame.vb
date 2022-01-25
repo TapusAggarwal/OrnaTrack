@@ -353,10 +353,34 @@ Public Class Frame
         ConnectionLabel.ForeColor = Color.Olive
         Try
             WebSocket.Close()
-            Await Task.Delay(1000)
-            WebSocket.Open()
+            Dim openedHandle As EventHandler = Sub(s, Eventargs) SocketOpened(s, Eventargs)
+            RemoveHandler WebSocket.Opened, openedHandle
+
+            Dim closeHandle As EventHandler = Sub(s, Eventargs) SocketClosed(s, Eventargs)
+            RemoveHandler WebSocket.Closed, closeHandle
+
+            Dim messageHandle As EventHandler(Of MessageReceivedEventArgs) = Sub(s, Eventargs) SocketMessage(s, Eventargs)
+            RemoveHandler WebSocket.MessageReceived, messageHandle
+
+            Dim dataRecievedHandle As EventHandler(Of DataReceivedEventArgs) = Sub(s, Eventargs) SocketDataReceived(s, Eventargs)
+            RemoveHandler WebSocket.DataReceived, dataRecievedHandle
         Catch ex As Exception
         End Try
+
+        Try
+            Dim url = $"ws://{My.Settings.connection_url}"
+            WebSocket = New WebSocket(url)
+            AddHandler WebSocket.Opened, Sub(s, Eventargs) SocketOpened(s, Eventargs)
+            AddHandler WebSocket.Error, Sub(s, Eventargs) SocketError(s, Eventargs)
+            AddHandler WebSocket.Closed, Sub(s, Eventargs) SocketClosed(s, Eventargs)
+            AddHandler WebSocket.MessageReceived, Sub(s, Eventargs) SocketMessage(s, Eventargs)
+            AddHandler WebSocket.DataReceived, Sub(s, Eventargs) SocketDataReceived(s, Eventargs)
+            WebSocket.Open()
+        Catch ex As Exception
+
+        End Try
+
+
     End Sub
 
 #Region "Tool Strip Methods"
