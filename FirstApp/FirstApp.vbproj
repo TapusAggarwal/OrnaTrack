@@ -11,7 +11,7 @@
     <AssemblyName>FirstApp</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
@@ -102,10 +102,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Customer.vb" />
-    <Compile Include="Extras\AddItemPage.Designer.vb">
+    <Compile Include="Stock\AddFormulaForm.Designer.vb">
+      <DependentUpon>AddFormulaForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Stock\AddFormulaForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Stock\AddItemPage.Designer.vb">
       <DependentUpon>AddItemPage.vb</DependentUpon>
     </Compile>
-    <Compile Include="Extras\AddItemPage.vb">
+    <Compile Include="Stock\AddItemPage.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Extras\ApplicationEvents.vb" />
@@ -163,7 +169,19 @@
     <Compile Include="FormView\TransactionDetails.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Item.vb" />
+    <Compile Include="Stock\AttributeControl.Designer.vb">
+      <DependentUpon>AttributeControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Stock\AttributeControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Stock\Folder.Designer.vb">
+      <DependentUpon>Folder.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Stock\Folder.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Stock\Item.vb" />
     <Compile Include="Kitty.vb" />
     <Compile Include="FormView\BookMode.Designer.vb">
       <DependentUpon>BookMode.vb</DependentUpon>
@@ -311,12 +329,45 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Extras\Settings.vb" />
+    <Compile Include="Stock\ItemsUserControl.Designer.vb">
+      <DependentUpon>ItemsUserControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Stock\ItemsUserControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Stock\ListTypeDgv.Designer.vb">
+      <DependentUpon>ListTypeDgv.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Stock\ListTypeDgv.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Stock\PropertyControl.Designer.vb">
+      <DependentUpon>PropertyControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Stock\PropertyControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Stock\ShowItems.Designer.vb">
+      <DependentUpon>ShowItems.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Stock\ShowItems.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Stock\StockEntry.Designer.vb">
+      <DependentUpon>StockEntry.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Stock\StockEntry.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="DevUse\LoadingForm.resx">
       <DependentUpon>LoadingForm.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Extras\AddItemPage.resx">
+    <EmbeddedResource Include="Stock\AddFormulaForm.resx">
+      <DependentUpon>AddFormulaForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stock\AddItemPage.resx">
       <DependentUpon>AddItemPage.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Extras\Form4.resx">
@@ -410,6 +461,27 @@
     <EmbeddedResource Include="Main Forms\KittyModeCoustView.resx">
       <DependentUpon>KittyModeCoustView.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Stock\AttributeControl.resx">
+      <DependentUpon>AttributeControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stock\Folder.resx">
+      <DependentUpon>Folder.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stock\ItemsUserControl.resx">
+      <DependentUpon>ItemsUserControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stock\ListTypeDgv.resx">
+      <DependentUpon>ListTypeDgv.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stock\PropertyControl.resx">
+      <DependentUpon>PropertyControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stock\ShowItems.resx">
+      <DependentUpon>ShowItems.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stock\StockEntry.resx">
+      <DependentUpon>StockEntry.vb</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -485,26 +557,26 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="FontAwesome">
-      <Version>4.7.0</Version>
-    </PackageReference>
     <PackageReference Include="FontAwesome.Sharp">
-      <Version>5.15.3</Version>
+      <Version>5.15.4</Version>
+    </PackageReference>
+    <PackageReference Include="FontAwesome.Sharp.Material">
+      <Version>5.15.4</Version>
     </PackageReference>
     <PackageReference Include="HtmlAgilityPack">
-      <Version>1.11.37</Version>
+      <Version>1.11.42</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>13.0.1</Version>
     </PackageReference>
     <PackageReference Include="QRCoder">
-      <Version>1.4.1</Version>
+      <Version>1.4.3</Version>
     </PackageReference>
     <PackageReference Include="WebSocket4Net">
       <Version>0.15.2</Version>
     </PackageReference>
     <PackageReference Include="ZXing.Net">
-      <Version>0.16.6</Version>
+      <Version>0.16.8</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

@@ -21,7 +21,7 @@ Public Class Frame
     End Property
 
 #Region "Me.Load"
-    Private Async Sub Frame_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub Frame_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         '' Fade in when started
         Me.Opacity = 0
         Dim tmr As New Timer With {
@@ -69,14 +69,13 @@ Public Class Frame
         QuickSearchButton_Click(QuickSearchButton, e)
         KeyPreview = True
 
-        'Await StartServer(False)
+        'ConnectionLabel_Click()
 
     End Sub
 #End Region
 
 #Region "Server"
-    Async Function StartServer(fresh As Boolean) As Task
-        Dim server_path As String = "C:\Users\hp\source\repos\TapusAggarwal\FirstApp-ReBuild\FirstApp\whatsapp-web.js-main\Server.vbs"
+    Async Function StartServer(isFresh As Boolean) As Task
         Dim rawresponse As String = Nothing
 
         Try
@@ -88,30 +87,31 @@ Public Class Frame
         If rawresponse = "true" Then
             state = "STANDBY"
             InitialiseStates()
-            'ServerStateIndicator.IconColor = Color.Green
 
             Dim dict As New Dictionary(Of String, String) From {{"purpose", "state"}}
             rawresponse = Await ServerHttpRequest(dict)
-            If rawresponse <> "NOTCONNECTED" And rawresponse <> "OPENING" And rawresponse <> "PAIRING" And rawresponse <> "CONNECTED" Then
-                dict = New Dictionary(Of String, String) From {{"purpose", "close"}}
-                rawresponse = Await ServerHttpRequest(dict)
-
-                Dim p = New Process()
-                Dim pi = New ProcessStartInfo With {
-                .FileName = server_path}
-                p.StartInfo = pi
-                p.Start()
-                Await StartServer(True)
-            ElseIf rawresponse = "NOTCONNECTED" Then
+            If rawresponse = "NOTCONNECTED" Or rawresponse = "DISCONNECTED" Then
                 dict = New Dictionary(Of String, String) From {
                 {"purpose", "new_web"},
                 {"headless", "true"},
-                {"ignorePrevious", "false"},
-                {"createNewWebBol", "true"}
+                {"ignorePrevious", If(isFresh, "true", "false")}
                 }
                 rawresponse = Await ServerHttpRequest(dict)
                 If rawresponse <> "started" Then MessageBox.Show("Unable To Perform The Action: '" & rawresponse & "'")
+            ElseIf rawresponse <> "CONNECTED" And rawresponse <> "qr" And rawresponse <> "STANDBY" And rawresponse <> "OPENING" And rawresponse <> "PAIRING" Then
+                dict = New Dictionary(Of String, String) From {{"purpose", "close"}}
+                rawresponse = Await ServerHttpRequest(dict)
+                Await StartServer(True)
             End If
+
+            Try
+                WebSocket.Close()
+                RemoveHandler WebSocket.Opened, AddressOf SocketOpened
+                RemoveHandler WebSocket.Closed, AddressOf SocketClosed
+                RemoveHandler WebSocket.MessageReceived, AddressOf SocketMessage
+                RemoveHandler WebSocket.DataReceived, AddressOf SocketDataReceived
+            Catch ex As Exception
+            End Try
 
             Dim url = $"ws://{My.Settings.connection_url}"
             WebSocket = New WebSocket(url)
@@ -122,29 +122,26 @@ Public Class Frame
             AddHandler WebSocket.DataReceived, Sub(s, Eventargs) SocketDataReceived(s, Eventargs)
             WebSocket.Open()
         Else
-            'ServerStateIndicator.IconColor = Color.Red
             MessageBox.Show($"Unable To Get A Response From Server. Either Server Is Not Running Or Server Address Is Not Correct.{vbNewLine}Make Sure Server Is Running And Address Provided Is Correct.", "Server Not Responding", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-            'If fresh Then
-            '    Dim p = New Process()
-            '    Dim pi = New ProcessStartInfo With {
-            '        .FileName = server_path}
-            '    '.WindowStyle = ProcessWindowStyle.Hidden,
-            '    '.CreateNoWindow = True
-            '    '}
-            '    p.StartInfo = pi
-            '    p.Start()
-            '    Await StartServer(fresh:=True)
-            'End If
         End If
 
     End Function
 
     Sub SocketOpened(s As Object, e As EventArgs)
+        state = "STANDBY"
+        InitialiseStates()
     End Sub
 
     Sub SocketClosed(s As Object, e As EventArgs)
         state = "NOTCONNECTED"
         InitialiseStates()
+        Try
+            RemoveHandler WebSocket.Opened, AddressOf SocketOpened
+            RemoveHandler WebSocket.Closed, AddressOf SocketClosed
+            RemoveHandler WebSocket.MessageReceived, AddressOf SocketMessage
+            RemoveHandler WebSocket.DataReceived, AddressOf SocketDataReceived
+        Catch ex As Exception
+        End Try
     End Sub
 
     Sub SocketError(s As Object, e As SuperSocket.ClientEngine.ErrorEventArgs)
@@ -165,104 +162,52 @@ Public Class Frame
         Dim recievedData As JObject = JObject.Parse(recievedData_string)
         Dim msgInfo As JObject = recievedData.SelectToken("msgInfo")
         Dim clientInfo As JObject = recievedData.SelectToken("clientInfo")
-        state = recievedData.SelectToken("serverState").ToString
+        state = recievedData.SelectToken("serverState")
 
-        InitialiseStates()
-        If msgInfo.SelectToken("purpose") = "connection_welcome_msg" Or msgInfo.SelectToken("purpose") = "battery update" Then
-            BatteryUpdate(clientInfo.SelectToken("battery").ToString, clientInfo.SelectToken("plugged").ToString)
+        If msgInfo.SelectToken("purpose") = "connection_welcome_msg" Then
+            Invoke(Sub()
+                       UserPhNo.Text = clientInfo.SelectToken("phoneno")
+                   End Sub)
         End If
 
         If state = "qr" Then
+
             If msgInfo.SelectToken("msg").ToString.Length > 1 Then
                 Dim fm As QrCodeView = Nothing
-                Dim forms As FormCollection = Application.OpenForms
-                For Each form As Form In forms
-                    If TypeOf form Is QrCodeView Then
-                        fm = form
-                        Exit For
-                    End If
+
+                For Each _form As Form In Application.OpenForms
+                    If TypeOf _form IsNot QrCodeView Then Continue For
+                    fm = _form
+                    Exit For
                 Next
+
                 qrData = msgInfo.SelectToken("msg")
                 If fm IsNot Nothing Then
                     Invoke(Sub()
                                fm.QrNew(msgInfo.SelectToken("msg"))
                            End Sub)
                 End If
-                Exit Sub
             End If
+
         End If
-        If msgInfo.SelectToken("purpose") = "state changed" Then
-            If state = "CONNECTED" Then
-                Dim fm As QrCodeView = Nothing
-                Dim forms As FormCollection = Application.OpenForms
-                For Each form As Form In forms
-                    If TypeOf form Is QrCodeView Then
-                        fm = form
-                        Exit For
-                    End If
-                Next
-                If fm IsNot Nothing Then
-                    Invoke(Sub()
-                               fm.Close()
-                           End Sub)
-                End If
-                BatteryUpdate(clientInfo.SelectToken("battery").ToString, clientInfo.SelectToken("plugged").ToString)
-            Else
-                InitialiseStates()
-            End If
-        ElseIf msgInfo.SelectToken("purpose") = "new_msg" Then
-            'MessageBox.Show(msgInfo.SelectToken("msg"))
-        ElseIf msgInfo.SelectToken("purpose") = "reconnect" Then
+
+        If msgInfo.SelectToken("purpose") = "reconnect" Then
             WebSocket.Close()
             Await StartServer(True)
         End If
+
+        If state = "CONNECTED" Then
+            Invoke(Sub()
+                       UserPhNo.Text = clientInfo.SelectToken("phoneno").ToString
+                   End Sub)
+        End If
+
+        InitialiseStates()
 
         'Catch ex As Exception
         '    MessageBox.Show(ex.Message)
         'End Try
     End Sub
-
-#Region "BatteryUpdate"
-
-    Public Sub BatteryUpdate(battery As String, plugged As Boolean)
-        Try
-            If battery <> "" Then
-                BatteryStatus.Invoke(Sub()
-                                         BatteryStatus.Visible = True
-                                         BatteryStatus.Text = battery + "%"
-                                         With BatteryStatus
-                                             If plugged = "True" Then
-                                                 .IconChar = IconChar.ChargingStation
-                                                 .IconColor = Color.Green
-                                                 .ForeColor = Color.Green
-                                             Else
-                                                 If battery >= 75 Then
-                                                     .IconChar = IconChar.BatteryFull
-                                                     .IconColor = Color.Green
-                                                     .ForeColor = Color.Green
-                                                 ElseIf battery < 75 And battery > 50 Then
-                                                     .IconChar = IconChar.BatteryThreeQuarters
-                                                     .IconColor = Color.Green
-                                                     .ForeColor = Color.Green
-                                                 ElseIf battery <= 50 And battery > 25 Then
-                                                     .IconChar = IconChar.BatteryHalf
-                                                     .IconColor = Color.Goldenrod
-                                                     .ForeColor = Color.Goldenrod
-                                                 ElseIf battery <= 25 Then
-                                                     .IconChar = IconChar.BatteryQuarter
-                                                     .IconColor = Color.Maroon
-                                                     .ForeColor = Color.Maroon
-                                                 End If
-                                             End If
-                                         End With
-                                         BatteryStatus.Visible = True
-                                     End Sub)
-            End If
-        Catch
-        End Try 'Battery Percentage
-    End Sub
-
-#End Region
 
     Public Sub InitialiseStates()
 
@@ -281,39 +226,43 @@ Public Class Frame
         End If
 
         If state = "STANDBY" Then
-            Dim local_state As String = Nothing
-            ConnectionLabel.Invoke(Async Sub()
+            ConnectionLabel.Invoke(Sub()
                                        ConnectionLabel.IconChar = IconChar.Spinner
                                        ConnectionLabel.IconColor = Color.Goldenrod
                                        ConnectionLabel.Text = "Connecting..."
                                        ConnectionLabel.ForeColor = Color.Olive
-                                       BatteryStatus.Visible = False
-                                       Dim dict As New Dictionary(Of String, String) From {{"purpose", "state"}}
-                                       local_state = Await ServerHttpRequest(dict)
-                                       If local_state = "CONNECTED" Then state = local_state
+                                       UserPhNo.Visible = False
                                    End Sub)
-            If local_state <> "CONNECTED" Then
-                Exit Sub
-            End If
+            Exit Sub
         End If
 
         If state = "CONNECTED" Then
             ConnectionLabel.Invoke(Sub()
+
+                                       For Each _form As Form In Application.OpenForms
+                                           If TypeOf _form IsNot QrCodeView Then Continue For
+                                           Invoke(Sub()
+                                                      _form.Close()
+                                                  End Sub)
+                                           Exit For
+                                       Next
+
                                        ConnectionLabel.IconChar = IconChar.Whatsapp
                                        ConnectionLabel.IconColor = Color.SeaGreen
                                        ConnectionLabel.Text = $"Connected"
                                        ConnectionLabel.ForeColor = Color.SeaGreen
-                                       BatteryStatus.Visible = True
+                                       UserPhNo.Visible = True
                                    End Sub)
             Exit Sub
         End If
+
         If state = "offline" Then
             ConnectionLabel.Invoke(Sub()
                                        ConnectionLabel.IconChar = IconChar.ExclamationTriangle
                                        ConnectionLabel.IconColor = Color.Goldenrod
                                        ConnectionLabel.Text = "Device Offline"
                                        ConnectionLabel.ForeColor = Color.Red
-                                       BatteryStatus.Visible = False
+                                       UserPhNo.Visible = False
                                    End Sub)
             Exit Sub
         End If
@@ -323,7 +272,7 @@ Public Class Frame
                                        ConnectionLabel.ImageAlign = ContentAlignment.MiddleCenter
                                        ConnectionLabel.IconColor = Color.Goldenrod
                                        ConnectionLabel.Text = "QrCode"
-                                       BatteryStatus.Visible = False
+                                       UserPhNo.Visible = False
                                        ConnectionLabel.ForeColor = Color.Olive
                                    End Sub)
             Exit Sub
@@ -332,7 +281,7 @@ Public Class Frame
                                        ConnectionLabel.IconChar = IconChar.ExclamationTriangle
                                        ConnectionLabel.IconColor = Color.Goldenrod
                                        ConnectionLabel.Text = "Not Connected"
-                                       BatteryStatus.Visible = False
+                                       UserPhNo.Visible = False
                                        ConnectionLabel.ForeColor = Color.Red
                                    End Sub)
             Exit Sub
@@ -347,39 +296,8 @@ Public Class Frame
             End If
             Exit Sub
         End If
-        ConnectionLabel.IconChar = IconChar.Spinner
-        ConnectionLabel.IconColor = Color.Goldenrod
-        ConnectionLabel.Text = "Reconnecting..."
-        ConnectionLabel.ForeColor = Color.Olive
-        Try
-            WebSocket.Close()
-            Dim openedHandle As EventHandler = Sub(s, Eventargs) SocketOpened(s, Eventargs)
-            RemoveHandler WebSocket.Opened, openedHandle
 
-            Dim closeHandle As EventHandler = Sub(s, Eventargs) SocketClosed(s, Eventargs)
-            RemoveHandler WebSocket.Closed, closeHandle
-
-            Dim messageHandle As EventHandler(Of MessageReceivedEventArgs) = Sub(s, Eventargs) SocketMessage(s, Eventargs)
-            RemoveHandler WebSocket.MessageReceived, messageHandle
-
-            Dim dataRecievedHandle As EventHandler(Of DataReceivedEventArgs) = Sub(s, Eventargs) SocketDataReceived(s, Eventargs)
-            RemoveHandler WebSocket.DataReceived, dataRecievedHandle
-        Catch ex As Exception
-        End Try
-
-        Try
-            Dim url = $"ws://{My.Settings.connection_url}"
-            WebSocket = New WebSocket(url)
-            AddHandler WebSocket.Opened, Sub(s, Eventargs) SocketOpened(s, Eventargs)
-            AddHandler WebSocket.Error, Sub(s, Eventargs) SocketError(s, Eventargs)
-            AddHandler WebSocket.Closed, Sub(s, Eventargs) SocketClosed(s, Eventargs)
-            AddHandler WebSocket.MessageReceived, Sub(s, Eventargs) SocketMessage(s, Eventargs)
-            AddHandler WebSocket.DataReceived, Sub(s, Eventargs) SocketDataReceived(s, Eventargs)
-            WebSocket.Open()
-        Catch ex As Exception
-
-        End Try
-
+        Await StartServer(False)
 
     End Sub
 
@@ -407,51 +325,12 @@ Public Class Frame
         End If
     End Sub
 
-    Private Async Sub ForceRestartToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ForceRestartToolStripMenuItem.Click
+    Private Async Sub RestartServerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RestartServerToolStripMenuItem.Click
         Dim ans As Integer = MessageBox.Show("This Selection Will Force Restart The Server i.e All Previous Sessions Will Be Lost And You Have To Scan Whatsapp QR Code Again. Do You Want To Continue?", "Confirm Selection", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If ans = 7 Then Exit Sub
 
-        state = "STANDBY"
-        InitialiseStates()
-
-        Dim server_path As String = "C:\Users\hp\source\repos\TapusAggarwal\FirstApp-ReBuild\FirstApp\whatsapp-web.js-main\Server.vbs"
-
-        Dim p = New Process()
-        Dim pi = New ProcessStartInfo With {
-                .FileName = server_path}
-        '.WindowStyle = ProcessWindowStyle.Hidden,
-        '.CreateNoWindow = True
-        '}
-        p.StartInfo = pi
-        p.Start()
-
-        Dim dict = New Dictionary(Of String, String) From {
-                {"purpose", "new_web"},
-                {"headless", "true"},
-                {"ignorePrevious", "true"},
-                {"createNewWebBol", "true"}
-                }
-        Dim rawresponse = Await ServerHttpRequest(dict)
-        If rawresponse <> "started" Then MessageBox.Show($"Unable To Perform The Action: '{rawresponse}'")
-
-        Dim url = $"ws://{My.Settings.connection_url}"
-        WebSocket = New WebSocket(url)
-        AddHandler WebSocket.Opened, Sub(s, Eventargs) SocketOpened(s, Eventargs)
-        AddHandler WebSocket.Error, Sub(s, Eventargs) SocketError(s, Eventargs)
-        AddHandler WebSocket.Closed, Sub(s, Eventargs) SocketClosed(s, Eventargs)
-        AddHandler WebSocket.MessageReceived, Sub(s, Eventargs) SocketMessage(s, Eventargs)
-        AddHandler WebSocket.DataReceived, Sub(s, Eventargs) SocketDataReceived(s, Eventargs)
-        WebSocket.Open()
-    End Sub
-
-    Private Async Sub SofteRestartToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SoftRestartToolStripMenuItem.Click
-        Dim ans As Integer = MessageBox.Show("This Selection Will Soft Restart The Server i.e Previous Sessions Will Not Be Removed. Do You Want To Continue?", "Confirm Selection", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-        If ans = 7 Then Exit Sub
-
-        state = "STANDBY"
-        InitialiseStates()
-
         Await StartServer(True)
+
     End Sub
 
     Private Sub CloseServerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CloseServerToolStripMenuItem.Click
@@ -669,7 +548,4 @@ Public Class Frame
         Next
     End Sub
 
-    Private Sub ServerContextMenuStrip_Opened(sender As Object, e As EventArgs) Handles ServerContextMenuStrip.Opened
-
-    End Sub
 End Class

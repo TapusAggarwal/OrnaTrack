@@ -33,14 +33,13 @@ Partial Class Frame
         Me.GoldRateLabel = New System.Windows.Forms.Label()
         Me.SilverButton = New FontAwesome.Sharp.IconButton()
         Me.GoldButton = New FontAwesome.Sharp.IconButton()
-        Me.BatteryStatus = New FontAwesome.Sharp.IconButton()
+        Me.UserPhNo = New FontAwesome.Sharp.IconButton()
         Me.ConnectionLabel = New FontAwesome.Sharp.IconButton()
         Me.ServerContextMenuStrip = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.WhatsappWebVisibilityToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NotificationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RestartToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ForceRestartToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SoftRestartToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.RestartServerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CloseServerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CleanAllSessionsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ChangeServerAddressToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -73,7 +72,7 @@ Partial Class Frame
         Me.PanelTitleBar.Controls.Add(Me.GoldRateLabel)
         Me.PanelTitleBar.Controls.Add(Me.SilverButton)
         Me.PanelTitleBar.Controls.Add(Me.GoldButton)
-        Me.PanelTitleBar.Controls.Add(Me.BatteryStatus)
+        Me.PanelTitleBar.Controls.Add(Me.UserPhNo)
         Me.PanelTitleBar.Controls.Add(Me.ConnectionLabel)
         Me.PanelTitleBar.Controls.Add(Me.SidePanelButton)
         Me.PanelTitleBar.Controls.Add(Me.LeftArrowButton)
@@ -241,29 +240,31 @@ Partial Class Frame
         Me.GoldButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.GoldButton.UseVisualStyleBackColor = False
         '
-        'BatteryStatus
+        'UserPhNo
         '
-        Me.BatteryStatus.BackColor = System.Drawing.Color.Transparent
-        Me.BatteryStatus.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(24, Byte), Integer), CType(CType(24, Byte), Integer), CType(CType(60, Byte), Integer))
-        Me.BatteryStatus.FlatAppearance.BorderSize = 0
-        Me.BatteryStatus.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
-        Me.BatteryStatus.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
-        Me.BatteryStatus.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BatteryStatus.Font = New System.Drawing.Font("Comic Sans MS", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BatteryStatus.ForeColor = System.Drawing.Color.Green
-        Me.BatteryStatus.IconChar = FontAwesome.Sharp.IconChar.ChargingStation
-        Me.BatteryStatus.IconColor = System.Drawing.Color.Green
-        Me.BatteryStatus.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.BatteryStatus.IconSize = 60
-        Me.BatteryStatus.Location = New System.Drawing.Point(1272, 3)
-        Me.BatteryStatus.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.BatteryStatus.Name = "BatteryStatus"
-        Me.BatteryStatus.Size = New System.Drawing.Size(170, 58)
-        Me.BatteryStatus.TabIndex = 167
-        Me.BatteryStatus.Text = "0%"
-        Me.BatteryStatus.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.BatteryStatus.UseVisualStyleBackColor = False
-        Me.BatteryStatus.Visible = False
+        Me.UserPhNo.AutoSize = True
+        Me.UserPhNo.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.UserPhNo.BackColor = System.Drawing.Color.Transparent
+        Me.UserPhNo.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(24, Byte), Integer), CType(CType(24, Byte), Integer), CType(CType(60, Byte), Integer))
+        Me.UserPhNo.FlatAppearance.BorderSize = 0
+        Me.UserPhNo.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.UserPhNo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.UserPhNo.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.UserPhNo.Font = New System.Drawing.Font("Comic Sans MS", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.UserPhNo.ForeColor = System.Drawing.Color.Green
+        Me.UserPhNo.IconChar = FontAwesome.Sharp.IconChar.UserShield
+        Me.UserPhNo.IconColor = System.Drawing.Color.Green
+        Me.UserPhNo.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.UserPhNo.IconSize = 60
+        Me.UserPhNo.Location = New System.Drawing.Point(1171, 3)
+        Me.UserPhNo.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.UserPhNo.Name = "UserPhNo"
+        Me.UserPhNo.Size = New System.Drawing.Size(268, 66)
+        Me.UserPhNo.TabIndex = 167
+        Me.UserPhNo.Text = "9882960863"
+        Me.UserPhNo.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
+        Me.UserPhNo.UseVisualStyleBackColor = False
+        Me.UserPhNo.Visible = False
         '
         'ConnectionLabel
         '
@@ -313,22 +314,16 @@ Partial Class Frame
         '
         'RestartToolStripMenuItem
         '
-        Me.RestartToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ForceRestartToolStripMenuItem, Me.SoftRestartToolStripMenuItem, Me.CloseServerToolStripMenuItem, Me.CleanAllSessionsToolStripMenuItem})
+        Me.RestartToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RestartServerToolStripMenuItem, Me.CloseServerToolStripMenuItem, Me.CleanAllSessionsToolStripMenuItem})
         Me.RestartToolStripMenuItem.Name = "RestartToolStripMenuItem"
         Me.RestartToolStripMenuItem.Size = New System.Drawing.Size(311, 30)
         Me.RestartToolStripMenuItem.Text = "Server Options"
         '
-        'ForceRestartToolStripMenuItem
+        'RestartServerToolStripMenuItem
         '
-        Me.ForceRestartToolStripMenuItem.Name = "ForceRestartToolStripMenuItem"
-        Me.ForceRestartToolStripMenuItem.Size = New System.Drawing.Size(279, 34)
-        Me.ForceRestartToolStripMenuItem.Text = "Force Restart"
-        '
-        'SoftRestartToolStripMenuItem
-        '
-        Me.SoftRestartToolStripMenuItem.Name = "SoftRestartToolStripMenuItem"
-        Me.SoftRestartToolStripMenuItem.Size = New System.Drawing.Size(279, 34)
-        Me.SoftRestartToolStripMenuItem.Text = "Soft Restart"
+        Me.RestartServerToolStripMenuItem.Name = "RestartServerToolStripMenuItem"
+        Me.RestartServerToolStripMenuItem.Size = New System.Drawing.Size(279, 34)
+        Me.RestartServerToolStripMenuItem.Text = "Restart Server"
         '
         'CloseServerToolStripMenuItem
         '
@@ -519,7 +514,7 @@ Partial Class Frame
     Friend WithEvents RightArrowButton As FontAwesome.Sharp.IconPictureBox
     Friend WithEvents SidePanelButton As FontAwesome.Sharp.IconPictureBox
     Friend WithEvents ConnectionLabel As FontAwesome.Sharp.IconButton
-    Friend WithEvents BatteryStatus As FontAwesome.Sharp.IconButton
+    Friend WithEvents UserPhNo As FontAwesome.Sharp.IconButton
     Friend WithEvents SendMessageButton As FontAwesome.Sharp.IconButton
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents NewCoustmerButton As FontAwesome.Sharp.IconButton
@@ -538,8 +533,7 @@ Partial Class Frame
     Friend WithEvents WindowsRestoreButton As FontAwesome.Sharp.IconButton
     Friend WithEvents WindowsMinimizeButton As FontAwesome.Sharp.IconButton
     Friend WithEvents ChangeServerAddressToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ForceRestartToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents SoftRestartToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents RestartServerToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents CloseServerToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents TestConnectionToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents CleanAllSessionsToolStripMenuItem As ToolStripMenuItem

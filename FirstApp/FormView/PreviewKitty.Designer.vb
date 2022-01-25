@@ -24,12 +24,12 @@ Partial Class PreviewKitty
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(PreviewKitty))
         Me.ProfilePanel = New System.Windows.Forms.Panel()
+        Me.Panel1 = New System.Windows.Forms.Panel()
         Me.AllKittiesBT = New FontAwesome.Sharp.IconButton()
         Me.SaveCoustmerButton = New FontAwesome.Sharp.IconButton()
         Me.ProfileLabel = New System.Windows.Forms.Label()
         Me.ImageBox = New System.Windows.Forms.PictureBox()
         Me.KittyPanel = New System.Windows.Forms.Panel()
-        Me.Panel1 = New System.Windows.Forms.Panel()
         Me.ProfilePanel.SuspendLayout()
         CType(Me.ImageBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -47,6 +47,14 @@ Partial Class PreviewKitty
         Me.ProfilePanel.Name = "ProfilePanel"
         Me.ProfilePanel.Size = New System.Drawing.Size(1405, 368)
         Me.ProfilePanel.TabIndex = 252
+        '
+        'Panel1
+        '
+        Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(70, Byte), Integer))
+        Me.Panel1.Location = New System.Drawing.Point(244, 3)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(839, 359)
+        Me.Panel1.TabIndex = 6
         '
         'AllKittiesBT
         '
@@ -128,14 +136,6 @@ Partial Class PreviewKitty
         Me.KittyPanel.Name = "KittyPanel"
         Me.KittyPanel.Size = New System.Drawing.Size(1404, 523)
         Me.KittyPanel.TabIndex = 265
-        '
-        'Panel1
-        '
-        Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(70, Byte), Integer))
-        Me.Panel1.Location = New System.Drawing.Point(244, 3)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(839, 359)
-        Me.Panel1.TabIndex = 6
         '
         'PreviewKitty
         '
