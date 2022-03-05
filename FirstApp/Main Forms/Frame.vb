@@ -104,15 +104,6 @@ Public Class Frame
                 Await StartServer(True)
             End If
 
-            Try
-                WebSocket.Close()
-                RemoveHandler WebSocket.Opened, AddressOf SocketOpened
-                RemoveHandler WebSocket.Closed, AddressOf SocketClosed
-                RemoveHandler WebSocket.MessageReceived, AddressOf SocketMessage
-                RemoveHandler WebSocket.DataReceived, AddressOf SocketDataReceived
-            Catch ex As Exception
-            End Try
-
             Dim url = $"ws://{My.Settings.connection_url}"
             WebSocket = New WebSocket(url)
             AddHandler WebSocket.Opened, Sub(s, Eventargs) SocketOpened(s, Eventargs)
@@ -296,6 +287,17 @@ Public Class Frame
             End If
             Exit Sub
         End If
+
+        Try
+            If Not WebSocket.State = WebSocketState.Closed AndAlso Not WebSocket.State = WebSocketState.Closing Then
+                WebSocket.Close()
+            End If
+            RemoveHandler WebSocket.Opened, AddressOf SocketOpened
+            RemoveHandler WebSocket.Closed, AddressOf SocketClosed
+            RemoveHandler WebSocket.MessageReceived, AddressOf SocketMessage
+            RemoveHandler WebSocket.DataReceived, AddressOf SocketDataReceived
+        Catch ex As Exception
+        End Try
 
         Await StartServer(False)
 
