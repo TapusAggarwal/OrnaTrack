@@ -80,7 +80,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("3.16.198.57:3966")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("localhost:3966")>  _
         Public Property connection_url() As String
             Get
                 Return CType(Me("connection_url"),String)

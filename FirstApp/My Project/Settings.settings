@@ -9,7 +9,7 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="connection_url" Type="System.String" Scope="User">
-      <Value Profile="(Default)">3.16.198.57:3966</Value>
+      <Value Profile="(Default)">localhost:3966</Value>
     </Setting>
   </Settings>
 </SettingsFile>

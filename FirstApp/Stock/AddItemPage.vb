@@ -213,7 +213,7 @@ Public Class AddItemPage
             FalseChB.Visible = False
             ListValues.Visible = False
             EditListBT.Visible = False
-            FormulaBT.Visible = False
+            'FormulaBT.Visible = False
             CheckBox1.Visible = False
 
             Select Case typeSelected
@@ -227,7 +227,7 @@ Public Class AddItemPage
                 Case Item.DataType.Integer_Type
                     DefaultValueTB.Visible = True
                     DefaultValueTB.Text = 0
-                    FormulaBT.Visible = True
+                    'FormulaBT.Visible = True
                     CheckBox1.Visible = True
                     CheckBox1.Checked = False
                 Case Item.DataType.String_Type
@@ -352,23 +352,23 @@ Public Class AddItemPage
         Next
     End Sub
 
-    Private Sub FormulaBT_Click(sender As Object, e As EventArgs) Handles FormulaBT.Click
-        If CheckBox1.Checked Then
-            CheckBox1.Checked = False
-            FormulaNameLB.Visible = False
-            FormulaNameTB.Visible = False
-            FormulaTB.Visible = False
-            AddParametersBT.Visible = False
-            UseBT.Visible = False
-        Else
-            CheckBox1.Checked = True
-            FormulaNameLB.Visible = True
-            FormulaNameTB.Visible = True
-            FormulaTB.Visible = True
-            AddParametersBT.Visible = True
-            UseBT.Visible = True
-        End If
-    End Sub
+    'Private Sub FormulaBT_Click(sender As Object, e As EventArgs) Handles FormulaBT.Click
+    '    If CheckBox1.Checked Then
+    '        CheckBox1.Checked = False
+    '        FormulaNameLB.Visible = False
+    '        FormulaNameTB.Visible = False
+    '        FormulaTB.Visible = False
+    '        AddParametersBT.Visible = False
+    '        UseBT.Visible = False
+    '    Else
+    '        CheckBox1.Checked = True
+    '        FormulaNameLB.Visible = True
+    '        FormulaNameTB.Visible = True
+    '        FormulaTB.Visible = True
+    '        AddParametersBT.Visible = True
+    '        UseBT.Visible = True
+    '    End If
+    'End Sub
 
     Private Sub UseBT_Click(sender As Object, e As EventArgs) Handles UseBT.Click
 

@@ -47,7 +47,6 @@ Partial Class AddItemPage
         Me.AddParametersBT = New FontAwesome.Sharp.IconButton()
         Me.IconButton7 = New FontAwesome.Sharp.IconButton()
         Me.AddAttributeButton = New FontAwesome.Sharp.IconButton()
-        Me.FormulaBT = New FontAwesome.Sharp.Material.MaterialButton()
         Me.EditListBT = New FontAwesome.Sharp.IconButton()
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.SuspendLayout()
@@ -407,26 +406,6 @@ Partial Class AddItemPage
         Me.AddAttributeButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.AddAttributeButton.UseVisualStyleBackColor = False
         '
-        'FormulaBT
-        '
-        Me.FormulaBT.AutoSize = True
-        Me.FormulaBT.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.FormulaBT.BackColor = System.Drawing.Color.Transparent
-        Me.FormulaBT.FlatAppearance.BorderSize = 0
-        Me.FormulaBT.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
-        Me.FormulaBT.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
-        Me.FormulaBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.FormulaBT.ForeColor = System.Drawing.Color.Transparent
-        Me.FormulaBT.IconChar = FontAwesome.Sharp.MaterialIcons.FunctionVariant
-        Me.FormulaBT.IconColor = System.Drawing.Color.Goldenrod
-        Me.FormulaBT.IconSize = 45
-        Me.FormulaBT.Location = New System.Drawing.Point(836, 210)
-        Me.FormulaBT.Name = "FormulaBT"
-        Me.FormulaBT.Size = New System.Drawing.Size(51, 51)
-        Me.FormulaBT.TabIndex = 299
-        Me.FormulaBT.UseVisualStyleBackColor = False
-        Me.FormulaBT.Visible = False
-        '
         'EditListBT
         '
         Me.EditListBT.AutoSize = True
@@ -496,7 +475,6 @@ Partial Class AddItemPage
         Me.Controls.Add(Me.TotalInstalmentsLabel)
         Me.Controls.Add(Me.ItemNameTB)
         Me.Controls.Add(Me.ListValues)
-        Me.Controls.Add(Me.FormulaBT)
         Me.Controls.Add(Me.EditListBT)
         Me.DoubleBuffered = True
         Me.Name = "AddItemPage"
@@ -528,7 +506,6 @@ Partial Class AddItemPage
     Friend WithEvents AddParametersBT As FontAwesome.Sharp.IconButton
     Friend WithEvents FormulaTB As ProBaseAdvancedTextBox.ProBaseAdvancedTextBox.RichTextBoxPrintCtrl
     Friend WithEvents FlowLayoutPanel1 As FlowLayoutPanel
-    Friend WithEvents FormulaBT As FontAwesome.Sharp.Material.MaterialButton
     Friend WithEvents FormulaNameLB As Label
     Friend WithEvents FormulaNameTB As TextBox
     Friend WithEvents UseBT As FontAwesome.Sharp.IconButton

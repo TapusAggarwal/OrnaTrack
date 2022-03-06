@@ -117,41 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Bis_Logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\bis_logo.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="LogoMata" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\LogoMata.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="PhonePe" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\phonepe.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="AccountInfo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\accountinfo.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Google_PhonePe" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\google_phonepe.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Signature" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\signature.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="signatureUsed" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\signatureused.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Paytm" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\paytm.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="addSign" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\addSign.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Heder" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Heder.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Splash_Screen" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\splash-screen.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="phnIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\phnIcon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
 </root>
