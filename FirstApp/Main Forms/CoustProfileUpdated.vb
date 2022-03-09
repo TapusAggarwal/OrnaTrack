@@ -99,7 +99,6 @@ Public Class CoustProfileUpdated
                     CustomerIdTB.Text = _temp
                 End While
             Catch ex As Exception
-
             End Try
         End If
     End Sub

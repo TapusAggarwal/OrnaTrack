@@ -195,6 +195,26 @@ Public Class Frame
 
         InitialiseStates()
 
+        If msgInfo.SelectToken("purpose") = "got_response" Then
+            Dim msg As String = msgInfo.SelectToken("msg")
+            Dim str_split As Integer = msg.Split(":").Count
+            If str_split = 1 Then
+                Dim fm As StockEntry = Nothing
+                For Each _form As Form In Application.OpenForms
+                    If TypeOf _form IsNot StockEntry Then Continue For
+                    fm = _form
+                    Exit For
+                Next
+                If fm Is Nothing Then
+                    'fm = New StockEntry
+                    'fm.Show()
+                    'fm.UpdateImage()
+                Else
+                    fm.UpdateImage()
+                End If
+            End If
+        End If
+
         'Catch ex As Exception
         '    MessageBox.Show(ex.Message)
         'End Try
@@ -279,7 +299,7 @@ Public Class Frame
         End If
     End Sub
 
-    Private Async Sub ConnectionLabel_Click() Handles ConnectionLabel.Click
+    Public Async Sub ConnectionLabel_Click() Handles ConnectionLabel.Click
         If state = "qr" Then
             If qrData IsNot Nothing Then
                 QrCodeView.Tag = qrData
@@ -378,6 +398,11 @@ Public Class Frame
         End If
     End Sub
 
+    Private Sub UpdateServerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UpdateServerToolStripMenuItem.Click
+        Dim Fm As New ServerUpdateForm
+        Fm.Show()
+    End Sub
+
 #End Region
 
 #End Region
@@ -455,6 +480,11 @@ Public Class Frame
             If e.Control And e.KeyCode = Keys.M Then
                 If ActiveMdiChild() Is Main Then
                     Form1.Show()
+                End If
+            End If
+            If e.Control And e.KeyCode = Keys.E Then
+                If ActiveMdiChild() Is Main Then
+                    Graph.Show()
                 End If
             End If
         Catch ex As Exception
@@ -548,6 +578,14 @@ Public Class Frame
         For Each fm As Form In MdiChildren
             fm.Refresh()
         Next
+    End Sub
+
+    Private Sub GoldButton_Click(sender As Object, e As EventArgs) Handles GoldButton.Click
+        Dim fm As New CategoriesPage
+        fm.Show()
+    End Sub
+
+    Private Sub SilverButton_Click(sender As Object, e As EventArgs) Handles SilverButton.Click
     End Sub
 
 End Class

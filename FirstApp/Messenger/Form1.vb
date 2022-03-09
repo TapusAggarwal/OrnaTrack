@@ -429,7 +429,7 @@
     End Sub
 
     Private Sub IconButton1_Click(sender As Object, e As EventArgs) Handles IconButton1.Click
-        Dim Fm As New PreviewForm
+        Dim Fm As New MessagePreviewForm
 
         Try
             Dim x As String = ""
@@ -492,7 +492,7 @@
                 Messages.Add(New Tuple(Of String, Kitty)(i.Split("_")(0), New Kitty(i.Split("_")(1), True, True)))
             Next
 
-            Fm.Messages = Messages
+            Fm.MessagesToSend = Messages
 
         Catch ex As Exception
         End Try
@@ -513,4 +513,5 @@
         Fm.ShowDialog()
 
     End Sub
+
 End Class

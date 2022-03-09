@@ -1,4 +1,4 @@
-﻿Public Class PreviewControl
+﻿Public Class MessagePreviewControl
 
     Private _status As String = "NotSent"
     Private _enabled As Boolean = True
@@ -87,27 +87,27 @@
 
     Public Property CurrentKitty As Kitty
 
-    Public Event DetailsButton_Clicked(sender As PreviewControl)
+    Public Event DetailsButton_Clicked(sender As MessagePreviewControl)
 
     Private Sub DetailsButton_Click(sender As Object, e As EventArgs) Handles DetailsButton.Click
         RaiseEvent DetailsButton_Clicked(Me)
     End Sub
 
-    Public Event CloseBT_Clicked(sender As PreviewControl)
+    Public Event CloseBT_Clicked(sender As MessagePreviewControl)
 
     Private Sub CloseButton_Click(sender As Object, e As EventArgs) Handles CloseButton.Click
         RaiseEvent CloseBT_Clicked(Me)
     End Sub
 
-    Public Event SendBT_Clicked(sender As PreviewControl)
+    Public Event SendBT_Clicked(sender As MessagePreviewControl)
 
     Private Sub SendBT_Click(sender As Object, e As EventArgs) Handles SendBT.Click
         RaiseEvent SendBT_Clicked(Me)
     End Sub
 
-    Public Event TestMessageClicked(sender As PreviewControl)
+    Public Event TestMessageClicked(sender As MessagePreviewControl)
 
-    Private Async Sub IconButton1_Click(sender As Object, e As EventArgs) Handles IconButton1.Click
+    Private Sub IconButton1_Click(sender As Object, e As EventArgs) Handles IconButton1.Click
         RaiseEvent TestMessageClicked(Me)
     End Sub
 End Class

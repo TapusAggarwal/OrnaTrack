@@ -11,8 +11,8 @@
     <AssemblyName>FirstApp</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -28,7 +28,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>false</MapFileExtensions>
-    <ApplicationRevision>96</ApplicationRevision>
+    <ApplicationRevision>105</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -85,7 +85,7 @@
     <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
@@ -102,6 +102,48 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Customer.vb" />
+    <Compile Include="Extras\Graph.Designer.vb">
+      <DependentUpon>Graph.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Extras\Graph.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Messenger\MessageTemplates.Designer.vb">
+      <DependentUpon>MessageTemplates.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Messenger\MessageTemplates.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ServerManagement\Form5.Designer.vb">
+      <DependentUpon>Form5.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ServerManagement\Form5.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ServerManagement\Form7.Designer.vb">
+      <DependentUpon>Form7.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ServerManagement\Form7.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ServerManagement\ServerUpdateForm.Designer.vb">
+      <DependentUpon>ServerUpdateForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ServerManagement\ServerUpdateForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ServerManagement\ServerUpdateProgressBar.Designer.vb">
+      <DependentUpon>ServerUpdateProgressBar.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ServerManagement\ServerUpdateProgressBar.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ServerManagement\webjs.Designer.vb">
+      <DependentUpon>webjs.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ServerManagement\webjs.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Stock\AddFormulaForm.Designer.vb">
       <DependentUpon>AddFormulaForm.vb</DependentUpon>
     </Compile>
@@ -175,6 +217,12 @@
     <Compile Include="Stock\AttributeControl.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Stock\CategoriesPage.Designer.vb">
+      <DependentUpon>CategoriesPage.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Stock\CategoriesPage.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Stock\Folder.Designer.vb">
       <DependentUpon>Folder.vb</DependentUpon>
     </Compile>
@@ -231,16 +279,16 @@
     <Compile Include="Messenger\Messenger.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Messenger\PreviewControl.Designer.vb">
-      <DependentUpon>PreviewControl.vb</DependentUpon>
+    <Compile Include="Messenger\MessagePreviewControl.Designer.vb">
+      <DependentUpon>MessagePreviewControl.vb</DependentUpon>
     </Compile>
-    <Compile Include="Messenger\PreviewControl.vb">
+    <Compile Include="Messenger\MessagePreviewControl.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Messenger\PreviewForm.Designer.vb">
-      <DependentUpon>PreviewForm.vb</DependentUpon>
+    <Compile Include="Messenger\MessagePreviewForm.Designer.vb">
+      <DependentUpon>MessagePreviewForm.vb</DependentUpon>
     </Compile>
-    <Compile Include="Messenger\PreviewForm.vb">
+    <Compile Include="Messenger\MessagePreviewForm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\Resources.Designer.vb">
@@ -358,10 +406,37 @@
     <Compile Include="Stock\StockEntry.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Stock\UserControl\UserControl1.Designer.vb">
+      <DependentUpon>UserControl1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Stock\UserControl\UserControl1.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="DevUse\LoadingForm.resx">
       <DependentUpon>LoadingForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Extras\Graph.resx">
+      <DependentUpon>Graph.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Messenger\MessageTemplates.resx">
+      <DependentUpon>MessageTemplates.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServerManagement\Form5.resx">
+      <DependentUpon>Form5.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServerManagement\Form7.resx">
+      <DependentUpon>Form7.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServerManagement\ServerUpdateForm.resx">
+      <DependentUpon>ServerUpdateForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServerManagement\ServerUpdateProgressBar.resx">
+      <DependentUpon>ServerUpdateProgressBar.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServerManagement\webjs.resx">
+      <DependentUpon>webjs.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Stock\AddFormulaForm.resx">
       <DependentUpon>AddFormulaForm.vb</DependentUpon>
@@ -414,11 +489,11 @@
     <EmbeddedResource Include="Messenger\Messenger.resx">
       <DependentUpon>Messenger.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Messenger\PreviewControl.resx">
-      <DependentUpon>PreviewControl.vb</DependentUpon>
+    <EmbeddedResource Include="Messenger\MessagePreviewControl.resx">
+      <DependentUpon>MessagePreviewControl.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Messenger\PreviewForm.resx">
-      <DependentUpon>PreviewForm.vb</DependentUpon>
+    <EmbeddedResource Include="Messenger\MessagePreviewForm.resx">
+      <DependentUpon>MessagePreviewForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MyUserControls\ActiveKittyControl.resx">
       <DependentUpon>ActiveKittyControl.vb</DependentUpon>
@@ -462,6 +537,9 @@
     <EmbeddedResource Include="Stock\AttributeControl.resx">
       <DependentUpon>AttributeControl.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Stock\CategoriesPage.resx">
+      <DependentUpon>CategoriesPage.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Stock\Folder.resx">
       <DependentUpon>Folder.vb</DependentUpon>
     </EmbeddedResource>
@@ -479,6 +557,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Stock\StockEntry.resx">
       <DependentUpon>StockEntry.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stock\UserControl\UserControl1.resx">
+      <DependentUpon>UserControl1.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -566,6 +647,9 @@
     </PackageReference>
     <PackageReference Include="QRCoder">
       <Version>1.4.3</Version>
+    </PackageReference>
+    <PackageReference Include="SSH.NET">
+      <Version>2020.0.1</Version>
     </PackageReference>
     <PackageReference Include="WebSocket4Net">
       <Version>0.15.2</Version>

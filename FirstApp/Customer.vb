@@ -101,29 +101,27 @@ Public Class Customer
             Next
         End If
 
-        For Each KittyId As Kitty In KittyIds
+        For Each _kitty As Kitty In KittyIds
             T_List.Add(Task.Run(Function()
                                     Dim CoustmerPanel As New KittyModeControl
                                     With CoustmerPanel
-                                        .CoustName = KittyId.Owner.FullName
-                                        .PhNo = KittyId.Owner.PhNo(",")
+                                        .CoustName = _kitty.Owner.FullName
+                                        .PhNo = _kitty.Owner.PhNo(",")
                                         .SetImage = ""
-                                        If KittyId.IsAvailed Then
-                                            .InstalmentsPending = -2
-                                        ElseIf KittyId.IsMatured Then
-                                            .InstalmentsPending = -1
+                                        If _kitty.Status <> "Partial" Then
+                                            .Status = _kitty.Status
                                         Else
-                                            .InstalmentsPending = KittyId.GetInstalmentsPending
-                                            .InstalmentsLeft = KittyId.GetInstalments_LeftForMaturity
+                                            .InstalmentsPending = _kitty.GetInstalmentsPending
+                                            .InstalmentsLeft = _kitty.GetInstalments_LeftForMaturity
                                         End If
-                                        .KittyType = KittyId.KittyType()
+                                        .KittyType = _kitty.KittyType()
                                         Try
-                                            .KittyNo = KittyId.KittyNo
+                                            .KittyNo = _kitty.KittyNo
                                         Catch ex As Exception
                                             .KittyType = ""
                                         End Try
-                                        .CoustID = KittyId.Owner.CustomerID
-                                        .KittyID = KittyId.KittyUID
+                                        .CoustID = _kitty.Owner.CustomerID
+                                        .KittyID = _kitty.KittyUID
                                     End With
                                     Return CoustmerPanel
                                 End Function))
@@ -520,7 +518,7 @@ Public Class Customer
 End Class
 
 Public Class Utility
-    Public Shared Sub LoadComboBoxData(cBox As ComboBox, List As List(Of String))
+    Public Shared Sub LoadComboBoxData(cBox As ComboBox, List As IEnumerable)
         Try
             cBox.Items.Clear()
             For Each item In List
