@@ -400,7 +400,7 @@ Public Class Frame
 
     Private Sub UpdateServerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UpdateServerToolStripMenuItem.Click
         Dim Fm As New ServerUpdateForm
-        Fm.Show()
+        Fm.ShowDialog()
     End Sub
 
 #End Region
