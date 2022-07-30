@@ -263,9 +263,9 @@ Public Class KittyModeCoustView
                     BookModeButton_Click(BookModeButton, EventArgs.Empty)
                 ElseIf e.Control And e.KeyCode = Keys.J Then
                     JumpToKittyNoButton_Click(JumpToKittyNoButton, EventArgs.Empty)
-                ElseIf e.KeyCode = Keys.Right Then
+                ElseIf e.Control And e.KeyCode = Keys.Right Then
                     NextKittyButton_Click(NextKittyButton, EventArgs.Empty)
-                ElseIf e.KeyCode = Keys.Left Then
+                ElseIf e.Control And e.KeyCode = Keys.Left Then
                     PrevKittyButton_Click(PrevKittyButton, EventArgs.Empty)
                 End If
             End If
@@ -448,6 +448,10 @@ Public Class KittyModeCoustView
             ReviewButton.IconColor = Color.MediumPurple
             SqlCommand($"UPDATE Coustmers_Data set Review='{SessionNo}_False' WHERE SrNo={_Customer.CustomerID}")
         End If
+    End Sub
+
+    Private Sub DotsButton_Click(sender As Object, e As EventArgs) Handles DotsButton.Click
+        ContextMenuStrip1.Show(DotsButton, 0, DotsButton.Size.Height)
     End Sub
 
 End Class

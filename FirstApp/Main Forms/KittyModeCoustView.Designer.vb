@@ -64,11 +64,14 @@ Partial Class KittyModeCoustView
         Me.BookModeButton = New FontAwesome.Sharp.IconButton()
         Me.AddKittyButton = New FontAwesome.Sharp.IconButton()
         Me.JumpToKittyNoButton = New FontAwesome.Sharp.IconButton()
+        Me.DotsButton = New FontAwesome.Sharp.IconPictureBox()
+        Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.KittyPanel.SuspendLayout()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.ProfilePanel.SuspendLayout()
         CType(Me.ImageBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
+        CType(Me.DotsButton, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'ProfileLabel
@@ -495,7 +498,7 @@ Partial Class KittyModeCoustView
         Me.KittyInfoLabel.BackColor = System.Drawing.Color.DarkGoldenrod
         Me.KittyInfoLabel.Font = New System.Drawing.Font("Consolas", 22.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KittyInfoLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.KittyInfoLabel.Location = New System.Drawing.Point(851, 1008)
+        Me.KittyInfoLabel.Location = New System.Drawing.Point(898, 1008)
         Me.KittyInfoLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.KittyInfoLabel.Name = "KittyInfoLabel"
         Me.KittyInfoLabel.Size = New System.Drawing.Size(454, 51)
@@ -607,6 +610,30 @@ Partial Class KittyModeCoustView
         Me.JumpToKittyNoButton.UseVisualStyleBackColor = False
         Me.JumpToKittyNoButton.Visible = False
         '
+        'DotsButton
+        '
+        Me.DotsButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.DotsButton.BackColor = System.Drawing.Color.Transparent
+        Me.DotsButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.DotsButton.ContextMenuStrip = Me.ContextMenuStrip1
+        Me.DotsButton.ForeColor = System.Drawing.Color.Silver
+        Me.DotsButton.IconChar = FontAwesome.Sharp.IconChar.EllipsisV
+        Me.DotsButton.IconColor = System.Drawing.Color.Silver
+        Me.DotsButton.IconFont = FontAwesome.Sharp.IconFont.Solid
+        Me.DotsButton.IconSize = 47
+        Me.DotsButton.Location = New System.Drawing.Point(837, 1012)
+        Me.DotsButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.DotsButton.Name = "DotsButton"
+        Me.DotsButton.Size = New System.Drawing.Size(47, 47)
+        Me.DotsButton.TabIndex = 2993
+        Me.DotsButton.TabStop = False
+        '
+        'ContextMenuStrip2
+        '
+        Me.ContextMenuStrip2.ImageScalingSize = New System.Drawing.Size(24, 24)
+        Me.ContextMenuStrip2.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip2.Size = New System.Drawing.Size(241, 37)
+        '
         'KittyModeCoustView
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
@@ -614,6 +641,7 @@ Partial Class KittyModeCoustView
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(80, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1920, 1080)
+        Me.Controls.Add(Me.DotsButton)
         Me.Controls.Add(Me.JumpToKittyNoButton)
         Me.Controls.Add(Me.NextKittyButton)
         Me.Controls.Add(Me.PrevKittyButton)
@@ -640,6 +668,7 @@ Partial Class KittyModeCoustView
         Me.ProfilePanel.PerformLayout()
         CType(Me.ImageBox, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
+        CType(Me.DotsButton, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -684,4 +713,6 @@ Partial Class KittyModeCoustView
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents StartNewReviewSessionToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ReviewButton As FontAwesome.Sharp.IconButton
+    Friend WithEvents DotsButton As FontAwesome.Sharp.IconPictureBox
+    Friend WithEvents ContextMenuStrip2 As ContextMenuStrip
 End Class
