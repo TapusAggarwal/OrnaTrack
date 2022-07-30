@@ -27,6 +27,24 @@ Public Class KittyModeCoustView
         If Prev_SessionToolStripMenuItem.Checked Then
             Prev_SessionToolStripMenuItem_Click(Prev_SessionToolStripMenuItem, EventArgs.Empty)
         End If
+
+        'List Of KittyTypes For Book Mode
+        For Each i In Kitty.GetListOfKittyTypes
+            Dim x As New ToolStripMenuItem With {
+                .Checked = True,
+                .CheckOnClick = True,
+                .Text = i
+            }
+            BookModeSelectedTypes.Items.Add(x)
+
+            AddHandler x.CheckedChanged, Sub(_sender As ToolStripMenuItem, _e As EventArgs)
+                                             BookModeSelectedTypes.Show(DotsButton, 0, DotsButton.Size.Height)
+                                             If BookMode Then
+                                                 ShowBook()
+                                             End If
+                                         End Sub
+        Next
+
     End Sub
 
     'Loading Data On Text Changed Event
@@ -41,7 +59,7 @@ Public Class KittyModeCoustView
         If CustomerIdTB.TextLength > 0 Then
             LoadCustomerProfileData()
             LoadCustomerKittyData()
-            UpdateBookMode()
+            UpdateBookModeIndexes()
             If ReviewMode Then
                 Dim dr As OleDb.OleDbDataReader = DataReader($"Select Review From Coustmers_Data Where SrNo={_Customer.CustomerID}")
                 While dr.Read
@@ -244,13 +262,15 @@ Public Class KittyModeCoustView
     'KeyBoard ShortCuts
     Private Sub Me_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
         Try
-            If e.Control And e.KeyCode = Keys.I Then
-                ShowCoustmerID()
-            ElseIf e.Control And e.KeyCode = Keys.K Then
+            If e.Control And e.KeyCode = Keys.K Then
                 AddKittyButton_Click(AddKittyButton, EventArgs.Empty)
             End If
             If _KittyForm IsNot Nothing Then
-                If e.Control And e.KeyCode = Keys.S Then
+                If e.Control And e.KeyCode = Keys.I Then
+                    _KittyForm.MarkAsInactiveToolStripMenuItem.PerformClick()
+                ElseIf e.Control And e.KeyCode = Keys.C Then
+                    _KittyForm.CrackThisKittyToolStripMenuItem.PerformClick()
+                ElseIf e.Control And e.KeyCode = Keys.S Then
                     _KittyForm.SaveButton_Click(_KittyForm.SaveButton, e)
                 ElseIf e.Control And e.KeyCode = Keys.P Then
                     _KittyForm.PaymentButton.Select()
@@ -291,15 +311,12 @@ Public Class KittyModeCoustView
     Public Sub BookModeButton_Click(sender As Object, e As EventArgs) Handles BookModeButton.Click
         If KittyIdTB.Text.Length = 0 Then Exit Sub
 
-        Dim dr As OleDb.OleDbDataReader = DataReader($"Select KittyUID From Kitty_Data Where KittyType={_KittyForm._currentKitty.KittyType} ORDER BY KittyNo ASC")
-        While dr.Read
-            BookList.Add(dr("KittyUID"))
-        End While
+        BookList.Clear()
+
         BookMode = Not BookMode
+
         If BookMode Then
-            KittyInfoLabel.Visible = True : PrevKittyButton.Visible = True : NextKittyButton.Visible = True : JumpToKittyNoButton.Visible = True
-            BookModeButton.IconColor = Color.PaleGreen
-            UpdateBookMode()
+            ShowBook()
         End If
         If Not BookMode Then
             BookModeButton.IconColor = Color.Silver
@@ -307,10 +324,47 @@ Public Class KittyModeCoustView
         End If
     End Sub
 
-    Private Sub UpdateBookMode()
+    Private Sub ShowBook()
+        Dim selectedTypes = (From _items As ToolStripMenuItem In BookModeSelectedTypes.Items Where _items.Checked = True Select _items.Text).ToArray
+
+        If selectedTypes.Count = 0 Then
+            MessageBox.Show("First Select Kitty Types To Be Included In BookMode. By Clicking On Three Dots.")
+            Exit Sub
+        End If
+
+        Dim _condition As String = ""
+
+        For Each i In selectedTypes
+            If Array.IndexOf(selectedTypes, i) <> 0 Then
+                _condition += $" OR KittyType={i}"
+            Else
+                _condition += $"KittyType={i}"
+            End If
+        Next
+
+        BookList.Clear()
+
+        Dim dr As OleDb.OleDbDataReader = DataReader($"Select KittyUID From Kitty_Data Where ({_condition}) ORDER BY KittyNo ASC")
+        While dr.Read
+            BookList.Add(dr("KittyUID"))
+        End While
+
+        If Not selectedTypes.Contains(_KittyForm._currentKitty.KittyType) Then
+            MessageBox.Show("You Have Not Selected Kitty Type Of Currently Opened Kitty. This Will Jump Back To Zero.")
+            _KittyID_Book = BookList.First
+            KittyIdTB.Text = _KittyID_Book
+        End If
+
+
+        KittyInfoLabel.Visible = True : PrevKittyButton.Visible = True : NextKittyButton.Visible = True : JumpToKittyNoButton.Visible = True
+        BookModeButton.IconColor = Color.PaleGreen
+        UpdateBookModeIndexes()
+    End Sub
+
+    Private Sub UpdateBookModeIndexes()
         If Not BookMode Then Exit Sub
         _KittyID_Book = KittyIdTB.Text
-        KittyInfoLabel.Text = $"{New Kitty(BookList.First, True).KittyType.ToCurrency(RemoveSpaces:=True)} : #{New Kitty(KittyIdTB.Text, True).KittyNo}: {New Kitty(BookList.First, True).KittyNo}-{New Kitty(BookList.Last, True).KittyNo}"
+        KittyInfoLabel.Text = $"{_KittyForm._currentKitty.KittyType.ToCurrency(RemoveSpaces:=True)} : #{_KittyForm._currentKitty.KittyNo}: {New Kitty(BookList.First, True).KittyNo}-{New Kitty(BookList.Last, True).KittyNo}"
         Dim Index As Integer = CurrentIndex()
         If Index = 0 Then PrevKittyButton.Enabled = False Else PrevKittyButton.Enabled = True
         If Index = BookList.Count - 1 Then NextKittyButton.Enabled = False Else NextKittyButton.Enabled = True
@@ -323,12 +377,12 @@ Public Class KittyModeCoustView
     Private Sub NextKittyButton_Click(sender As Object, e As EventArgs) Handles NextKittyButton.Click
         Dim _currentIndex As Integer = CurrentIndex()
         KittyIdTB.Text = BookList.Item(_currentIndex + 1)
-        UpdateBookMode()
+        UpdateBookModeIndexes()
     End Sub
 
     Private Sub PrevKittyButton_Click(sender As Object, e As EventArgs) Handles PrevKittyButton.Click
         KittyIdTB.Text = New Kitty(BookList.Item(CurrentIndex() - 1)).KittyUID
-        UpdateBookMode()
+        UpdateBookModeIndexes()
     End Sub
 
     Private Sub JumpToKittyNoButton_Click(sender As Object, e As EventArgs) Handles JumpToKittyNoButton.Click
@@ -343,11 +397,13 @@ Public Class KittyModeCoustView
             Dim _tempKitty As New Kitty(id, InitializeKitty:=True)
             If _tempKitty.KittyNo = EnteredKittyNo Then
                 KittyIdTB.Text = BookList.Item(BookList.IndexOf(_tempKitty.KittyUID))
-                UpdateBookMode()
+                UpdateBookModeIndexes()
                 Exit Sub
             End If
         Next
-        MessageBox.Show($"There Is No Kitty Saved With KittyType-{New Kitty(_KittyID_Book, True).KittyType} And KittyNo-{EnteredKittyNo}. Try Changing KittyType Or Use Another KittyNo.", "No Result Found", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+        Dim selectedTypes = (From _items As ToolStripMenuItem In BookModeSelectedTypes.Items Where _items.Checked = True Select _items.Text).ToArray
+
+        MessageBox.Show($"There Is No Kitty Saved With KittyTypes-{String.Join(" OR ", selectedTypes)} And KittyNo-{EnteredKittyNo}. Try Selecting More KittyTypes Or Use Another KittyNo.", "No Result Found", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
     End Sub
 
 #End Region
@@ -451,7 +507,53 @@ Public Class KittyModeCoustView
     End Sub
 
     Private Sub DotsButton_Click(sender As Object, e As EventArgs) Handles DotsButton.Click
-        ContextMenuStrip1.Show(DotsButton, 0, DotsButton.Size.Height)
+
+        If BookModeSelectedTypes.Visible Then
+            BookModeSelectedTypes.Hide()
+            Exit Sub
+        End If
+
+        Dim _alreadyAddedTypes As New List(Of Integer)
+
+        ' Collecting Already Added Items To The MenuStrip
+        For Each i As ToolStripMenuItem In BookModeSelectedTypes.Items
+            _alreadyAddedTypes.Add(i.Text)
+        Next
+
+        ' Adding All The Types That Are Not Already Added
+        For Each i In Kitty.GetListOfKittyTypes
+            If _alreadyAddedTypes.Contains(i) Then
+                _alreadyAddedTypes.Remove(i)
+                Continue For
+            End If
+            Dim x As New ToolStripMenuItem With {
+                .Checked = True,
+                .CheckOnClick = True,
+                .Text = i
+            }
+            BookModeSelectedTypes.Items.Add(x)
+
+            AddHandler x.CheckedChanged, Sub(_sender As ToolStripMenuItem, _e As EventArgs)
+                                             BookModeSelectedTypes.Show(DotsButton, 0, DotsButton.Size.Height)
+                                             If BookMode Then
+                                                 ShowBook()
+                                             End If
+                                         End Sub
+
+        Next
+
+        ' Removing Items That Are Not In ListOfKittyTypes
+        For Each i In _alreadyAddedTypes
+
+            Dim x = From _items As ToolStripMenuItem In BookModeSelectedTypes.Items
+                    Where _items.Text = i
+
+            If x.Count > 0 Then
+                BookModeSelectedTypes.Items.Remove(x(0))
+            End If
+        Next
+
+        BookModeSelectedTypes.Show(DotsButton, 0, DotsButton.Size.Height)
     End Sub
 
 End Class

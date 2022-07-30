@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class PreviewControl
+Partial Class MessagePreviewControl
     Inherits System.Windows.Forms.UserControl
 
     'UserControl overrides dispose to clean up the component list.
@@ -88,7 +88,7 @@ Partial Class PreviewControl
         Me.CloseButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
         Me.CloseButton.IconSize = 32
         Me.CloseButton.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.CloseButton.Location = New System.Drawing.Point(573, 5)
+        Me.CloseButton.Location = New System.Drawing.Point(588, 5)
         Me.CloseButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.CloseButton.Name = "CloseButton"
         Me.CloseButton.Size = New System.Drawing.Size(38, 38)
@@ -148,7 +148,7 @@ Partial Class PreviewControl
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.MaximumSize = New System.Drawing.Size(615, 52)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(568, 52)
+        Me.Panel1.Size = New System.Drawing.Size(583, 52)
         Me.Panel1.TabIndex = 10001
         '
         'IconButton1
@@ -181,7 +181,7 @@ Partial Class PreviewControl
         Me.StatusLB.BackColor = System.Drawing.Color.Transparent
         Me.StatusLB.Font = New System.Drawing.Font("Century Schoolbook", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.StatusLB.ForeColor = System.Drawing.Color.Red
-        Me.StatusLB.Location = New System.Drawing.Point(277, 13)
+        Me.StatusLB.Location = New System.Drawing.Point(281, 13)
         Me.StatusLB.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.StatusLB.Name = "StatusLB"
         Me.StatusLB.Size = New System.Drawing.Size(286, 21)
@@ -193,7 +193,7 @@ Partial Class PreviewControl
         'Panel2
         '
         Me.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.Panel2.Location = New System.Drawing.Point(559, 39)
+        Me.Panel2.Location = New System.Drawing.Point(565, 39)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(5, 21)
         Me.Panel2.TabIndex = 10002
@@ -201,12 +201,12 @@ Partial Class PreviewControl
         'Panel3
         '
         Me.Panel3.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.Panel3.Location = New System.Drawing.Point(550, 39)
+        Me.Panel3.Location = New System.Drawing.Point(556, 39)
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(5, 21)
         Me.Panel3.TabIndex = 10003
         '
-        'PreviewControl
+        'MessagePreviewControl
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -216,8 +216,8 @@ Partial Class PreviewControl
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.CloseButton)
-        Me.Name = "PreviewControl"
-        Me.Size = New System.Drawing.Size(615, 63)
+        Me.Name = "MessagePreviewControl"
+        Me.Size = New System.Drawing.Size(630, 63)
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         Me.ResumeLayout(False)

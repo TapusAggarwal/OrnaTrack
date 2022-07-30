@@ -20,6 +20,8 @@ Public Class Kitty
 
     Public Property IsAvailed As Boolean = False
 
+    Public Property IsInactive As Boolean = False
+
     Public Property Record As New Dictionary(Of Date, Integer)
 
     Public Property TransactionsRecord As New Dictionary(Of Date, String)
@@ -46,6 +48,7 @@ Public Class Kitty
                 KittyInterest = dr("Interest")
                 Duration = dr("Duration")
                 IsAvailed = If(dr("Availed") = "False", False, True)
+                IsInactive = If(dr("InActive") = "False", False, True)
                 Try : Notes = dr("Notes").ToString.Replace(apostropheReplacer, "'") : Catch : End Try
                 If InitializeCompletely Then
                     AddRecord(dr("Dates"))
@@ -65,21 +68,21 @@ Public Class Kitty
             End If
             If MessageBox.Show("[Kitty] Do You Want To Add New Kitty ?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then Exit Sub
             SqlCommand(
-                "INSERT INTO Kitty_Data (CoustID,KittyNo,KittyType,Dates,Interest,Duration,Availed,Notes,TransactionDetails)" &
-                $"VALUES({CustomerID},{KittyNo},{KittyType},'{RecordString()}',{KittyInterest},{Duration},'{IsAvailed}','{Notes.Replace("'", apostropheReplacer)}', '{TransactionDetailsString()}')")
+                "INSERT INTO Kitty_Data (CoustID,KittyNo,KittyType,Dates,Interest,Duration,Availed,InActive,Notes,TransactionDetails)" &
+                $"VALUES({CustomerID},{KittyNo},{KittyType},'{RecordString()}',{KittyInterest},{Duration},'{IsAvailed}','{IsInactive}','{Notes.Replace("'", apostropheReplacer)}', '{TransactionDetailsString()}')")
         Else
             If CustomerID = -1 Then Exit Sub
             If MessageBox.Show("[Kitty] Do You Want To Update This Kitty ?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then Exit Sub
             SqlCommand(
                 $"UPDATE Kitty_Data set CoustID={CustomerID},KittyNo={KittyNo},KittyType={KittyType},Dates='{RecordString()}',Interest={KittyInterest},Duration={Duration}" &
-                $",Availed ='{IsAvailed()}',Notes='{Notes.Replace("'", apostropheReplacer)}',TransactionDetails='{TransactionDetailsString()}' WHERE KittyUID={KittyUID}")
+                $",Availed ='{IsAvailed}',InActive='{IsInactive}',Notes='{Notes.Replace("'", apostropheReplacer)}',TransactionDetails='{TransactionDetailsString()}' WHERE KittyUID={KittyUID}")
         End If
     End Sub
 
     Public Sub Dissolve()
         Try
             If MessageBox.Show("Are You Sure That You Want To Dissolve This Kitty ?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then Exit Sub
-            SqlCommand("DELETE FROM Kitty_Data WHERE KittyUID=" & KittyUID)
+            SqlCommand($"DELETE FROM Kitty_Data WHERE KittyUID={KittyUID}")
         Catch ex As Exception
             MessageBox.Show($"Error [Kitty]/Dissolve: {ex.Message}")
         End Try
@@ -267,6 +270,10 @@ Public Class Kitty
         End Try
     End Function
 
+    ''' <summary>
+    ''' <code>Status =: Availed, Cracked, InActive, Matured, Partial</code>
+    ''' </summary>
+    ''' <returns>Status Of The Given Kitty</returns>
     Public Function Status() As String
         If IsAvailed Then
             If IsMatured() Then
@@ -274,6 +281,8 @@ Public Class Kitty
             Else
                 Return "Cracked"
             End If
+        ElseIf IsInactive Then
+            Return "InActive"
         Else
             If IsMatured() Then
                 Return "Matured"
@@ -284,8 +293,8 @@ Public Class Kitty
     End Function
 
 #Region "Public Shared Function"
-    Friend Shared Function GetListOfKittyTypes() As List(Of String)
-        Dim temp_list As New List(Of String)
+    Friend Shared Function GetListOfKittyTypes() As List(Of Integer)
+        Dim temp_list As New List(Of Integer)
         Try
             Dim dr_kittyType As OleDbDataReader = DataReader("Select KittyType from CBox_Data Where (NOT (KittyType = ''))")
             While dr_kittyType.Read
@@ -298,8 +307,8 @@ Public Class Kitty
         Return temp_list
     End Function
 
-    Friend Shared Function GetListOfKittyIntrests() As List(Of String)
-        Dim temp_list As New List(Of String)
+    Friend Shared Function GetListOfKittyIntrests() As List(Of Integer)
+        Dim temp_list As New List(Of Integer)
         Try
             Dim dr_kittyInterest As OleDbDataReader = DataReader("Select KittyIntrest from CBox_Data Where (NOT (KittyIntrest = ''))")
             While dr_kittyInterest.Read

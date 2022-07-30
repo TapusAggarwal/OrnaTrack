@@ -47,25 +47,32 @@
         End Set
     End Property
 
+    Public Property Status As String
+        Get
+            Return InstPendingParam.Text
+        End Get
+        Set(value As String)
+            InstPendingParam.Text = value
+            If value = "Availed" Or value = "InActive" Or value = "Cracked" Then
+                InstPendingParam.ForeColor = Color.Gray
+                KittyTypeParam.ForeColor = Color.Gray
+                KittyNoParam.ForeColor = Color.Gray
+            ElseIf value = "Matured" Then
+                InstPendingParam.ForeColor = Color.Goldenrod
+                KittyTypeParam.ForeColor = Color.Goldenrod
+                KittyNoParam.ForeColor = Color.Goldenrod
+            End If
+            InstLeftParam.Visible = False
+        End Set
+    End Property
+
     ' -2 = Availed(Gray), -1 = Matured(Goldenrod), 0 = None Pending(Green), Rest = Pending(Red)
     Public Property InstalmentsPending As Integer
         Get
             Return InstPendingParam.Text
         End Get
         Set
-            If Value = -2 Then
-                InstPendingParam.Text = "Availed"
-                InstPendingParam.ForeColor = Color.Gray
-                KittyTypeParam.ForeColor = Color.Gray
-                KittyNoParam.ForeColor = Color.Gray
-                InstLeftParam.Visible = False
-            ElseIf Value = -1 Then
-                InstPendingParam.Text = "Matured"
-                InstPendingParam.ForeColor = Color.Goldenrod
-                KittyTypeParam.ForeColor = Color.Goldenrod
-                KittyNoParam.ForeColor = Color.Goldenrod
-                InstLeftParam.Visible = False
-            ElseIf Value = 0 Then
+            If Value = 0 Then
                 InstPendingParam.Text = $"Pending: {Value}"
                 InstPendingParam.ForeColor = Color.Green
                 KittyTypeParam.ForeColor = Color.Green

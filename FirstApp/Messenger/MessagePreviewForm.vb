@@ -1,18 +1,21 @@
 ﻿Imports FirstApp.MessageSender
 Imports System.Net.Http
 Imports Newtonsoft.Json.Linq
+Imports System.IO
 
-Public Class PreviewForm
+Public Class MessagePreviewForm
+
     Public Property SelectedKitties As New List(Of Kitty)
-    Public Property Messages As New List(Of Tuple(Of String, Kitty))
+    Public Property MessagesToSend As New List(Of Tuple(Of String, Kitty))
+    Public Property ImagePaths As New List(Of String)
     Public Property SentList As New List(Of String)
     Public Property FailedList As New List(Of String)
     Public Property UnRegisteredList As New List(Of String)
     Public Property RemovedList As New List(Of String)
 
-    Private MessageText As String
-    Private OneTimeControlsValue As Integer = 9
-    Public CurrentControlsValue As Integer = 0
+    Private Property MessageText As String
+    Private Property OneTimeControlsValue As Integer = 9
+    Public Property CurrentControlsValue As Integer = 0
 
     Public Function Greet()
         Dim hour As String = TimeOfDay.ToString("hh")
@@ -87,19 +90,27 @@ Public Class PreviewForm
 
         For Each i In SelectedKitties
             For Each phno In i.Owner.GetPhNo
-                Messages.Add(New Tuple(Of String, Kitty)(phno, i))
+                MessagesToSend.Add(New Tuple(Of String, Kitty)(phno, i))
             Next
         Next
 
-        SentText.Text = $"0/{Messages.Count}"
+        SentText.Text = $"0/{MessagesToSend.Count}"
 
         Try
-            Dim txt As String = ""
-            Dim dr As OleDb.OleDbDataReader = DataReader("Select MessageText From Message_Data where id=1")
+            Dim msgtxt As String = ""
+            Dim imgtxt As String = ""
+            Dim dr As OleDb.OleDbDataReader = DataReader("Select MessageText,ImagePaths From Message_Data where id=1")
             While dr.Read
-                txt = dr(0)
+                msgtxt = dr(0)
+                imgtxt = dr(1)
             End While
-            MessageText = txt
+            MessageText = msgtxt
+            ImagePaths = imgtxt.Split(",").ToList
+
+            If ImagePaths.Count > 0 Then
+                ImagesPreview.Visible = True
+            End If
+
         Catch ex As Exception
         End Try
 
@@ -115,12 +126,12 @@ Public Class PreviewForm
 
         If x > 0 Then OneTimeControlTB.Text = x
 
-        Dim Initial As String = String.Join(",", Messages.Select(Function(f) $"{f.Item1}_{f.Item2.KittyUID}"))
+        Dim Initial As String = String.Join(",", MessagesToSend.Select(Function(f) $"{f.Item1}_{f.Item2.KittyUID}"))
         SqlCommand($"Update Message_Data set Initial='{Initial}' where id=1")
 
     End Sub
 
-    Private Sub Close_Clicked(sender As PreviewControl)
+    Private Sub Close_Clicked(sender As MessagePreviewControl)
         If sender.Status <> "NotSent" Then
             MessageBox.Show("Can't Disable After Message Is Sent.", "Illegal Selection")
             Exit Sub
@@ -128,7 +139,7 @@ Public Class PreviewForm
         For Each phno In sender.CurrentKitty.Owner.GetPhNo
             Dim id As String = $"{ phno}_{ sender.CurrentKitty.KittyUID}"
 
-            Dim correspondingControl As PreviewControl = FlowLayoutPanel1.Controls.OfType(Of PreviewControl).Where(Function(c) c.Name = id)(0)
+            Dim correspondingControl As MessagePreviewControl = FlowLayoutPanel1.Controls.OfType(Of MessagePreviewControl).Where(Function(c) c.Name = id)(0)
 
             If Not RemovedList.Remove(id) Then
                 RemovedList.Add(id)
@@ -158,12 +169,12 @@ Public Class PreviewForm
 
         Dim KittiesToShow As New List(Of Tuple(Of String, Kitty))
 
-        If CurrentControlsValue + OneTimeControlsValue > Messages.Count Then
-            PreviewCountLB.Text = $"{CurrentControlsValue + 1}-{Messages.Count}/{Messages.Count}"
-            KittiesToShow = Messages.Skip(CurrentControlsValue).ToList
+        If CurrentControlsValue + OneTimeControlsValue > MessagesToSend.Count Then
+            PreviewCountLB.Text = $"{CurrentControlsValue + 1}-{MessagesToSend.Count}/{MessagesToSend.Count}"
+            KittiesToShow = MessagesToSend.Skip(CurrentControlsValue).ToList
         Else
-            PreviewCountLB.Text = $"{CurrentControlsValue + 1}-{CurrentControlsValue + OneTimeControlsValue}/{Messages.Count}"
-            KittiesToShow = Messages.Skip(CurrentControlsValue).Take(OneTimeControlsValue).ToList
+            PreviewCountLB.Text = $"{CurrentControlsValue + 1}-{CurrentControlsValue + OneTimeControlsValue}/{MessagesToSend.Count}"
+            KittiesToShow = MessagesToSend.Skip(CurrentControlsValue).Take(OneTimeControlsValue).ToList
         End If
 
         FlowLayoutPanel1.Controls.Clear()
@@ -172,32 +183,22 @@ Public Class PreviewForm
 
             Dim tempKitty As Kitty = i.Item2
 
-            Dim _temp As New Label With {
-                .Font = New Font("Century Gothic", 12.0!, FontStyle.Bold, GraphicsUnit.Point, 0),
-                .Visible = True,
-                .AutoSize = True,
-                .AutoEllipsis = True,
-                .ForeColor = Color.Green,
-                .BackColor = Color.FromArgb(36, 60, 60),
-                .Margin = New Padding(5)
-            }
-
             tempKitty.Initialize(True)
 
             Dim message As String = ReplaceTemplateWithDetails(tempKitty, MessageText)
 
-            Dim x As New PreviewControl With {
+            Dim x As New MessagePreviewControl With {
                 .PhNo = i.Item1,
                 .PreviewText = message,
                 .CurrentKitty = tempKitty,
                 .Name = $"{ .PhNo}_{ .CurrentKitty.KittyUID}",
-                .SrNo = Messages.IndexOf(i) + 1,
+                .SrNo = MessagesToSend.IndexOf(i) + 1,
                 .Status = TryParseStatus(.PhNo, .CurrentKitty.KittyUID)
             }
 
             If RemovedList.Contains(x.Name) Then x.Enabled = False
 
-            AddHandler x.DetailsButton_Clicked, Sub(sender As PreviewControl)
+            AddHandler x.DetailsButton_Clicked, Sub(sender As MessagePreviewControl)
                                                     Dim Fm As New PreviewKitty With {
                                                         ._kitty = sender.CurrentKitty
                                                     }
@@ -206,11 +207,17 @@ Public Class PreviewForm
                                                 End Sub
             AddHandler x.CloseBT_Clicked, AddressOf Close_Clicked
             AddHandler x.SendBT_Clicked, Async Sub()
+                                             x.Status = "Sending"
                                              Dim id As String = $"{x.PhNo}_{x.CurrentKitty.KittyUID}"
                                              FailedList.Remove(id)
                                              UnRegisteredList.Remove(id)
-                                             x.Status = "Sending"
-                                             Dim status As String = Await SendMessage(x.PhNo, x.CurrentKitty)
+                                             Dim status As String = ""
+                                             If ImagePaths.Count > 0 Then
+                                                 status = Await Task.Run(Function()
+                                                                             Return SendImage(x.PhNo)
+                                                                         End Function)
+                                             End If
+                                             status = Await SendMessage(x.PhNo, x.CurrentKitty)
                                              UpdateList(x.PhNo, x.CurrentKitty.KittyUID, status)
                                              x.Status = status
                                              UpdateStatuses()
@@ -221,7 +228,6 @@ Public Class PreviewForm
                                                  MessageBox.Show(result)
                                              End Sub
             FlowLayoutPanel1.Controls.Add(x)
-
         Next
 
         UpdateStatuses()
@@ -253,10 +259,43 @@ Public Class PreviewForm
     End Sub
 
     Private Sub NextButton_Click(sender As Object, e As EventArgs) Handles NextButton.Click
-        If CurrentControlsValue + OneTimeControlsValue < Messages.Count Then CurrentControlsValue += OneTimeControlsValue
+        If CurrentControlsValue + OneTimeControlsValue < MessagesToSend.Count Then CurrentControlsValue += OneTimeControlsValue
         SqlCommand($"Update Message_Data set CurrentControlsValue='{CurrentControlsValue}' where id=1")
         UpdatePreview()
     End Sub
+
+    Public Async Function SendImage(phno) As Task(Of String)
+        For Each imgPath As String In ImagePaths
+
+            If imgPath.Replace(" ", "").Length < 1 Then Exit For
+
+            Dim request As New MultipartFormDataContent From {
+                {New StringContent("91" + phno.Trim), "phno"},
+                {New StringContent(""), "msg"},
+                {New StreamContent(File.OpenRead(imgPath)), "image", New FileInfo(imgPath).Name}
+            }
+
+            Dim ResponseString As String = Await ServerHttpRequest(Nothing, request, $"http://{My.Settings.connection_url}/upload")
+
+            If ResponseString IsNot Nothing Then
+                Dim response As JObject = JObject.Parse(ResponseString)
+                Select Case response.SelectToken("result").ToString
+                    Case "fail"
+                        Return "fail"
+                    Case "pass"
+                        Continue For
+                    Case Else
+                        Return "UnRegistered"
+                End Select
+            Else
+                Return "NoResponse"
+            End If
+
+        Next
+
+        Return "pass"
+
+    End Function
 
     Public Async Function SendMessage(phno As String, _kitty As Kitty) As Task(Of String)
         Dim MessageList As List(Of String) = Split(MessageText, $"{Environment.NewLine}{Environment.NewLine}<Next Message>{Environment.NewLine}{Environment.NewLine}").ToList
@@ -265,15 +304,16 @@ Public Class PreviewForm
 
             msg = ReplaceTemplateWithDetails(_kitty, msg)
 
-            If msg.Length <= 1 Then Exit For
+            If msg.Replace(" ", "").Length < 1 Then Exit For
 
             Dim request As New MultipartFormDataContent From {
-            {New StringContent("91" + phno.Trim), "phno"},
-            {New StringContent(msg.Replace("{hands}", "")), "msg"},
-            {New StringContent(IIf(msg.Contains("{hands}"), "true", "false")), "hands"}
-        }
+                {New StringContent("91" + phno.Trim), "phno"},
+                {New StringContent(msg.Replace("{hands}", "")), "msg"},
+                {New StringContent(IIf(msg.Contains("{hands}"), "true", "false")), "hands"}
+            }
 
             Dim ResponseString As String = Await ServerHttpRequest(Nothing, request, $"http://{My.Settings.connection_url}/upload")
+
             If ResponseString IsNot Nothing Then
                 Dim response As JObject = JObject.Parse(ResponseString)
                 Select Case response.SelectToken("result").ToString
@@ -299,12 +339,12 @@ Public Class PreviewForm
         Dim MessagesToSend As New List(Of Tuple(Of String, Kitty))
 
         If AllCB.Checked Then
-            MessagesToSend = Messages
+            MessagesToSend = Me.MessagesToSend
         Else
-            If CurrentControlsValue + OneTimeControlsValue > Messages.Count Then
-                MessagesToSend = Messages.Skip(CurrentControlsValue).ToList
+            If CurrentControlsValue + OneTimeControlsValue > Me.MessagesToSend.Count Then
+                MessagesToSend = Me.MessagesToSend.Skip(CurrentControlsValue).ToList
             Else
-                MessagesToSend = Messages.Skip(CurrentControlsValue).Take(OneTimeControlsValue).ToList
+                MessagesToSend = Me.MessagesToSend.Skip(CurrentControlsValue).Take(OneTimeControlsValue).ToList
             End If
         End If
 
@@ -317,7 +357,7 @@ Public Class PreviewForm
             UpdateList(msg.Item1, msg.Item2.KittyUID, status)
             UpdateStatuses()
             Try
-                Dim correspondingControl As PreviewControl = FlowLayoutPanel1.Controls.OfType(Of PreviewControl).Where(Function(c) c.Name = id)(0)
+                Dim correspondingControl As MessagePreviewControl = FlowLayoutPanel1.Controls.OfType(Of MessagePreviewControl).Where(Function(c) c.Name = id)(0)
                 correspondingControl.Status = "Sending"
                 correspondingControl.Status = status
             Catch ex As Exception
@@ -351,7 +391,7 @@ Public Class PreviewForm
     End Sub
 
     Private Sub UpdateStatuses()
-        SentText.Text = $"{SentList.Count}/{Messages.Count - RemovedList.Count}"
+        SentText.Text = $"{SentList.Count}/{MessagesToSend.Count - RemovedList.Count}"
 
         If UnRegisteredList.Count > 0 Then
             UnRegisteredLB.Visible = True
@@ -372,7 +412,7 @@ Public Class PreviewForm
         End If
 
         If AllCB.Checked Then
-            If SentList.Count + UnRegisteredList.Count + FailedList.Count + RemovedList.Count = Messages.Count Then
+            If SentList.Count + UnRegisteredList.Count + FailedList.Count + RemovedList.Count = MessagesToSend.Count Then
                 SendButton.Enabled = False
             Else
                 SendButton.Enabled = True
@@ -380,10 +420,10 @@ Public Class PreviewForm
         Else
             Dim CurrentMessages As New List(Of Tuple(Of String, Kitty))
 
-            If CurrentControlsValue + OneTimeControlsValue > Messages.Count Then
-                CurrentMessages = Messages.Skip(CurrentControlsValue).ToList
+            If CurrentControlsValue + OneTimeControlsValue > MessagesToSend.Count Then
+                CurrentMessages = MessagesToSend.Skip(CurrentControlsValue).ToList
             Else
-                CurrentMessages = Messages.Skip(CurrentControlsValue).Take(OneTimeControlsValue).ToList
+                CurrentMessages = MessagesToSend.Skip(CurrentControlsValue).Take(OneTimeControlsValue).ToList
             End If
 
             Dim enbl As Boolean = False
@@ -459,5 +499,10 @@ Public Class PreviewForm
         ElseIf e.KeyCode = Keys.Left Then
             BackButton.PerformClick()
         End If
+    End Sub
+
+    Private Sub ImagesPreview_Click(sender As Object, e As EventArgs) Handles ImagesPreview.Click
+        Dim Fm As New Form
+
     End Sub
 End Class

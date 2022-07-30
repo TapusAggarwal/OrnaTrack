@@ -147,7 +147,7 @@
 
     Private Sub GreetButton_MouseHover(sender As Object, e As EventArgs) Handles GreetButton.MouseHover
         If ToolTipChB.Checked Then
-            ToolTip1.Show($"Adds A Greeting To Template.{Environment.NewLine}Ex: {PreviewForm.Greet()}", GreetButton, 3000)
+            ToolTip1.Show($"Adds A Greeting To Template.{Environment.NewLine}Ex: {MessagePreviewForm.Greet()}", GreetButton, 3000)
         End If
     End Sub
 #End Region
@@ -156,8 +156,8 @@
         InitaliseConnection()
         Try : myconnection.Open() : Catch : End Try
 
-        RecieptPanel.Visible = False
-        Size = New Point(Width - RecieptPanel.Width + 7, Height)
+        ImagePanel.Visible = False
+        Size = New Point(Width - ImagePanel.Width + 7, Height)
 
         MessageTB.Text = "{Greet}
 Dear, {CoustName} Ji
@@ -176,38 +176,223 @@ You Can Also Pay Online Account Info Below."
         End If
     End Sub
 
-    Private Sub IconButton3_Click(sender As Object, e As EventArgs) Handles IconButton3.Click
-        Dim _temp As New Label With {
-            .Font = New Font("Century Gothic", 12.0!, FontStyle.Bold, GraphicsUnit.Point, 0),
-            .Visible = True,
-            .AutoSize = True,
-            .AutoEllipsis = True,
-            .ForeColor = Color.Green,
-            .BackColor = Color.FromArgb(36, 60, 60),
-            .Margin = New Padding(5)
-        }
+    Private Sub ShowMessages()
+        FlowLayoutPanel1.Controls.Clear()
 
-        If HandsCheckBox.Checked Then
-            MessagesList.Add(MessageTB.Text + "{hands}")
-        Else
-            MessagesList.Add(MessageTB.Text)
-        End If
+        Dim MsgIndex As Integer = 1
 
-        _temp.Text = $"{MessagesList.Count}-" + MessageTB.Text
-        FlowLayoutPanel1.Controls.Add(_temp)
+        For Each i In MessagesList
 
+            If i.Length < 1 Then Continue For
+
+            Dim _lbl As New Label With {
+              .Font = New Font("Century Gothic", 12.0!, FontStyle.Bold, GraphicsUnit.Point, 0),
+              .Visible = True,
+              .AutoEllipsis = True,
+              .ForeColor = Color.Green,
+              .BackColor = Color.FromArgb(36, 60, 60),
+              .Margin = New Padding(5),
+              .Tag = MsgIndex
+            }
+
+            _lbl.Text = $"{MsgIndex}-" + i
+
+            _lbl.MaximumSize = New Point(500, 0)
+            _lbl.AutoSize = True
+
+            FlowLayoutPanel1.Controls.Add(_lbl)
+
+            AddHandler _lbl.Click, Sub(Sender As Label, e As EventArgs)
+
+                                       RemoveHandler EditBT.Click, AddressOf Edit_Click
+                                       RemoveHandler DeleteBT.Click, AddressOf DeleteBT_Click
+                                       RemoveHandler CancelEditBT.Click, AddressOf CancelBT_Click
+
+                                       If AddMsgBT.Enabled = False Then
+                                           Dim _selectedLabel As Label = FlowLayoutPanel1.Controls.Item(EditBT.Tag)
+                                           _selectedLabel.BackColor = Color.FromArgb(36, 60, 60)
+                                       End If
+
+                                       MessageTB.Text = MessagesList(_lbl.Tag - 1)
+                                       MessageTB.ZoomFactor = CSng(0.6)
+
+
+                                       _lbl.BackColor = SystemColors.ActiveCaption
+
+                                       EditBT.Visible = True
+                                       DeleteBT.Visible = True
+                                       CancelEditBT.Visible = True
+                                       AddMsgBT.Enabled = False
+                                       EditBT.Tag = _lbl.Tag - 1
+
+                                       AddHandler EditBT.Click, AddressOf Edit_Click
+                                       AddHandler DeleteBT.Click, AddressOf DeleteBT_Click
+                                       AddHandler CancelEditBT.Click, AddressOf CancelBT_Click
+
+                                   End Sub
+
+            MsgIndex += 1
+
+        Next
     End Sub
 
-    Private Sub IconButton1_Click(sender As Object, e As EventArgs) Handles IconButton1.Click
-        Using Fm As New PreviewForm
+    Private Sub AddMsgBT_Click(sender As Object, e As EventArgs) Handles AddMsgBT.Click
+        If MessageTB.TextLength < 1 Then Exit Sub
+
+        If HandsCheckBox.Checked Then MessageTB.Text = MessageTB.Text.Replace("{hands}", "") + "{hands}"
+
+        MessagesList.Add(MessageTB.Text)
+
+        ShowMessages()
+
+        MessageTB.Text = ""
+        MessageTB.Select()
+    End Sub
+
+    Private Sub Edit_Click(sender As Object, e As EventArgs)
+        If MessageTB.TextLength < 1 Then
+            Exit Sub
+        End If
+
+        If HandsCheckBox.Checked Then MessageTB.Text = MessageTB.Text.Replace("{hands}", "") + "{hands}"
+
+        MessagesList(EditBT.Tag) = MessageTB.Text
+        MessageTB.Text = ""
+        ShowMessages()
+
+        AddMsgBT.Enabled = True
+        EditBT.Visible = False
+        DeleteBT.Visible = False
+        CancelEditBT.Visible = False
+    End Sub
+
+    Private Sub DeleteBT_Click(sender As Object, e As EventArgs)
+        If MessageBox.Show("Are You Sure You Want To Delete This Message Template.", "Confirm Selection", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then
+            Exit Sub
+        End If
+
+        MessagesList.RemoveAt(EditBT.Tag)
+        ShowMessages()
+        MessageTB.Text = ""
+        MessageTB.Select()
+        AddMsgBT.Enabled = True
+        EditBT.Visible = False
+        DeleteBT.Visible = False
+        CancelEditBT.Visible = False
+    End Sub
+
+    Private Sub CancelBT_Click(sender As Object, e As EventArgs)
+        Dim _lbl As Label = FlowLayoutPanel1.Controls.Item(EditBT.Tag)
+        _lbl.BackColor = Color.FromArgb(36, 60, 60)
+        MessageTB.Text = ""
+        MessageTB.Select()
+
+        AddMsgBT.Enabled = True
+        EditBT.Visible = False
+        DeleteBT.Visible = False
+        CancelEditBT.Visible = False
+    End Sub
+
+    Private Sub PreviewBT_Click(sender As Object, e As EventArgs) Handles PreviewBT.Click
+        Using Fm As New MessagePreviewForm
             Fm.SelectedKitties = SelectedKitties
             Dim MessageText As String = String.Join($"{Environment.NewLine}{Environment.NewLine}<Next Message>{Environment.NewLine}{Environment.NewLine}", MessagesList)
+
+            Dim imgPaths As New List(Of String)
+
+            For Each cntrl In ImagePanel.Controls
+                Try
+                    Dim imgBox As PictureBox = cntrl
+                    imgPaths.Add(imgBox.ImageLocation)
+                Catch ex As Exception
+                End Try
+            Next
+
             SqlCommand($"Update Message_Data set MessageText='{MessageText}' where id=1")
+            SqlCommand($"Update Message_Data set ImagePaths='{String.Join(",", imgPaths)}' where id=1")
+
             Fm.ClearPrevious()
             Fm.ShowDialog()
         End Using
     End Sub
 
+    Private Sub AddImageBT_Click(sender As Object, e As EventArgs) Handles AddImageBT.Click
+        Try
+
+            Dim img As New OpenFileDialog With {
+                .Filter = "Choose Image(*.jpg;*.png;*.gif)|*.jpg;*.png;*.gif"
+            }
+            If img.ShowDialog = DialogResult.OK Then
+                Dim ImageBox As New PictureBox With {
+                    .Image = Image.FromFile(img.FileName),
+                    .ImageLocation = img.FileName,
+                    .Size = New Point(.Image.Width, .Image.Height),
+                    .SizeMode = PictureBoxSizeMode.Zoom
+                }
+
+                If ImageBox.Height > 300 Then
+                    ImageBox.Height = 300
+                End If
+
+                If ImageBox.Width > 280 Then
+                    ImageBox.Width = 280
+                End If
+
+                ImagePanel.Controls.Add(ImageBox)
+
+                AddHandler ImageBox.DoubleClick, Sub()
+                                                     ImagePanel.Controls.Remove(ImageBox)
+                                                     If ImagePanel.Controls.Count = 0 Then
+                                                         ImageRemoveLB.Visible = False
+                                                         ImagePanel.Visible = False
+                                                         Size = New Point(Width - ImagePanel.Width + 7, Height)
+                                                     End If
+                                                 End Sub
+
+                If ImagePanel.Visible = False Then
+                    ImageRemoveLB.Visible = True
+                    ImagePanel.Visible = True
+                    Size = New Point(Width + ImagePanel.Width - 7, Height)
+                End If
+
+            End If
+        Catch ex As Exception
+        End Try
+    End Sub
+
+    Private Sub SavedTemplatesBT_Click(sender As Object, e As EventArgs) Handles SavedTemplatesBT.Click
+        Dim Fm As New MessageTemplates
+
+        AddHandler Fm.MessageSelected, Sub(Msg As String)
+                                           MessageTB.Text = Msg
+                                           Fm.Close()
+                                       End Sub
+
+        Fm.Show()
+
+    End Sub
+
+    Private Sub MessageTB_TextChanged(sender As Object, e As EventArgs) Handles MessageTB.TextChanged
+        If MessageTB.Text.Contains("|") Then
+            MessageBox.Show("Character |(Pipe) Is Not Allowed In Message Templates. Use Other Symbols Instead.", "Used Non Accessible Character.", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageTB.Text = MessageTB.Text.Replace("|", "")
+        ElseIf MessageTB.Text.Contains("'") Then
+            MessageBox.Show("Character '(Apostrophe) Is Not Allowed In Message Templates. Use Other Symbols Like Double Apostrophe Instead->("").", "Used Non Accessible Character.", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageTB.Text = MessageTB.Text.Replace("'", "")
+        End If
+
+        HandsCheckBox.Checked = MessageTB.Text.Contains("{hands}")
+
+        MessageTB.ZoomFactor = CSng(0.6)
+    End Sub
+
+    Private Sub HandsCheckBox_CheckedChanged(sender As Object, e As EventArgs) Handles HandsCheckBox.CheckedChanged
+        If HandsCheckBox.Checked AndAlso MessageTB.Text.Replace(" ", "").Length > 1 Then
+            MessageTB.Text = MessageTB.Text.Replace("{hands}", "") + "{hands}"
+        ElseIf Not HandsCheckBox.Checked AndAlso MessageTB.Text.Replace(" ", "").Length > 1 Then
+            MessageTB.Text = MessageTB.Text.Replace("{hands}", "")
+        End If
+    End Sub
 End Class
 
 'ReadOnly SelectedColour As Color = Color.Wheat

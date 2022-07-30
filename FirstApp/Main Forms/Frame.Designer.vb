@@ -47,18 +47,19 @@ Partial Class Frame
         Me.SidePanelButton = New FontAwesome.Sharp.IconPictureBox()
         Me.LeftArrowButton = New FontAwesome.Sharp.IconPictureBox()
         Me.RightArrowButton = New FontAwesome.Sharp.IconPictureBox()
-        Me.SendMessageButton = New FontAwesome.Sharp.IconButton()
+        Me.PanelMenu = New System.Windows.Forms.Panel()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.NewCoustmerButton = New FontAwesome.Sharp.IconButton()
+        Me.SendMessageButton = New FontAwesome.Sharp.IconButton()
         Me.QuickSearchButton = New FontAwesome.Sharp.IconButton()
-        Me.PanelMenu = New System.Windows.Forms.Panel()
+        Me.UpdateServerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PanelTitleBar.SuspendLayout()
         Me.ServerContextMenuStrip.SuspendLayout()
         CType(Me.SidePanelButton, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LeftArrowButton, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RightArrowButton, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelMenu.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelTitleBar
@@ -171,6 +172,7 @@ Partial Class Frame
         Me.IconButton3.TabIndex = 211
         Me.IconButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.IconButton3.UseVisualStyleBackColor = False
+        Me.IconButton3.Visible = False
         '
         'SilverRateLabel
         '
@@ -182,6 +184,7 @@ Partial Class Frame
         Me.SilverRateLabel.Name = "SilverRateLabel"
         Me.SilverRateLabel.Size = New System.Drawing.Size(0, 42)
         Me.SilverRateLabel.TabIndex = 173
+        Me.SilverRateLabel.Visible = False
         '
         'GoldRateLabel
         '
@@ -193,6 +196,7 @@ Partial Class Frame
         Me.GoldRateLabel.Name = "GoldRateLabel"
         Me.GoldRateLabel.Size = New System.Drawing.Size(0, 42)
         Me.GoldRateLabel.TabIndex = 172
+        Me.GoldRateLabel.Visible = False
         '
         'SilverButton
         '
@@ -216,6 +220,7 @@ Partial Class Frame
         Me.SilverButton.Text = "Silver"
         Me.SilverButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.SilverButton.UseVisualStyleBackColor = False
+        Me.SilverButton.Visible = False
         '
         'GoldButton
         '
@@ -239,6 +244,7 @@ Partial Class Frame
         Me.GoldButton.Text = "Gold"
         Me.GoldButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.GoldButton.UseVisualStyleBackColor = False
+        Me.GoldButton.Visible = False
         '
         'UserPhNo
         '
@@ -294,11 +300,11 @@ Partial Class Frame
         '
         Me.ServerContextMenuStrip.Font = New System.Drawing.Font("Century Schoolbook", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ServerContextMenuStrip.ImageScalingSize = New System.Drawing.Size(24, 24)
-        Me.ServerContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.WhatsappWebVisibilityToolStripMenuItem, Me.NotificationToolStripMenuItem, Me.RestartToolStripMenuItem, Me.ChangeServerAddressToolStripMenuItem, Me.TestConnectionToolStripMenuItem})
+        Me.ServerContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.WhatsappWebVisibilityToolStripMenuItem, Me.NotificationToolStripMenuItem, Me.RestartToolStripMenuItem, Me.ChangeServerAddressToolStripMenuItem, Me.TestConnectionToolStripMenuItem, Me.UpdateServerToolStripMenuItem})
         Me.ServerContextMenuStrip.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
         Me.ServerContextMenuStrip.Name = "ServerContextMenuStrip"
         Me.ServerContextMenuStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional
-        Me.ServerContextMenuStrip.Size = New System.Drawing.Size(312, 154)
+        Me.ServerContextMenuStrip.Size = New System.Drawing.Size(312, 217)
         '
         'WhatsappWebVisibilityToolStripMenuItem
         '
@@ -397,25 +403,20 @@ Partial Class Frame
         Me.RightArrowButton.TabIndex = 139
         Me.RightArrowButton.TabStop = False
         '
-        'SendMessageButton
+        'PanelMenu
         '
-        Me.SendMessageButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(70, Byte), Integer))
-        Me.SendMessageButton.FlatAppearance.BorderSize = 0
-        Me.SendMessageButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.SendMessageButton.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SendMessageButton.ForeColor = System.Drawing.Color.MediumPurple
-        Me.SendMessageButton.IconChar = FontAwesome.Sharp.IconChar.AddressCard
-        Me.SendMessageButton.IconColor = System.Drawing.Color.Black
-        Me.SendMessageButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.SendMessageButton.IconSize = 40
-        Me.SendMessageButton.Location = New System.Drawing.Point(0, 436)
-        Me.SendMessageButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.SendMessageButton.Name = "SendMessageButton"
-        Me.SendMessageButton.Size = New System.Drawing.Size(340, 91)
-        Me.SendMessageButton.TabIndex = 164
-        Me.SendMessageButton.Text = "Send Message"
-        Me.SendMessageButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
-        Me.SendMessageButton.UseVisualStyleBackColor = False
+        Me.PanelMenu.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.PanelMenu.BackColor = System.Drawing.Color.FromArgb(CType(CType(32, Byte), Integer), CType(CType(32, Byte), Integer), CType(CType(65, Byte), Integer))
+        Me.PanelMenu.Controls.Add(Me.PictureBox1)
+        Me.PanelMenu.Controls.Add(Me.NewCoustmerButton)
+        Me.PanelMenu.Controls.Add(Me.SendMessageButton)
+        Me.PanelMenu.Controls.Add(Me.QuickSearchButton)
+        Me.PanelMenu.Location = New System.Drawing.Point(0, 63)
+        Me.PanelMenu.Name = "PanelMenu"
+        Me.PanelMenu.Size = New System.Drawing.Size(340, 987)
+        Me.PanelMenu.TabIndex = 170
+        Me.PanelMenu.Visible = False
         '
         'PictureBox1
         '
@@ -448,6 +449,26 @@ Partial Class Frame
         Me.NewCoustmerButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
         Me.NewCoustmerButton.UseVisualStyleBackColor = False
         '
+        'SendMessageButton
+        '
+        Me.SendMessageButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(70, Byte), Integer))
+        Me.SendMessageButton.FlatAppearance.BorderSize = 0
+        Me.SendMessageButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.SendMessageButton.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SendMessageButton.ForeColor = System.Drawing.Color.MediumPurple
+        Me.SendMessageButton.IconChar = FontAwesome.Sharp.IconChar.AddressCard
+        Me.SendMessageButton.IconColor = System.Drawing.Color.Black
+        Me.SendMessageButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.SendMessageButton.IconSize = 40
+        Me.SendMessageButton.Location = New System.Drawing.Point(0, 436)
+        Me.SendMessageButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.SendMessageButton.Name = "SendMessageButton"
+        Me.SendMessageButton.Size = New System.Drawing.Size(340, 91)
+        Me.SendMessageButton.TabIndex = 164
+        Me.SendMessageButton.Text = "Send Message"
+        Me.SendMessageButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
+        Me.SendMessageButton.UseVisualStyleBackColor = False
+        '
         'QuickSearchButton
         '
         Me.QuickSearchButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(70, Byte), Integer))
@@ -468,20 +489,11 @@ Partial Class Frame
         Me.QuickSearchButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
         Me.QuickSearchButton.UseVisualStyleBackColor = False
         '
-        'PanelMenu
+        'UpdateServerToolStripMenuItem
         '
-        Me.PanelMenu.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.PanelMenu.BackColor = System.Drawing.Color.FromArgb(CType(CType(32, Byte), Integer), CType(CType(32, Byte), Integer), CType(CType(65, Byte), Integer))
-        Me.PanelMenu.Controls.Add(Me.PictureBox1)
-        Me.PanelMenu.Controls.Add(Me.NewCoustmerButton)
-        Me.PanelMenu.Controls.Add(Me.SendMessageButton)
-        Me.PanelMenu.Controls.Add(Me.QuickSearchButton)
-        Me.PanelMenu.Location = New System.Drawing.Point(0, 63)
-        Me.PanelMenu.Name = "PanelMenu"
-        Me.PanelMenu.Size = New System.Drawing.Size(340, 987)
-        Me.PanelMenu.TabIndex = 170
-        Me.PanelMenu.Visible = False
+        Me.UpdateServerToolStripMenuItem.Name = "UpdateServerToolStripMenuItem"
+        Me.UpdateServerToolStripMenuItem.Size = New System.Drawing.Size(311, 30)
+        Me.UpdateServerToolStripMenuItem.Text = "Update Server"
         '
         'Frame
         '
@@ -504,8 +516,8 @@ Partial Class Frame
         CType(Me.SidePanelButton, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LeftArrowButton, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RightArrowButton, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelMenu.ResumeLayout(False)
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -537,4 +549,5 @@ Partial Class Frame
     Friend WithEvents CloseServerToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents TestConnectionToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents CleanAllSessionsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents UpdateServerToolStripMenuItem As ToolStripMenuItem
 End Class

@@ -6,7 +6,7 @@ Public Class AddItemPage
     Dim startX As Integer
     Dim startY As Integer
 
-    Public Property CurrentItem As New Item
+    Public Property CurrentItem As Item
 
     Private Sub AddAttributeButton_Click(sender As Object, e As EventArgs) Handles AddAttributeButton.Click
         'Try
@@ -24,17 +24,17 @@ Public Class AddItemPage
         Dim _property As New Item.Item_Property With {
                 .Name = AttrNameTB.Text,
                 .DataType = AttrTypeCB.SelectedItem,
+                .Attr_Ctg = AttrCategoryCB.SelectedItem,
                 .IsConstant = ConstantChB.Checked,
                 .IsOptional = OptionalChB.Checked,
-                .IsCurrency = CurrencyChB.Checked
-            }
+                .IsCurrency = CurrencyChB.Checked,
+                .IsFormula = CheckBox1.Checked
+        }
 
         If _property.IsCurrency And _property.DataType <> Item.DataType.Integer_Type Then
             MessageBox.Show("Only Integers Are Allowed To Be Declared As Currency.", "Illegal Selection")
             Exit Sub
         End If
-
-        CurrentItem.MyProperties.Add(_property)
 
         Select Case _property.DataType
             Case Item.DataType.Boolean_Type
@@ -45,88 +45,108 @@ Public Class AddItemPage
                 _property.DefaultValue = $"{ListValues.SelectedItem}`{String.Join(",", ListValues.Items.Cast(Of String))}"
             Case Item.DataType.Integer_Type
                 If DefaultValueTB.TextLength = 0 Then MessageBox.Show("Enter A Default Value To Add Integer Type Property.") : Exit Sub
-                _property.DefaultValue = DefaultValueTB.Text
+                If Not _property.IsFormula Then
+                    If DefaultValueTB.Text.Contains("{") Or DefaultValueTB.Text.Contains("}") Then MessageBox.Show("Characters '{' or '}' Are Not Allowed Unless The Property Uses A Formula.") : Exit Sub
+                    _property.DefaultValue = DefaultValueTB.Text
+                Else
+                    _property.DefaultValue = FormulaTB.Text
+                    _property.IsConstant = True
+                End If
             Case Item.DataType.String_Type
                 If DefaultValueTB.TextLength = 0 Then MessageBox.Show("Enter A Default Value To Add String Type Property.") : Exit Sub
                 _property.DefaultValue = DefaultValueTB.Text
         End Select
 
-        AddAttribute(_property)
+        If CurrentItem.MyProperties.Where(Function(f) f.Name = _property.Name).Count > 0 Then
+            MessageBox.Show("Attribute With Same Name Already Exists. Try Another Name.", "Entry Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
+            AttrNameTB.Select()
+            Exit Sub
+        End If
+
+        CurrentItem.MyProperties.Add(_property)
+
+        ShowProperties()
 
         'Catch ex As Exception
         '    MessageBox.Show(ex.Message)
         'End Try
     End Sub
 
-    Private Sub AddAttribute(_property As Item.Item_Property)
+    Dim PanelMaxWidth As Integer = 0
 
-        Dim z1 As New AttributeControl
-        z1.CurrentProperty = _property
+    Private Sub ShowProperties()
 
-        'Dim z As New FontAwesome.Sharp.IconButton() With {
-        '    .ForeColor = Color.MediumPurple,
-        '    .BackColor = Color.FromArgb(25, 25, 70),
-        '    .IconColor = Color.White,
-        '    .FlatStyle = FlatStyle.Flat,
-        '    .TextImageRelation = TextImageRelation.ImageBeforeText,
-        '    .AutoSize = True,
-        '    .Font = New Font("Century Gothic ", 11.25),
-        '    .Tag = _property
-        '}
+        PurchaseFP.FlowLayoutPanel1.Controls.Clear()
+        ProductFP.FlowLayoutPanel1.Controls.Clear()
+        SaleFP.FlowLayoutPanel1.Controls.Clear()
 
-        'z.FlatAppearance.BorderSize = 0
-        'z.Text = $"{{{_property.DataType}}} {_property.Name}*"
-        'z.IconChar = _property.Icon
+        PurchaseFP.Size = New Point(0, 50)
+        ProductFP.Size = New Point(0, 50)
+        SaleFP.Size = New Point(0, 50)
 
-        AddHandler z1.MouseDown, AddressOf StartDrag
-        AddHandler z1.MouseMove, AddressOf WhileDragging
-        AddHandler z1.MouseUp, AddressOf EndDrag
+        For Each _property In CurrentItem.MyProperties
+            Dim z1 As New AttributeControl
+            z1.CurrentProperty = _property
 
-        FlowLayoutPanel2.Controls.Add(z1)
+            'Dim z As New FontAwesome.Sharp.IconButton() With {
+            '    .ForeColor = Color.MediumPurple,
+            '    .BackColor = Color.FromArgb(25, 25, 70),
+            '    .IconColor = Color.White,
+            '    .FlatStyle = FlatStyle.Flat,
+            '    .TextImageRelation = TextImageRelation.ImageBeforeText,
+            '    .AutoSize = True,
+            '    .Font = New Font("Century Gothic ", 11.25),
+            '    .Tag = _property
+            '}
 
-        FlowLayoutPanel2.Size = New Point(FlowLayoutPanel2.Controls.Cast(Of AttributeControl).Max(Function(f) f.Size.Width), 0)
+            'z.FlatAppearance.BorderSize = 0
+            'z.Text = $"{{{_property.DataType}}} {_property.Name}*"
+            'z.IconChar = _property.Icon
 
-    End Sub
+            'AddHandler z1.MouseDown, AddressOf StartDrag
+            'AddHandler z1.MouseMove, AddressOf WhileDragging
+            'AddHandler z1.MouseUp, AddressOf EndDrag
 
-    Private Sub StartDrag(sender As Control, e As MouseEventArgs)
-        dragging = True
-    End Sub
-
-    Private Sub WhileDragging(sender As Control, e As MouseEventArgs)
-        If dragging = True Then
-            Label5.Text = e.Y
-            Try
-                With FlowLayoutPanel2.Controls
-
-                    If e.Y > sender.Height Then
-
-                        Dim newIndex As Integer = .IndexOf(sender) + 1
-
-                        .SetChildIndex(sender, newIndex)
-                        Cursor.Position = FlowLayoutPanel2.Controls.Item(newIndex).PointToScreen(Point.Empty) + New Point(sender.Width / 2, sender.Height / 2)
-
-                    ElseIf e.Y < 0 Then
-                        Dim newIndex As Integer = .IndexOf(sender) - 1
-
-                        .SetChildIndex(sender, newIndex)
-                        Cursor.Position = FlowLayoutPanel2.Controls.Item(newIndex).PointToScreen(Point.Empty) + New Point(sender.Width / 2, sender.Height / 2)
-
+            AddHandler z1.ButtonClick,
+                Sub(Ctrl_property As Item.Item_Property)
+                    If AddParameters = False Then
+                        If MessageBox.Show("Are You Sure You Want To Remove This Property.", "Confirm", MessageBoxButtons.YesNo) = DialogResult.No Then Exit Sub
+                        CurrentItem.MyProperties.Remove(Ctrl_property)
+                        ShowProperties()
+                    Else
+                        FormulaTB.SelectedText = $"{{{_property.Name}}}"
+                        FormulaTB.Select()
+                        'For Each i As AttributeControl In FlowLayoutPanel2.Controls
+                        '    i.UsedButton.IconChar = FontAwesome.Sharp.IconChar.WindowClose
+                        '    i.UsedButton.IconColor = Color.DarkRed
+                        '    i.Enabled = True
+                        'Next
+                        AddParameters = False
                     End If
-                End With
+                End Sub
 
+            If _property.Attr_Ctg = Item.AttributeCategory.Purchase_Type Then
+                PurchaseFP.AddControl(z1)
+                PurchaseFP.AutoReSize()
+            ElseIf _property.Attr_Ctg = Item.AttributeCategory.Product_Type Then
+                ProductFP.AddControl(z1)
+                ProductFP.AutoReSize()
+            Else
+                SaleFP.AddControl(z1)
+                SaleFP.AutoReSize()
+            End If
 
-            Catch ex As Exception
-            End Try
-        End If
-    End Sub
+            PanelMaxWidth = Math.Max(PanelMaxWidth, z1.Width)
 
-    Private Sub EndDrag(sender As Object, e As EventArgs)
-        dragging = False
+            'FlowLayoutPanel2.Controls.Add(z1)
+            'Panel1.Size = New Point(FlowLayoutPanel2.Controls.Cast(Of AttributeControl).Max(Function(f) f.Size.Width), 0)
+        Next
+
+        Size = New Point(Width + PanelMaxWidth - Panel1.Width + 55, Height)
+
     End Sub
 
     Private Sub AddItemPage_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        InitaliseConnection()
-        Try : myconnection.Open() : Catch : End Try
 
         AttrTypeCB.Items.Clear()
 
@@ -139,44 +159,11 @@ Public Class AddItemPage
 
         If CurrentItem.ItemID > 0 Then
             ItemNameTB.Text = CurrentItem.Name
-            For Each i In CurrentItem.MyProperties
-                AddAttribute(i)
-            Next
+            ShowProperties()
+            Exit Sub
         End If
 
-        Dim x As New Item.Item_Property
-        x.Name = "Studed"
-        x.DataType = Item.DataType.Boolean_Type
-        x.DefaultValue = "True"
-
-        Dim x1 As New Item.Item_Property
-        x1.Name = "Mnfc."
-        x1.DataType = Item.DataType.String_Type
-        x1.DefaultValue = "Shilpi Anil"
-
-        Dim x2 As New Item.Item_Property
-        x2.Name = "Net Weight"
-        x2.DataType = Item.DataType.Integer_Type
-        x2.DefaultValue = 0
-
-        Dim x3 As New Item.Item_Property
-        x3.Name = "Gross Weight"
-        x3.DataType = Item.DataType.Integer_Type
-        x3.DefaultValue = 0
-
-        Dim x4 As New Item.Item_Property
-        x4.Name = "Price"
-        x4.DataType = Item.DataType.Integer_Type
-        x4.DefaultValue = 0
-
-        AddAttribute(x)
-        AddAttribute(x1)
-        AddAttribute(x2)
-        AddAttribute(x3)
-        AddAttribute(x4)
-
-        Dim equation As String = "200*3"
-        Dim result = New DataTable().Compute(equation, Nothing)
+        ShowProperties()
 
     End Sub
 
@@ -192,10 +179,21 @@ Public Class AddItemPage
         End If
 
         If CurrentItem.ItemID > 0 Then
-            SqlCommand($"UPDATE Item_Data SET ItemName='{CurrentItem.Name}',ItemProperties='{CurrentItem.MyProperties_JSON}' WHERE ID={CurrentItem.ItemID}")
+            SqlCommand($"UPDATE Item_Data SET ItemName='{CurrentItem.Name}',ItemAttr='{CurrentItem.MyProperties_JSON}' WHERE ID={CurrentItem.ItemID}")
         Else
-            SqlCommand($"INSERT INTO Item_Data (ItemName,ItemProperties) VALUES ('{CurrentItem.Name}','{CurrentItem.MyProperties_JSON}')")
+            SqlCommand($"INSERT INTO Item_Data (ItemName,ItemAttr) VALUES ('{CurrentItem.Name}','{CurrentItem.MyProperties_JSON}')")
         End If
+
+        Try
+            Dim dr As OleDb.OleDbDataReader = DataReader("Select max(ID) From Item_Data")
+            While dr.Read
+                Dim _temp As Integer = dr(0)
+                CurrentItem.ItemID = _temp
+            End While
+        Catch ex As Exception
+        End Try
+
+        Close()
 
     End Sub
 
@@ -262,115 +260,119 @@ Public Class AddItemPage
         Dim x As New PropertyControl
     End Sub
 
-    'Private Sub AddItemPage_Paint(sender As Object, e As PaintEventArgs) Handles MyBase.Paint
-    '    e.Graphics.DrawRectangle(Pens.Red, rect)
-    'End Sub
+    Private AddParameters As Boolean = False
 
-    'Private Sub AddItemPage_MouseDown(sender As Object, e As MouseEventArgs) Handles Me.MouseDown
-    '    IsMouseDown = True
-    '    rect.Location = e.Location
-    '    rect.Width = 0
-    '    rect.Height = 0
-    '    Invalidate()
-    'End Sub
-
-    'Private Sub AddItemPage_MouseMove(sender As Object, e As MouseEventArgs) Handles Me.MouseMove
-    '    If IsMouseDown Then
-    '        rect.Width = e.X - rect.X
-    '        rect.Height = e.Y - rect.Y
-    '        Invalidate()
-    '    End If
-    'End Sub
-
-    'Private Sub AddItemPage_MouseUp(sender As Object, e As MouseEventArgs) Handles Me.MouseUp
-    '    IsMouseDown = False
-    'End Sub
-
-    Private Sub IconButton8_Click(sender As Object, e As EventArgs)
-        Dim Fm As New Form With {
-            .WindowState = FormWindowState.Maximized,
-            .FormBorderStyle = FormBorderStyle.None
-        }
-        'Fm.Opacity = 0.3
-
-        Dim IsMouseDown As Boolean
-        Dim rect As Rectangle
-
-        AddHandler Fm.Paint, Sub(_sender As Object, _e As PaintEventArgs)
-                                 _e.Graphics.DrawRectangle(Pens.Red, rect)
-                             End Sub
-
-        AddHandler Fm.MouseDown, Sub(_sender As Object, _e As MouseEventArgs)
-                                     IsMouseDown = True
-                                     rect.Location = _e.Location
-                                     rect.Width = 0
-                                     rect.Height = 0
-                                     Invalidate()
-                                 End Sub
-
-        AddHandler Fm.MouseMove, Sub(_sender As Object, _e As MouseEventArgs)
-                                     If IsMouseDown Then
-                                         rect.Width = _e.X - rect.X
-                                         rect.Height = _e.Y - rect.Y
-                                         Invalidate()
-                                     End If
-                                 End Sub
-
-        AddHandler Fm.MouseUp, Sub()
-                                   IsMouseDown = False
-                                   MessageBox.Show("Hi")
-                               End Sub
-
-        Fm.Show()
+    Private Sub AddParametersBT_Click(sender As Object, e As EventArgs) Handles AddParametersBT.Click
+        'For Each i As AttributeControl In FlowLayoutPanel2.Controls
+        '    Dim _property As Item.Item_Property = i.CurrentProperty
+        '    If _property.DataType <> Item.DataType.Integer_Type Then
+        '        i.Enabled = False
+        '    Else
+        '        i.UsedButton.IconChar = FontAwesome.Sharp.IconChar.CheckSquare
+        '        i.UsedButton.IconColor = Color.ForestGreen
+        '    End If
+        'Next
+        AddParameters = True
     End Sub
 
-    Private Sub IconButton10_Click(sender As Object, e As EventArgs) Handles AddParametersBT.Click
-        RemoveHandlerForButtons()
-        For Each i As Control In FlowLayoutPanel2.Controls
-            Dim _property As Item.Item_Property = i.Tag
-            If _property.DataType = Item.DataType.Integer_Type Then
-                AddHandler i.Click, AddressOf AddHandlerForButton
-            Else
-                i.Enabled = False
-            End If
-        Next
+    Private Sub CheckBox1_CheckedChanged_1(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged
+        If CheckBox1.Checked Then
+            FormulaTB.Visible = True
+            AddParametersBT.Visible = True
+            UseBT.Visible = True
+        Else
+            FormulaTB.Visible = False
+            AddParametersBT.Visible = False
+            UseBT.Visible = False
+        End If
     End Sub
 
-    Public Sub AddHandlerForButton(_sender As Object, _e As EventArgs)
-        Dim _property As Item.Item_Property = _sender.Tag
-        FormulaTB.SelectedText = $"{{{_property.Name}}}"
-        FormulaTB.Select()
-        RemoveHandlerForButtons()
-        For Each i As Control In FlowLayoutPanel2.Controls
-            i.Enabled = True
-        Next
+    Private Sub MathOPerations_Click(sender As FontAwesome.Sharp.IconButton, e As EventArgs) Handles LeftBracketBT.Click, RightBracketBT.Click, DivideBT.Click, MultiplyBT.Click, PlusBT.Click, MinusBT.Click
+        Dim Operation As String = ""
+
+        If sender Is LeftBracketBT Then
+            Operation = "("
+        ElseIf sender Is RightBracketBT Then
+            Operation = ")"
+        ElseIf sender Is DivideBT Then
+            Operation = "/"
+        ElseIf sender Is MultiplyBT Then
+            Operation = "*"
+        ElseIf sender Is PlusBT Then
+            Operation = "+"
+        ElseIf sender Is MinusBT Then
+            Operation = "-"
+        End If
+
+        FormulaTB.SelectedText = Operation
     End Sub
 
-    Public Sub RemoveHandlerForButtons()
-        For Each i As Control In FlowLayoutPanel2.Controls
-            RemoveHandler i.Click, AddressOf AddHandlerForButton
-        Next
-    End Sub
-
-    'Private Sub FormulaBT_Click(sender As Object, e As EventArgs) Handles FormulaBT.Click
-    '    If CheckBox1.Checked Then
-    '        CheckBox1.Checked = False
-    '        FormulaNameLB.Visible = False
-    '        FormulaNameTB.Visible = False
-    '        FormulaTB.Visible = False
-    '        AddParametersBT.Visible = False
-    '        UseBT.Visible = False
-    '    Else
-    '        CheckBox1.Checked = True
-    '        FormulaNameLB.Visible = True
-    '        FormulaNameTB.Visible = True
-    '        FormulaTB.Visible = True
-    '        AddParametersBT.Visible = True
-    '        UseBT.Visible = True
-    '    End If
-    'End Sub
 
     Private Sub UseBT_Click(sender As Object, e As EventArgs) Handles UseBT.Click
+        Dim equation As String = FormulaTB.Text
+        Dim result = New DataTable().Compute(equation, Nothing)
+    End Sub
+
+    Private Sub FormulaTB_KeyDown(sender As Object, e As EventArgs) Handles FormulaTB.TextChanged
+        'Dim filteredText As String = FormulaTB.Text
+
+        'Dim cursorIndex As Integer = FormulaTB.SelectionStart
+
+        'For Each i In filteredText
+        '    Dim ascVal As Integer = Asc(i)
+
+        '    If i = "(" Or i = ")" Or i = "/" Or i = "*" Or i = "+" Or i = "-" Then
+        '        Continue For
+        '    End If
+
+        '    If ascVal < 48 Or ascVal > 57 Then
+        '        MessageBox.Show($"Invalid Character Found ('{i}'). This Property Is Declared As Integer.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        '        filteredText = filteredText.Replace(i, "")
+        '    End If
+        'Next
+
+        'If FormulaTB.Text <> filteredText Then
+        '    FormulaTB.Text = filteredText
+        '    FormulaTB.SelectionStart = cursorIndex - 1
+        'End If
+
+        HighLightOperations()
 
     End Sub
+
+    Private Sub HighLightOperations()
+        Dim x As Integer = 0
+        FormulaTB.SelectionColor = Color.Black
+        For Each i In FormulaTB.Text
+            Dim cursorIndex As Integer = FormulaTB.SelectionStart
+            If i = "%" Or i = "(" Or i = ")" Or i = "/" Or i = "*" Or i = "+" Or i = "-" Then
+                FormulaTB.SelectionStart = x
+                FormulaTB.SelectionLength = 1
+                FormulaTB.SelectionColor = Color.Red
+                FormulaTB.SelectionStart = cursorIndex
+                FormulaTB.SelectionLength = 0
+                FormulaTB.SelectionColor = Color.Black
+            End If
+            x += 1
+        Next
+    End Sub
+
+    Private Sub MathOPerations_Click(sender As Object, e As EventArgs) Handles RightBracketBT.Click, PlusBT.Click, MultiplyBT.Click, MinusBT.Click, LeftBracketBT.Click, DivideBT.Click
+
+    End Sub
+
+    Private Sub IconButton1_Click(sender As Object, e As EventArgs) Handles IconButton1.Click
+    End Sub
+
+    Private Sub FlowLayoutPanel2_SizeChanged(sender As Object, e As EventArgs)
+        'MakeControlsEqualSize()
+    End Sub
+
+
+    'Private Sub MakeControlsEqualSize()
+    '    SaleAttrFP.Size = New Point(FlowLayoutPanel2.Width, SaleAttrFP.Height)
+    '    PurchaseAttrFP.Size = New Point(FlowLayoutPanel2.Width, PurchaseAttrFP.Height)
+    '    ProductAttrFP.Size = New Point(FlowLayoutPanel2.Width, ProductAttrFP.Height)
+    'End Sub
+
 End Class

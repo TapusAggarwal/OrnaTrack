@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class PreviewForm
+Partial Class MessagePreviewForm
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -35,6 +35,7 @@ Partial Class PreviewForm
         Me.FailedLB = New System.Windows.Forms.Label()
         Me.FailedText = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.ImagesPreview = New FontAwesome.Sharp.IconButton()
         Me.CurrentCB = New System.Windows.Forms.CheckBox()
         Me.AllCB = New System.Windows.Forms.CheckBox()
         Me.OneTimeControlTB = New System.Windows.Forms.TextBox()
@@ -50,7 +51,7 @@ Partial Class PreviewForm
         Me.FlowLayoutPanel1.Location = New System.Drawing.Point(0, 61)
         Me.FlowLayoutPanel1.Margin = New System.Windows.Forms.Padding(1000)
         Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(1422, 555)
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(1595, 569)
         Me.FlowLayoutPanel1.TabIndex = 9997
         '
         'SendButton
@@ -68,7 +69,7 @@ Partial Class PreviewForm
         Me.SendButton.IconColor = System.Drawing.Color.White
         Me.SendButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
         Me.SendButton.IconSize = 36
-        Me.SendButton.Location = New System.Drawing.Point(225, 6)
+        Me.SendButton.Location = New System.Drawing.Point(279, 6)
         Me.SendButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.SendButton.Name = "SendButton"
         Me.SendButton.Size = New System.Drawing.Size(129, 44)
@@ -88,11 +89,11 @@ Partial Class PreviewForm
         Me.RetryButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.RetryButton.Font = New System.Drawing.Font("Century Gothic", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.RetryButton.ForeColor = System.Drawing.Color.Linen
-        Me.RetryButton.IconChar = FontAwesome.Sharp.IconChar.PaperPlane
+        Me.RetryButton.IconChar = FontAwesome.Sharp.IconChar.RedoAlt
         Me.RetryButton.IconColor = System.Drawing.Color.White
         Me.RetryButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
         Me.RetryButton.IconSize = 36
-        Me.RetryButton.Location = New System.Drawing.Point(362, 6)
+        Me.RetryButton.Location = New System.Drawing.Point(422, 6)
         Me.RetryButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.RetryButton.Name = "RetryButton"
         Me.RetryButton.Size = New System.Drawing.Size(128, 44)
@@ -107,7 +108,7 @@ Partial Class PreviewForm
         Me.SentLB.BackColor = System.Drawing.Color.Transparent
         Me.SentLB.Font = New System.Drawing.Font("Century Schoolbook", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SentLB.ForeColor = System.Drawing.Color.Goldenrod
-        Me.SentLB.Location = New System.Drawing.Point(501, 15)
+        Me.SentLB.Location = New System.Drawing.Point(573, 15)
         Me.SentLB.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.SentLB.Name = "SentLB"
         Me.SentLB.Size = New System.Drawing.Size(76, 30)
@@ -121,12 +122,12 @@ Partial Class PreviewForm
         Me.SentText.BackColor = System.Drawing.Color.Transparent
         Me.SentText.Font = New System.Drawing.Font("Century Schoolbook", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SentText.ForeColor = System.Drawing.Color.Goldenrod
-        Me.SentText.Location = New System.Drawing.Point(574, 15)
+        Me.SentText.Location = New System.Drawing.Point(646, 15)
         Me.SentText.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.SentText.Name = "SentText"
-        Me.SentText.Size = New System.Drawing.Size(76, 30)
+        Me.SentText.Size = New System.Drawing.Size(104, 30)
         Me.SentText.TabIndex = 10002
-        Me.SentText.Text = "50/71"
+        Me.SentText.Text = "500/710"
         Me.SentText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'UnRegisteredText
@@ -135,12 +136,12 @@ Partial Class PreviewForm
         Me.UnRegisteredText.BackColor = System.Drawing.Color.Transparent
         Me.UnRegisteredText.Font = New System.Drawing.Font("Century Schoolbook", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.UnRegisteredText.ForeColor = System.Drawing.Color.Goldenrod
-        Me.UnRegisteredText.Location = New System.Drawing.Point(829, 15)
+        Me.UnRegisteredText.Location = New System.Drawing.Point(951, 15)
         Me.UnRegisteredText.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.UnRegisteredText.Name = "UnRegisteredText"
-        Me.UnRegisteredText.Size = New System.Drawing.Size(41, 30)
+        Me.UnRegisteredText.Size = New System.Drawing.Size(55, 30)
         Me.UnRegisteredText.TabIndex = 10004
-        Me.UnRegisteredText.Text = "18"
+        Me.UnRegisteredText.Text = "180"
         Me.UnRegisteredText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.UnRegisteredText.Visible = False
         '
@@ -150,7 +151,7 @@ Partial Class PreviewForm
         Me.UnRegisteredLB.BackColor = System.Drawing.Color.Transparent
         Me.UnRegisteredLB.Font = New System.Drawing.Font("Century Schoolbook", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.UnRegisteredLB.ForeColor = System.Drawing.Color.Goldenrod
-        Me.UnRegisteredLB.Location = New System.Drawing.Point(657, 15)
+        Me.UnRegisteredLB.Location = New System.Drawing.Point(779, 15)
         Me.UnRegisteredLB.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.UnRegisteredLB.Name = "UnRegisteredLB"
         Me.UnRegisteredLB.Size = New System.Drawing.Size(176, 30)
@@ -173,7 +174,7 @@ Partial Class PreviewForm
         Me.BackButton.IconColor = System.Drawing.Color.MediumPurple
         Me.BackButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
         Me.BackButton.IconSize = 40
-        Me.BackButton.Location = New System.Drawing.Point(1302, 6)
+        Me.BackButton.Location = New System.Drawing.Point(1475, 6)
         Me.BackButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.BackButton.Name = "BackButton"
         Me.BackButton.Size = New System.Drawing.Size(46, 46)
@@ -195,7 +196,7 @@ Partial Class PreviewForm
         Me.NextButton.IconColor = System.Drawing.Color.MediumPurple
         Me.NextButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
         Me.NextButton.IconSize = 40
-        Me.NextButton.Location = New System.Drawing.Point(1354, 6)
+        Me.NextButton.Location = New System.Drawing.Point(1527, 6)
         Me.NextButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.NextButton.Name = "NextButton"
         Me.NextButton.Size = New System.Drawing.Size(46, 46)
@@ -209,7 +210,7 @@ Partial Class PreviewForm
         Me.PreviewCountLB.BackColor = System.Drawing.Color.Transparent
         Me.PreviewCountLB.Font = New System.Drawing.Font("Century Schoolbook", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.PreviewCountLB.ForeColor = System.Drawing.Color.MediumPurple
-        Me.PreviewCountLB.Location = New System.Drawing.Point(1053, 13)
+        Me.PreviewCountLB.Location = New System.Drawing.Point(1226, 13)
         Me.PreviewCountLB.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.PreviewCountLB.Name = "PreviewCountLB"
         Me.PreviewCountLB.Size = New System.Drawing.Size(202, 30)
@@ -223,7 +224,7 @@ Partial Class PreviewForm
         Me.FailedLB.BackColor = System.Drawing.Color.Transparent
         Me.FailedLB.Font = New System.Drawing.Font("Century Schoolbook", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FailedLB.ForeColor = System.Drawing.Color.Goldenrod
-        Me.FailedLB.Location = New System.Drawing.Point(881, 15)
+        Me.FailedLB.Location = New System.Drawing.Point(1040, 15)
         Me.FailedLB.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.FailedLB.Name = "FailedLB"
         Me.FailedLB.Size = New System.Drawing.Size(99, 30)
@@ -238,12 +239,12 @@ Partial Class PreviewForm
         Me.FailedText.BackColor = System.Drawing.Color.Transparent
         Me.FailedText.Font = New System.Drawing.Font("Century Schoolbook", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FailedText.ForeColor = System.Drawing.Color.Goldenrod
-        Me.FailedText.Location = New System.Drawing.Point(976, 15)
+        Me.FailedText.Location = New System.Drawing.Point(1135, 15)
         Me.FailedText.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.FailedText.Name = "FailedText"
-        Me.FailedText.Size = New System.Drawing.Size(27, 30)
+        Me.FailedText.Size = New System.Drawing.Size(55, 30)
         Me.FailedText.TabIndex = 10006
-        Me.FailedText.Text = "3"
+        Me.FailedText.Text = "300"
         Me.FailedText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.FailedText.Visible = False
         '
@@ -251,6 +252,7 @@ Partial Class PreviewForm
         '
         Me.Panel1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Panel1.Controls.Add(Me.ImagesPreview)
         Me.Panel1.Controls.Add(Me.CurrentCB)
         Me.Panel1.Controls.Add(Me.AllCB)
         Me.Panel1.Controls.Add(Me.OneTimeControlTB)
@@ -267,8 +269,30 @@ Partial Class PreviewForm
         Me.Panel1.Controls.Add(Me.UnRegisteredText)
         Me.Panel1.Location = New System.Drawing.Point(0, 3)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1422, 58)
+        Me.Panel1.Size = New System.Drawing.Size(1595, 58)
         Me.Panel1.TabIndex = 0
+        '
+        'ImagesPreview
+        '
+        Me.ImagesPreview.AutoSize = True
+        Me.ImagesPreview.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.ImagesPreview.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(70, Byte), Integer))
+        Me.ImagesPreview.FlatAppearance.BorderSize = 0
+        Me.ImagesPreview.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ImagesPreview.Font = New System.Drawing.Font("Cambria", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ImagesPreview.ForeColor = System.Drawing.Color.MediumPurple
+        Me.ImagesPreview.IconChar = FontAwesome.Sharp.IconChar.Images
+        Me.ImagesPreview.IconColor = System.Drawing.Color.MediumPurple
+        Me.ImagesPreview.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.ImagesPreview.IconSize = 40
+        Me.ImagesPreview.Location = New System.Drawing.Point(222, 7)
+        Me.ImagesPreview.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.ImagesPreview.Name = "ImagesPreview"
+        Me.ImagesPreview.Size = New System.Drawing.Size(46, 46)
+        Me.ImagesPreview.TabIndex = 10015
+        Me.ImagesPreview.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.ImagesPreview.UseVisualStyleBackColor = False
+        Me.ImagesPreview.Visible = False
         '
         'CurrentCB
         '
@@ -277,7 +301,7 @@ Partial Class PreviewForm
         Me.CurrentCB.CheckState = System.Windows.Forms.CheckState.Checked
         Me.CurrentCB.Font = New System.Drawing.Font("Century Schoolbook", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CurrentCB.ForeColor = System.Drawing.Color.MediumPurple
-        Me.CurrentCB.Location = New System.Drawing.Point(89, 15)
+        Me.CurrentCB.Location = New System.Drawing.Point(94, 15)
         Me.CurrentCB.Name = "CurrentCB"
         Me.CurrentCB.Size = New System.Drawing.Size(129, 30)
         Me.CurrentCB.TabIndex = 10014
@@ -289,7 +313,7 @@ Partial Class PreviewForm
         Me.AllCB.AutoSize = True
         Me.AllCB.Font = New System.Drawing.Font("Century Schoolbook", 11.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.AllCB.ForeColor = System.Drawing.Color.MediumPurple
-        Me.AllCB.Location = New System.Drawing.Point(12, 15)
+        Me.AllCB.Location = New System.Drawing.Point(17, 15)
         Me.AllCB.Name = "AllCB"
         Me.AllCB.Size = New System.Drawing.Size(71, 30)
         Me.AllCB.TabIndex = 10013
@@ -300,22 +324,22 @@ Partial Class PreviewForm
         '
         Me.OneTimeControlTB.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.OneTimeControlTB.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.OneTimeControlTB.Location = New System.Drawing.Point(1262, 13)
+        Me.OneTimeControlTB.Location = New System.Drawing.Point(1435, 13)
         Me.OneTimeControlTB.Name = "OneTimeControlTB"
         Me.OneTimeControlTB.Size = New System.Drawing.Size(33, 30)
         Me.OneTimeControlTB.TabIndex = 10012
         '
-        'PreviewForm
+        'MessagePreviewForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(60, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(1422, 684)
+        Me.ClientSize = New System.Drawing.Size(1595, 698)
         Me.Controls.Add(Me.FlowLayoutPanel1)
         Me.Controls.Add(Me.Panel1)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "PreviewForm"
+        Me.Name = "MessagePreviewForm"
         Me.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide
         Me.Text = " "
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
@@ -341,4 +365,5 @@ Partial Class PreviewForm
     Friend WithEvents OneTimeControlTB As TextBox
     Friend WithEvents CurrentCB As CheckBox
     Friend WithEvents AllCB As CheckBox
+    Friend WithEvents ImagesPreview As FontAwesome.Sharp.IconButton
 End Class
