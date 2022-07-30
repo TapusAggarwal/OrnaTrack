@@ -80,13 +80,25 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("localhost:3966")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("3.16.198.57:3966")>  _
         Public Property connection_url() As String
             Get
                 Return CType(Me("connection_url"),String)
             End Get
             Set
                 Me("connection_url") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("917018362951")>  _
+        Public Property ListenerPhNo() As String
+            Get
+                Return CType(Me("ListenerPhNo"),String)
+            End Get
+            Set
+                Me("ListenerPhNo") = value
             End Set
         End Property
     End Class

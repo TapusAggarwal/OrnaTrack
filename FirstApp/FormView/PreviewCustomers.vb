@@ -14,10 +14,8 @@
                                         .CoustName = _kitty.Owner.FullName
                                         .PhNo = _kitty.Owner.PhNo(",")
                                         .SetImage = ""
-                                        If _kitty.IsAvailed Then
-                                            .InstalmentsPending = -2
-                                        ElseIf _kitty.IsMatured Then
-                                            .InstalmentsPending = -1
+                                        If _kitty.Status <> "Partial" Then
+                                            .Status = _kitty.Status
                                         Else
                                             .InstalmentsPending = _kitty.GetInstalmentsPending
                                             .InstalmentsLeft = _kitty.GetInstalments_LeftForMaturity

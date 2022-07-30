@@ -59,7 +59,7 @@ Module ProjectModule
         Next
     End Sub
 
-    'Function: General Function That takes Dictionary Of Commands As Input And Returns Server Respons As String
+    'Function: General Function That takes Dictionary Of Parameters As Input And Returns Server Response As String
     Function ServerHttpRequest(Optional requestPrams As Dictionary(Of String, String) = Nothing, Optional request_headres As MultipartFormDataContent = Nothing, Optional _uri As String = Nothing)
 
         If _uri Is Nothing Then _uri = $"http://{My.Settings.connection_url}"
@@ -84,14 +84,14 @@ Module ProjectModule
             Dim response As HttpResponseMessage = client.PostAsync(New Uri(_uri), request_headres).Result
 
             If response.IsSuccessStatusCode Then
-                Dim resposeTask As Task(Of String) = response.Content.ReadAsStringAsync()
-                Return resposeTask
-            Else
-                Return Nothing
-            End If
-        Catch ex As Exception
-            MessageBox.Show($"Error Occurred: While Sending Request To Server: {ex.Message}.", "Exception Thrown", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Dim resposeTask As Task(Of String) = response.Content.ReadAsStringAsync()
+            Return resposeTask
+        Else
             Return Nothing
+        End If
+        Catch ex As Exception
+        MessageBox.Show($"Error Occurred: While Sending Request To Server: {ex.Message}.", "Exception Thrown", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Return Nothing
         End Try
 
     End Function
@@ -146,14 +146,17 @@ Module ProjectModule
         Dim imMature As New List(Of Kitty)
         Dim Matured As New List(Of Kitty)
         Dim Availed As New List(Of Kitty)
+        Dim inActive As New List(Of Kitty)
 
         'Adding Kitty To Respective Lists
         For Each _kitty As Kitty In _list
-            _kitty.Initialize()
+            _kitty.Initialize(True)
             If _kitty.IsAvailed Then
                 Availed.Add(_kitty)
             ElseIf _kitty.IsMatured Then
                 Matured.Add(_kitty)
+            ElseIf _kitty.IsInactive Then
+                inActive.Add(_kitty)
             Else
                 imMature.Add(_kitty)
             End If
@@ -165,6 +168,7 @@ Module ProjectModule
         _list.AddRange(imMature)
         _list.AddRange(Matured)
         _list.AddRange(Availed)
+        _list.AddRange(inActive)
 
         Return _list
     End Function

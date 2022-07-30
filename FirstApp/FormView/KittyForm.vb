@@ -88,16 +88,23 @@ Public Class KittyForm
         If _currentKitty.IsMatured() Then
             Dgv.Rows.Add()
             With Dgv.Rows(Dgv.Rows.Count - 1)
-                .DefaultCellStyle.BackColor = Color.Gold
+                If _currentKitty.IsAvailed Then
+                    .DefaultCellStyle.BackColor = Color.Silver
+                    .Cells(DgvEnum.DateColumn).Value = "Availed"
+                Else
+                    .DefaultCellStyle.BackColor = Color.Gold
+                    .Cells(DgvEnum.DateColumn).Value = "Matured"
+                End If
                 .DefaultCellStyle.ForeColor = Color.Black
                 .Cells(DgvEnum.CheckBoxColumn).Value = True
-                .Cells(DgvEnum.DateColumn).Value = "Matured"
                 .Cells(DgvEnum.AmountColumn).Value = _currentKitty.KittyInterest.ToCurrency
                 .Cells(DgvEnum.KittyTypeColumn).Value = "#####"
             End With
             BlockFurtherPayment()
         ElseIf _currentKitty.IsAvailed Then
             BlockFurtherPayment()
+        ElseIf _currentKitty.IsInactive Then
+            BlockFurtherPayment("InActive")
         Else
             PaymentButton.Visible = True
             AvailButton.Visible = False
@@ -197,12 +204,14 @@ Public Class KittyForm
 
                 DissolveButton.Visible = True
 
+                If _currentKitty.IsAvailed Then
+                    CrackThisKittyToolStripMenuItem.Text = "UnCrack This Kitty"
+                ElseIf _currentKitty.IsInactive Then
+                    MarkAsInactiveToolStripMenuItem.Text = "Mark As Active"
+                End If
+
                 Dim KittyIds As New List(Of Integer)
                 KittyIds = (From _kittyId In _currentKitty.Owner.OwnedKitties Select _kittyId.KittyUID).ToList
-
-                If _currentKitty.IsAvailed Then
-                    BlockFurtherPayment()
-                End If
 
                 TotalKittysLB.Text = "#" + (KittyIds.IndexOf(_currentKitty.KittyUID) + 1).ToString
             Else
@@ -370,12 +379,21 @@ Public Class KittyForm
 
 #Region "Button CLick"
     Public Sub DeleteButton_Click(sender As Object, e As EventArgs) Handles DeleteButton.Click
+        'If No Record Was Found
         If _currentKitty.Record.Count = 0 Then
-            MessageBox.Show("No Record To Delete.", "Error")
+            MessageBox.Show("No Record To Delete.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Exit Sub
         End If
 
-        If MessageBox.Show("This Will Delete Last Kitty Entry Do You Want To Continue ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then
+        'IF Kitty IS Availed
+        If _currentKitty.IsAvailed Then
+            MessageBox.Show("This Kitty Is Cracked, Mark It As UnCracked To Continue Making Further Activities.", "Entry Error", MessageBoxButtons.OK, MessageBoxIcon.Hand)
+            Exit Sub
+        End If
+
+        'IF Kitty IS Inactive
+        If _currentKitty.IsInactive Then
+            MessageBox.Show("This Kitty Is InActive, Mark It As Active To Continue Making Further Activities.", "Entry Error", MessageBoxButtons.OK, MessageBoxIcon.Hand)
             Exit Sub
         End If
 
@@ -391,6 +409,9 @@ Public Class KittyForm
             Exit Sub
         End If
         _currentKitty.Record.Clear()
+        _currentKitty.TransactionsRecord.Clear()
+        _currentKitty.IsAvailed = False
+        _currentKitty.IsInactive = False
         DisplayRecord()
         EntryTB.Select()
     End Sub
@@ -409,14 +430,14 @@ Public Class KittyForm
 
         'Kitty Type Not SELECTED
         If KittyTypeCB.SelectedIndex < 0 Then _
-            MessageBox.Show("Please Select Kitty Type.", "Incomplete Selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation) : Exit Sub _
+            MessageBox.Show("Please Select Kitty Type.", "Incomplete Selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation) : Exit Sub
 
         'Total Instalments Not ENTERED
-        If Dgv.Rows.Count = 0 Then MessageBox.Show("Please Enter Total Instalments.", "Incomplete Selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation) : Exit Sub _
+        If Dgv.Rows.Count = 0 Then MessageBox.Show("Please Enter Total Instalments.", "Incomplete Selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation) : Exit Sub
 
         'Intrest Not SELECTED
         If KittyIntrestCB.SelectedIndex < 0 Then _
-            MessageBox.Show("Please Select The Intrest On The Kitty.", "Incomplete Selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation) : Exit Sub _
+            MessageBox.Show("Please Select The Intrest On The Kitty.", "Incomplete Selection", MessageBoxButtons.OK, MessageBoxIcon.Exclamation) : Exit Sub
 
         'Entry Date Greater Than Today's Date
         If DatePicker.Value.Date > Today.Date Then
@@ -431,20 +452,33 @@ Public Class KittyForm
             Exit Sub
         End If
 
+        ' IF Kitty IS Matured
         If _currentKitty.IsMatured() AndAlso EntryTB.Text > 0 Then
             MessageBox.Show("This Kitty Is Matured Can't Make More Entry", "No More Entries", MessageBoxButtons.OK, MessageBoxIcon.Hand)
             Exit Sub
         End If
 
+        'IF Kitty IS Availed
         If _currentKitty.IsAvailed Then
-            MessageBox.Show("This Kitty Is Cracked UnCrack To Continue Making Further Payments.", "Entry Error", MessageBoxButtons.OK, MessageBoxIcon.Hand)
+            MessageBox.Show("This Kitty Is Cracked, Mark It As UnCracked To Continue Making Further Activities.", "Entry Error", MessageBoxButtons.OK, MessageBoxIcon.Hand)
             Exit Sub
         End If
 
+        'IF Kitty IS Inactive
+        If _currentKitty.IsInactive Then
+            MessageBox.Show("This Kitty Is InActive, Mark It As Active To Continue Making Further Activities.", "Entry Error", MessageBoxButtons.OK, MessageBoxIcon.Hand)
+            Exit Sub
+        End If
+
+        'Storing Wether The Result Of Entry Was True Or False
         Dim entryResult As Boolean = _currentKitty.AddRecord(DatePicker.Value.Date.ToShortDateString + EntryTB.Text)
+        If entryResult = False Then Exit Sub
+
         EntryTB.Select()
         'MessageBox.Show(_currentKitty.GetRecordString())
+
         DisplayRecord()
+
     End Sub
 
     Private Sub DissolveButton_Click(sender As Object, e As EventArgs) Handles DissolveButton.Click
@@ -470,9 +504,39 @@ Public Class KittyForm
     Private Sub NotificationButton_Click(sender As IconPictureBox, e As EventArgs) Handles NotificationButton.Click
         With sender
             If .IconChar = IconChar.BellSlash Then
+                ' When Allowing To Send Message
                 .IconChar = IconChar.Bell
                 .IconColor = Color.ForestGreen
             Else
+                ' When Not Allowing To Send Message
+                Dim Fm As New Form
+
+                Fm.Size = New Point(500, 250)
+                Fm.StartPosition = FormStartPosition.CenterScreen
+                Fm.BackColor = Color.FromArgb(36, 30, 60)
+
+                Dim x As New Label
+
+                x.Location = New Point(15, 0)
+                x.Text = "Reason For Turning Notification Off ?"
+                x.AutoSize = True
+                x.Font = New Font("Century Schoolbook", 12)
+                x.ForeColor = SystemColors.ActiveCaption
+
+                Fm.Controls.Add(x)
+
+                Dim y As New TextBox
+
+                y.Location = New Point(10, 40)
+                y.Multiline = True
+                y.Size = New Point(455, 130)
+                y.Font = New Font("Century Schoolbook", 10, FontStyle.Bold)
+                Fm.Controls.Add(y)
+
+                Fm.ShowDialog()
+
+                Exit Sub
+
                 .IconChar = IconChar.BellSlash
                 .IconColor = Color.DarkRed
             End If
@@ -502,9 +566,14 @@ Public Class KittyForm
     End Sub
 
     Private Sub CrackThisKittyToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CrackThisKittyToolStripMenuItem.Click
-        If _currentKitty.IsMatured Then Exit Sub
+        If _currentKitty.IsMatured Then
+            MessageBox.Show("Can't Crack A Matured Kitty. Use Availed Instead.", "Wrong Selection", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Exit Sub
+        End If
         _currentKitty.IsAvailed = Not _currentKitty.IsAvailed
         If _currentKitty.IsAvailed Then
+            _currentKitty.IsInactive = False
+            MarkAsInactiveToolStripMenuItem.Text = "Mark As InActive"
             CrackThisKittyToolStripMenuItem.Text = "UnCrack This Kitty"
             BlockFurtherPayment()
         Else
@@ -513,20 +582,39 @@ Public Class KittyForm
         End If
     End Sub
 
+    Private Sub MarkAsInactiveToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MarkAsInactiveToolStripMenuItem.Click
+        If _currentKitty.IsMatured Then
+            MessageBox.Show("Can't Mark A Matured Kitty As InActive. Use Availed Instead.", "Wrong Selection", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Exit Sub
+        End If
+        _currentKitty.IsInactive = Not _currentKitty.IsInactive
+        If _currentKitty.IsInactive Then
+            _currentKitty.IsAvailed = False
+            CrackThisKittyToolStripMenuItem.Text = "Crack This Kitty"
+            MarkAsInactiveToolStripMenuItem.Text = "Mark As Active"
+            BlockFurtherPayment("InActive")
+        Else
+            MarkAsInactiveToolStripMenuItem.Text = "Mark As InActive"
+            DisplayRecord()
+        End If
+    End Sub
+
 #End Region
 
-    Private Sub BlockFurtherPayment()
+    Private Sub BlockFurtherPayment(Optional status As String = "Cracked")
+
         PaymentButton.Visible = False
         AvailButton.Visible = True
         StatusLabel.Visible = True
-        If Not _currentKitty.IsMatured AndAlso _currentKitty.IsAvailed Then
-            AvailButton.Text = "Cracked"
+
+        If Not _currentKitty.IsMatured AndAlso (_currentKitty.IsAvailed Or _currentKitty.IsInactive) Then
+            AvailButton.Text = status
             AvailButton.IconChar = IconChar.TimesCircle
             With Dgv.Rows(LastEmptyRow)
                 .DefaultCellStyle.BackColor = Color.Red
                 .DefaultCellStyle.ForeColor = Color.White
                 .Cells(DgvEnum.MonthColumn).Value = "-----"
-                .Cells(DgvEnum.DateColumn).Value = "Cracked"
+                .Cells(DgvEnum.DateColumn).Value = status
                 .Cells(DgvEnum.AmountColumn).Value = "-----"
                 .Cells(DgvEnum.KittyTypeColumn).Value = "-----"
             End With
@@ -540,6 +628,7 @@ Public Class KittyForm
                 AvailButton.IconChar = IconChar.Square
             End If
         End If
+
     End Sub
 
     Private Sub ContinueFurtherPayment()
@@ -551,11 +640,12 @@ Public Class KittyForm
     End Sub
 
     Private Sub AvailButton_Click(sender As Object, e As EventArgs) Handles AvailButton.Click
-        If Not _currentKitty.IsMatured AndAlso _currentKitty.IsAvailed Then Exit Sub
+        If Not _currentKitty.IsMatured AndAlso (_currentKitty.IsAvailed Or _currentKitty.IsInactive) Then Exit Sub
 
         _currentKitty.IsAvailed = Not _currentKitty.IsAvailed
         AvailButton.Enabled = True
         BlockFurtherPayment()
+        DisplayRecord()
         'If _currentKitty.IsAvailed Then
         'Else
         '    ContinueFurtherPayment()

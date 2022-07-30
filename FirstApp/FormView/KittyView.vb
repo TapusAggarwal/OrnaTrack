@@ -38,11 +38,13 @@
         Dgv.Rows.Clear()
         Dim LastInstalmentList = ""
         Try
+            'Looping Through All Owned Kitties
             For Each _kitty In _currentCustomer.OwnedKitties.OrderBasedOnStatus()
 
                 Dgv.Rows.Add()
                 Dim RowNo As Integer = Dgv.Rows.Count - 1
 
+                'Adding Corresponding Values
                 With Dgv.Rows(RowNo)
                     .Cells(DgvEnum.KittyNoColumn).Value = If(_kitty.KittyNo > 0, _kitty.KittyNo, "")
                     .Cells(DgvEnum.KittyTypeColumn).Value = _kitty.KittyType.ToCurrency
@@ -65,7 +67,7 @@
                     End If
                 End With
 
-                If _kitty.IsMatured Or _kitty.IsAvailed Then
+                If _kitty.IsMatured Or _kitty.IsAvailed Or _kitty.IsInactive Then
                     With Dgv.Rows(RowNo)
                         .Cells(DgvEnum.CheckBoxColumn).Value = True
                         .Cells(DgvEnum.PendingInstalments).Value = String.Empty
@@ -76,6 +78,8 @@
                         .Cells(DgvEnum.GivenAmountColumn).Style.ForeColor = Color.White
                         .Cells(DgvEnum.TotalAmountColumn).Style.ForeColor = Color.White
                         If _kitty.IsAvailed Then .Cells(DgvEnum.StatusColumn).Style.ForeColor = Color.Red
+                        If _kitty.IsInactive Then .Cells(DgvEnum.StatusColumn).Style.ForeColor = Color.Silver
+                        If _kitty.IsMatured Then .Cells(DgvEnum.StatusColumn).Style.ForeColor = Color.Gold
                     End With
                 End If
 

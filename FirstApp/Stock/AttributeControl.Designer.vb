@@ -24,7 +24,7 @@ Partial Class AttributeControl
     Private Sub InitializeComponent()
         Me.AttrIconBT = New FontAwesome.Sharp.IconButton()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.CloseButton = New FontAwesome.Sharp.IconButton()
+        Me.UsedButton = New FontAwesome.Sharp.IconButton()
         Me.DefValueLB = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
@@ -59,31 +59,31 @@ Partial Class AttributeControl
         Me.Label1.ForeColor = System.Drawing.Color.MediumPurple
         Me.Label1.Location = New System.Drawing.Point(3, 64)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(94, 27)
+        Me.Label1.Size = New System.Drawing.Size(100, 27)
         Me.Label1.TabIndex = 279
-        Me.Label1.Text = "Def Val:"
+        Me.Label1.Text = "Def. Val:"
         '
-        'CloseButton
+        'UsedButton
         '
-        Me.CloseButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.CloseButton.AutoSize = True
-        Me.CloseButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.CloseButton.BackColor = System.Drawing.Color.Transparent
-        Me.CloseButton.FlatAppearance.BorderSize = 0
-        Me.CloseButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Red
-        Me.CloseButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Snow
-        Me.CloseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.CloseButton.IconChar = FontAwesome.Sharp.IconChar.WindowClose
-        Me.CloseButton.IconColor = System.Drawing.Color.DarkRed
-        Me.CloseButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.CloseButton.IconSize = 45
-        Me.CloseButton.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.CloseButton.Location = New System.Drawing.Point(46, 6)
-        Me.CloseButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.CloseButton.Name = "CloseButton"
-        Me.CloseButton.Size = New System.Drawing.Size(51, 51)
-        Me.CloseButton.TabIndex = 280
-        Me.CloseButton.UseVisualStyleBackColor = False
+        Me.UsedButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.UsedButton.AutoSize = True
+        Me.UsedButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.UsedButton.BackColor = System.Drawing.Color.Transparent
+        Me.UsedButton.FlatAppearance.BorderSize = 0
+        Me.UsedButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Red
+        Me.UsedButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Snow
+        Me.UsedButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.UsedButton.IconChar = FontAwesome.Sharp.IconChar.WindowClose
+        Me.UsedButton.IconColor = System.Drawing.Color.DarkRed
+        Me.UsedButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.UsedButton.IconSize = 45
+        Me.UsedButton.ImageAlign = System.Drawing.ContentAlignment.TopCenter
+        Me.UsedButton.Location = New System.Drawing.Point(45, 6)
+        Me.UsedButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.UsedButton.Name = "UsedButton"
+        Me.UsedButton.Size = New System.Drawing.Size(51, 51)
+        Me.UsedButton.TabIndex = 280
+        Me.UsedButton.UseVisualStyleBackColor = False
         '
         'DefValueLB
         '
@@ -101,18 +101,18 @@ Partial Class AttributeControl
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(70, Byte), Integer))
         Me.Controls.Add(Me.DefValueLB)
-        Me.Controls.Add(Me.CloseButton)
+        Me.Controls.Add(Me.UsedButton)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.AttrIconBT)
         Me.Name = "AttributeControl"
-        Me.Size = New System.Drawing.Size(102, 103)
+        Me.Size = New System.Drawing.Size(101, 103)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
 
     Friend WithEvents AttrIconBT As FontAwesome.Sharp.IconButton
-    Private WithEvents CloseButton As FontAwesome.Sharp.IconButton
     Friend WithEvents DefValueLB As Label
     Friend WithEvents Label1 As Label
+    Friend WithEvents UsedButton As FontAwesome.Sharp.IconButton
 End Class
