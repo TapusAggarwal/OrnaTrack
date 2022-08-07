@@ -23,7 +23,7 @@ Partial Class ServerUpdateProgressBar
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.StatusLB = New System.Windows.Forms.Label()
-        Me.MoreInfoBT = New FontAwesome.Sharp.IconButton()
+        Me.StartBT = New FontAwesome.Sharp.IconButton()
         Me.TitleLB = New FontAwesome.Sharp.IconButton()
         Me.SuspendLayout()
         '
@@ -42,29 +42,29 @@ Partial Class ServerUpdateProgressBar
         Me.StatusLB.Text = "Waiting For Previous Commands To Fininsh..."
         Me.StatusLB.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'MoreInfoBT
+        'StartBT
         '
-        Me.MoreInfoBT.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.MoreInfoBT.AutoSize = True
-        Me.MoreInfoBT.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.MoreInfoBT.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.MoreInfoBT.FlatAppearance.BorderSize = 0
-        Me.MoreInfoBT.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Lime
-        Me.MoreInfoBT.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.MoreInfoBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.MoreInfoBT.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.MoreInfoBT.ForeColor = System.Drawing.Color.Linen
-        Me.MoreInfoBT.IconChar = FontAwesome.Sharp.IconChar.ArrowRight
-        Me.MoreInfoBT.IconColor = System.Drawing.Color.White
-        Me.MoreInfoBT.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.MoreInfoBT.IconSize = 36
-        Me.MoreInfoBT.Location = New System.Drawing.Point(66, 4)
-        Me.MoreInfoBT.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.MoreInfoBT.Name = "MoreInfoBT"
-        Me.MoreInfoBT.Size = New System.Drawing.Size(42, 42)
-        Me.MoreInfoBT.TabIndex = 10008
-        Me.MoreInfoBT.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.MoreInfoBT.UseVisualStyleBackColor = False
+        Me.StartBT.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.StartBT.AutoSize = True
+        Me.StartBT.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.StartBT.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.StartBT.FlatAppearance.BorderSize = 0
+        Me.StartBT.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Lime
+        Me.StartBT.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.StartBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.StartBT.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.StartBT.ForeColor = System.Drawing.Color.Linen
+        Me.StartBT.IconChar = FontAwesome.Sharp.IconChar.ArrowRight
+        Me.StartBT.IconColor = System.Drawing.Color.White
+        Me.StartBT.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.StartBT.IconSize = 36
+        Me.StartBT.Location = New System.Drawing.Point(66, 4)
+        Me.StartBT.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.StartBT.Name = "StartBT"
+        Me.StartBT.Size = New System.Drawing.Size(42, 42)
+        Me.StartBT.TabIndex = 10008
+        Me.StartBT.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.StartBT.UseVisualStyleBackColor = False
         '
         'TitleLB
         '
@@ -98,7 +98,7 @@ Partial Class ServerUpdateProgressBar
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Controls.Add(Me.MoreInfoBT)
+        Me.Controls.Add(Me.StartBT)
         Me.Controls.Add(Me.StatusLB)
         Me.Controls.Add(Me.TitleLB)
         Me.DoubleBuffered = True
@@ -109,6 +109,6 @@ Partial Class ServerUpdateProgressBar
 
     End Sub
     Friend WithEvents TitleLB As FontAwesome.Sharp.IconButton
-    Friend WithEvents MoreInfoBT As FontAwesome.Sharp.IconButton
+    Friend WithEvents StartBT As FontAwesome.Sharp.IconButton
     Friend WithEvents StatusLB As Label
 End Class

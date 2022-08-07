@@ -26,28 +26,29 @@ Public Class ServerUpdateForm
 
         AddHandler UpdateBT.Click, AddressOf LoginRoutine
 
-        'sudo lsof -i tcp:3966
-        'kill -9 {PID}
+        sudo lsof - i tcp:  3966
+        Kill -9 {PID}
 
-        'AddCommand("sudo yum -y update", "$")
-        'AddCommand("cd MyNode_Application", "$")
-        'AddCommand("rm -rf whatsapp-web.js", "$")
-        'AddCommand("git clone https://github.com/pedroslopez/whatsapp-web.js.git", "$")
-        'AddCommand("cd whatsapp-web.js", "$")
-        'AddCommand("sudo npm cache clean -f", "$")
-        'AddCommand("sudo npm install -g n", "$")
-        'AddCommand("sudo n stable", "$")
-        'AddCommand("sudo su", "#")
-        'AddCommand("npm install -g npm", "#")
-        'AddCommand("npm --version", "#")
-        'AddCommand("exit", "$")
-        'AddCommand("npm install", "$")
-        'For Each i In "fs-extra,is-online-emitter".Split(",")
-        '    AddCommand($"npm install {i}", "$")
-        'Next
-        'AddCommand("cd", "$")
-        'AddCommand("cp -r MyNode_Application/ServerMain.mjs MyNode_Application/whatsapp-web.js/", "$")
-        AddCommand("cd MyNode_Application/whatsapp-web.js", "$")
+        AddCommand("sudo yum -y update", "$")
+        AddCommand("cd MyNode_Application", "$")
+        Dim _branch As String = "auto-wa-web-update"
+        AddCommand($"rm -rf {_branch}", "$")
+        AddCommand($"git clone https://github.com/pedroslopez/whatsapp-web.js.git {_branch}", "$")
+        AddCommand($"cd {_branch}", "$")
+        AddCommand("sudo npm cache clean -f", "$")
+        AddCommand("sudo npm install -g n", "$")
+        AddCommand("sudo n stable", "$")
+        AddCommand("sudo su", "#")
+        AddCommand("npm install -g npm", "#")
+        AddCommand("npm --version", "#")
+        AddCommand("exit", "$")
+        AddCommand("npm install", "$")
+        For Each i In "fs-extra,is-online-emitter".Split(",")
+            AddCommand($"npm install {i}", "$")
+        Next
+        AddCommand("cd", "$")
+        AddCommand($"cp -r MyNode_Application/ServerMain.mjs MyNode_Application/{_branch}/", "$")
+        AddCommand($"cd MyNode_Application/{_branch}", "$")
         AddCommand("tmux kill-server", "$")
         AddCommand("tmux new -d -s my_session ""bash --init-file <(node ServerMain.mjs)""", "$")
     End Sub
@@ -131,28 +132,78 @@ Public Class ServerUpdateForm
 
         'MessageBox.Show("Succesfully Connected To Server. Press 'Update Server' To Continue.", "Step 2. Complete", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
+        Dim _prevChar As Char = ""
+        Dim _prevStr As String = ""
+
+        AddHandler NewRespone, Async Sub(_rsp As String, _tag As Integer, _lastRsp As Boolean)
+                                   Await Task.Run(Sub()
+                                                      Invoke(Sub()
+                                                                 If _rsp = "" Or _rsp = _prevStr Then Exit Sub
+                                                                 If Char.IsWhiteSpace(_rsp.Last()) AndAlso _prevChar = _rsp.Last() Then Exit Sub
+
+                                                                 Dim _ctrl As ServerUpdateProgressBar = FlowLayoutPanel1.Controls.Find($"cmd_{_tag}", True)(0)
+
+                                                                 RichTextBox1.AppendText(_rsp)
+                                                                 If Not Char.IsWhiteSpace(_rsp) Then
+                                                                     For Each _str In _rsp.Split(vbCr)
+                                                                         If _str = "" Then Continue For
+                                                                         _ctrl.StatusLB.Text = _str
+                                                                     Next
+                                                                 End If
+
+                                                                 _ctrl.TitleLB.ForeColor = Color.Goldenrod
+                                                                 _ctrl.TitleLB.IconColor = Color.Goldenrod
+                                                                 _ctrl.TitleLB.IconChar = FontAwesome.Sharp.IconChar.Spinner
+
+                                                                 If _lastRsp Then
+                                                                     _ctrl.StatusLB.ForeColor = Color.DarkGray
+                                                                     _ctrl.StatusLB.Text = "Command Executed Successfully..."
+                                                                     _ctrl.TitleLB.ForeColor = Color.DarkGreen
+                                                                     _ctrl.TitleLB.IconColor = Color.Goldenrod
+                                                                     _ctrl.TitleLB.IconChar = FontAwesome.Sharp.IconChar.CheckCircle
+                                                                     _ctrl.StartBT.Enabled = False
+                                                                 End If
+
+                                                                 _prevChar = _rsp.Last()
+                                                                 _prevStr = _rsp
+                                                             End Sub)
+                                                  End Sub)
+                               End Sub
+
         RemoveHandler UpdateBT.Click, AddressOf ConnectingRoutine
         AddHandler UpdateBT.Click, AddressOf UpdatingRoutine
     End Sub
 
     Private Function CommandsControls() As List(Of Task(Of ServerUpdateProgressBar))
         Dim T_List As New List(Of Task(Of ServerUpdateProgressBar))
+        Dim _srno As Integer = 1
         For Each i In MyList_Of_Commands
             T_List.Add(Task.Run(Function()
-                                    Dim _ctrl As New ServerUpdateProgressBar With {
+                                    Dim _index As Integer = MyList_Of_Commands.IndexOf(New Tuple(Of String, String)(i.Item1, i.Item2))
+                                    Dim _ctrl As New ServerUpdateProgressBar(i.Item1, _index + 1, i.Item2) With {
                                         .Title = i.Item1
                                     }
                                     _ctrl.TitleLB.IconChar = FontAwesome.Sharp.IconChar.Pause
                                     _ctrl.StatusLB.Visible = False
 
+                                    AddHandler _ctrl.StartBT.Click, Async Sub()
+                                                                        If UpdateBT.Enabled = False Then Exit Sub
+                                                                        _ctrl.StartBT.Enabled = False
+                                                                        Await Task.Run(Sub()
+                                                                                           RunCommand(_ctrl.Cmd, _ctrl.TagData, _ctrl.ExpectedChar)
+                                                                                       End Sub)
+                                                                    End Sub
+                                    AddHandler _ctrl.StartBT.EnabledChanged, Sub()
+                                                                                 _ctrl.StartBT.BackColor = Color.DarkGray
+                                                                             End Sub
                                     Return _ctrl
                                 End Function))
+            _srno += 1
         Next
         Return T_List
     End Function
 
     Private Async Sub UpdatingRoutine(sender As Object, e As EventArgs)
-        'Try
 
         UpdateBT.Enabled = False
 
@@ -168,52 +219,17 @@ Public Class ServerUpdateForm
                            Return True
                        End Function)
 
-        Dim _srno As Integer = 1
-        Dim _prevChar As Char = ""
-        Dim _prevStr As String = ""
+        Dim _srno As Integer = 0
 
         For Each i In MyList_Of_Commands
-            AddHandler NewRespone, Async Sub(_rsp As String, _tag As Integer, _lastRsp As Boolean)
-                                       Await Task.Run(Sub()
-                                                          Invoke(Sub()
-                                                                     If _rsp = "" Or _rsp = _prevStr Then Exit Sub
-                                                                     If Char.IsWhiteSpace(_rsp.Last()) AndAlso _prevChar = _rsp.Last() Then Exit Sub
-
-                                                                     Dim _ctrl As ServerUpdateProgressBar = FlowLayoutPanel1.Controls.Find($"cmd_{_tag}", True)(0)
-
-                                                                     RichTextBox1.AppendText(_rsp)
-                                                                     If Not Char.IsWhiteSpace(_rsp) Then
-                                                                         For Each _str In _rsp.Split(vbCr)
-                                                                             If _str = "" Then Continue For
-                                                                             _ctrl.StatusLB.Text = _str
-                                                                         Next
-                                                                     End If
-
-                                                                     _ctrl.TitleLB.ForeColor = Color.Goldenrod
-                                                                     _ctrl.TitleLB.IconColor = Color.Goldenrod
-                                                                     _ctrl.TitleLB.IconChar = FontAwesome.Sharp.IconChar.Spinner
-
-                                                                     If _lastRsp Then
-                                                                         _ctrl.StatusLB.ForeColor = Color.DarkGray
-                                                                         _ctrl.StatusLB.Text = "Command Executed Successfully..."
-                                                                         _ctrl.TitleLB.ForeColor = Color.DarkGreen
-                                                                         _ctrl.TitleLB.IconColor = Color.Goldenrod
-                                                                         _ctrl.TitleLB.IconChar = FontAwesome.Sharp.IconChar.CheckCircle
-                                                                     End If
-
-                                                                     _prevChar = _rsp.Last()
-                                                                     _prevStr = _rsp
-                                                                 End Sub)
-                                                      End Sub)
-                                   End Sub
-            Await Task.Run(Sub()
-                               RunCommand(i.Item1, _srno, i.Item2)
-                           End Sub)
             _srno += 1
+            Dim _ctrl As ServerUpdateProgressBar = FlowLayoutPanel1.Controls.Find($"cmd_{_srno}", True)(0)
+            If Not _ctrl.StartBT.Enabled Then Continue For
+            _ctrl.StartBT.Enabled = False
+            Await Task.Run(Sub()
+                               RunCommand(_ctrl.Cmd, _ctrl.TagData, _ctrl.ExpectedChar)
+                           End Sub)
         Next
-        'Catch ex As Exception
-
-        'End Try
 
     End Sub
 
@@ -225,8 +241,8 @@ Public Class ServerUpdateForm
 
     Public Event NewRespone(_rsp As String, _tag As Integer, _lastRsp As Boolean)
 
-    Private Sub RunCommand(cmdi As String, _tag As Integer, Optional expectedChar As Char = "$")
-                                                                             ShellStream.WriteLine(cmdi)
+    Public Sub RunCommand(cmdi As String, _tag As Integer, Optional expectedChar As Char = "$")
+        ShellStream.WriteLine(cmdi)
 
         Dim reader As New StreamReader(ShellStream)
 
