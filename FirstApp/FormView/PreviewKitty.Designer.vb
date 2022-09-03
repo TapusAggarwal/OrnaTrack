@@ -30,6 +30,7 @@ Partial Class PreviewKitty
         Me.ProfileLabel = New System.Windows.Forms.Label()
         Me.ImageBox = New System.Windows.Forms.PictureBox()
         Me.KittyPanel = New System.Windows.Forms.Panel()
+        Me.KittyIdTB = New System.Windows.Forms.TextBox()
         Me.ProfilePanel.SuspendLayout()
         CType(Me.ImageBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -37,6 +38,7 @@ Partial Class PreviewKitty
         'ProfilePanel
         '
         Me.ProfilePanel.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(60, Byte), Integer))
+        Me.ProfilePanel.Controls.Add(Me.KittyIdTB)
         Me.ProfilePanel.Controls.Add(Me.Panel1)
         Me.ProfilePanel.Controls.Add(Me.AllKittiesBT)
         Me.ProfilePanel.Controls.Add(Me.SaveCoustmerButton)
@@ -137,6 +139,17 @@ Partial Class PreviewKitty
         Me.KittyPanel.Size = New System.Drawing.Size(1404, 523)
         Me.KittyPanel.TabIndex = 265
         '
+        'KittyIdTB
+        '
+        Me.KittyIdTB.Font = New System.Drawing.Font("Century Schoolbook", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.KittyIdTB.Location = New System.Drawing.Point(9, 318)
+        Me.KittyIdTB.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.KittyIdTB.Name = "KittyIdTB"
+        Me.KittyIdTB.ReadOnly = True
+        Me.KittyIdTB.Size = New System.Drawing.Size(56, 36)
+        Me.KittyIdTB.TabIndex = 2990
+        Me.KittyIdTB.Tag = ""
+        '
         'PreviewKitty
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
@@ -163,4 +176,5 @@ Partial Class PreviewKitty
     Friend WithEvents Panel1 As Panel
     Friend WithEvents AllKittiesBT As FontAwesome.Sharp.IconButton
     Friend WithEvents SaveCoustmerButton As FontAwesome.Sharp.IconButton
+    Friend WithEvents KittyIdTB As TextBox
 End Class

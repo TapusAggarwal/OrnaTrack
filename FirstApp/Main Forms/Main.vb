@@ -117,11 +117,11 @@
     End Sub
 
     Private Sub SearchTextBoxes_TextChanged(sender As TextBox, e As EventArgs) Handles NameTB.TextChanged, PhNoTB.TextChanged, KittyNoTB.TextChanged
-
         If sender.TextLength = 0 Then
             FlowLayoutPanel1.Controls.Clear()
             GC.Collect()
         Else
+            If sender.Text(0) = "=" Then Exit Sub
             ShowResults(6)
         End If
 
@@ -130,6 +130,23 @@
     Private Sub TextBox1_KeyDown(sender As Object, e As KeyEventArgs) _
         Handles PhNoTB.KeyDown, KittyNoTB.KeyDown, NameTB.KeyDown
         If e.KeyCode = Keys.Enter Then
+            If sender.TextLength = 0 Then Exit Sub
+            If sender.Text(0) = "=" Then
+                If Not IsNumeric(sender.text.replace("=", "")) Then Exit Sub
+                If sender Is KittyNoTB Then
+                    Dim _kitty = New Kitty(sender.text.replace("=", ""), True)
+                    If _kitty.KittyType = -1 Then
+                        MessageBox.Show("Kitty ID Not Found", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                        Exit Sub
+                    End If
+                    KittyNoControl_Clicked(_kitty.CustomerID, _kitty.KittyUID)
+                ElseIf sender Is NameTB Then
+                    Dim customer = New Customer(sender.text.replace("=", ""))
+                    If customer.FirstName Is Nothing Then Exit Sub
+                    KittyNoControl_Clicked(customer.CustomerID)
+                End If
+            End If
+
             FindCoustmerButton_Click(FindCoustmerButton, e)
             Exit Sub
         ElseIf e.KeyCode = Keys.Up Then
@@ -140,7 +157,8 @@
     End Sub
 
     Private Sub KittyNoTB_TextChanged(sender As TextBox, e As EventArgs) Handles KittyNoTB.TextChanged, PhNoTB.TextChanged
-
+        If sender.TextLength = 0 Then Exit Sub
+        If sender.Text(0) = "=" Then Exit Sub
         If Not IsNumeric(sender.Text) Then
             Dim temp_var As String = sender.Text
             If temp_var.Length Then

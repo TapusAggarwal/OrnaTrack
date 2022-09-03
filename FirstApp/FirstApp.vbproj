@@ -21,14 +21,15 @@
     <PublishUrl>C:\Users\hp\Desktop\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateEnabled>true</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>false</MapFileExtensions>
-    <ApplicationRevision>109</ApplicationRevision>
+    <UpdateUrl>http://ec2-3-16-198-57.us-east-2.compute.amazonaws.com:8081/</UpdateUrl>
+    <ApplicationRevision>110</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -43,6 +44,8 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DocumentationFile>FirstApp.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <CodeAnalysisRuleSet>ExtendedCorrectnessRules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -70,7 +73,7 @@
     <ApplicationManifest>Extras\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>2C2DC71CBC9768BBAC5644AB69E4F7868E907EF4</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>B62C4A97D64CAF417A3A746862CDD4C310C7D95A</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>FirstApp_TemporaryKey.pfx</ManifestKeyFile>
@@ -82,7 +85,7 @@
     <TargetZone>LocalIntranet</TargetZone>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>false</SignManifests>
+    <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
@@ -108,10 +111,46 @@
     <Compile Include="Extras\Graph.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormView\TransactionsForm.Designer.vb">
+      <DependentUpon>TransactionsForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormView\TransactionsForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Messenger\MessageTemplates.Designer.vb">
       <DependentUpon>MessageTemplates.vb</DependentUpon>
     </Compile>
     <Compile Include="Messenger\MessageTemplates.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Messenger\MessengerForIndividual.Designer.vb">
+      <DependentUpon>MessengerForIndividual.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Messenger\MessengerForIndividual.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyUserControls\OneDayControl.Designer.vb">
+      <DependentUpon>OneDayControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MyUserControls\OneDayControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MyUserControls\PerUnitTimeControl.Designer.vb">
+      <DependentUpon>PerUnitTimeControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MyUserControls\PerUnitTimeControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MyUserControls\TransactionsControl.Designer.vb">
+      <DependentUpon>TransactionsControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MyUserControls\TransactionsControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="rough.Designer.vb">
+      <DependentUpon>rough.vb</DependentUpon>
+    </Compile>
+    <Compile Include="rough.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ServerManagement\Form5.Designer.vb">
@@ -161,12 +200,6 @@
       <DependentUpon>LoadingForm.vb</DependentUpon>
     </Compile>
     <Compile Include="DevUse\LoadingForm.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Extras\Form4.Designer.vb">
-      <DependentUpon>Form4.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Extras\Form4.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormView\DgvForExistingPhNo.Designer.vb">
@@ -420,8 +453,26 @@
     <EmbeddedResource Include="Extras\Graph.resx">
       <DependentUpon>Graph.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormView\TransactionsForm.resx">
+      <DependentUpon>TransactionsForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Messenger\MessageTemplates.resx">
       <DependentUpon>MessageTemplates.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Messenger\MessengerForIndividual.resx">
+      <DependentUpon>MessengerForIndividual.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyUserControls\OneDayControl.resx">
+      <DependentUpon>OneDayControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyUserControls\PerUnitTimeControl.resx">
+      <DependentUpon>PerUnitTimeControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyUserControls\TransactionsControl.resx">
+      <DependentUpon>TransactionsControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rough.resx">
+      <DependentUpon>rough.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ServerManagement\Form5.resx">
       <DependentUpon>Form5.vb</DependentUpon>
@@ -443,9 +494,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Stock\AddItemPage.resx">
       <DependentUpon>AddItemPage.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Extras\Form4.resx">
-      <DependentUpon>Form4.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormView\PreviewCustomers.resx">
       <DependentUpon>PreviewCustomers.vb</DependentUpon>
@@ -566,6 +614,7 @@
     <None Include="app.config" />
     <None Include="Extras\app.config" />
     <None Include="Extras\app.manifest" />
+    <None Include="FirstApp_TemporaryKey.pfx" />
     <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
@@ -640,16 +689,24 @@
       <Version>5.15.3.3</Version>
     </PackageReference>
     <PackageReference Include="HtmlAgilityPack">
-      <Version>1.11.42</Version>
+      <Version>1.11.46</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>13.0.1</Version>
     </PackageReference>
+    <PackageReference Include="NuGet.CommandLine">
+      <Version>6.3.1</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
     <PackageReference Include="QRCoder">
       <Version>1.4.3</Version>
     </PackageReference>
+    <PackageReference Include="squirrel.windows">
+      <Version>2.0.1</Version>
+    </PackageReference>
     <PackageReference Include="SSH.NET">
-      <Version>2020.0.1</Version>
+      <Version>2020.0.2</Version>
     </PackageReference>
     <PackageReference Include="WebSocket4Net">
       <Version>0.15.2</Version>

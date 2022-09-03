@@ -25,6 +25,7 @@ Public Class Customer
             While dr_count.Read
                 If Int(dr_count(0)) > MaxLimit Then Return Nothing
             End While
+            dr_count.Close()
         End If
 
         Dim dr_search As OleDbDataReader = DataReader("Select KittyUID From Kitty_Data Where KittyNo Like'%" & KittyNo & "%'")
@@ -325,6 +326,7 @@ Public Class Customer
                 Catch ex As Exception
                 End Try
             End While
+            dr_profession.Close()
             Try
                 Return temp_profession.Replace(apostropheReplacer, "'")
             Catch ex As Exception

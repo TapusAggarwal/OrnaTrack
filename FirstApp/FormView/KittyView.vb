@@ -77,9 +77,9 @@
                         .Cells(DgvEnum.TotalAmountColumn).Style.BackColor = SystemColors.Highlight
                         .Cells(DgvEnum.GivenAmountColumn).Style.ForeColor = Color.White
                         .Cells(DgvEnum.TotalAmountColumn).Style.ForeColor = Color.White
-                        If _kitty.IsAvailed Then .Cells(DgvEnum.StatusColumn).Style.ForeColor = Color.Red
                         If _kitty.IsInactive Then .Cells(DgvEnum.StatusColumn).Style.ForeColor = Color.Silver
                         If _kitty.IsMatured Then .Cells(DgvEnum.StatusColumn).Style.ForeColor = Color.Gold
+                        If _kitty.IsAvailed Then .Cells(DgvEnum.StatusColumn).Style.ForeColor = Color.Red
                     End With
                 End If
 

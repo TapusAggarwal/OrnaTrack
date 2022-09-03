@@ -26,6 +26,7 @@ Public Class PreviewKitty
                    AddHandler _KittyForm.ReloadKittyView, Sub()
                                                               ShowKittyForm()
                                                           End Sub
+                   KittyIdTB.Text = _kitty.KittyUID
                End Sub)
     End Sub
 

@@ -264,8 +264,8 @@ Public Class MessagePreviewForm
         UpdatePreview()
     End Sub
 
-    Public Async Function SendImage(phno) As Task(Of String)
-        For Each imgPath As String In ImagePaths
+    Public Async Function SendImage(phno As String, Optional Paths As List(Of String) = Nothing) As Task(Of String)
+        For Each imgPath As String In If(Paths, ImagePaths)
 
             If imgPath.Replace(" ", "").Length < 1 Then Exit For
 
@@ -297,9 +297,9 @@ Public Class MessagePreviewForm
 
     End Function
 
-    Public Async Function SendMessage(phno As String, _kitty As Kitty) As Task(Of String)
+    Public Async Function SendMessage(phno As String, _kitty As Kitty, Optional msgList As List(Of String) = Nothing) As Task(Of String)
         Dim MessageList As List(Of String) = Split(MessageText, $"{Environment.NewLine}{Environment.NewLine}<Next Message>{Environment.NewLine}{Environment.NewLine}").ToList
-
+        MessageList = If(msgList, MessageList)
         For Each msg In MessageList
 
             msg = ReplaceTemplateWithDetails(_kitty, msg)

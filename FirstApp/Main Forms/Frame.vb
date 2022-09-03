@@ -68,9 +68,6 @@ Public Class Frame
         WindowState = FormWindowState.Maximized
         QuickSearchButton_Click(QuickSearchButton, e)
         KeyPreview = True
-
-        'ConnectionLabel_Click()
-
     End Sub
 #End Region
 
@@ -580,12 +577,24 @@ Public Class Frame
         Next
     End Sub
 
-    Private Sub GoldButton_Click(sender As Object, e As EventArgs) Handles GoldButton.Click
+    Private Sub GoldButton_Click(sender As Object, e As EventArgs)
         Dim fm As New CategoriesPage
         fm.Show()
     End Sub
 
     Private Sub SilverButton_Click(sender As Object, e As EventArgs) Handles SilverButton.Click
+        Dim fm_trns As New TransactionsForm
+        fm_trns.Size = New Point(fm_trns.Width, 10000)
+        AddHandler fm_trns.AddTransactionButton_Clicked, Sub()
+                                                             Dim fm As New TransactionDetails
+                                                             fm.CurrentTransaction = New Transaction(-1)
+                                                             fm.ShowDialog()
+                                                         End Sub
+        fm_trns.Show()
     End Sub
 
+    Private Sub IconButton1_Click(sender As Object, e As EventArgs) Handles IconButton1.Click
+        Dim fm As New rough
+        fm.ShowDialog()
+    End Sub
 End Class

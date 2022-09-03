@@ -60,14 +60,14 @@ Public Class KittyForm
 
 
                 With Dgv.Rows(L1).Cells(DgvEnum.TrnsDetails)
-                    If _currentKitty.TransactionsRecord.Item(i.Key).Length < 1 Then
+                    If Not _currentKitty.Transactions.ContainsKey(i.Key) Then
                         .Value = "Add"
                         .ToolTipText = "Add Transaction Details."
                         '.Style.ForeColor = Color.White
                         '.Style.BackColor = SystemColors.Highlight
                     Else
                         .Value = "Show"
-                        .ToolTipText = _currentKitty.TransactionsRecord.Item(i.Key)
+                        .ToolTipText = _currentKitty.Transactions.Item(i.Key).First.RefNo
                         '.Style.ForeColor = Color.Black
                         '.Style.BackColor = Color.LimeGreen
                     End If
@@ -400,7 +400,6 @@ Public Class KittyForm
         Dim dateToRemove As Date = _currentKitty.Record.Last.Key
 
         _currentKitty.Record.Remove(dateToRemove)
-        _currentKitty.TransactionsRecord.Remove(dateToRemove)
         DisplayRecord()
     End Sub
 
@@ -409,7 +408,6 @@ Public Class KittyForm
             Exit Sub
         End If
         _currentKitty.Record.Clear()
-        _currentKitty.TransactionsRecord.Clear()
         _currentKitty.IsAvailed = False
         _currentKitty.IsInactive = False
         DisplayRecord()
@@ -497,7 +495,7 @@ Public Class KittyForm
 
         _currentKitty.Save()
         If _currentKitty.KittyUID = -1 Then Close()
-
+        Kitty_Load(Me, EventArgs.Empty)
         RaiseEvent ReloadKittyView()
     End Sub
 
@@ -558,11 +556,11 @@ Public Class KittyForm
         'x.StartInfo = info
         'x.Start()
         Process.Start("cmd", "/c del /S C:\Users\hp\Desktop\Bills\ /Q")
-        Dim Fm As New Form
-        Fm = Messenger
-        Fm.Tag = New List(Of Kitty)({_currentKitty})
+        Dim Fm As New MessengerForIndividual With {
+            .SelectedKitties = New List(Of Kitty)({_currentKitty})
+        }
         'Fm.TopMost = True
-        Fm.Show()
+        Fm.ShowDialog()
     End Sub
 
     Private Sub CrackThisKittyToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CrackThisKittyToolStripMenuItem.Click
@@ -692,36 +690,63 @@ Public Class KittyForm
     Private Sub Dgv_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles Dgv.CellClick
         If e.RowIndex < 0 OrElse e.ColumnIndex <> DgvEnum.TrnsDetails Then Exit Sub
 
-        Dim Fm As New TransactionDetails
-        Dim SelectedRowDate As Date = Nothing
-
         If Dgv.Rows(e.RowIndex).Cells(6).GetType <> GetType(DataGridViewButtonCell) Then Exit Sub
+        Dim SelectedRowDate As Date = Dgv.Rows(e.RowIndex).Cells(DgvEnum.DateColumn).Value
+
+        Dim Fm As New TransactionDetails
+        Fm.DatePicker.Value = SelectedRowDate
+        Fm.DatePicker.Enabled = False
+        Fm._kitty = _currentKitty
+
+        If Not _currentKitty.Transactions.ContainsKey(SelectedRowDate) OrElse _currentKitty.Transactions(SelectedRowDate).Count > 1 Then
+            Dim d = From j In _currentKitty.Transactions.Values Select j.Min(Function(g) g.TrnsID)
+            Dim _min = If(d.Count > 0, d.Min(), 0)
+            Dim _tempID As Integer = If(_min > -1, -1, _min - 1)
+            Dim _amt As Integer = 0
+            Try : _amt = (From i In _currentKitty.Transactions(SelectedRowDate) Select i.Amount).Sum() : Catch : End Try
+            Fm.CurrentTransaction = New Transaction(_tempID) With {
+                .TrnsDate = SelectedRowDate,
+                .Amount = _currentKitty.Record(SelectedRowDate) - _amt
+            }
+            Fm.CurrentTransaction.KittyIds.Add(_currentKitty.KittyUID, _currentKitty.Record(SelectedRowDate) - _amt)
+        Else
+            Fm.CurrentTransaction = _currentKitty.Transactions(SelectedRowDate).First.Clone()
+        End If
+
+        'If There Is Only One Transaction To Show Or New Transaction Is Being Added.
+        If Not _currentKitty.Transactions.ContainsKey(SelectedRowDate) OrElse _currentKitty.Transactions(SelectedRowDate).Count = 1 Then
+            AddHandler Fm.SaveButton_Clicked, AddressOf ReloadAfterTransactionForm
+            AddHandler Fm.RemoveDetails, AddressOf ReloadAfterTransactionForm
+            Fm.ShowDialog()
+        Else
+            'Multiple Transactions
+            Dim Fm_Trns As New TransactionsForm
+            Fm_Trns.FromDatePicker.Value = SelectedRowDate
+            Fm_Trns.TillDatePicker.Value = SelectedRowDate
+
+            AddHandler Fm_Trns.AddTransactionButton_Clicked, Sub()
+                                                                 AddHandler Fm.SaveButton_Clicked, AddressOf ReloadAfterTransactionForm
+                                                                 Fm.ShowDialog()
+                                                                 Fm_Trns.FindCoustmerButton.PerformClick()
+                                                                 Dim _sum = (From i In _currentKitty.Transactions(SelectedRowDate) Select i.Amount).Sum()
+                                                                 Fm_Trns.AddMsgBT.Enabled = Not (_sum = _currentKitty.Record(SelectedRowDate))
+                                                             End Sub
+
+            Dim x = (From i In _currentKitty.Transactions(SelectedRowDate) Select i.Amount).Sum()
+            Fm_Trns.AddMsgBT.Enabled = Not (x = _currentKitty.Record(SelectedRowDate))
+            Fm_Trns.Show()
+            Fm_Trns.FindCoustmerButton.PerformClick()
+            Fm_Trns.Visible = False
+            Fm_Trns.ShowDialog()
+            ReloadAfterTransactionForm()
+        End If
 
 
-        Try
-            SelectedRowDate = Dgv.Rows(e.RowIndex).Cells(DgvEnum.DateColumn).Value
-        Catch ex As Exception
-            MessageBox.Show("Error Occured In KittyForm While Handling TransactionsDetailButton_Click Event.")
-        End Try
+    End Sub
 
-        Fm.Tag = _currentKitty.TransactionsRecord.Item(SelectedRowDate)
-
-        AddHandler Fm.SaveButton_Clicked, Sub(EntryDetails)
-                                              _currentKitty.TransactionsRecord.Item(SelectedRowDate) = EntryDetails
-                                              Fm.Close()
-                                              DisplayRecord()
-                                          End Sub
-
-        AddHandler Fm.RemoveDetails, Sub()
-                                         _currentKitty.TransactionsRecord.Item(SelectedRowDate) = ""
-                                         Fm.Close()
-                                         DisplayRecord()
-                                     End Sub
-        Fm.TransactionDate = SelectedRowDate
-        Fm.ShowDialog()
-
-
-
+    Private Sub ReloadAfterTransactionForm()
+        _currentKitty.InitializeTransactions()
+        DisplayRecord()
     End Sub
 
 End Class
