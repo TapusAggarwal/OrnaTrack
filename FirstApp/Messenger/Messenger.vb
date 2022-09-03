@@ -6,12 +6,14 @@ Public Class Messenger
     ReadOnly MessageImgs_Dict As New Dictionary(Of String, List(Of String))
     ReadOnly MessageImgs_List As New List(Of Bitmap)
 
+    Public Property ListOfKitties As New List(Of Kitty)
+
     Private Async Sub MakeBills()
         Dim Fm As New KittyRecievedReciept
         Panel1.Controls.Add(Fm.Panel1)
 
         Dim SrNo As Integer = 1
-        For Each _kitty As Kitty In Tag
+        For Each _kitty In ListOfKitties
             For Each _no In _kitty.Owner.GetPhNo
                 With Fm
                     .RecieptDate = _kitty.Record.Last.Key
@@ -113,7 +115,7 @@ Public Class Messenger
         Panel1.Size = KittyRecievedReciept.Size
         Cursor.Hide()
         Await Task.Delay(500)
-        If Tag IsNot Nothing Then MakeBills()
+        If ListOfKitties IsNot Nothing Then MakeBills()
         Cursor.Show()
     End Sub
 
@@ -202,4 +204,5 @@ Public Class Messenger
             SendButton.Text = "Send Message"
         End If
     End Sub
+
 End Class

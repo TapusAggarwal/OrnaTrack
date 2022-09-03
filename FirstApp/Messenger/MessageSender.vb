@@ -1,8 +1,7 @@
 ﻿Public Class MessageSender
 
     Public Property SelectedKitties As New List(Of Kitty)
-
-    Dim MessagesList As New List(Of String)
+    ReadOnly MessagesList As New List(Of String)
 
     Structure Templates
         Const Greeting = "{Greet}"
@@ -153,6 +152,14 @@
 #End Region
 
     Private Sub MessageSender_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        If TopLevel Then
+            FormBorderStyle = BorderStyle.FixedSingle
+        Else
+            If SelectedKitties.Count = 1 Then
+                PreviewBT.Visible = False
+                SendBT.Visible = True
+            End If
+        End If
         InitaliseConnection()
         Try : myconnection.Open() : Catch : End Try
 
@@ -241,7 +248,7 @@ You Can Also Pay Online Account Info Below."
 
         If HandsCheckBox.Checked Then MessageTB.Text = MessageTB.Text.Replace("{hands}", "") + "{hands}"
 
-        MessagesList.Add(MessageTB.Text)
+        MessagesList.Add(If(SelectedKitties.Count = 1, MessagePreviewForm.ReplaceTemplateWithDetails(SelectedKitties.First, MessageTB.Text), MessageTB))
 
         ShowMessages()
 
@@ -256,7 +263,7 @@ You Can Also Pay Online Account Info Below."
 
         If HandsCheckBox.Checked Then MessageTB.Text = MessageTB.Text.Replace("{hands}", "") + "{hands}"
 
-        MessagesList(EditBT.Tag) = MessageTB.Text
+        MessagesList(EditBT.Tag) = If(SelectedKitties.Count = 1, MessagePreviewForm.ReplaceTemplateWithDetails(SelectedKitties.First, MessageTB.Text), MessageTB)
         MessageTB.Text = ""
         ShowMessages()
 
@@ -298,15 +305,7 @@ You Can Also Pay Online Account Info Below."
             Fm.SelectedKitties = SelectedKitties
             Dim MessageText As String = String.Join($"{Environment.NewLine}{Environment.NewLine}<Next Message>{Environment.NewLine}{Environment.NewLine}", MessagesList)
 
-            Dim imgPaths As New List(Of String)
-
-            For Each cntrl In ImagePanel.Controls
-                Try
-                    Dim imgBox As PictureBox = cntrl
-                    imgPaths.Add(imgBox.ImageLocation)
-                Catch ex As Exception
-                End Try
-            Next
+            Dim imgPaths As List(Of String) = GetPathForImages()
 
             SqlCommand($"Update Message_Data set MessageText='{MessageText}' where id=1")
             SqlCommand($"Update Message_Data set ImagePaths='{String.Join(",", imgPaths)}' where id=1")
@@ -315,6 +314,20 @@ You Can Also Pay Online Account Info Below."
             Fm.ShowDialog()
         End Using
     End Sub
+
+    Private Function GetPathForImages() As List(Of String)
+        Dim imgPaths As New List(Of String)
+
+        For Each cntrl In ImagePanel.Controls
+            Try
+                Dim imgBox As PictureBox = cntrl
+                imgPaths.Add(imgBox.ImageLocation)
+            Catch ex As Exception
+            End Try
+        Next
+
+        Return imgPaths
+    End Function
 
     Private Sub AddImageBT_Click(sender As Object, e As EventArgs) Handles AddImageBT.Click
         Try
@@ -393,6 +406,66 @@ You Can Also Pay Online Account Info Below."
             MessageTB.Text = MessageTB.Text.Replace("{hands}", "")
         End If
     End Sub
+
+    Private Async Sub SendBT_Click(sender As Object, e As EventArgs) Handles SendBT.Click
+
+        Dim _imagePath As List(Of String) = GetPathForImages()
+
+        If _imagePath.Count = 0 And MessagesList.Count = 0 Then Exit Sub
+
+        FlowLayoutPanel1.Controls.Clear()
+
+        For Each i In SelectedKitties(0).Owner.GetPhNo
+
+            If _imagePath.Count > 0 Then
+                Dim ImageStatus As String = Await MessagePreviewForm.SendImage(i, _imagePath)
+
+                Dim _temp As New Label With {
+                    .Font = New Font("Century Gothic", 12.0!, FontStyle.Bold, GraphicsUnit.Point),
+                    .Visible = True,
+                    .AutoSize = True
+                }
+
+                If ImageStatus = "pass" Then
+                    _temp.ForeColor = Color.ForestGreen
+                    _temp.Text = $"+91{i.Trim}: Images Sent"
+                ElseIf ImageStatus = "fail" Then
+                    _temp.ForeColor = Color.Firebrick
+                    _temp.Text = $"+91{i.Trim}: Images Not Sent: Failed"
+                Else
+                    _temp.ForeColor = Color.Firebrick
+                    _temp.Text = $"+91{i.Trim}: Images Not Sent: NotRegistered"
+                End If
+                FlowLayoutPanel1.Controls.Add(_temp)
+
+            End If
+
+            If MessagesList.Count > 0 Then
+                Dim MessageStatus As String = Await MessagePreviewForm.SendMessage(i, SelectedKitties(0), MessagesList)
+
+                Dim _temp As New Label With {
+                    .Font = New Font("Century Gothic", 12.0!, FontStyle.Bold, GraphicsUnit.Point),
+                    .Visible = True,
+                    .AutoSize = True
+                }
+
+                If MessageStatus = "pass" Then
+                    _temp.ForeColor = Color.ForestGreen
+                    _temp.Text = $"+91{i.Trim}: Messages Sent"
+                ElseIf MessageStatus = "fail" Then
+                    _temp.ForeColor = Color.Firebrick
+                    _temp.Text = $"+91{i.Trim}: Messages Not Sent : Failed"
+                Else
+                    _temp.ForeColor = Color.Firebrick
+                    _temp.Text = $"+91{i.Trim}: Messages Not Sent : NotRegistered"
+                End If
+                FlowLayoutPanel1.Controls.Add(_temp)
+
+            End If
+
+        Next
+    End Sub
+
 End Class
 
 'ReadOnly SelectedColour As Color = Color.Wheat

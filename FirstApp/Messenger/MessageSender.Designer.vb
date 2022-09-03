@@ -70,6 +70,7 @@ Partial Class MessageSender
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.ToolTipChB = New System.Windows.Forms.CheckBox()
         Me.MessagePanel = New System.Windows.Forms.Panel()
+        Me.SendBT = New FontAwesome.Sharp.IconButton()
         Me.CancelEditBT = New FontAwesome.Sharp.IconButton()
         Me.EditBT = New FontAwesome.Sharp.IconButton()
         Me.DeleteBT = New FontAwesome.Sharp.IconButton()
@@ -516,11 +517,36 @@ Partial Class MessageSender
         Me.MessagePanel.Controls.Add(Me.PendingInstButton)
         Me.MessagePanel.Controls.Add(Me.PhNoButton)
         Me.MessagePanel.Controls.Add(Me.CoustNameButton)
+        Me.MessagePanel.Controls.Add(Me.SendBT)
         Me.MessagePanel.Dock = System.Windows.Forms.DockStyle.Right
         Me.MessagePanel.Location = New System.Drawing.Point(319, 0)
         Me.MessagePanel.Name = "MessagePanel"
         Me.MessagePanel.Size = New System.Drawing.Size(760, 933)
         Me.MessagePanel.TabIndex = 291
+        '
+        'SendBT
+        '
+        Me.SendBT.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.SendBT.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.SendBT.FlatAppearance.BorderSize = 0
+        Me.SendBT.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Lime
+        Me.SendBT.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.SendBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.SendBT.Font = New System.Drawing.Font("Century Gothic", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SendBT.ForeColor = System.Drawing.Color.Linen
+        Me.SendBT.IconChar = FontAwesome.Sharp.IconChar.PaperPlane
+        Me.SendBT.IconColor = System.Drawing.Color.White
+        Me.SendBT.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.SendBT.IconSize = 36
+        Me.SendBT.Location = New System.Drawing.Point(579, 499)
+        Me.SendBT.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.SendBT.Name = "SendBT"
+        Me.SendBT.Size = New System.Drawing.Size(167, 44)
+        Me.SendBT.TabIndex = 10039
+        Me.SendBT.Text = "Send"
+        Me.SendBT.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.SendBT.UseVisualStyleBackColor = False
+        Me.SendBT.Visible = False
         '
         'CancelEditBT
         '
@@ -977,7 +1003,7 @@ Partial Class MessageSender
         Me.Controls.Add(Me.ImagePanel)
         Me.Controls.Add(Me.MessagePanel)
         Me.ForeColor = System.Drawing.SystemColors.Desktop
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.MinimumSize = New System.Drawing.Size(593, 933)
         Me.Name = "MessageSender"
@@ -1043,4 +1069,5 @@ Partial Class MessageSender
     Friend WithEvents CancelEditBT As FontAwesome.Sharp.IconButton
     Friend WithEvents EditBT As FontAwesome.Sharp.IconButton
     Friend WithEvents DeleteBT As FontAwesome.Sharp.IconButton
+    Friend WithEvents SendBT As FontAwesome.Sharp.IconButton
 End Class

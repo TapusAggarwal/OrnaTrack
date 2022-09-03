@@ -558,11 +558,11 @@ Public Class KittyForm
         'x.StartInfo = info
         'x.Start()
         Process.Start("cmd", "/c del /S C:\Users\hp\Desktop\Bills\ /Q")
-        Dim Fm As New Form
-        Fm = Messenger
-        Fm.Tag = New List(Of Kitty)({_currentKitty})
+        Dim Fm As New MessengerForIndividual With {
+            .SelectedKitties = New List(Of Kitty)({_currentKitty})
+        }
         'Fm.TopMost = True
-        Fm.Show()
+        Fm.ShowDialog()
     End Sub
 
     Private Sub CrackThisKittyToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CrackThisKittyToolStripMenuItem.Click

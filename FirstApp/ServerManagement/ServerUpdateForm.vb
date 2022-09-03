@@ -28,6 +28,8 @@ Public Class ServerUpdateForm
 
         'sudo lsof - i tcp:  3966
         'Kill -9 {PID}
+        'Kill -9 $(lsof -t -i:  8080)
+
         AddCommand("sudo yum -y update", "$")
         AddCommand("cd MyNode_Application", "$")
         Dim _branch As String = "auto-wa-web-update"
@@ -48,9 +50,11 @@ Public Class ServerUpdateForm
         AddCommand("cd", "$")
         AddCommand($"cp -r MyNode_Application/ServerMain.mjs MyNode_Application/{_branch}/", "$")
         AddCommand($"cd MyNode_Application/{_branch}", "$")
-        AddCommand("pm2 kill", "$")
-        AddCommand("pm2 start ServerMain.mjs", "$")
+        AddCommand($"pm2 kill", "$")
+        AddCommand($"pm2 start ServerMain.mjs", "$")
 
+        'AddCommand("tmux kill-server", "$")
+        'AddCommand("tmux new -d -s my_session ""bash --init-file <(node ServerMain.mjs)""", "$")
     End Sub
 
     Public Sub AddCommand(_str As String, _symbl As String)
@@ -280,6 +284,19 @@ Public Class ServerUpdateForm
             End If
         End While
 
+    End Sub
+
+    Private Sub LogoffBT_Click(sender As Object, e As EventArgs) Handles LogoffBT.Click
+        Try
+            Client.Disconnect()
+            Client.Dispose()
+            MessageBox.Show("Server Logged Off Successfully", "Confrimation", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Catch ex As Exception
+        End Try
+    End Sub
+
+    Private Sub ServerUpdateForm_Closed(sender As Object, e As EventArgs) Handles Me.Closing, Me.Disposed
+        LogoffBT_Click(LogoffBT, EventArgs.Empty)
     End Sub
 
 End Class
