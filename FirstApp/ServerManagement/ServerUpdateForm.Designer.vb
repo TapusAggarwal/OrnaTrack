@@ -86,7 +86,7 @@ Partial Class ServerUpdateForm
         Me.Controls.Add(Me.UpdateBT)
         Me.Name = "ServerUpdateForm"
         Me.Text = "ServerUpdateForm"
-        Me.WindowState = System.Windows.Forms.FormWindowState.Minimized
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
