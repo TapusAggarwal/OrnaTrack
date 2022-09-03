@@ -117,20 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Label1.Text" xml:space="preserve">
-    <value>1.  203809592659-UID:355-KittyNo:1004
-2.  215809114940-UID:355-KittyNo:1004
-3.  209947531263-UID:384-KittyNo:994
-4.  134208177627-UID:386-KittyNo:1080
-5.  134208177627-UID:387-KittyNo:1081
-6.  215594021909-UID:388-KittyNo:995
-7.  209947531263-UID:438-KittyNo:1062
-8.  203809592659-UID:481-KittyNo:1000
-9.  215809114940-UID:481-KittyNo:1000
-10. 134208177627-UID:506-KittyNo:1098
-11. 215594021909-UID:506-KittyNo:1098
-12. 134208177627-UID:507-KittyNo:1099
-13. 215279470622-UID:521-KittyNo:998
-14. 215279470622-UID:562-KittyNo:1120</value>
-  </data>
 </root>

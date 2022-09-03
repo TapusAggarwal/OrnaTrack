@@ -2,6 +2,7 @@
 Imports FirstApp.Utility
 
 Public Class Kitty
+    Implements IEquatable(Of Kitty)
 
 #Region "Properties"
     Public ReadOnly Property KittyUID As Integer = -1
@@ -347,6 +348,11 @@ Public Class Kitty
             MessageBox.Show("Can't Get List Of Accounts [Kitty]: " + ex.Message)
         End Try
         Return temp_list
+    End Function
+
+    Public Function Equals(other As Kitty) As Boolean Implements IEquatable(Of Kitty).Equals
+        Return other IsNot Nothing AndAlso
+               KittyUID = other.KittyUID
     End Function
 
 #End Region

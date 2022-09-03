@@ -59,18 +59,20 @@ Partial Class Messenger
         Me.DataGridViewTextBoxColumn7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewButtonColumn1 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.ImgBox = New System.Windows.Forms.PictureBox()
         Me.WarningLabel = New System.Windows.Forms.Label()
         Me.MessageTB = New ProBaseAdvancedTextBox.ProBaseAdvancedTextBox.RichTextBoxPrintCtrl()
-        Me.NextButton = New FontAwesome.Sharp.IconButton()
-        Me.BackButton = New FontAwesome.Sharp.IconButton()
-        Me.SendButton = New FontAwesome.Sharp.IconButton()
-        Me.ImgBox = New System.Windows.Forms.PictureBox()
         Me.HandsCheckBox = New System.Windows.Forms.CheckBox()
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         Me.MessageResultLB = New System.Windows.Forms.Label()
         Me.SendRecieptCB = New System.Windows.Forms.CheckBox()
+        Me.NextButton = New FontAwesome.Sharp.IconButton()
+        Me.BackButton = New FontAwesome.Sharp.IconButton()
+        Me.SendButton = New FontAwesome.Sharp.IconButton()
+        Me.MainPanel = New System.Windows.Forms.Panel()
         CType(Me.ImgBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.FlowLayoutPanel1.SuspendLayout()
+        Me.MainPanel.SuspendLayout()
         Me.SuspendLayout()
         '
         'Column10
@@ -327,6 +329,16 @@ Partial Class Messenger
         Me.Panel1.Size = New System.Drawing.Size(534, 902)
         Me.Panel1.TabIndex = 236
         '
+        'ImgBox
+        '
+        Me.ImgBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.ImgBox.Location = New System.Drawing.Point(13, 15)
+        Me.ImgBox.Name = "ImgBox"
+        Me.ImgBox.Size = New System.Drawing.Size(534, 902)
+        Me.ImgBox.TabIndex = 0
+        Me.ImgBox.TabStop = False
+        Me.ImgBox.Visible = False
+        '
         'WarningLabel
         '
         Me.WarningLabel.AutoSize = True
@@ -351,6 +363,61 @@ Partial Class Messenger
         Me.MessageTB.Size = New System.Drawing.Size(535, 433)
         Me.MessageTB.TabIndex = 261
         Me.MessageTB.Text = ""
+        '
+        'HandsCheckBox
+        '
+        Me.HandsCheckBox.AutoSize = True
+        Me.HandsCheckBox.Checked = True
+        Me.HandsCheckBox.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.HandsCheckBox.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.HandsCheckBox.ForeColor = System.Drawing.Color.Orange
+        Me.HandsCheckBox.Location = New System.Drawing.Point(955, 628)
+        Me.HandsCheckBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.HandsCheckBox.Name = "HandsCheckBox"
+        Me.HandsCheckBox.Size = New System.Drawing.Size(153, 27)
+        Me.HandsCheckBox.TabIndex = 9991
+        Me.HandsCheckBox.Text = "Hands Emoji"
+        Me.HandsCheckBox.UseVisualStyleBackColor = True
+        '
+        'FlowLayoutPanel1
+        '
+        Me.FlowLayoutPanel1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.FlowLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(60, Byte), Integer))
+        Me.FlowLayoutPanel1.Controls.Add(Me.MessageResultLB)
+        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(570, 678)
+        Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
+        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(447, 235)
+        Me.FlowLayoutPanel1.TabIndex = 9992
+        '
+        'MessageResultLB
+        '
+        Me.MessageResultLB.AutoSize = True
+        Me.MessageResultLB.BackColor = System.Drawing.Color.Transparent
+        Me.MessageResultLB.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MessageResultLB.ForeColor = System.Drawing.Color.ForestGreen
+        Me.MessageResultLB.Location = New System.Drawing.Point(4, 0)
+        Me.MessageResultLB.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.MessageResultLB.Name = "MessageResultLB"
+        Me.MessageResultLB.Size = New System.Drawing.Size(244, 28)
+        Me.MessageResultLB.TabIndex = 226
+        Me.MessageResultLB.Text = "+919816057863: Sent"
+        Me.MessageResultLB.Visible = False
+        '
+        'SendRecieptCB
+        '
+        Me.SendRecieptCB.AutoSize = True
+        Me.SendRecieptCB.Checked = True
+        Me.SendRecieptCB.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.SendRecieptCB.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SendRecieptCB.ForeColor = System.Drawing.Color.Orange
+        Me.SendRecieptCB.Location = New System.Drawing.Point(781, 628)
+        Me.SendRecieptCB.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.SendRecieptCB.Name = "SendRecieptCB"
+        Me.SendRecieptCB.Size = New System.Drawing.Size(166, 27)
+        Me.SendRecieptCB.TabIndex = 9993
+        Me.SendRecieptCB.Text = "Send Reciept"
+        Me.SendRecieptCB.UseVisualStyleBackColor = True
         '
         'NextButton
         '
@@ -415,70 +482,23 @@ Partial Class Messenger
         Me.SendButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.SendButton.UseVisualStyleBackColor = False
         '
-        'ImgBox
+        'MainPanel
         '
-        Me.ImgBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.ImgBox.Location = New System.Drawing.Point(13, 11)
-        Me.ImgBox.Name = "ImgBox"
-        Me.ImgBox.Size = New System.Drawing.Size(534, 902)
-        Me.ImgBox.TabIndex = 0
-        Me.ImgBox.TabStop = False
-        Me.ImgBox.Visible = False
-        '
-        'HandsCheckBox
-        '
-        Me.HandsCheckBox.AutoSize = True
-        Me.HandsCheckBox.Checked = True
-        Me.HandsCheckBox.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.HandsCheckBox.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.HandsCheckBox.ForeColor = System.Drawing.Color.Orange
-        Me.HandsCheckBox.Location = New System.Drawing.Point(955, 628)
-        Me.HandsCheckBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.HandsCheckBox.Name = "HandsCheckBox"
-        Me.HandsCheckBox.Size = New System.Drawing.Size(153, 27)
-        Me.HandsCheckBox.TabIndex = 9991
-        Me.HandsCheckBox.Text = "Hands Emoji"
-        Me.HandsCheckBox.UseVisualStyleBackColor = True
-        '
-        'FlowLayoutPanel1
-        '
-        Me.FlowLayoutPanel1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.FlowLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(60, Byte), Integer))
-        Me.FlowLayoutPanel1.Controls.Add(Me.MessageResultLB)
-        Me.FlowLayoutPanel1.Location = New System.Drawing.Point(570, 678)
-        Me.FlowLayoutPanel1.Name = "FlowLayoutPanel1"
-        Me.FlowLayoutPanel1.Size = New System.Drawing.Size(447, 235)
-        Me.FlowLayoutPanel1.TabIndex = 9992
-        '
-        'MessageResultLB
-        '
-        Me.MessageResultLB.AutoSize = True
-        Me.MessageResultLB.BackColor = System.Drawing.Color.Transparent
-        Me.MessageResultLB.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.MessageResultLB.ForeColor = System.Drawing.Color.ForestGreen
-        Me.MessageResultLB.Location = New System.Drawing.Point(4, 0)
-        Me.MessageResultLB.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.MessageResultLB.Name = "MessageResultLB"
-        Me.MessageResultLB.Size = New System.Drawing.Size(244, 28)
-        Me.MessageResultLB.TabIndex = 226
-        Me.MessageResultLB.Text = "+919816057863: Sent"
-        Me.MessageResultLB.Visible = False
-        '
-        'SendRecieptCB
-        '
-        Me.SendRecieptCB.AutoSize = True
-        Me.SendRecieptCB.Checked = True
-        Me.SendRecieptCB.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.SendRecieptCB.Font = New System.Drawing.Font("Century Gothic", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SendRecieptCB.ForeColor = System.Drawing.Color.Orange
-        Me.SendRecieptCB.Location = New System.Drawing.Point(781, 628)
-        Me.SendRecieptCB.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.SendRecieptCB.Name = "SendRecieptCB"
-        Me.SendRecieptCB.Size = New System.Drawing.Size(166, 27)
-        Me.SendRecieptCB.TabIndex = 9993
-        Me.SendRecieptCB.Text = "Send Reciept"
-        Me.SendRecieptCB.UseVisualStyleBackColor = True
+        Me.MainPanel.Controls.Add(Me.Panel1)
+        Me.MainPanel.Controls.Add(Me.ImgBox)
+        Me.MainPanel.Controls.Add(Me.SendButton)
+        Me.MainPanel.Controls.Add(Me.WarningLabel)
+        Me.MainPanel.Controls.Add(Me.BackButton)
+        Me.MainPanel.Controls.Add(Me.NextButton)
+        Me.MainPanel.Controls.Add(Me.MessageTB)
+        Me.MainPanel.Controls.Add(Me.HandsCheckBox)
+        Me.MainPanel.Controls.Add(Me.FlowLayoutPanel1)
+        Me.MainPanel.Controls.Add(Me.SendRecieptCB)
+        Me.MainPanel.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.MainPanel.Location = New System.Drawing.Point(0, 0)
+        Me.MainPanel.Name = "MainPanel"
+        Me.MainPanel.Size = New System.Drawing.Size(1117, 932)
+        Me.MainPanel.TabIndex = 9994
         '
         'Messenger
         '
@@ -486,29 +506,20 @@ Partial Class Messenger
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(60, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1117, 932)
-        Me.Controls.Add(Me.SendRecieptCB)
-        Me.Controls.Add(Me.FlowLayoutPanel1)
-        Me.Controls.Add(Me.HandsCheckBox)
-        Me.Controls.Add(Me.MessageTB)
-        Me.Controls.Add(Me.NextButton)
-        Me.Controls.Add(Me.BackButton)
-        Me.Controls.Add(Me.WarningLabel)
-        Me.Controls.Add(Me.SendButton)
-        Me.Controls.Add(Me.Panel1)
-        Me.Controls.Add(Me.ImgBox)
+        Me.Controls.Add(Me.MainPanel)
         Me.ForeColor = System.Drawing.SystemColors.Desktop
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.Name = "Messenger"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.TopMost = True
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.ImgBox, System.ComponentModel.ISupportInitialize).EndInit()
         Me.FlowLayoutPanel1.ResumeLayout(False)
         Me.FlowLayoutPanel1.PerformLayout()
+        Me.MainPanel.ResumeLayout(False)
+        Me.MainPanel.PerformLayout()
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
     Friend WithEvents Column10 As DataGridViewCheckBoxColumn
@@ -542,4 +553,5 @@ Partial Class Messenger
     Friend WithEvents FlowLayoutPanel1 As FlowLayoutPanel
     Friend WithEvents MessageResultLB As Label
     Friend WithEvents SendRecieptCB As CheckBox
+    Friend WithEvents MainPanel As Panel
 End Class
