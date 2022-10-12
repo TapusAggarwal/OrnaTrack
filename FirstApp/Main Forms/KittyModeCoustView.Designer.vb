@@ -43,7 +43,7 @@ Partial Class KittyModeCoustView
         Me.FullName = New System.Windows.Forms.Label()
         Me.PhNoLabel = New System.Windows.Forms.Label()
         Me.Profession = New System.Windows.Forms.Label()
-        Me.Region = New System.Windows.Forms.Label()
+        Me.RegionData = New System.Windows.Forms.Label()
         Me.RegionLabel = New System.Windows.Forms.Label()
         Me.Address = New System.Windows.Forms.Label()
         Me.AddressLabel = New System.Windows.Forms.Label()
@@ -290,18 +290,18 @@ Partial Class KittyModeCoustView
         Me.Profession.TabIndex = 267
         Me.Profession.Text = "Lawyer"
         '
-        'Region
+        'RegionData
         '
-        Me.Region.AutoSize = True
-        Me.Region.BackColor = System.Drawing.Color.Transparent
-        Me.Region.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Region.ForeColor = System.Drawing.SystemColors.ControlLightLight
-        Me.Region.Location = New System.Drawing.Point(117, 610)
-        Me.Region.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Region.Name = "Region"
-        Me.Region.Size = New System.Drawing.Size(171, 30)
-        Me.Region.TabIndex = 269
-        Me.Region.Text = "Bhojpur Bazar"
+        Me.RegionData.AutoSize = True
+        Me.RegionData.BackColor = System.Drawing.Color.Transparent
+        Me.RegionData.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RegionData.ForeColor = System.Drawing.SystemColors.ControlLightLight
+        Me.RegionData.Location = New System.Drawing.Point(117, 610)
+        Me.RegionData.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.RegionData.Name = "RegionData"
+        Me.RegionData.Size = New System.Drawing.Size(171, 30)
+        Me.RegionData.TabIndex = 269
+        Me.RegionData.Text = "Bhojpur Bazar"
         '
         'RegionLabel
         '
@@ -400,7 +400,7 @@ Partial Class KittyModeCoustView
         Me.ProfilePanel.Controls.Add(Me.ProfileLabel)
         Me.ProfilePanel.Controls.Add(Me.ImageBox)
         Me.ProfilePanel.Controls.Add(Me.Address)
-        Me.ProfilePanel.Controls.Add(Me.Region)
+        Me.ProfilePanel.Controls.Add(Me.RegionData)
         Me.ProfilePanel.Controls.Add(Me.Married)
         Me.ProfilePanel.Controls.Add(Me.Gender)
         Me.ProfilePanel.Controls.Add(Me.Profession)
@@ -691,7 +691,7 @@ Partial Class KittyModeCoustView
     Friend WithEvents FullName As Label
     Friend WithEvents PhNoLabel As Label
     Friend WithEvents Profession As Label
-    Friend WithEvents Region As Label
+    Friend WithEvents RegionData As Label
     Friend WithEvents RegionLabel As Label
     Friend WithEvents Address As Label
     Friend WithEvents AddressLabel As Label

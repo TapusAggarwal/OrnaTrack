@@ -80,9 +80,9 @@ Public Class AddItemPage
         ProductFP.FlowLayoutPanel1.Controls.Clear()
         SaleFP.FlowLayoutPanel1.Controls.Clear()
 
-        PurchaseFP.Size = New Point(0, 50)
-        ProductFP.Size = New Point(0, 50)
-        SaleFP.Size = New Point(0, 50)
+        'PurchaseFP.Size = New Point(0, 50)
+        'ProductFP.Size = New Point(0, 50)
+        'SaleFP.Size = New Point(0, 50)
 
         For Each _property In CurrentItem.MyProperties
             Dim z1 As New AttributeControl
@@ -142,7 +142,7 @@ Public Class AddItemPage
             'Panel1.Size = New Point(FlowLayoutPanel2.Controls.Cast(Of AttributeControl).Max(Function(f) f.Size.Width), 0)
         Next
 
-        Size = New Point(Width + PanelMaxWidth - Panel1.Width + 55, Height)
+        'Size = New Point(Width + PanelMaxWidth - Panel1.Width + 55, Height)
 
     End Sub
 

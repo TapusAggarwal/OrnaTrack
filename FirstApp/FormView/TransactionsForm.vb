@@ -15,8 +15,7 @@
     Private Property Dict As New Dictionary(Of Integer, Kitty)
     Public Property ButtonText As String = "Details"
 
-    Private Sub FindCoustmerButton_Click(sender As Object, e As EventArgs) Handles FindCoustmerButton.Click
-        Dgv.Rows.Clear()
+    Public Function GetAllTransactions() As List(Of Transaction)
         Dim dr As OleDb.OleDbDataReader = DataReader("Select * From Transaction_Data")
 
         Dim _listTrns As New List(Of Transaction)
@@ -29,6 +28,14 @@
                 Dict.Add(i, New Kitty(i, True, True))
             Next
         End While
+
+        Return _listTrns
+    End Function
+
+    Private Sub FindCoustmerButton_Click(sender As Object, e As EventArgs) Handles FindCoustmerButton.Click
+        Dgv.Rows.Clear()
+
+        Dim _listTrns As List(Of Transaction) = GetAllTransactions()
 
         If _listTrns.Count = 0 Then Exit Sub
 

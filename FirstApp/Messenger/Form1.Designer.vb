@@ -42,6 +42,7 @@ Partial Class Form1
         Me.Label1 = New System.Windows.Forms.Label()
         Me.SelectedCustomersLB = New System.Windows.Forms.Label()
         Me.IconButton1 = New FontAwesome.Sharp.IconButton()
+        Me.InActiveCB = New System.Windows.Forms.CheckBox()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -196,7 +197,7 @@ Partial Class Form1
         'AvailedChB
         '
         Me.AvailedChB.AutoSize = True
-        Me.AvailedChB.Location = New System.Drawing.Point(22, 448)
+        Me.AvailedChB.Location = New System.Drawing.Point(22, 446)
         Me.AvailedChB.Name = "AvailedChB"
         Me.AvailedChB.Size = New System.Drawing.Size(86, 24)
         Me.AvailedChB.TabIndex = 261
@@ -262,12 +263,24 @@ Partial Class Form1
         Me.IconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.IconButton1.UseVisualStyleBackColor = False
         '
+        'InActiveCB
+        '
+        Me.InActiveCB.AutoSize = True
+        Me.InActiveCB.Location = New System.Drawing.Point(22, 477)
+        Me.InActiveCB.Name = "InActiveCB"
+        Me.InActiveCB.Size = New System.Drawing.Size(86, 24)
+        Me.InActiveCB.TabIndex = 268
+        Me.InActiveCB.Text = "Availed"
+        Me.InActiveCB.UseVisualStyleBackColor = True
+        Me.InActiveCB.Visible = False
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(60, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(740, 569)
+        Me.Controls.Add(Me.InActiveCB)
         Me.Controls.Add(Me.IconButton1)
         Me.Controls.Add(Me.SelectedCustomersLB)
         Me.Controls.Add(Me.Label1)
@@ -310,4 +323,5 @@ Partial Class Form1
     Friend WithEvents Label1 As Label
     Friend WithEvents SelectedCustomersLB As Label
     Friend WithEvents IconButton1 As FontAwesome.Sharp.IconButton
+    Friend WithEvents InActiveCB As CheckBox
 End Class

@@ -21,7 +21,7 @@ Public Class UserControl1
     Public Sub AutoReSize()
         Dim count As Integer = FlowLayoutPanel1.Controls.Count
         If count > 0 Then
-            Size = New Point(0, Height + FlowLayoutPanel1.Controls(FlowLayoutPanel1.Controls.Count - 1).Height + 5)
+            Size = New Point(Width, Height + FlowLayoutPanel1.Controls(FlowLayoutPanel1.Controls.Count - 1).Height + 5)
         End If
     End Sub
 

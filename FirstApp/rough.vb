@@ -1,250 +1,208 @@
-﻿Imports System.Data.OleDb
-Imports System.Threading
-Imports Newtonsoft.Json
+﻿Imports System.IO
+Imports ExcelDataReader
 
 Public Class rough
 
-    Dim AllKitties As New List(Of Kitty)
 
-    Dim cts As New CancellationTokenSource
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
 
-    Private Async Sub rough_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        KeyPreview = True
-        Cursor = Cursors.AppStarting
-        Dim dr As OleDbDataReader = DataReader("Select KittyUID From Kitty_Data")
-        Dim T_List As New List(Of Task(Of Kitty))
-        While dr.Read
-            Dim _id = Int(dr(0))
-            T_List.Add(Task.Run(Function()
-                                    Return New Kitty(_id, True, True)
-                                End Function))
-        End While
-        Dim res = Await Task.WhenAll(T_List)
-        AllKitties = res.ToList
-        dr.Close()
+        Dim _set As New HashSet(Of OnlineTransaction)
 
-        Dim x As New Dictionary(Of Date, List(Of Kitty))
-        For Each i In AllKitties.Select(Function(f) New Tuple(Of Dictionary(Of Date, Integer), Kitty)(f.Record, f))
-            For Each j In i.Item1
-                If x.ContainsKey(j.Key) Then
-                    x(j.Key).Add(i.Item2)
-                Else
-                    x.Add(j.Key, New List(Of Kitty)({i.Item2}))
-                End If
+        Using ofd As New OpenFileDialog() With {.Filter = "Excel 97-2003 Workbook|*.xls|Excel Workbook|*.xlsx"}
+
+            ofd.Multiselect = True
+
+            If ofd.ShowDialog() <> DialogResult.OK Then Exit Sub
+
+            DataGridView1.Rows.Clear()
+
+
+            For Each _fileName In ofd.FileNames
+                Using Stream = File.Open(_fileName, FileMode.Open, FileAccess.Read)
+
+                    Dim _name As String = _fileName.Split("\").Last.Split(".").First.Split("_").First
+
+                    Using reader As IExcelDataReader = ExcelReaderFactory.CreateReader(Stream)
+                        Dim result As DataSet = reader.AsDataSet(New ExcelDataSetConfiguration() With {
+                                                                     .ConfigureDataTable = Function(__) New ExcelDataTableConfiguration() With {
+                                                                     .UseHeaderRow = True}})
+
+                        Dim dt As DataTable = result.Tables.Item(0)
+
+                        For i = 1 To 20
+                            dt.Rows.RemoveAt(0)
+                        Next
+
+
+                        For i = 0 To dt.Rows.Count - 1
+
+                            Dim _row = dt.Rows.Item(i)
+                            If IsDBNull(_row.Item(0)) Then Continue For
+                            If _row.Item(0).ToString.Trim.StartsWith("*") Then Exit For
+
+                            Dim x = Function(f As Object, _int As Boolean)
+                                        If IsDBNull(f) OrElse f.ToString.Trim = "" Then
+                                            If _int Then Return -1
+                                            Return ""
+                                        End If
+                                        If _int Then
+                                            Dim h As Single = Split(f.ToString.Trim, " ", , CompareMethod.Text).First
+                                            Return h
+                                        End If
+                                        Return f.ToString.Trim
+                                    End Function
+
+                            Dim _amt As Single = x(_row.Item(6), True)
+                            If _amt = -1 Then _amt = -x(_row.Item(5), True)
+                            Dim trns As New OnlineTransaction
+
+                            trns.TrnsDate = x(_row.Item(0), False)
+                            trns.Account = _name
+                            trns.BranchCode = x(_row.Item(2), True)
+                            trns.ChequeNumber = x(_row.Item(3), True)
+                            trns.Description = x(_row.Item(4), False)
+                            trns.Amount = _amt
+                            trns.Balance = x(_row.Item(7), True)
+
+                            _set.Add(trns)
+                        Next
+
+                    End Using
+                End Using
+
             Next
-        Next
 
-        Dim sorted = From pair In x
-                     Order By pair.Key
-        x = sorted.ToDictionary(Function(k) k.Key, Function(v) v.Value)
-        Dim _dict = x.Reverse
-        Dim _date As Date = _dict.First.Key
+        End Using
 
-        Dim Cntrl_List As New List(Of Task(Of PerUnitTimeControl))
 
-        Cursor = Cursors.Default
+        Dim _orderedTrns = From i In _set
+                           Order By i.TrnsDate
 
-        While _date > _dict.Last.Key
-            Dim _val = _date
-            Cntrl_List.Add(Task.Run(Function()
-                                        Dim _cntrl As New PerUnitTimeControl
-                                        Dim d = _dict.Where(Function(f) f.Key.Year = _val.Year AndAlso f.Key.Month = _val.Month).ToDictionary(Function(k) k.Key, Function(v) v.Value)
-                                        If d.Count = 0 Then Return Nothing
-                                        _cntrl.MakeOneMonthControl(d)
-                                        Return _cntrl
-                                    End Function, cts.Token))
-            _date = _date.AddMonths(-1)
-        End While
+        Dim _selectedTrns = (From i In _orderedTrns
+                             Select i
+                             Where (i.Description.StartsWith("BY TRANSFER/UPI/RRN") OrElse i.Description.StartsWith("BY TRANSFER/IMPSP2A"))).ToList
 
-        For Each i In Cntrl_List
-            If i.IsCanceled Then Exit For
-            Dim f = Await i
-            If f Is Nothing Then Continue For
-            FlowLayoutPanel1.Controls.Add(f)
-        Next
-
-        cts.Dispose()
-        cts = Nothing
-
-    End Sub
-
-    Private Sub Rough_Closed(sender As Object, e As EventArgs) Handles Me.Closed
-        If cts IsNot Nothing Then
-            cts.Cancel()
-            Dispose()
-        End If
-    End Sub
-
-    Private Sub PreviewCustomers_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
-        'MessageBox.Show(FlowLayoutPanel1.VerticalScroll.Value)
-        FlowLayoutPanel1.VerticalScroll.SmallChange = 48
-        Try
-            If e.KeyCode = Keys.Up Then
-                Dim change As Integer = FlowLayoutPanel1.VerticalScroll.Value - FlowLayoutPanel1.VerticalScroll.SmallChange
-                FlowLayoutPanel1.AutoScrollPosition = New Point(0, change)
-            ElseIf e.KeyCode = Keys.Down Then
-                Dim change As Integer = FlowLayoutPanel1.VerticalScroll.Value + FlowLayoutPanel1.VerticalScroll.SmallChange
-                FlowLayoutPanel1.AutoScrollPosition = New Point(0, change)
+        For Each i In _selectedTrns
+            If i.Description.StartsWith("BY TRANSFER/UPI/RRN") Then
+                i.Description = i.Description.Split("|").First.Split("/")(2).Split(" ").Last.Trim
+            Else
+                i.Description = i.Description.Replace("BY TRANSFER/IMPSP2A", "").Split(" ").First.Trim
             End If
-        Catch ex As Exception
-        End Try
+        Next
+
+
+        Dim _acc = From i In _selectedTrns Select i.Account Distinct
+        Dim _list = TransactionsForm.GetAllTransactions()
+        Dim _unCommon = _list.Where(Function(f) _selectedTrns.Where(
+                                        Function(r) (r.Description = f.RefNo AndAlso r.Amount = f.Amount) OrElse Not _acc.Contains(f.Account)).Count = 0).ToList
+
+
+        Dim _type As Type = _selectedTrns.First.GetType
+        Dim _prop = From i In _type.GetProperties() Select i.Name
+        Dim _abc As New DataTable
+        _abc.Columns.Add("SrNo")
+        _abc.Columns(0).AutoIncrement = True
+
+        For Each i In _prop
+            _abc.Columns.Add(i)
+        Next
+
+        For Each i In _selectedTrns
+            Dim _row As DataRow = _abc.NewRow
+            For j As Integer = 0 To _prop.Count - 1
+                _row(j + 1) = CallByName(i, _prop(j), CallType.Get, Nothing)
+            Next
+            _abc.Rows.Add(_row)
+            _prev = i.TrnsDate
+        Next
+
+        Dim _colors As New Dictionary(Of String, Color)
+
+        Dim rnd As New Random
+        Dim _cl = Color.FromArgb(255, rnd.Next(200, 255), rnd.Next(200, 255), rnd.Next(200, 255))
+        _colors.Add(_acc.First, _cl)
+
+        For Each i In _acc
+            If _colors.ContainsKey(i) Then Continue For
+            _colors.Add(i, Color.FromArgb(255, _cl.R - rnd.Next(0, 50), _cl.G - rnd.Next(0, 50), _cl.B - rnd.Next(0, 50)))
+        Next
+
+        DataGridView1.DataSource = _abc
+
+        For i = 0 To DataGridView1.Rows.Count - 1
+            If _prev <> Date.Parse(DataGridView1.Rows(i).Cells(1).Value) Then _color = If(_color = Color.White, Color.LightGray, Color.White)
+            DataGridView1.Rows(i).DefaultCellStyle.BackColor = _color
+            _prev = DataGridView1.Rows(i).Cells(1).Value
+
+            DataGridView1.Rows(i).Cells(2).Style.BackColor = _colors(DataGridView1.Rows(i).Cells(2).Value)
+        Next
     End Sub
 
-    Public Sub c()
-        Dim dr As OleDbDataReader = DataReader("Select * From Transaction_Data")
+    Dim _color As Color = Color.LightGray
+    Dim _prev As Date = Nothing
 
-        While dr.Read
-            Dim _ids As String = dr("KittyIds")
-            If _ids.Contains(",") Then Continue While
-
-            Dim _id As Integer = Int(_ids)
-            Dim _trns As New Transaction(dr("TrnsID"))
-
-            '_trns.KittyIds.Add(_id, dr("Structure"))
-            _trns.Save()
-        End While
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
 
     End Sub
 
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
 
-    'Private Sub Button2_Click(sender As Object, e As EventArgs)
-    '    Dim distinct As New Dictionary(Of String, List(Of String))
-    '    Dim _good As New Dictionary(Of String, List(Of String))
-    '    Dim _letters As New Dictionary(Of String, List(Of String))
+        Dim x As New HashSet(Of OnlineTransaction)
 
-    '    For Each i In AllKitties
-    '        Dim dr As OleDbDataReader = DataReader($"Select TransactionDetails From Kitty_Data Where KittyUID={i.KittyUID}")
-    '        Dim _str As String = ""
+        Dim y As New Dictionary(Of OnlineTransaction, Int16)
 
-    '        While dr.Read
-    '            _str = If(IsDBNull(dr(0)), "", dr(0))
-    '        End While
-    '        If _str = "" Then Continue For
+        Dim trns1 As New OnlineTransaction With {
+            .TrnsDate = "23-04-2003",
+            .BranchCode = 2004,
+            .ChequeNumber = 98723,
+            .Description = "By Transfer",
+            .Amount = 340000,
+            .Balance = 987823123
+        }
 
-    '        For Each j In Split(_str, "|,|", , CompareMethod.Text)
+        Dim trns2 As New OnlineTransaction With {
+            .TrnsDate = "23-04-2003",
+            .BranchCode = 2004,
+            .ChequeNumber = 98723,
+            .Description = "By Transfer",
+            .Amount = 340000,
+            .Balance = 987823123
+        }
 
-    '            If j.Length = 10 Then Continue For
+        Dim f = trns1 = trns2
 
-    '            Dim SavedData As Linq.JObject = Linq.JObject.Parse(j.Substring(10))
+        x.Add(trns2)
+        x.Add(trns1)
 
-    '            Dim _date As Date = j.Substring(0, 10)
+        Console.WriteLine(trns2)
 
-    '            Dim dict As New Dictionary(Of String, String) From {
-    '                {"TrnsDate", _date.ToShortDateString},
-    '                {"Mode", SavedData.SelectToken("Mode")},
-    '                {"Account", SavedData.SelectToken("Account")},
-    '                {"Amount", i.Record(_date)},
-    '                {"RefNo", SavedData.SelectToken("RefNo")},
-    '                {"Notes", SavedData.SelectToken("Notes")},
-    '                {"KittyIds", i.KittyUID},
-    '                {"Structure", i.Record(_date)}
-    '            }
+    End Sub
+End Class
 
-    '            If dict("Mode").ToLower = "cash" Then
-    '                Continue For
-    '            End If
-    '            If distinct.ContainsKey(dict("RefNo")) Then
-    '                distinct(dict("RefNo")).Add(JsonConvert.SerializeObject(dict, Formatting.Indented))
-    '            Else
-    '                Dim _str1 = JsonConvert.SerializeObject(dict, Formatting.Indented)
-    '                distinct.Add(dict("RefNo"), New List(Of String)({_str1}))
-    '            End If
+Public Class OnlineTransaction
 
-    '            'Dim _mode = dict.Item("Mode")
-    '            'Dim _acc = dict.Item("Account")
-    '            'Dim _ref = dict.Item("RefNo")
-    '            'Dim _note = dict.Item("Notes")
-    '            'SqlCommand($"Insert Into Transaction_Data (TrnsDate,Mode,Account,RefNo,Notes,KittyIds)" &
-    '            '           $"Values('{j}','{_mode}','{_acc}','{_ref}','{_note}'),'{i.KittyUID}'")
-    '        Next
-    '    Next
+    Public Property TrnsDate As Date
+    Public Property Account As String = ""
+    Public Property Description As String
+    Public Property Amount As Single = -1
+    Public Property Balance As Integer = -1
+    Public Property BranchCode As Integer = -1
+    Public Property ChequeNumber As Integer = -1
 
-    '    For Each i In distinct
-    '        If i.Value.Count = 1 Then
-    '            Dim SavedData As Linq.JObject = Linq.JObject.Parse(i.Value.First)
-    '            Dim _date As String = SavedData.SelectToken("TrnsDate")
-    '            Dim _amt As Integer = SavedData.SelectToken("Amount")
-    '            Dim _id As Integer = SavedData.SelectToken("KittyIds")
-    '            Dim _kitty = AllKitties.Where(Function(f) f.KittyUID = _id)(0)
-    '            If _kitty.Record.Item(_date) = _amt Then
-    '                _good.Add(i.Key, i.Value)
-    '            End If
-    '        End If
-    '    Next
+    Public Overrides Function GetHashCode() As Integer
+        Return (TrnsDate, BranchCode, ChequeNumber, Description, Amount, Balance).GetHashCode()
+    End Function
 
-    '    For Each i In _good
-    '        distinct.Remove(i.Key)
-    '    Next
+    Public Function Equals1(other As OnlineTransaction) As Boolean
+        Return GetHashCode() = other.GetHashCode
+    End Function
 
-    '    For Each i In _good
-    '        Dim f = System.Text.RegularExpressions.Regex.Replace(i.Key, "\d", "")
-    '        If f <> "" Then
-    '            'Contains letter
-    '            _letters.Add(i.Key, i.Value)
-    '        End If
-    '    Next
-    '    Dim d = ""
+    Public Shared Operator =(left As OnlineTransaction, right As OnlineTransaction) As Boolean
+        Return left.GetHashCode = right.GetHashCode
+    End Operator
 
-    '    For Each i In _letters
-    '        _good.Remove(i.Key)
-    '    Next
-
-
-    '    For Each i In distinct("")
-
-    '        Dim SavedData As Linq.JObject = Linq.JObject.Parse(i)
-
-    '        SavedData.SelectToken("Notes")
-    '        Dim _date = SavedData.SelectToken("TrnsDate")
-    '        Dim _mode = SavedData.SelectToken("Mode")
-    '        Dim _acc = SavedData.SelectToken("Account")
-    '        Dim _amt = SavedData.SelectToken("Amount")
-    '        Dim _ref = SavedData.SelectToken("RefNo")
-    '        Dim _id = SavedData.SelectToken("KittyIds")
-    '        Dim _note = SavedData.SelectToken("Notes")
-    '        Dim _structure = SavedData.SelectToken("Structure")
-
-    '        SqlCommand($"Insert Into Transaction_Data (TrnsDate,Mode,Amount,Account,RefNo,KittyIds,Notes,Structure)" &
-    '                       $"Values('{_date}','{_mode}','{_amt}','{_acc}','{_ref}','{_id}','{_note}','{_structure}')")
-    '    Next
-
-    '    distinct.Remove("")
-
-    '    '_good.Add(_letters.First.Key, _letters.First.Value)
-    '    '_good.Add(_letters.Last.Key, _letters.Last.Value)
-
-    '    Dim sdf As String = ""
-    '    For Each i In distinct.Values
-    '        For Each j In i
-    '            sdf += j + "|,|"
-    '        Next
-    '    Next
-
-
-    '    Dim ewq As String = Str(sdf)
-
-    '    Dim sorted = From pair In _good
-    '                 Order By pair.Key.Length
-
-    '    For Each i In distinct.First.Value
-
-    '        If i = "" Then Exit Sub
-
-    '        Dim SavedData As Linq.JObject = Linq.JObject.Parse(i)
-
-    '        SavedData.SelectToken("Notes")
-    '        Dim _date = SavedData.SelectToken("TrnsDate")
-    '        Dim _mode = SavedData.SelectToken("Mode")
-    '        Dim _acc = SavedData.SelectToken("Account")
-    '        Dim _amt = SavedData.SelectToken("Amount")
-    '        Dim _ref = SavedData.SelectToken("RefNo")
-    '        Dim _id = SavedData.SelectToken("KittyIds")
-    '        Dim _note = SavedData.SelectToken("Notes")
-    '        SqlCommand($"Insert Into Transaction_Data (TrnsDate,Mode,Amount,Account,RefNo,KittyIds,Notes)" &
-    '                   $"Values('{_date}','{_mode}','{_amt}','{_acc}','{_ref}','{_id}','{_note}')")
-    '    Next
-
-    '    Dim s = ""
-    'End Sub
+    Public Shared Operator <>(left As OnlineTransaction, right As OnlineTransaction) As Boolean
+        Return Not left = right
+    End Operator
 
 End Class

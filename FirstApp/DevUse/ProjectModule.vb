@@ -80,18 +80,17 @@ Module ProjectModule
         client.Timeout = TimeSpan.FromSeconds(5)
 
         Try
-
             Dim response As HttpResponseMessage = client.PostAsync(New Uri(_uri), request_headres).Result
 
             If response.IsSuccessStatusCode Then
-            Dim resposeTask As Task(Of String) = response.Content.ReadAsStringAsync()
-            Return resposeTask
-        Else
-            Return Nothing
-        End If
+                Dim resposeTask As Task(Of String) = response.Content.ReadAsStringAsync()
+                Return resposeTask
+            Else
+                Return Nothing
+            End If
         Catch ex As Exception
-        MessageBox.Show($"Error Occurred: While Sending Request To Server: {ex.Message}.", "Exception Thrown", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        Return Nothing
+            MessageBox.Show($"Error Occurred: While Sending Request To Server: {ex.Message}.", "Exception Thrown", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return Nothing
         End Try
 
     End Function

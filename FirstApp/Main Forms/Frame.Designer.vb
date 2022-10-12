@@ -25,15 +25,7 @@ Partial Class Frame
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Frame))
         Me.PanelTitleBar = New System.Windows.Forms.Panel()
-        Me.WindowsRestoreButton = New FontAwesome.Sharp.IconButton()
-        Me.WindowsMinimizeButton = New FontAwesome.Sharp.IconButton()
-        Me.CloseButton = New FontAwesome.Sharp.IconButton()
-        Me.IconButton3 = New FontAwesome.Sharp.IconButton()
-        Me.SilverRateLabel = New System.Windows.Forms.Label()
-        Me.GoldRateLabel = New System.Windows.Forms.Label()
-        Me.SilverButton = New FontAwesome.Sharp.IconButton()
-        Me.UserPhNo = New FontAwesome.Sharp.IconButton()
-        Me.ConnectionLabel = New FontAwesome.Sharp.IconButton()
+        Me.VersionLB = New FontAwesome.Sharp.IconButton()
         Me.ServerContextMenuStrip = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.WhatsappWebVisibilityToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NotificationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -44,15 +36,25 @@ Partial Class Frame
         Me.ChangeServerAddressToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TestConnectionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UpdateServerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.IconButton1 = New FontAwesome.Sharp.IconButton()
+        Me.WindowsRestoreButton = New FontAwesome.Sharp.IconButton()
+        Me.WindowsMinimizeButton = New FontAwesome.Sharp.IconButton()
+        Me.CloseButton = New FontAwesome.Sharp.IconButton()
+        Me.SilverRateLabel = New System.Windows.Forms.Label()
+        Me.GoldRateLabel = New System.Windows.Forms.Label()
+        Me.SilverButton = New FontAwesome.Sharp.IconButton()
+        Me.UserPhNo = New FontAwesome.Sharp.IconButton()
+        Me.ConnectionLabel = New FontAwesome.Sharp.IconButton()
         Me.SidePanelButton = New FontAwesome.Sharp.IconPictureBox()
         Me.LeftArrowButton = New FontAwesome.Sharp.IconPictureBox()
         Me.RightArrowButton = New FontAwesome.Sharp.IconPictureBox()
+        Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
         Me.PanelMenu = New System.Windows.Forms.Panel()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.NewCoustmerButton = New FontAwesome.Sharp.IconButton()
         Me.SendMessageButton = New FontAwesome.Sharp.IconButton()
         Me.QuickSearchButton = New FontAwesome.Sharp.IconButton()
-        Me.IconButton1 = New FontAwesome.Sharp.IconButton()
+        Me.IconButton2 = New FontAwesome.Sharp.IconButton()
         Me.PanelTitleBar.SuspendLayout()
         Me.ServerContextMenuStrip.SuspendLayout()
         CType(Me.SidePanelButton, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -65,11 +67,12 @@ Partial Class Frame
         'PanelTitleBar
         '
         Me.PanelTitleBar.BackColor = System.Drawing.Color.FromArgb(CType(CType(24, Byte), Integer), CType(CType(24, Byte), Integer), CType(CType(60, Byte), Integer))
+        Me.PanelTitleBar.Controls.Add(Me.IconButton2)
+        Me.PanelTitleBar.Controls.Add(Me.VersionLB)
         Me.PanelTitleBar.Controls.Add(Me.IconButton1)
         Me.PanelTitleBar.Controls.Add(Me.WindowsRestoreButton)
         Me.PanelTitleBar.Controls.Add(Me.WindowsMinimizeButton)
         Me.PanelTitleBar.Controls.Add(Me.CloseButton)
-        Me.PanelTitleBar.Controls.Add(Me.IconButton3)
         Me.PanelTitleBar.Controls.Add(Me.SilverRateLabel)
         Me.PanelTitleBar.Controls.Add(Me.GoldRateLabel)
         Me.PanelTitleBar.Controls.Add(Me.SilverButton)
@@ -78,12 +81,125 @@ Partial Class Frame
         Me.PanelTitleBar.Controls.Add(Me.SidePanelButton)
         Me.PanelTitleBar.Controls.Add(Me.LeftArrowButton)
         Me.PanelTitleBar.Controls.Add(Me.RightArrowButton)
+        Me.PanelTitleBar.Controls.Add(Me.ProgressBar1)
         Me.PanelTitleBar.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelTitleBar.Location = New System.Drawing.Point(0, 0)
         Me.PanelTitleBar.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.PanelTitleBar.Name = "PanelTitleBar"
         Me.PanelTitleBar.Size = New System.Drawing.Size(1924, 63)
         Me.PanelTitleBar.TabIndex = 138
+        '
+        'VersionLB
+        '
+        Me.VersionLB.BackColor = System.Drawing.Color.Transparent
+        Me.VersionLB.ContextMenuStrip = Me.ServerContextMenuStrip
+        Me.VersionLB.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(24, Byte), Integer), CType(CType(24, Byte), Integer), CType(CType(60, Byte), Integer))
+        Me.VersionLB.FlatAppearance.BorderSize = 0
+        Me.VersionLB.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(24, Byte), Integer), CType(CType(24, Byte), Integer), CType(CType(60, Byte), Integer))
+        Me.VersionLB.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.VersionLB.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.VersionLB.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.VersionLB.ForeColor = System.Drawing.Color.White
+        Me.VersionLB.IconChar = FontAwesome.Sharp.IconChar.CodeBranch
+        Me.VersionLB.IconColor = System.Drawing.Color.White
+        Me.VersionLB.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.VersionLB.IconSize = 60
+        Me.VersionLB.Location = New System.Drawing.Point(723, 3)
+        Me.VersionLB.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.VersionLB.Name = "VersionLB"
+        Me.VersionLB.Size = New System.Drawing.Size(325, 58)
+        Me.VersionLB.TabIndex = 268
+        Me.VersionLB.Text = "V-1.0.1"
+        Me.VersionLB.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.VersionLB.UseVisualStyleBackColor = False
+        Me.VersionLB.Visible = False
+        '
+        'ServerContextMenuStrip
+        '
+        Me.ServerContextMenuStrip.Font = New System.Drawing.Font("Century Schoolbook", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ServerContextMenuStrip.ImageScalingSize = New System.Drawing.Size(24, 24)
+        Me.ServerContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.WhatsappWebVisibilityToolStripMenuItem, Me.NotificationToolStripMenuItem, Me.RestartToolStripMenuItem, Me.ChangeServerAddressToolStripMenuItem, Me.TestConnectionToolStripMenuItem, Me.UpdateServerToolStripMenuItem})
+        Me.ServerContextMenuStrip.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
+        Me.ServerContextMenuStrip.Name = "ServerContextMenuStrip"
+        Me.ServerContextMenuStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional
+        Me.ServerContextMenuStrip.Size = New System.Drawing.Size(312, 184)
+        '
+        'WhatsappWebVisibilityToolStripMenuItem
+        '
+        Me.WhatsappWebVisibilityToolStripMenuItem.Name = "WhatsappWebVisibilityToolStripMenuItem"
+        Me.WhatsappWebVisibilityToolStripMenuItem.Size = New System.Drawing.Size(311, 30)
+        Me.WhatsappWebVisibilityToolStripMenuItem.Text = "Change Visibilty"
+        '
+        'NotificationToolStripMenuItem
+        '
+        Me.NotificationToolStripMenuItem.Name = "NotificationToolStripMenuItem"
+        Me.NotificationToolStripMenuItem.Size = New System.Drawing.Size(311, 30)
+        Me.NotificationToolStripMenuItem.Text = "Notifications: Turned On"
+        '
+        'RestartToolStripMenuItem
+        '
+        Me.RestartToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RestartServerToolStripMenuItem, Me.CloseServerToolStripMenuItem, Me.CleanAllSessionsToolStripMenuItem})
+        Me.RestartToolStripMenuItem.Name = "RestartToolStripMenuItem"
+        Me.RestartToolStripMenuItem.Size = New System.Drawing.Size(311, 30)
+        Me.RestartToolStripMenuItem.Text = "Server Options"
+        '
+        'RestartServerToolStripMenuItem
+        '
+        Me.RestartServerToolStripMenuItem.Name = "RestartServerToolStripMenuItem"
+        Me.RestartServerToolStripMenuItem.Size = New System.Drawing.Size(279, 34)
+        Me.RestartServerToolStripMenuItem.Text = "Restart Server"
+        '
+        'CloseServerToolStripMenuItem
+        '
+        Me.CloseServerToolStripMenuItem.Name = "CloseServerToolStripMenuItem"
+        Me.CloseServerToolStripMenuItem.Size = New System.Drawing.Size(279, 34)
+        Me.CloseServerToolStripMenuItem.Text = "Close Server"
+        '
+        'CleanAllSessionsToolStripMenuItem
+        '
+        Me.CleanAllSessionsToolStripMenuItem.Name = "CleanAllSessionsToolStripMenuItem"
+        Me.CleanAllSessionsToolStripMenuItem.Size = New System.Drawing.Size(279, 34)
+        Me.CleanAllSessionsToolStripMenuItem.Text = "Clean All Sessions"
+        '
+        'ChangeServerAddressToolStripMenuItem
+        '
+        Me.ChangeServerAddressToolStripMenuItem.Name = "ChangeServerAddressToolStripMenuItem"
+        Me.ChangeServerAddressToolStripMenuItem.Size = New System.Drawing.Size(311, 30)
+        Me.ChangeServerAddressToolStripMenuItem.Text = "Change Server Address"
+        '
+        'TestConnectionToolStripMenuItem
+        '
+        Me.TestConnectionToolStripMenuItem.Name = "TestConnectionToolStripMenuItem"
+        Me.TestConnectionToolStripMenuItem.Size = New System.Drawing.Size(311, 30)
+        Me.TestConnectionToolStripMenuItem.Text = "Test Connection"
+        '
+        'UpdateServerToolStripMenuItem
+        '
+        Me.UpdateServerToolStripMenuItem.Name = "UpdateServerToolStripMenuItem"
+        Me.UpdateServerToolStripMenuItem.Size = New System.Drawing.Size(311, 30)
+        Me.UpdateServerToolStripMenuItem.Text = "Update Server"
+        '
+        'IconButton1
+        '
+        Me.IconButton1.BackColor = System.Drawing.Color.Transparent
+        Me.IconButton1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(24, Byte), Integer), CType(CType(24, Byte), Integer), CType(CType(60, Byte), Integer))
+        Me.IconButton1.FlatAppearance.BorderSize = 0
+        Me.IconButton1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.IconButton1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.IconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.IconButton1.Font = New System.Drawing.Font("Comic Sans MS", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.IconButton1.ForeColor = System.Drawing.Color.WhiteSmoke
+        Me.IconButton1.IconChar = FontAwesome.Sharp.IconChar.Wallet
+        Me.IconButton1.IconColor = System.Drawing.Color.WhiteSmoke
+        Me.IconButton1.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.IconButton1.IconSize = 60
+        Me.IconButton1.Location = New System.Drawing.Point(392, 3)
+        Me.IconButton1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.IconButton1.Name = "IconButton1"
+        Me.IconButton1.Size = New System.Drawing.Size(100, 58)
+        Me.IconButton1.TabIndex = 267
+        Me.IconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.IconButton1.UseVisualStyleBackColor = False
         '
         'WindowsRestoreButton
         '
@@ -153,26 +269,6 @@ Partial Class Frame
         Me.CloseButton.TabIndex = 263
         Me.CloseButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.CloseButton.UseVisualStyleBackColor = False
-        '
-        'IconButton3
-        '
-        Me.IconButton3.BackColor = System.Drawing.Color.Transparent
-        Me.IconButton3.FlatAppearance.BorderSize = 0
-        Me.IconButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.IconButton3.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.IconButton3.ForeColor = System.Drawing.Color.MediumPurple
-        Me.IconButton3.IconChar = FontAwesome.Sharp.IconChar.Redo
-        Me.IconButton3.IconColor = System.Drawing.Color.White
-        Me.IconButton3.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.IconButton3.IconSize = 25
-        Me.IconButton3.Location = New System.Drawing.Point(244, 18)
-        Me.IconButton3.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.IconButton3.Name = "IconButton3"
-        Me.IconButton3.Size = New System.Drawing.Size(45, 33)
-        Me.IconButton3.TabIndex = 211
-        Me.IconButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.IconButton3.UseVisualStyleBackColor = False
-        Me.IconButton3.Visible = False
         '
         'SilverRateLabel
         '
@@ -270,71 +366,6 @@ Partial Class Frame
         Me.ConnectionLabel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.ConnectionLabel.UseVisualStyleBackColor = False
         '
-        'ServerContextMenuStrip
-        '
-        Me.ServerContextMenuStrip.Font = New System.Drawing.Font("Century Schoolbook", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ServerContextMenuStrip.ImageScalingSize = New System.Drawing.Size(24, 24)
-        Me.ServerContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.WhatsappWebVisibilityToolStripMenuItem, Me.NotificationToolStripMenuItem, Me.RestartToolStripMenuItem, Me.ChangeServerAddressToolStripMenuItem, Me.TestConnectionToolStripMenuItem, Me.UpdateServerToolStripMenuItem})
-        Me.ServerContextMenuStrip.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
-        Me.ServerContextMenuStrip.Name = "ServerContextMenuStrip"
-        Me.ServerContextMenuStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional
-        Me.ServerContextMenuStrip.Size = New System.Drawing.Size(312, 184)
-        '
-        'WhatsappWebVisibilityToolStripMenuItem
-        '
-        Me.WhatsappWebVisibilityToolStripMenuItem.Name = "WhatsappWebVisibilityToolStripMenuItem"
-        Me.WhatsappWebVisibilityToolStripMenuItem.Size = New System.Drawing.Size(311, 30)
-        Me.WhatsappWebVisibilityToolStripMenuItem.Text = "Change Visibilty"
-        '
-        'NotificationToolStripMenuItem
-        '
-        Me.NotificationToolStripMenuItem.Name = "NotificationToolStripMenuItem"
-        Me.NotificationToolStripMenuItem.Size = New System.Drawing.Size(311, 30)
-        Me.NotificationToolStripMenuItem.Text = "Notifications: Turned On"
-        '
-        'RestartToolStripMenuItem
-        '
-        Me.RestartToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RestartServerToolStripMenuItem, Me.CloseServerToolStripMenuItem, Me.CleanAllSessionsToolStripMenuItem})
-        Me.RestartToolStripMenuItem.Name = "RestartToolStripMenuItem"
-        Me.RestartToolStripMenuItem.Size = New System.Drawing.Size(311, 30)
-        Me.RestartToolStripMenuItem.Text = "Server Options"
-        '
-        'RestartServerToolStripMenuItem
-        '
-        Me.RestartServerToolStripMenuItem.Name = "RestartServerToolStripMenuItem"
-        Me.RestartServerToolStripMenuItem.Size = New System.Drawing.Size(279, 34)
-        Me.RestartServerToolStripMenuItem.Text = "Restart Server"
-        '
-        'CloseServerToolStripMenuItem
-        '
-        Me.CloseServerToolStripMenuItem.Name = "CloseServerToolStripMenuItem"
-        Me.CloseServerToolStripMenuItem.Size = New System.Drawing.Size(279, 34)
-        Me.CloseServerToolStripMenuItem.Text = "Close Server"
-        '
-        'CleanAllSessionsToolStripMenuItem
-        '
-        Me.CleanAllSessionsToolStripMenuItem.Name = "CleanAllSessionsToolStripMenuItem"
-        Me.CleanAllSessionsToolStripMenuItem.Size = New System.Drawing.Size(279, 34)
-        Me.CleanAllSessionsToolStripMenuItem.Text = "Clean All Sessions"
-        '
-        'ChangeServerAddressToolStripMenuItem
-        '
-        Me.ChangeServerAddressToolStripMenuItem.Name = "ChangeServerAddressToolStripMenuItem"
-        Me.ChangeServerAddressToolStripMenuItem.Size = New System.Drawing.Size(311, 30)
-        Me.ChangeServerAddressToolStripMenuItem.Text = "Change Server Address"
-        '
-        'TestConnectionToolStripMenuItem
-        '
-        Me.TestConnectionToolStripMenuItem.Name = "TestConnectionToolStripMenuItem"
-        Me.TestConnectionToolStripMenuItem.Size = New System.Drawing.Size(311, 30)
-        Me.TestConnectionToolStripMenuItem.Text = "Test Connection"
-        '
-        'UpdateServerToolStripMenuItem
-        '
-        Me.UpdateServerToolStripMenuItem.Name = "UpdateServerToolStripMenuItem"
-        Me.UpdateServerToolStripMenuItem.Size = New System.Drawing.Size(311, 30)
-        Me.UpdateServerToolStripMenuItem.Text = "Update Server"
-        '
         'SidePanelButton
         '
         Me.SidePanelButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(24, Byte), Integer), CType(CType(24, Byte), Integer), CType(CType(60, Byte), Integer))
@@ -382,6 +413,16 @@ Partial Class Frame
         Me.RightArrowButton.Size = New System.Drawing.Size(48, 46)
         Me.RightArrowButton.TabIndex = 139
         Me.RightArrowButton.TabStop = False
+        '
+        'ProgressBar1
+        '
+        Me.ProgressBar1.Location = New System.Drawing.Point(628, 22)
+        Me.ProgressBar1.Name = "ProgressBar1"
+        Me.ProgressBar1.Size = New System.Drawing.Size(482, 24)
+        Me.ProgressBar1.Step = 1
+        Me.ProgressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous
+        Me.ProgressBar1.TabIndex = 172
+        Me.ProgressBar1.Visible = False
         '
         'PanelMenu
         '
@@ -469,27 +510,27 @@ Partial Class Frame
         Me.QuickSearchButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
         Me.QuickSearchButton.UseVisualStyleBackColor = False
         '
-        'IconButton1
+        'IconButton2
         '
-        Me.IconButton1.BackColor = System.Drawing.Color.Transparent
-        Me.IconButton1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(24, Byte), Integer), CType(CType(24, Byte), Integer), CType(CType(60, Byte), Integer))
-        Me.IconButton1.FlatAppearance.BorderSize = 0
-        Me.IconButton1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
-        Me.IconButton1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
-        Me.IconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.IconButton1.Font = New System.Drawing.Font("Comic Sans MS", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.IconButton1.ForeColor = System.Drawing.Color.WhiteSmoke
-        Me.IconButton1.IconChar = FontAwesome.Sharp.IconChar.Wallet
-        Me.IconButton1.IconColor = System.Drawing.Color.WhiteSmoke
-        Me.IconButton1.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.IconButton1.IconSize = 60
-        Me.IconButton1.Location = New System.Drawing.Point(392, 3)
-        Me.IconButton1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.IconButton1.Name = "IconButton1"
-        Me.IconButton1.Size = New System.Drawing.Size(100, 58)
-        Me.IconButton1.TabIndex = 267
-        Me.IconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.IconButton1.UseVisualStyleBackColor = False
+        Me.IconButton2.BackColor = System.Drawing.Color.Transparent
+        Me.IconButton2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(24, Byte), Integer), CType(CType(24, Byte), Integer), CType(CType(60, Byte), Integer))
+        Me.IconButton2.FlatAppearance.BorderSize = 0
+        Me.IconButton2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.IconButton2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.IconButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.IconButton2.Font = New System.Drawing.Font("Comic Sans MS", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.IconButton2.ForeColor = System.Drawing.Color.WhiteSmoke
+        Me.IconButton2.IconChar = FontAwesome.Sharp.IconChar.Wallet
+        Me.IconButton2.IconColor = System.Drawing.Color.WhiteSmoke
+        Me.IconButton2.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.IconButton2.IconSize = 60
+        Me.IconButton2.Location = New System.Drawing.Point(231, 3)
+        Me.IconButton2.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.IconButton2.Name = "IconButton2"
+        Me.IconButton2.Size = New System.Drawing.Size(100, 58)
+        Me.IconButton2.TabIndex = 269
+        Me.IconButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.IconButton2.UseVisualStyleBackColor = False
         '
         'Frame
         '
@@ -531,7 +572,6 @@ Partial Class Frame
     Friend WithEvents GoldRateLabel As Label
     Friend WithEvents SilverButton As FontAwesome.Sharp.IconButton
     Friend WithEvents SilverRateLabel As Label
-    Friend WithEvents IconButton3 As FontAwesome.Sharp.IconButton
     Friend WithEvents CloseButton As FontAwesome.Sharp.IconButton
     Friend WithEvents ServerContextMenuStrip As ContextMenuStrip
     Friend WithEvents WhatsappWebVisibilityToolStripMenuItem As ToolStripMenuItem
@@ -546,4 +586,7 @@ Partial Class Frame
     Friend WithEvents CleanAllSessionsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents UpdateServerToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents IconButton1 As FontAwesome.Sharp.IconButton
+    Friend WithEvents VersionLB As FontAwesome.Sharp.IconButton
+    Friend WithEvents ProgressBar1 As ProgressBar
+    Friend WithEvents IconButton2 As FontAwesome.Sharp.IconButton
 End Class

@@ -99,7 +99,7 @@ Public Class KittyModeCoustView
                 Address.Text = .Address
             Catch : End Try
             Try
-                Region.Text = .Region
+                RegionData.Text = .Region
             Catch : End Try
             Try
                 'ImageBox.BackgroundImage = Image.FromFile(dr("img"))    'Adding Profile Iamge

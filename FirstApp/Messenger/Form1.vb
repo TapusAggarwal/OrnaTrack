@@ -2,6 +2,7 @@
     ReadOnly Kitties As New Dictionary(Of Integer, Dictionary(Of String, List(Of Kitty)))
     ReadOnly SelectedMatured As New List(Of Kitty)
     ReadOnly SelectedAvailed As New List(Of Kitty)
+    ReadOnly SelectedInActive As New List(Of Kitty)
     ReadOnly instalmentsLeft As New Dictionary(Of Integer, List(Of Kitty))
     ReadOnly instalmentsPending As New Dictionary(Of Integer, List(Of Kitty))
 
@@ -11,6 +12,7 @@
         KittyTypeCList.Visible = state
         MaturedChB.Visible = state
         AvailedChB.Visible = state
+        InActiveCB.Visible = state
         InstalmentsLeftCList.Visible = state
     End Sub
 
@@ -37,6 +39,7 @@
                     Dim _hashMap As New Dictionary(Of String, List(Of Kitty)) From {
                         {"active", New List(Of Kitty)},
                         {"matured", New List(Of Kitty)},
+                        {"inactive", New List(Of Kitty)},
                         {"availed", New List(Of Kitty)}
                     }
                     Kitties.Add(_temp.KittyType, _hashMap)
@@ -45,6 +48,8 @@
                     Kitties.Item(_temp.KittyType).Item("availed").Add(_temp)
                 ElseIf _temp.IsMatured Then
                     Kitties.Item(_temp.KittyType).Item("matured").Add(_temp)
+                ElseIf _temp.IsInactive Then
+                    Kitties.Item(_temp.KittyType).Item("inactive").Add(_temp)
                 ElseIf _temp.GivenAmount > 0 Then
                     Kitties.Item(_temp.KittyType).Item("active").Add(_temp)
                 End If
@@ -58,7 +63,8 @@
             KittyTypeCList.Items.Add($"All({total})")
 
             For Each i In Kitties
-                KittyTypeCList.Items.Add($"{i.Key} ({i.Value.Item("active").Count + i.Value.Item("matured").Count + i.Value.Item("availed").Count})")
+                Dim _sum = i.Value.Values.Sum(Function(f) f.Count)
+                KittyTypeCList.Items.Add($"{i.Key} ({_sum})")
             Next
 
             With Me
@@ -115,12 +121,14 @@
 
         SelectedMatured.Clear()
         SelectedAvailed.Clear()
+        SelectedInActive.Clear()
 
         Dim _active As New List(Of Kitty)
 
         For Each i In x
             SelectedMatured.AddRange(Kitties.Item(i).Item("matured"))
             SelectedAvailed.AddRange(Kitties.Item(i).Item("availed"))
+            SelectedInActive.AddRange(Kitties.Item(i).Item("inactive"))
             _active.AddRange(Kitties.Item(i).Item("active"))
         Next
 
@@ -138,6 +146,14 @@
         Else
             AvailedChB.Enabled = False
             AvailedChB.Text = "Availed"
+        End If
+
+        If SelectedInActive.Count > 0 Then
+            InActiveCB.Enabled = True
+            InActiveCB.Text = $"InActive ({SelectedInActive.Count})"
+        Else
+            InActiveCB.Enabled = False
+            InActiveCB.Text = "InActive"
         End If
 
         InstalmentsLeftCList.Items.Clear()
@@ -264,6 +280,9 @@
         End If
         If AvailedChB.Checked Then
             SelectedKitties.AddRange(SelectedAvailed)
+        End If
+        If InActiveCB.Checked Then
+            SelectedKitties.AddRange(SelectedInActive)
         End If
 
         If SelectedKitties.Count = 0 Then
@@ -417,7 +436,7 @@
         PreviewCustomers.Show()
     End Sub
 
-    Private Sub MaturedChB_CheckedChanged(sender As Object, e As EventArgs) Handles MaturedChB.CheckedChanged, AvailedChB.CheckedChanged
+    Private Sub MaturedChB_CheckedChanged(sender As Object, e As EventArgs) Handles MaturedChB.CheckedChanged, AvailedChB.CheckedChanged, InActiveCB.CheckedChanged
         UpdateSelectedKitty()
     End Sub
 

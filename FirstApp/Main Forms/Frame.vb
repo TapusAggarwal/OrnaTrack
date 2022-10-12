@@ -1,7 +1,7 @@
 ﻿Imports FontAwesome.Sharp
-Imports WebSocket4Net
 Imports Newtonsoft.Json.Linq
-Imports System.IO
+Imports Squirrel
+Imports WebSocket4Net
 
 Public Class Frame
 
@@ -12,6 +12,8 @@ Public Class Frame
     Private Const GWL_EXSTYLE = (-20)
     Private Const WS_EX_CLIENTEDGE = &H200
 
+    Dim manager As UpdateManager
+
     Protected Overrides ReadOnly Property createParams As CreateParams
         Get
             Dim cp As CreateParams = MyBase.CreateParams
@@ -21,7 +23,7 @@ Public Class Frame
     End Property
 
 #Region "Me.Load"
-    Private Sub Frame_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Async Sub Frame_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         '' Fade in when started
         Me.Opacity = 0
         Dim tmr As New Timer With {
@@ -68,6 +70,20 @@ Public Class Frame
         WindowState = FormWindowState.Maximized
         QuickSearchButton_Click(QuickSearchButton, e)
         KeyPreview = True
+
+        Try
+            manager = Await UpdateManager.GitHubUpdateManager("https://github.com/TapusAggarwal/Test_App")
+            VersionLB.Text = manager.CurrentlyInstalledVersion().ToString()
+            VersionLB.Visible = True
+            Dim updateInfo = Await manager.CheckForUpdate()
+            If updateInfo.ReleasesToApply.Count <= 0 Then
+                VersionLB.IconColor = Color.White
+            Else
+                VersionLB.IconColor = Color.Goldenrod
+            End If
+        Catch ex As Exception
+        End Try
+
     End Sub
 #End Region
 
@@ -562,12 +578,12 @@ Public Class Frame
                 fm.Refresh()
             Next
         End If
-        Me.Select()
+        [Select]()
     End Sub
 
     Private Sub WindowsMinimizeButton_Click(sender As Object, e As EventArgs) Handles WindowsMinimizeButton.Click
-        Me.WindowState = FormWindowState.Minimized
-        Me.Select()
+        WindowState = FormWindowState.Minimized
+        [Select]()
     End Sub
 
     Private Sub Frame_Resize(sender As Object, e As EventArgs) Handles Me.Resize
@@ -594,7 +610,36 @@ Public Class Frame
     End Sub
 
     Private Sub IconButton1_Click(sender As Object, e As EventArgs) Handles IconButton1.Click
-        Dim fm As New rough
+        Dim fm As New PaymentReport
         fm.ShowDialog()
+    End Sub
+
+    Private Async Sub IconButton2_Click(sender As Object, e As EventArgs) Handles VersionLB.Click
+        Cursor = Cursors.AppStarting
+        VersionLB.Visible = False
+        ProgressBar1.Visible = True
+        Try
+            Dim updateInfo = Await manager.CheckForUpdate()
+            ProgressBar1.Value = 0
+            If updateInfo.ReleasesToApply.Count > 0 Then
+
+                Await manager.UpdateApp(Sub(f)
+                                            ProgressBar1.Value = f
+                                        End Sub)
+                MessageBox.Show("Updated Succesfully. Close The Application To See The New Changes.", "Task Done", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Close()
+            End If
+        Catch ex As Exception
+
+            MessageBox.Show($"While Updating The Application Error Occured: {ex.Message}", "Error Occured", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End Try
+        VersionLB.Visible = True
+        ProgressBar1.Visible = False
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub IconButton2_Click_1(sender As Object, e As EventArgs) Handles IconButton2.Click
+        Dim Fm As New FireBase
+        Fm.Show()
     End Sub
 End Class

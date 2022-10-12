@@ -114,7 +114,6 @@ Public Class Item
 
     End Class
 
-
     Public Function MyProperties_JSON() As String
         Dim _json As String = String.Join(";", MyProperties.Select(Function(f) f.PropertyAsJson).ToList)
         Return _json
