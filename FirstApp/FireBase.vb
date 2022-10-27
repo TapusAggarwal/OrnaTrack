@@ -9,7 +9,7 @@ Public Class FireBase
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-
+        'hi
         Dim coll As CollectionReference = db.Collection("customers_data")
 
         Dim dr As OleDb.OleDbDataReader = DataReader("Select * From Coustmers_Data")
