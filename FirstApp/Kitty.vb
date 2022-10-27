@@ -194,6 +194,11 @@ Public Class Kitty
         Return Int(Duration - GetInstalmentsCompleted())
     End Function
 
+    Public Function IsActive() As Boolean
+        Initialize(True)
+        Return Not (IsMatured() Or IsAvailed Or IsInactive)
+    End Function
+
     Public Function IsMatured() As Boolean
         If GivenAmount() >= KittyType * Duration Then
             Return True

@@ -9,7 +9,7 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="connection_url" Type="System.String" Scope="User">
-      <Value Profile="(Default)">3.16.198.57:3966</Value>
+      <Value Profile="(Default)">3.14.225.85:3966</Value>
     </Setting>
     <Setting Name="ListenerPhNo" Type="System.String" Scope="User">
       <Value Profile="(Default)">917018362951</Value>

@@ -25,6 +25,7 @@ Partial Class Frame
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Frame))
         Me.PanelTitleBar = New System.Windows.Forms.Panel()
+        Me.IconButton2 = New FontAwesome.Sharp.IconButton()
         Me.VersionLB = New FontAwesome.Sharp.IconButton()
         Me.ServerContextMenuStrip = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.WhatsappWebVisibilityToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -54,7 +55,6 @@ Partial Class Frame
         Me.NewCoustmerButton = New FontAwesome.Sharp.IconButton()
         Me.SendMessageButton = New FontAwesome.Sharp.IconButton()
         Me.QuickSearchButton = New FontAwesome.Sharp.IconButton()
-        Me.IconButton2 = New FontAwesome.Sharp.IconButton()
         Me.PanelTitleBar.SuspendLayout()
         Me.ServerContextMenuStrip.SuspendLayout()
         CType(Me.SidePanelButton, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -88,6 +88,29 @@ Partial Class Frame
         Me.PanelTitleBar.Name = "PanelTitleBar"
         Me.PanelTitleBar.Size = New System.Drawing.Size(1924, 63)
         Me.PanelTitleBar.TabIndex = 138
+        '
+        'IconButton2
+        '
+        Me.IconButton2.BackColor = System.Drawing.Color.Transparent
+        Me.IconButton2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(24, Byte), Integer), CType(CType(24, Byte), Integer), CType(CType(60, Byte), Integer))
+        Me.IconButton2.FlatAppearance.BorderSize = 0
+        Me.IconButton2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.IconButton2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.IconButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.IconButton2.Font = New System.Drawing.Font("Comic Sans MS", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.IconButton2.ForeColor = System.Drawing.Color.WhiteSmoke
+        Me.IconButton2.IconChar = FontAwesome.Sharp.IconChar.Wallet
+        Me.IconButton2.IconColor = System.Drawing.Color.WhiteSmoke
+        Me.IconButton2.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.IconButton2.IconSize = 60
+        Me.IconButton2.Location = New System.Drawing.Point(231, 3)
+        Me.IconButton2.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.IconButton2.Name = "IconButton2"
+        Me.IconButton2.Size = New System.Drawing.Size(100, 58)
+        Me.IconButton2.TabIndex = 269
+        Me.IconButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.IconButton2.UseVisualStyleBackColor = False
+        Me.IconButton2.Visible = False
         '
         'VersionLB
         '
@@ -509,28 +532,6 @@ Partial Class Frame
         Me.QuickSearchButton.Text = "Insta  Search"
         Me.QuickSearchButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
         Me.QuickSearchButton.UseVisualStyleBackColor = False
-        '
-        'IconButton2
-        '
-        Me.IconButton2.BackColor = System.Drawing.Color.Transparent
-        Me.IconButton2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(24, Byte), Integer), CType(CType(24, Byte), Integer), CType(CType(60, Byte), Integer))
-        Me.IconButton2.FlatAppearance.BorderSize = 0
-        Me.IconButton2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
-        Me.IconButton2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
-        Me.IconButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.IconButton2.Font = New System.Drawing.Font("Comic Sans MS", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.IconButton2.ForeColor = System.Drawing.Color.WhiteSmoke
-        Me.IconButton2.IconChar = FontAwesome.Sharp.IconChar.Wallet
-        Me.IconButton2.IconColor = System.Drawing.Color.WhiteSmoke
-        Me.IconButton2.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.IconButton2.IconSize = 60
-        Me.IconButton2.Location = New System.Drawing.Point(231, 3)
-        Me.IconButton2.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.IconButton2.Name = "IconButton2"
-        Me.IconButton2.Size = New System.Drawing.Size(100, 58)
-        Me.IconButton2.TabIndex = 269
-        Me.IconButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.IconButton2.UseVisualStyleBackColor = False
         '
         'Frame
         '

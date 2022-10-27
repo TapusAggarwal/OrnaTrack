@@ -335,10 +335,10 @@ Public Class KittyModeCoustView
         Dim _condition As String = ""
 
         For Each i In selectedTypes
-            If Array.IndexOf(selectedTypes, i) <> 0 Then
-                _condition += $" OR KittyType={i}"
-            Else
+            If Array.IndexOf(selectedTypes, i) = 0 Then
                 _condition += $"KittyType={i}"
+            Else
+                _condition += $" OR KittyType={i}"
             End If
         Next
 
@@ -374,13 +374,48 @@ Public Class KittyModeCoustView
         Return BookList.IndexOf(_KittyID_Book)
     End Function
 
+    Dim _active As Object = Nothing
+    Dim _inActive As Object = Nothing
+    Dim _availed As Object = Nothing
+    Dim _matured As Object = Nothing
+    Dim _cracked As Object = Nothing
+
     Private Sub NextKittyButton_Click(sender As Object, e As EventArgs) Handles NextKittyButton.Click
         Dim _currentIndex As Integer = CurrentIndex()
+        Dim _status As String = New Kitty(BookList.Item(_currentIndex + 1), True, True).Status
+
+        If _active IsNot Nothing Then
+            If _status = "InActive" AndAlso Not _inActive.Checked OrElse
+               _status = "Availed" AndAlso Not _availed.Checked OrElse
+               _status = "Cracked" AndAlso Not _cracked.Checked OrElse
+               _status = "Matured" AndAlso Not _matured.Checked OrElse
+               _status = "Partial" AndAlso Not _active.Checked Then
+
+                _KittyID_Book = BookList.Item(_currentIndex + 1)
+                NextKittyButton.PerformClick()
+                Exit Sub
+            End If
+        End If
         KittyIdTB.Text = BookList.Item(_currentIndex + 1)
         UpdateBookModeIndexes()
     End Sub
 
     Private Sub PrevKittyButton_Click(sender As Object, e As EventArgs) Handles PrevKittyButton.Click
+        Dim _currentIndex As Integer = CurrentIndex()
+        Dim _status As String = New Kitty(BookList.Item(_currentIndex - 1), True, True).Status
+
+        If _active IsNot Nothing Then
+            If _status = "InActive" AndAlso Not _inActive.Checked OrElse
+               _status = "Availed" AndAlso Not _availed.Checked OrElse
+               _status = "Cracked" AndAlso Not _cracked.Checked OrElse
+               _status = "Matured" AndAlso Not _matured.Checked OrElse
+               _status = "Partial" AndAlso Not _active.Checked Then
+
+                _KittyID_Book = BookList.Item(_currentIndex - 1)
+                PrevKittyButton.PerformClick()
+                Exit Sub
+            End If
+        End If
         KittyIdTB.Text = New Kitty(BookList.Item(CurrentIndex() - 1)).KittyUID
         UpdateBookModeIndexes()
     End Sub
@@ -534,6 +569,12 @@ Public Class KittyModeCoustView
             BookModeSelectedTypes.Items.Add(x)
 
             AddHandler x.CheckedChanged, Sub(_sender As ToolStripMenuItem, _e As EventArgs)
+                                             Dim _count = (From _items As ToolStripMenuItem In BookModeSelectedTypes.Items
+                                                           Where _items.Checked = True).Count
+                                             If _count = 0 Then
+                                                 _sender.Checked = True
+                                                 Exit Sub
+                                             End If
                                              BookModeSelectedTypes.Show(DotsButton, 0, DotsButton.Size.Height)
                                              If BookMode Then
                                                  ShowBook()
@@ -556,4 +597,41 @@ Public Class KittyModeCoustView
         BookModeSelectedTypes.Show(DotsButton, 0, DotsButton.Size.Height)
     End Sub
 
+    Private Sub ContextMenuStrip2_Opening(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles ContextMenuStrip2.Opening
+
+    End Sub
+
+    Private Sub IconPictureBox1_Click(sender As Object, e As EventArgs) Handles IconPictureBox1.Click
+        If ContextMenuStrip2.Visible Then
+            ContextMenuStrip2.Hide()
+        End If
+
+        If ContextMenuStrip2.Items.Count = 0 Then
+            For Each i In New List(Of String)({"Active", "InActive", "Availed", "Cracked", "Matured"})
+                Dim x As New ToolStripMenuItem With {
+                    .Checked = True,
+                    .CheckOnClick = True,
+                    .Text = i,
+                    .Name = $"{i}BookCB"
+                }
+                ContextMenuStrip2.Items.Add(x)
+                AddHandler x.CheckedChanged, Sub(_sender As ToolStripMenuItem, _e As EventArgs)
+                                                 ContextMenuStrip2.Show(IconPictureBox1, 0, IconPictureBox1.Size.Height)
+                                                 If BookMode Then
+                                                     ShowBook()
+                                                 End If
+                                             End Sub
+            Next
+            With ContextMenuStrip2.Items
+                _active = .Item(.IndexOfKey("ActiveBookCB"))
+                _inActive = .Item(.IndexOfKey("InActiveBookCB"))
+                _availed = .Item(.IndexOfKey("AvailedBookCB"))
+                _cracked = .Item(.IndexOfKey("CrackedBookCB"))
+                _matured = .Item(.IndexOfKey("MaturedBookCB"))
+            End With
+
+        End If
+
+        ContextMenuStrip2.Show(IconPictureBox1, 0, IconPictureBox1.Size.Height)
+    End Sub
 End Class

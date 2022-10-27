@@ -66,12 +66,15 @@ Partial Class KittyModeCoustView
         Me.JumpToKittyNoButton = New FontAwesome.Sharp.IconButton()
         Me.DotsButton = New FontAwesome.Sharp.IconPictureBox()
         Me.BookModeSelectedTypes = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.IconPictureBox1 = New FontAwesome.Sharp.IconPictureBox()
         Me.KittyPanel.SuspendLayout()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.ProfilePanel.SuspendLayout()
         CType(Me.ImageBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         CType(Me.DotsButton, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.IconPictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'ProfileLabel
@@ -103,7 +106,7 @@ Partial Class KittyModeCoustView
         'CustomerIdTB
         '
         Me.CustomerIdTB.Font = New System.Drawing.Font("Century Schoolbook", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CustomerIdTB.Location = New System.Drawing.Point(16, 1013)
+        Me.CustomerIdTB.Location = New System.Drawing.Point(16, 1019)
         Me.CustomerIdTB.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.CustomerIdTB.Name = "CustomerIdTB"
         Me.CustomerIdTB.ReadOnly = True
@@ -474,7 +477,7 @@ Partial Class KittyModeCoustView
         'KittyIdTB
         '
         Me.KittyIdTB.Font = New System.Drawing.Font("Century Schoolbook", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.KittyIdTB.Location = New System.Drawing.Point(129, 1013)
+        Me.KittyIdTB.Location = New System.Drawing.Point(129, 1019)
         Me.KittyIdTB.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.KittyIdTB.Name = "KittyIdTB"
         Me.KittyIdTB.ReadOnly = True
@@ -497,12 +500,12 @@ Partial Class KittyModeCoustView
         Me.KittyInfoLabel.BackColor = System.Drawing.Color.DarkGoldenrod
         Me.KittyInfoLabel.Font = New System.Drawing.Font("Consolas", 22.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.KittyInfoLabel.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.KittyInfoLabel.Location = New System.Drawing.Point(831, 1008)
+        Me.KittyInfoLabel.Location = New System.Drawing.Point(863, 1009)
         Me.KittyInfoLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.KittyInfoLabel.Name = "KittyInfoLabel"
-        Me.KittyInfoLabel.Size = New System.Drawing.Size(454, 51)
+        Me.KittyInfoLabel.Size = New System.Drawing.Size(622, 51)
         Me.KittyInfoLabel.TabIndex = 2989
-        Me.KittyInfoLabel.Text = "500: #598: 587-845"
+        Me.KittyInfoLabel.Text = "₹10,000: #1097: 1011-1300"
         Me.KittyInfoLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.KittyInfoLabel.Visible = False
         '
@@ -519,7 +522,7 @@ Partial Class KittyModeCoustView
         Me.NextKittyButton.IconColor = System.Drawing.Color.PaleGreen
         Me.NextKittyButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
         Me.NextKittyButton.IconSize = 40
-        Me.NextKittyButton.Location = New System.Drawing.Point(636, 1013)
+        Me.NextKittyButton.Location = New System.Drawing.Point(668, 1013)
         Me.NextKittyButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.NextKittyButton.Name = "NextKittyButton"
         Me.NextKittyButton.Size = New System.Drawing.Size(125, 46)
@@ -542,7 +545,7 @@ Partial Class KittyModeCoustView
         Me.PrevKittyButton.IconColor = System.Drawing.Color.PaleGreen
         Me.PrevKittyButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
         Me.PrevKittyButton.IconSize = 40
-        Me.PrevKittyButton.Location = New System.Drawing.Point(498, 1013)
+        Me.PrevKittyButton.Location = New System.Drawing.Point(530, 1013)
         Me.PrevKittyButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.PrevKittyButton.Name = "PrevKittyButton"
         Me.PrevKittyButton.Size = New System.Drawing.Size(131, 46)
@@ -564,12 +567,11 @@ Partial Class KittyModeCoustView
         Me.BookModeButton.IconChar = FontAwesome.Sharp.IconChar.BookOpen
         Me.BookModeButton.IconColor = System.Drawing.Color.Silver
         Me.BookModeButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.BookModeButton.Location = New System.Drawing.Point(211, 1010)
+        Me.BookModeButton.Location = New System.Drawing.Point(397, 1012)
         Me.BookModeButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.BookModeButton.Name = "BookModeButton"
-        Me.BookModeButton.Size = New System.Drawing.Size(223, 54)
+        Me.BookModeButton.Size = New System.Drawing.Size(54, 54)
         Me.BookModeButton.TabIndex = 2988
-        Me.BookModeButton.Text = "Book Mode"
         Me.BookModeButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.BookModeButton.UseVisualStyleBackColor = False
         '
@@ -606,7 +608,7 @@ Partial Class KittyModeCoustView
         Me.JumpToKittyNoButton.IconColor = System.Drawing.Color.PaleGreen
         Me.JumpToKittyNoButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
         Me.JumpToKittyNoButton.IconSize = 50
-        Me.JumpToKittyNoButton.Location = New System.Drawing.Point(765, 1013)
+        Me.JumpToKittyNoButton.Location = New System.Drawing.Point(797, 1013)
         Me.JumpToKittyNoButton.Margin = New System.Windows.Forms.Padding(0)
         Me.JumpToKittyNoButton.Name = "JumpToKittyNoButton"
         Me.JumpToKittyNoButton.Size = New System.Drawing.Size(50, 47)
@@ -624,7 +626,7 @@ Partial Class KittyModeCoustView
         Me.DotsButton.IconColor = System.Drawing.Color.Silver
         Me.DotsButton.IconFont = FontAwesome.Sharp.IconFont.Solid
         Me.DotsButton.IconSize = 47
-        Me.DotsButton.Location = New System.Drawing.Point(427, 1019)
+        Me.DotsButton.Location = New System.Drawing.Point(459, 1019)
         Me.DotsButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.DotsButton.Name = "DotsButton"
         Me.DotsButton.Size = New System.Drawing.Size(47, 47)
@@ -637,6 +639,28 @@ Partial Class KittyModeCoustView
         Me.BookModeSelectedTypes.Name = "ContextMenuStrip1"
         Me.BookModeSelectedTypes.Size = New System.Drawing.Size(61, 4)
         '
+        'ContextMenuStrip2
+        '
+        Me.ContextMenuStrip2.ImageScalingSize = New System.Drawing.Size(24, 24)
+        Me.ContextMenuStrip2.Name = "ContextMenuStrip2"
+        Me.ContextMenuStrip2.Size = New System.Drawing.Size(61, 4)
+        '
+        'IconPictureBox1
+        '
+        Me.IconPictureBox1.BackColor = System.Drawing.Color.Transparent
+        Me.IconPictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.IconPictureBox1.ForeColor = System.Drawing.Color.Silver
+        Me.IconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.EllipsisV
+        Me.IconPictureBox1.IconColor = System.Drawing.Color.Silver
+        Me.IconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Solid
+        Me.IconPictureBox1.IconSize = 47
+        Me.IconPictureBox1.Location = New System.Drawing.Point(342, 1018)
+        Me.IconPictureBox1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.IconPictureBox1.Name = "IconPictureBox1"
+        Me.IconPictureBox1.Size = New System.Drawing.Size(47, 47)
+        Me.IconPictureBox1.TabIndex = 2995
+        Me.IconPictureBox1.TabStop = False
+        '
         'KittyModeCoustView
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
@@ -644,6 +668,7 @@ Partial Class KittyModeCoustView
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(80, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1920, 1080)
+        Me.Controls.Add(Me.IconPictureBox1)
         Me.Controls.Add(Me.JumpToKittyNoButton)
         Me.Controls.Add(Me.NextKittyButton)
         Me.Controls.Add(Me.PrevKittyButton)
@@ -672,6 +697,7 @@ Partial Class KittyModeCoustView
         CType(Me.ImageBox, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
         CType(Me.DotsButton, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.IconPictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -718,4 +744,6 @@ Partial Class KittyModeCoustView
     Friend WithEvents ReviewButton As FontAwesome.Sharp.IconButton
     Friend WithEvents DotsButton As FontAwesome.Sharp.IconPictureBox
     Friend WithEvents BookModeSelectedTypes As ContextMenuStrip
+    Friend WithEvents ContextMenuStrip2 As ContextMenuStrip
+    Friend WithEvents IconPictureBox1 As FontAwesome.Sharp.IconPictureBox
 End Class

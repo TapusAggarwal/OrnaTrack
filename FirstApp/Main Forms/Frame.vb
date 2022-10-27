@@ -1,4 +1,5 @@
 ﻿Imports FontAwesome.Sharp
+Imports Google.Cloud.Firestore
 Imports Newtonsoft.Json.Linq
 Imports Squirrel
 Imports WebSocket4Net
