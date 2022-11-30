@@ -44,7 +44,7 @@ Public Class ServerUpdateForm
         AddCommand("sudo npm install -g npm", "$")
         AddCommand("sudo npm --version", "$")
         AddCommand("npm install", "$")
-        For Each i In "fs-extra,is-online-emitter,express,multer".Split(",")
+        For Each i In "fs-extra is-online-emitter express multer".Split(" ")
             AddCommand($"npm install {i}", "$")
         Next
         AddCommand("cd", "$")

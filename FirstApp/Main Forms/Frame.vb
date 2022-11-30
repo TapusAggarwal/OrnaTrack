@@ -161,12 +161,13 @@ Public Class Frame
         MsgBox("Message From Server This Must Be Informed To The Developer: " + e.ToString)
     End Sub
 
-    Async Sub SocketMessage(s As Object, e As MessageReceivedEventArgs)
+    Async Sub SocketMessage(sender As Object, e As MessageReceivedEventArgs)
         'Try
         Dim recievedData_string As String = e.Message.ToString
         Dim recievedData As JObject = JObject.Parse(recievedData_string)
         Dim msgInfo As JObject = recievedData.SelectToken("msgInfo")
         Dim clientInfo As JObject = recievedData.SelectToken("clientInfo")
+        Dim oldState = state
         state = recievedData.SelectToken("serverState")
 
         If msgInfo.SelectToken("purpose") = "connection_welcome_msg" Then
@@ -209,30 +210,22 @@ Public Class Frame
 
         InitialiseStates()
 
-        If msgInfo.SelectToken("purpose") = "got_response" Then
-            Dim msg As String = msgInfo.SelectToken("msg")
-            Dim str_split As Integer = msg.Split(":").Count
-            If str_split = 1 Then
-                Dim fm As StockEntry = Nothing
-                For Each _form As Form In Application.OpenForms
-                    If TypeOf _form IsNot StockEntry Then Continue For
-                    fm = _form
-                    Exit For
-                Next
-                If fm Is Nothing Then
-                    'fm = New StockEntry
-                    'fm.Show()
-                    'fm.UpdateImage()
-                Else
-                    fm.UpdateImage()
-                End If
-            End If
+        If msgInfo.SelectToken("purpose") = "new_msg" Then
+            RaiseEvent NewMessage_Socket(e)
+        End If
+
+        If oldState <> state Then
+            RaiseEvent State_Changed(state, oldState)
         End If
 
         'Catch ex As Exception
         '    MessageBox.Show(ex.Message)
         'End Try
     End Sub
+
+    Public Event NewMessage_Socket(e As MessageReceivedEventArgs)
+    Public Event State_Changed(newState As String, oldState As String)
+
 
     Public Sub InitialiseStates()
 
@@ -640,7 +633,12 @@ Public Class Frame
     End Sub
 
     Private Sub IconButton2_Click_1(sender As Object, e As EventArgs) Handles IconButton2.Click
-        Dim Fm As New FireBase
+        Dim Fm As New CategoriesPage
+        Fm.ShowDialog()
+    End Sub
+
+    Private Sub ImageDownloadToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImageDownloadToolStripMenuItem.Click
+        Dim Fm As New ImageDownloader
         Fm.Show()
     End Sub
 End Class

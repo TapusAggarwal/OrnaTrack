@@ -55,6 +55,7 @@ Partial Class Frame
         Me.NewCoustmerButton = New FontAwesome.Sharp.IconButton()
         Me.SendMessageButton = New FontAwesome.Sharp.IconButton()
         Me.QuickSearchButton = New FontAwesome.Sharp.IconButton()
+        Me.ImageDownloadToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PanelTitleBar.SuspendLayout()
         Me.ServerContextMenuStrip.SuspendLayout()
         CType(Me.SidePanelButton, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -141,11 +142,11 @@ Partial Class Frame
         '
         Me.ServerContextMenuStrip.Font = New System.Drawing.Font("Century Schoolbook", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ServerContextMenuStrip.ImageScalingSize = New System.Drawing.Size(24, 24)
-        Me.ServerContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.WhatsappWebVisibilityToolStripMenuItem, Me.NotificationToolStripMenuItem, Me.RestartToolStripMenuItem, Me.ChangeServerAddressToolStripMenuItem, Me.TestConnectionToolStripMenuItem, Me.UpdateServerToolStripMenuItem})
+        Me.ServerContextMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.WhatsappWebVisibilityToolStripMenuItem, Me.NotificationToolStripMenuItem, Me.RestartToolStripMenuItem, Me.ChangeServerAddressToolStripMenuItem, Me.TestConnectionToolStripMenuItem, Me.UpdateServerToolStripMenuItem, Me.ImageDownloadToolStripMenuItem})
         Me.ServerContextMenuStrip.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
         Me.ServerContextMenuStrip.Name = "ServerContextMenuStrip"
         Me.ServerContextMenuStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional
-        Me.ServerContextMenuStrip.Size = New System.Drawing.Size(312, 184)
+        Me.ServerContextMenuStrip.Size = New System.Drawing.Size(312, 214)
         '
         'WhatsappWebVisibilityToolStripMenuItem
         '
@@ -533,6 +534,12 @@ Partial Class Frame
         Me.QuickSearchButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
         Me.QuickSearchButton.UseVisualStyleBackColor = False
         '
+        'ImageDownloadToolStripMenuItem
+        '
+        Me.ImageDownloadToolStripMenuItem.Name = "ImageDownloadToolStripMenuItem"
+        Me.ImageDownloadToolStripMenuItem.Size = New System.Drawing.Size(311, 30)
+        Me.ImageDownloadToolStripMenuItem.Text = "Download Image"
+        '
         'Frame
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
@@ -590,4 +597,5 @@ Partial Class Frame
     Friend WithEvents VersionLB As FontAwesome.Sharp.IconButton
     Friend WithEvents ProgressBar1 As ProgressBar
     Friend WithEvents IconButton2 As FontAwesome.Sharp.IconButton
+    Friend WithEvents ImageDownloadToolStripMenuItem As ToolStripMenuItem
 End Class

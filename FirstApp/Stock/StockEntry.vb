@@ -1,6 +1,7 @@
 ﻿Imports System.IO
 Imports System.Net
 Imports Newtonsoft
+Imports WebSocket4Net
 
 Public Class StockEntry
 
@@ -96,21 +97,32 @@ Public Class StockEntry
 
     End Sub
 
-    Public Sub UpdateImage()
-        Dim req As WebRequest = WebRequest.Create($"http://{My.Settings.connection_url}?purpose=recent_image")
+    Public Sub UpdateImage(e As MessageReceivedEventArgs)
+        Dim req As WebRequest = WebRequest.Create($"http://{My.Settings.connection_url}?purpose=latest_images")
         req.Method = "POST"
-        Using request As WebResponse = req.GetResponse
-            Using stream As Stream = request.GetResponseStream
-                ImageBox.Invoke(Sub()
-                                    ImageBox.Image = New Bitmap(Image.FromStream(stream))
-                                End Sub)
-            End Using
+
+        ' Get the response and extract the base64 encoded string
+        Dim response As WebResponse = req.GetResponse()
+        Dim streamReader As New StreamReader(response.GetResponseStream())
+        Dim base64String As String = streamReader.ReadToEnd()
+
+        ' Convert the base64 encoded string to a byte array
+        Dim imageBytes As Byte() = Convert.FromBase64String(base64String)
+
+        ' Convert the byte array to an image
+        Using memoryStream As New MemoryStream(imageBytes)
+            Dim image As Image = Image.FromStream(memoryStream)
+            ImageBox.Invoke(Sub()
+                                ImageBox.Image = New Bitmap(image)
+                            End Sub)
+            ' Do something with the image, such as display it
         End Using
+
     End Sub
 
-    Private Sub ImageBox_Click(sender As Object, e As EventArgs) Handles ImageBox.Click
-        UpdateImage()
-    End Sub
+    'Private Sub ImageBox_Click(sender As Object, e As EventArgs) Handles ImageBox.Click
+    '    UpdateImage()
+    'End Sub
 
     Private Sub ExistingPhNosButton_Click(sender As Object, e As EventArgs) Handles ListenPhNoBT.Click
         If ListenPhNoBT.IconChar = FontAwesome.Sharp.IconChar.EyeSlash Then
@@ -121,9 +133,7 @@ Public Class StockEntry
                 Exit For
             Next
 
-            If fm IsNot Nothing Then
-                fm.ConnectionLabel_Click()
-            End If
+            fm?.ConnectionLabel_Click()
             ListenPhNoBT.IconChar = FontAwesome.Sharp.IconChar.Eye
         Else
             StartListeningForMessages(My.Settings.ListenerPhNo)
@@ -132,7 +142,8 @@ Public Class StockEntry
 
     Private Sub ChangeListenerPhNoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ChangeListenerPhNoToolStripMenuItem.Click
         Dim newPhno As String = InputBox($"Enter New PhNo With Country Code Which Will Be Used As A Listener. Add Comma To Add Multiple Numbers).{vbNewLine}Current PhNo: {My.Settings.ListenerPhNo}", "Listener PhNo")
-        If newPhno.Length < 10 Then Exit Sub
+        If newPhno.Length < 12 Then Exit Sub
+        My.Settings.ListenerPhNo = newPhno
         StartListeningForMessages(newPhno)
     End Sub
 
@@ -145,31 +156,34 @@ Public Class StockEntry
             Exit For
         Next
 
-        If fm IsNot Nothing Then
-            fm.ConnectionLabel_Click()
-        End If
-
-        'If state <> "CONNECTED" Then
-        '    MessageBox.Show("Can't Connect To Server. First Connect Server To Whatsapp First Then Try Again.", "Error Occured", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        '    Exit Sub
-        'End If
+        fm?.ConnectionLabel_Click()
 
 
-        For Each i In phno.Split(",")
-            Dim req As WebRequest = WebRequest.Create($"http://{My.Settings.connection_url}?purpose=listen_phno&phno={i}")
-            req.Method = "POST"
-            req.Timeout = 3000
-            Using request As WebResponse = req.GetResponse
-                Using reader As New StreamReader(request.GetResponseStream)
-                    If reader.ReadToEnd = "added" Then
-                        MessageBox.Show($"PhNo:{i} Added As A New Listener", "Success")
-                        ListenPhNoBT.IconChar = FontAwesome.Sharp.IconChar.EyeSlash
-                    Else
-                        MessageBox.Show($"Can't Add PhNo: {i} Either This No. Is Not Registered With Whatsapp Or An Internal Error Occured.")
-                    End If
-                End Using
-            End Using
-        Next
+        AddHandler fm.State_Changed,
+            Sub(newState, oldState)
+
+                For Each i In phno.Split(",")
+                    Dim req As WebRequest = WebRequest.Create($"http://{My.Settings.connection_url}?purpose=listen_phno&phno={i}&listen='true'")
+                    req.Method = "POST"
+                    req.Timeout = 3000
+                    Using request As WebResponse = req.GetResponse
+                        Using reader As New StreamReader(request.GetResponseStream)
+                            Dim response As String = reader.ReadToEnd
+
+                            If response = "added" Then
+                                MessageBox.Show($"PhNo:{i} Added As A New Listener", "Success")
+                                AddHandler fm.NewMessage_Socket, AddressOf UpdateImage
+                                My.Settings.ListenerPhNo = i
+                                ListenPhNoBT.IconChar = FontAwesome.Sharp.IconChar.EyeSlash
+                            Else
+                                MessageBox.Show($"Can't Add PhNo: {i} Either This No. Is Not Registered With Whatsapp Or An Internal Error Occured.")
+                            End If
+                        End Using
+                    End Using
+                Next
+            End Sub
+
+
     End Sub
 
 End Class

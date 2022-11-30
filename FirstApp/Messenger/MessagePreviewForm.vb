@@ -349,6 +349,7 @@ Public Class MessagePreviewForm
         End If
 
         For Each msg In MessagesToSend
+            If msg.Item1.Length < 9 Then Continue For
             Dim id As String = $"{msg.Item1}_{msg.Item2.KittyUID}"
             If RemovedList.Contains(id) Then Continue For
             If SentList.Contains(id) Then Continue For

@@ -555,7 +555,11 @@ Public Class KittyForm
         '    }
         'x.StartInfo = info
         'x.Start()
-        Process.Start("cmd", "/c del /S C:\Users\hp\Desktop\Bills\ /Q")
+        Dim proc As New Process()
+        proc.StartInfo.FileName = "cmd"
+        proc.StartInfo.Arguments = "/c del /S C:\Users\hp\Desktop\Bills\ /Q"
+        proc.Start()
+        proc.WaitForExit()
         Dim Fm As New MessengerForIndividual With {
             .SelectedKitties = New List(Of Kitty)({_currentKitty})
         }

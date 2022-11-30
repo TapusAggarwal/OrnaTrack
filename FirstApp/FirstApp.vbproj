@@ -124,6 +124,12 @@
     <Compile Include="FireBase.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormView\ImageDownloader.Designer.vb">
+      <DependentUpon>ImageDownloader.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormView\ImageDownloader.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormView\TransactionsForm.Designer.vb">
       <DependentUpon>TransactionsForm.vb</DependentUpon>
     </Compile>
@@ -477,6 +483,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FireBase.resx">
       <DependentUpon>FireBase.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormView\ImageDownloader.resx">
+      <DependentUpon>ImageDownloader.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormView\TransactionsForm.resx">
       <DependentUpon>TransactionsForm.vb</DependentUpon>
