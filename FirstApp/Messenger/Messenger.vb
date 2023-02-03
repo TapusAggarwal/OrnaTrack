@@ -1,5 +1,6 @@
 ﻿Imports System.IO
 Imports System.Net.Http
+Imports System.Net.Http.Headers
 Imports Newtonsoft.Json.Linq
 
 Public Class Messenger
@@ -129,38 +130,52 @@ Public Class Messenger
         For Each _entry In MessageImgs_Dict
             For Each imgPath In _entry.Value
 
-                Dim request As New MultipartFormDataContent From {
+                Using client As New HttpClient()
+
+                    Dim values As New MultipartFormDataContent From {
                     {New StringContent("91" + _entry.Key.Trim), "phno"},
                     {New StringContent(MessageTB.Text), "msg"},
                     {New StringContent(IIf(HandsCheckBox.Checked, "true", "false")), "hands"}
                 }
 
-                If SendRecieptCB.Checked Then
-                    request.Add(New StreamContent(File.OpenRead(imgPath)), "image", New FileInfo(imgPath).Name)
-                End If
-
-                Dim ResponseString As String = Await ServerHttpRequest(Nothing, request, $"http://{My.Settings.connection_url}/upload")
-                If ResponseString IsNot Nothing Then
-                    Dim response As JObject = JObject.Parse(ResponseString)
-
-                    Dim _temp As New Label With {
-                        .Font = MessageResultLB.Font,
-                        .Visible = True,
-                        .AutoSize = True
-                    }
-
-                    If response.SelectToken("result").ToString = "pass" Then
-                        _temp.ForeColor = Color.ForestGreen
-                        _temp.Text = $"+91{_entry.Key.Trim}: Sent"
-                    ElseIf response.SelectToken("result").ToString = "fail" Then
-                        _temp.ForeColor = Color.Firebrick
-                        _temp.Text = $"+91{_entry.Key.Trim}: Failed"
-                    Else
-                        _temp.ForeColor = Color.Firebrick
-                        _temp.Text = $"+91{_entry.Key.Trim}: NotRegistered"
+                    If SendRecieptCB.Checked Then
+                        Dim imageContent As New ByteArrayContent(File.ReadAllBytes(imgPath))
+                        imageContent.Headers.ContentType = New MediaTypeHeaderValue("image/jpeg")
+                        values.Add(imageContent, "image", New FileInfo(imgPath).Name)
                     End If
-                    FlowLayoutPanel1.Controls.Add(_temp)
-                End If
+
+                    Dim responseString As String = Nothing
+
+                    Try
+                        Dim responseMsg As HttpResponseMessage = Await client.PostAsync($"http://{My.Settings.connection_url}/upload", values)
+                        responseString = responseMsg.Content.ReadAsStringAsync().Result
+                    Catch ex As Exception
+                        MessageBox.Show($"The Client Made A Successful Request But The Server Failed To Respond. Exception Details: {ex.Message}", "Server Side Error", MessageBoxButtons.OK)
+                        If responseString Is Nothing Then Continue For
+                    End Try
+
+                    If responseString IsNot Nothing Then
+                        Dim response As JObject = JObject.Parse(responseString)
+
+                        Dim _temp As New Label With {
+                            .Font = MessageResultLB.Font,
+                            .Visible = True,
+                            .AutoSize = True
+                        }
+
+                        If response.SelectToken("result").ToString = "pass" Then
+                            _temp.ForeColor = Color.ForestGreen
+                            _temp.Text = $"+91{_entry.Key.Trim}: Sent"
+                        ElseIf response.SelectToken("result").ToString = "fail" Then
+                            _temp.ForeColor = Color.Firebrick
+                            _temp.Text = $"+91{_entry.Key.Trim}: Failed"
+                        Else
+                            _temp.ForeColor = Color.Firebrick
+                            _temp.Text = $"+91{_entry.Key.Trim}: NotRegistered"
+                        End If
+                        FlowLayoutPanel1.Controls.Add(_temp)
+                    End If
+                End Using
             Next
         Next
 
