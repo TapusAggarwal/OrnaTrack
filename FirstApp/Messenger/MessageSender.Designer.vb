@@ -70,7 +70,6 @@ Partial Class MessageSender
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.ToolTipChB = New System.Windows.Forms.CheckBox()
         Me.MessagePanel = New System.Windows.Forms.Panel()
-        Me.SendBT = New FontAwesome.Sharp.IconButton()
         Me.CancelEditBT = New FontAwesome.Sharp.IconButton()
         Me.EditBT = New FontAwesome.Sharp.IconButton()
         Me.DeleteBT = New FontAwesome.Sharp.IconButton()
@@ -92,6 +91,7 @@ Partial Class MessageSender
         Me.PendingInstButton = New FontAwesome.Sharp.IconButton()
         Me.PhNoButton = New FontAwesome.Sharp.IconButton()
         Me.CoustNameButton = New FontAwesome.Sharp.IconButton()
+        Me.SendBT = New FontAwesome.Sharp.IconButton()
         Me.ImagePanel = New System.Windows.Forms.FlowLayoutPanel()
         Me.Panel2.SuspendLayout()
         Me.MessagePanel.SuspendLayout()
@@ -523,30 +523,6 @@ Partial Class MessageSender
         Me.MessagePanel.Name = "MessagePanel"
         Me.MessagePanel.Size = New System.Drawing.Size(760, 933)
         Me.MessagePanel.TabIndex = 291
-        '
-        'SendBT
-        '
-        Me.SendBT.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.SendBT.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.SendBT.FlatAppearance.BorderSize = 0
-        Me.SendBT.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Lime
-        Me.SendBT.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.SendBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.SendBT.Font = New System.Drawing.Font("Century Gothic", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SendBT.ForeColor = System.Drawing.Color.Linen
-        Me.SendBT.IconChar = FontAwesome.Sharp.IconChar.PaperPlane
-        Me.SendBT.IconColor = System.Drawing.Color.White
-        Me.SendBT.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.SendBT.IconSize = 36
-        Me.SendBT.Location = New System.Drawing.Point(579, 499)
-        Me.SendBT.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.SendBT.Name = "SendBT"
-        Me.SendBT.Size = New System.Drawing.Size(167, 44)
-        Me.SendBT.TabIndex = 10039
-        Me.SendBT.Text = "Send"
-        Me.SendBT.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.SendBT.UseVisualStyleBackColor = False
-        Me.SendBT.Visible = False
         '
         'CancelEditBT
         '
@@ -984,6 +960,30 @@ Partial Class MessageSender
         Me.CoustNameButton.Text = "Coust Name"
         Me.CoustNameButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.CoustNameButton.UseVisualStyleBackColor = False
+        '
+        'SendBT
+        '
+        Me.SendBT.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.SendBT.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.SendBT.FlatAppearance.BorderSize = 0
+        Me.SendBT.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Lime
+        Me.SendBT.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.SendBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.SendBT.Font = New System.Drawing.Font("Century Gothic", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SendBT.ForeColor = System.Drawing.Color.Linen
+        Me.SendBT.IconChar = FontAwesome.Sharp.IconChar.PaperPlane
+        Me.SendBT.IconColor = System.Drawing.Color.White
+        Me.SendBT.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.SendBT.IconSize = 36
+        Me.SendBT.Location = New System.Drawing.Point(579, 499)
+        Me.SendBT.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.SendBT.Name = "SendBT"
+        Me.SendBT.Size = New System.Drawing.Size(167, 44)
+        Me.SendBT.TabIndex = 10039
+        Me.SendBT.Text = "Send"
+        Me.SendBT.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.SendBT.UseVisualStyleBackColor = False
+        Me.SendBT.Visible = False
         '
         'ImagePanel
         '

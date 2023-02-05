@@ -230,10 +230,10 @@ Public Class Frame
 
     Public Sub InitialiseStates()
 
-        Dim fm As Messenger = Nothing
+        Dim fm As RecieptMessenger = Nothing
         Dim forms As FormCollection = Application.OpenForms
         For Each form As Form In forms
-            If TypeOf form Is Messenger Then
+            If TypeOf form Is RecieptMessenger Then
                 fm = form
                 Exit For
             End If
@@ -308,6 +308,9 @@ Public Class Frame
     End Sub
 
     Public Async Sub ConnectionLabel_Click() Handles ConnectionLabel.Click
+        If state = "STANDBY" Then
+            Exit Sub
+        End If
         If state = "qr" Then
             If qrData IsNot Nothing Then
                 QrCodeView.Tag = qrData
@@ -326,7 +329,6 @@ Public Class Frame
             RemoveHandler WebSocket.DataReceived, AddressOf SocketDataReceived
         Catch ex As Exception
         End Try
-
         Await StartServer(False)
 
     End Sub
@@ -487,12 +489,18 @@ Public Class Frame
             End If
             If e.Control And e.KeyCode = Keys.M Then
                 If ActiveMdiChild() Is Main Then
-                    Form1.Show()
+                    BulkMessengerEntry.Show()
                 End If
             End If
             If e.Control And e.KeyCode = Keys.E Then
                 If ActiveMdiChild() Is Main Then
                     Graph.Show()
+                End If
+            End If
+            If e.Control And e.KeyCode = Keys.D Then
+                If ActiveMdiChild() Is Main Then
+                    Dim Fm As New ImageDownloader
+                    Fm.Show()
                 End If
             End If
         Catch ex As Exception
@@ -634,7 +642,7 @@ Public Class Frame
     End Sub
 
     Private Sub IconButton2_Click_1(sender As Object, e As EventArgs) Handles IconButton2.Click
-        Dim Fm As New CategoriesPage
+        Dim Fm As New rough
         Fm.ShowDialog()
     End Sub
 

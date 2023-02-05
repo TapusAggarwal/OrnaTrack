@@ -2,6 +2,9 @@
 
     Private _status As String = "NotSent"
     Private _enabled As Boolean = True
+    Private _srno As Integer = -1
+
+
 
     Public Overloads Property Enabled As Boolean
         Get
@@ -79,10 +82,14 @@
         End Set
     End Property
 
-    Public WriteOnly Property SrNo As Integer
+    Public Property SrNo As Integer
         Set(value As Integer)
+            _srno = value
             SrNoLB.Text = $"#{value}"
         End Set
+        Get
+            Return _srno
+        End Get
     End Property
 
     Public Property CurrentKitty As Kitty

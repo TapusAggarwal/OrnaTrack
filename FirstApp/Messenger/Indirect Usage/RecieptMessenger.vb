@@ -3,7 +3,7 @@ Imports System.Net.Http
 Imports System.Net.Http.Headers
 Imports Newtonsoft.Json.Linq
 
-Public Class Messenger
+Public Class RecieptMessenger
     ReadOnly MessageImgs_Dict As New Dictionary(Of String, List(Of String))
     ReadOnly MessageImgs_List As New List(Of Bitmap)
 
@@ -128,55 +128,30 @@ Public Class Messenger
         End With
         SendButton.Enabled = False
         For Each _entry In MessageImgs_Dict
-            For Each imgPath In _entry.Value
 
-                Using client As New HttpClient()
+            Dim msgList As New List(Of String) From {MessageTB.Text + IIf(HandsCheckBox.Checked, "{hands}", "")}
 
-                    Dim values As New MultipartFormDataContent From {
-                    {New StringContent("91" + _entry.Key.Trim), "phno"},
-                    {New StringContent(MessageTB.Text), "msg"},
-                    {New StringContent(IIf(HandsCheckBox.Checked, "true", "false")), "hands"}
+            Dim response As JObject = Await UniversalWhatsappMessageBundle(_entry.Key, msgList, _entry.Value)
+
+            If response IsNot Nothing Then
+                Dim _temp As New Label With {
+                    .Font = MessageResultLB.Font,
+                    .Visible = True,
+                    .AutoSize = True
                 }
 
-                    If SendRecieptCB.Checked Then
-                        Dim imageContent As New ByteArrayContent(File.ReadAllBytes(imgPath))
-                        imageContent.Headers.ContentType = New MediaTypeHeaderValue("image/jpeg")
-                        values.Add(imageContent, "image", New FileInfo(imgPath).Name)
-                    End If
-
-                    Dim responseString As String = Nothing
-
-                    Try
-                        Dim responseMsg As HttpResponseMessage = Await client.PostAsync($"http://{My.Settings.connection_url}/upload", values)
-                        responseString = responseMsg.Content.ReadAsStringAsync().Result
-                    Catch ex As Exception
-                        MessageBox.Show($"The Client Made A Successful Request But The Server Failed To Respond. Exception Details: {ex.Message}", "Server Side Error", MessageBoxButtons.OK)
-                        If responseString Is Nothing Then Continue For
-                    End Try
-
-                    If responseString IsNot Nothing Then
-                        Dim response As JObject = JObject.Parse(responseString)
-
-                        Dim _temp As New Label With {
-                            .Font = MessageResultLB.Font,
-                            .Visible = True,
-                            .AutoSize = True
-                        }
-
-                        If response.SelectToken("result").ToString = "pass" Then
-                            _temp.ForeColor = Color.ForestGreen
-                            _temp.Text = $"+91{_entry.Key.Trim}: Sent"
-                        ElseIf response.SelectToken("result").ToString = "fail" Then
-                            _temp.ForeColor = Color.Firebrick
-                            _temp.Text = $"+91{_entry.Key.Trim}: Failed"
-                        Else
-                            _temp.ForeColor = Color.Firebrick
-                            _temp.Text = $"+91{_entry.Key.Trim}: NotRegistered"
-                        End If
-                        FlowLayoutPanel1.Controls.Add(_temp)
-                    End If
-                End Using
-            Next
+                If response.SelectToken("result").ToString = "pass" Then
+                    _temp.ForeColor = Color.ForestGreen
+                    _temp.Text = $"+91{_entry.Key.Trim}: Sent"
+                ElseIf response.SelectToken("result").ToString = "fail" Then
+                    _temp.ForeColor = Color.Firebrick
+                    _temp.Text = $"+91{_entry.Key.Trim}: Failed"
+                Else
+                    _temp.ForeColor = Color.Firebrick
+                    _temp.Text = $"+91{_entry.Key.Trim}: NotRegistered"
+                End If
+                FlowLayoutPanel1.Controls.Add(_temp)
+            End If
         Next
 
         With Me

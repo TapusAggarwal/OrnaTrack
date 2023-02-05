@@ -1,4 +1,4 @@
-﻿Public Class Form1
+﻿Public Class BulkMessengerEntry
     ReadOnly Kitties As New Dictionary(Of Integer, Dictionary(Of String, List(Of Kitty)))
     ReadOnly SelectedMatured As New List(Of Kitty)
     ReadOnly SelectedAvailed As New List(Of Kitty)
@@ -448,89 +448,8 @@
     End Sub
 
     Private Sub IconButton1_Click(sender As Object, e As EventArgs) Handles IconButton1.Click
-        Dim Fm As New MessagePreviewForm
-
-        Try
-            Dim x As String = ""
-            Dim dr As OleDb.OleDbDataReader = DataReader("Select Sent From Message_Data where id=1")
-            While dr.Read
-                x = dr(0)
-            End While
-            If x.Length > 10 Then
-                Fm.SentList = x.Split(",").ToList
-            End If
-        Catch ex As Exception
-        End Try
-
-        Try
-            Dim x As String = ""
-            Dim dr As OleDb.OleDbDataReader = DataReader("Select Failed From Message_Data where id=1")
-            While dr.Read
-                x = dr(0)
-            End While
-            If x.Length > 10 Then
-                Fm.FailedList = x.Split(",").ToList
-            End If
-        Catch ex As Exception
-        End Try
-
-        Try
-            Dim x As String = ""
-            Dim dr As OleDb.OleDbDataReader = DataReader("Select UnRegistered From Message_Data where id=1")
-            While dr.Read
-                x = dr(0)
-            End While
-            If x.Length > 10 Then
-                Fm.UnRegisteredList = x.Split(",").ToList
-            End If
-        Catch ex As Exception
-        End Try
-
-        Try
-            Dim x As String = ""
-            Dim dr As OleDb.OleDbDataReader = DataReader("Select Removed From Message_Data where id=1")
-            While dr.Read
-                x = dr(0)
-            End While
-            If x.Length > 10 Then
-                Fm.RemovedList = x.Split(",").ToList
-            End If
-        Catch ex As Exception
-        End Try
-
-        Try
-            Dim x As String = ""
-            Dim dr As OleDb.OleDbDataReader = DataReader("Select Initial From Message_Data where id=1")
-            While dr.Read
-                x = dr(0)
-            End While
-
-            Dim Messages As New List(Of Tuple(Of String, Kitty))
-
-            For Each i In x.Split(",")
-                Messages.Add(New Tuple(Of String, Kitty)(i.Split("_")(0), New Kitty(i.Split("_")(1), True, True)))
-            Next
-
-            Fm.MessagesToSend = Messages
-
-        Catch ex As Exception
-        End Try
-
-        Try
-            Dim x As Integer = -1
-            Dim dr As OleDb.OleDbDataReader = DataReader("Select CurrentControlsValue From Message_Data where id=1")
-            While dr.Read
-                x = Int(dr(0))
-            End While
-            If x > 0 Then
-                Fm.CurrentControlsValue = x
-            End If
-        Catch ex As Exception
-
-        End Try
-
+        Dim Fm As New MessagesPreviewForm
         Fm.ShowDialog()
-
     End Sub
 
 End Class

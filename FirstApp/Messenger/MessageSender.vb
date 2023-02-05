@@ -1,4 +1,6 @@
-﻿Public Class MessageSender
+﻿Imports Newtonsoft.Json.Linq
+
+Public Class MessageSender
 
     Public Property SelectedKitties As New List(Of Kitty)
     ReadOnly MessagesList As New List(Of String)
@@ -146,7 +148,7 @@
 
     Private Sub GreetButton_MouseHover(sender As Object, e As EventArgs) Handles GreetButton.MouseHover
         If ToolTipChB.Checked Then
-            ToolTip1.Show($"Adds A Greeting To Template.{Environment.NewLine}Ex: {MessagePreviewForm.Greet()}", GreetButton, 3000)
+            ToolTip1.Show($"Adds A Greeting To Template.{Environment.NewLine}Ex: {Greet()}", GreetButton, 3000)
         End If
     End Sub
 #End Region
@@ -193,19 +195,17 @@ You Can Also Pay Online Account Info Below."
             If i.Length < 1 Then Continue For
 
             Dim _lbl As New Label With {
-              .Font = New Font("Century Gothic", 12.0!, FontStyle.Bold, GraphicsUnit.Point, 0),
-              .Visible = True,
-              .AutoEllipsis = True,
-              .ForeColor = Color.Green,
-              .BackColor = Color.FromArgb(36, 60, 60),
-              .Margin = New Padding(5),
-              .Tag = MsgIndex
+                .Font = New Font("Century Gothic", 12.0!, FontStyle.Bold, GraphicsUnit.Point, 0),
+                .Visible = True,
+                .AutoEllipsis = True,
+                .ForeColor = Color.Green,
+                .BackColor = Color.FromArgb(36, 60, 60),
+                .Margin = New Padding(5),
+                .Tag = MsgIndex,
+                .Text = $"{MsgIndex}-" + i,
+                .MaximumSize = New Point(500, 0),
+                .AutoSize = True
             }
-
-            _lbl.Text = $"{MsgIndex}-" + i
-
-            _lbl.MaximumSize = New Point(500, 0)
-            _lbl.AutoSize = True
 
             FlowLayoutPanel1.Controls.Add(_lbl)
 
@@ -248,69 +248,76 @@ You Can Also Pay Online Account Info Below."
 
         If HandsCheckBox.Checked Then MessageTB.Text = MessageTB.Text.Replace("{hands}", "") + "{hands}"
 
-        MessagesList.Add(If(SelectedKitties.Count = 1, MessagePreviewForm.ReplaceTemplateWithDetails(SelectedKitties.First, MessageTB.Text), MessageTB.Text))
-
-        ShowMessages()
-
-        MessageTB.Text = ""
-        MessageTB.Select()
-    End Sub
-
-    Private Sub Edit_Click(sender As Object, e As EventArgs)
-        If MessageTB.TextLength < 1 Then
-            Exit Sub
+        If SelectedKitties.Count = 1 Then
+            Dim msgString As String = ""
+            Try
+                msgString = ReplaceTemplateWithDetails(SelectedKitties.First, MessageTB.Text)
+            Catch ex As Exception
+            End Try
+            If msgString <> "" Then
+                MessagesList.Add(msgString)
+            Else
+                MessagesList.Add(MessageTB.Text)
+            End If
+        Else
+            MessagesList.Add(MessageTB.Text)
         End If
 
-        If HandsCheckBox.Checked Then MessageTB.Text = MessageTB.Text.Replace("{hands}", "") + "{hands}"
-
-        MessagesList(EditBT.Tag) = If(SelectedKitties.Count = 1, MessagePreviewForm.ReplaceTemplateWithDetails(SelectedKitties.First, MessageTB.Text), MessageTB)
-        MessageTB.Text = ""
         ShowMessages()
 
-        AddMsgBT.Enabled = True
-        EditBT.Visible = False
-        DeleteBT.Visible = False
-        CancelEditBT.Visible = False
-    End Sub
-
-    Private Sub DeleteBT_Click(sender As Object, e As EventArgs)
-        If MessageBox.Show("Are You Sure You Want To Delete This Message Template.", "Confirm Selection", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then
-            Exit Sub
-        End If
-
-        MessagesList.RemoveAt(EditBT.Tag)
-        ShowMessages()
         MessageTB.Text = ""
         MessageTB.Select()
-        AddMsgBT.Enabled = True
-        EditBT.Visible = False
-        DeleteBT.Visible = False
-        CancelEditBT.Visible = False
-    End Sub
-
-    Private Sub CancelBT_Click(sender As Object, e As EventArgs)
-        Dim _lbl As Label = FlowLayoutPanel1.Controls.Item(EditBT.Tag)
-        _lbl.BackColor = Color.FromArgb(36, 60, 60)
-        MessageTB.Text = ""
-        MessageTB.Select()
-
-        AddMsgBT.Enabled = True
-        EditBT.Visible = False
-        DeleteBT.Visible = False
-        CancelEditBT.Visible = False
     End Sub
 
     Private Sub PreviewBT_Click(sender As Object, e As EventArgs) Handles PreviewBT.Click
-        Using Fm As New MessagePreviewForm
-            Fm.SelectedKitties = SelectedKitties
-            Dim MessageText As String = String.Join($"{Environment.NewLine}{Environment.NewLine}<Next Message>{Environment.NewLine}{Environment.NewLine}", MessagesList)
+        Dim imgPaths As List(Of String) = GetPathForImages()
+        If MessagesList.Count = 0 AndAlso imgPaths.Count = 0 Then Exit Sub
 
-            Dim imgPaths As List(Of String) = GetPathForImages()
+        Cursor.Current = Cursors.WaitCursor
 
-            SqlCommand($"Update Message_Data set MessageText='{MessageText}' where id=1")
-            SqlCommand($"Update Message_Data set ImagePaths='{String.Join(",", imgPaths)}' where id=1")
+        Dim MessageText As String = String.Join($"{Environment.NewLine}{Environment.NewLine}<Next Message>{Environment.NewLine}{Environment.NewLine}", MessagesList)
+        SelectedKitties = SelectedKitties _
+             .OrderByDescending(Function(k) k.KittyType) _
+             .ThenBy(Function(k) k.KittyNo) _
+             .ToList()
 
-            Fm.ClearPrevious()
+        Dim MessagesToSend As New Dictionary(Of String, List(Of Kitty))
+        Dim _trackDict As New Dictionary(Of String, List(Of String))
+
+        For Each _kitty In SelectedKitties
+            For Each phno In _kitty.Owner.GetPhNo()
+                If MessagesToSend.ContainsKey(phno) Then
+                    Dim _convMsg As String = ReplaceTemplateWithDetails(_kitty, MessageText)
+                    If _trackDict(phno).Contains(_convMsg) Then
+                        Continue For
+                    End If
+                    MessagesToSend(phno).Add(_kitty)
+                Else
+                    MessagesToSend.Add(phno, New List(Of Kitty)({_kitty}))
+                    Dim _convMsg As String = ReplaceTemplateWithDetails(_kitty, MessageText)
+                    _trackDict.Add(phno, New List(Of String)({_convMsg}))
+                End If
+            Next
+        Next
+
+        Dim Initial_ids As New List(Of String)
+
+        For Each i In MessagesToSend
+            For Each _kitty In i.Value
+                Initial_ids.Add($"{i.Key}_{_kitty.KittyUID}")
+            Next
+        Next
+
+        Dim Initial As String = String.Join(",", Initial_ids)
+        SqlCommand($"Update Message_Data set MessageText='{MessageText}' where id=1")
+        SqlCommand($"Update Message_Data set Initial='{Initial}' where id=1")
+        SqlCommand($"Update Message_Data set ImagePaths='{String.Join(",", imgPaths)}' where id=1")
+
+        Cursor.Current = Cursors.Default
+
+        Using Fm As New MessagesPreviewForm
+
+            Fm.ClearPreviousFields()
             Fm.ShowDialog()
         End Using
     End Sub
@@ -407,6 +414,54 @@ You Can Also Pay Online Account Info Below."
         End If
     End Sub
 
+#Region "Handlers For MessageSender Control"
+
+    Private Sub Edit_Click(sender As Object, e As EventArgs)
+        If MessageTB.TextLength < 1 Then
+            Exit Sub
+        End If
+
+        If HandsCheckBox.Checked Then MessageTB.Text = MessageTB.Text.Replace("{hands}", "") + "{hands}"
+
+        MessagesList(EditBT.Tag) = If(SelectedKitties.Count = 1, ReplaceTemplateWithDetails(SelectedKitties.First, MessageTB.Text), MessageTB.Text)
+        MessageTB.Text = ""
+        ShowMessages()
+
+        AddMsgBT.Enabled = True
+        EditBT.Visible = False
+        DeleteBT.Visible = False
+        CancelEditBT.Visible = False
+    End Sub
+
+    Private Sub DeleteBT_Click(sender As Object, e As EventArgs)
+        If MessageBox.Show("Are You Sure You Want To Delete This Message Template.", "Confirm Selection", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then
+            Exit Sub
+        End If
+
+        MessagesList.RemoveAt(EditBT.Tag)
+        ShowMessages()
+        MessageTB.Text = ""
+        MessageTB.Select()
+        AddMsgBT.Enabled = True
+        EditBT.Visible = False
+        DeleteBT.Visible = False
+        CancelEditBT.Visible = False
+    End Sub
+
+    Private Sub CancelBT_Click(sender As Object, e As EventArgs)
+        Dim _lbl As Label = FlowLayoutPanel1.Controls.Item(EditBT.Tag)
+        _lbl.BackColor = Color.FromArgb(36, 60, 60)
+        MessageTB.Text = ""
+        MessageTB.Select()
+
+        AddMsgBT.Enabled = True
+        EditBT.Visible = False
+        DeleteBT.Visible = False
+        CancelEditBT.Visible = False
+    End Sub
+
+#End Region
+
     Private Async Sub SendBT_Click(sender As Object, e As EventArgs) Handles SendBT.Click
 
         Dim _imagePath As List(Of String) = GetPathForImages()
@@ -415,53 +470,39 @@ You Can Also Pay Online Account Info Below."
 
         FlowLayoutPanel1.Controls.Clear()
 
-        For Each i In SelectedKitties(0).Owner.GetPhNo
+        For Each _kitty In SelectedKitties
 
-            If _imagePath.Count > 0 Then
-                Dim ImageStatus As String = Await MessagePreviewForm.SendImage(i, _imagePath)
+            For Each phno In _kitty.Owner.GetPhNo()
+                If MessagesList.Count > 0 Or _imagePath.Count > 0 Then
 
-                Dim _temp As New Label With {
-                    .Font = New Font("Century Gothic", 12.0!, FontStyle.Bold, GraphicsUnit.Point),
-                    .Visible = True,
-                    .AutoSize = True
-                }
+                    Dim toSendMsgList = MessagesList.Select(Function(f) ReplaceTemplateWithDetails(_kitty, f)).ToList
 
-                If ImageStatus = "pass" Then
-                    _temp.ForeColor = Color.ForestGreen
-                    _temp.Text = $"+91{i.Trim}: Images Sent"
-                ElseIf ImageStatus = "fail" Then
-                    _temp.ForeColor = Color.Firebrick
-                    _temp.Text = $"+91{i.Trim}: Images Not Sent: Failed"
-                Else
-                    _temp.ForeColor = Color.Firebrick
-                    _temp.Text = $"+91{i.Trim}: Images Not Sent: NotRegistered"
+                    Dim response As JObject = Await UniversalWhatsappMessageBundle(phno, toSendMsgList, _imagePath)
+
+                    Dim status = "fail"
+
+                    If response IsNot Nothing Then status = response.SelectToken("result").ToString
+
+                    Dim _temp As New Label With {
+                        .Font = New Font("Century Gothic", 12.0!, FontStyle.Bold, GraphicsUnit.Point),
+                        .Visible = True,
+                        .AutoSize = True
+                    }
+
+                    If status = "pass" Then
+                        _temp.ForeColor = Color.ForestGreen
+                        _temp.Text = $"+91{phno.Trim}: Messages Sent"
+                    ElseIf status = "fail" Then
+                        _temp.ForeColor = Color.Firebrick
+                        _temp.Text = $"+91{phno.Trim}: Messages Not Sent : Failed"
+                    Else
+                        _temp.ForeColor = Color.Firebrick
+                        _temp.Text = $"+91{phno.Trim}: Messages Not Sent : NotRegistered"
+                    End If
+                    FlowLayoutPanel1.Controls.Add(_temp)
+
                 End If
-                FlowLayoutPanel1.Controls.Add(_temp)
-
-            End If
-
-            If MessagesList.Count > 0 Then
-                Dim MessageStatus As String = Await MessagePreviewForm.SendMessage(i, SelectedKitties(0), MessagesList)
-
-                Dim _temp As New Label With {
-                    .Font = New Font("Century Gothic", 12.0!, FontStyle.Bold, GraphicsUnit.Point),
-                    .Visible = True,
-                    .AutoSize = True
-                }
-
-                If MessageStatus = "pass" Then
-                    _temp.ForeColor = Color.ForestGreen
-                    _temp.Text = $"+91{i.Trim}: Messages Sent"
-                ElseIf MessageStatus = "fail" Then
-                    _temp.ForeColor = Color.Firebrick
-                    _temp.Text = $"+91{i.Trim}: Messages Not Sent : Failed"
-                Else
-                    _temp.ForeColor = Color.Firebrick
-                    _temp.Text = $"+91{i.Trim}: Messages Not Sent : NotRegistered"
-                End If
-                FlowLayoutPanel1.Controls.Add(_temp)
-
-            End If
+            Next
 
         Next
     End Sub

@@ -21,7 +21,7 @@
     Private Sub ReceiptBT_Click(sender As Object, e As EventArgs) Handles ReceiptBT.Click
         TemplateBT.IconColor = Color.White
         ReceiptBT.IconColor = Color.Lime
-        Dim x As New Messenger With {
+        Dim x As New RecieptMessenger With {
             .ListOfKitties = SelectedKitties,
             .TopMost = False,
             .TopLevel = False

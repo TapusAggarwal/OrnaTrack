@@ -133,7 +133,7 @@ Public Class StockEntry
                 Exit For
             Next
 
-            fm?.ConnectionLabel_Click()
+            'fm?.ConnectionLabel_Click()
             ListenPhNoBT.IconChar = FontAwesome.Sharp.IconChar.Eye
         Else
             StartListeningForMessages(My.Settings.ListenerPhNo)
@@ -156,7 +156,7 @@ Public Class StockEntry
             Exit For
         Next
 
-        fm?.ConnectionLabel_Click()
+        'fm?.ConnectionLabel_Click()
 
 
         AddHandler fm.State_Changed,

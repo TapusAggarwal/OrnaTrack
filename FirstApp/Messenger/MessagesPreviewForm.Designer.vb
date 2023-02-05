@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class MessagePreviewForm
+Partial Class MessagesPreviewForm
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -38,7 +38,7 @@ Partial Class MessagePreviewForm
         Me.ImagesPreview = New FontAwesome.Sharp.IconButton()
         Me.CurrentCB = New System.Windows.Forms.CheckBox()
         Me.AllCB = New System.Windows.Forms.CheckBox()
-        Me.OneTimeControlTB = New System.Windows.Forms.TextBox()
+        Me.MessagesPerPageTB = New System.Windows.Forms.TextBox()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -255,7 +255,7 @@ Partial Class MessagePreviewForm
         Me.Panel1.Controls.Add(Me.ImagesPreview)
         Me.Panel1.Controls.Add(Me.CurrentCB)
         Me.Panel1.Controls.Add(Me.AllCB)
-        Me.Panel1.Controls.Add(Me.OneTimeControlTB)
+        Me.Panel1.Controls.Add(Me.MessagesPerPageTB)
         Me.Panel1.Controls.Add(Me.PreviewCountLB)
         Me.Panel1.Controls.Add(Me.SendButton)
         Me.Panel1.Controls.Add(Me.NextButton)
@@ -320,16 +320,16 @@ Partial Class MessagePreviewForm
         Me.AllCB.Text = "All"
         Me.AllCB.UseVisualStyleBackColor = True
         '
-        'OneTimeControlTB
+        'MessagesPerPageTB
         '
-        Me.OneTimeControlTB.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.OneTimeControlTB.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.OneTimeControlTB.Location = New System.Drawing.Point(1435, 13)
-        Me.OneTimeControlTB.Name = "OneTimeControlTB"
-        Me.OneTimeControlTB.Size = New System.Drawing.Size(33, 30)
-        Me.OneTimeControlTB.TabIndex = 10012
+        Me.MessagesPerPageTB.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.MessagesPerPageTB.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MessagesPerPageTB.Location = New System.Drawing.Point(1435, 13)
+        Me.MessagesPerPageTB.Name = "MessagesPerPageTB"
+        Me.MessagesPerPageTB.Size = New System.Drawing.Size(33, 30)
+        Me.MessagesPerPageTB.TabIndex = 10012
         '
-        'MessagePreviewForm
+        'MessagesPreviewForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -339,7 +339,7 @@ Partial Class MessagePreviewForm
         Me.Controls.Add(Me.Panel1)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "MessagePreviewForm"
+        Me.Name = "MessagesPreviewForm"
         Me.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide
         Me.Text = " "
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
@@ -362,7 +362,7 @@ Partial Class MessagePreviewForm
     Private WithEvents FailedLB As Label
     Private WithEvents FailedText As Label
     Friend WithEvents Panel1 As Panel
-    Friend WithEvents OneTimeControlTB As TextBox
+    Friend WithEvents MessagesPerPageTB As TextBox
     Friend WithEvents CurrentCB As CheckBox
     Friend WithEvents AllCB As CheckBox
     Friend WithEvents ImagesPreview As FontAwesome.Sharp.IconButton

@@ -104,6 +104,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationEvents.vb" />
     <Compile Include="AstraDB.Designer.vb">
       <DependentUpon>AstraDB.vb</DependentUpon>
     </Compile>
@@ -136,10 +137,11 @@
     <Compile Include="FormView\TransactionsForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Messenger\MessageTemplates.Designer.vb">
+    <Compile Include="Messenger\BulkMessagesClass.vb" />
+    <Compile Include="Messenger\Indirect Usage\MessageTemplates.Designer.vb">
       <DependentUpon>MessageTemplates.vb</DependentUpon>
     </Compile>
-    <Compile Include="Messenger\MessageTemplates.vb">
+    <Compile Include="Messenger\Indirect Usage\MessageTemplates.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Messenger\MessengerForIndividual.Designer.vb">
@@ -295,34 +297,34 @@
     <Compile Include="FormView\BookMode.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Messenger\AddNewMessage.Designer.vb">
+    <Compile Include="Messenger\Rough\AddNewMessage.Designer.vb">
       <DependentUpon>AddNewMessage.vb</DependentUpon>
     </Compile>
-    <Compile Include="Messenger\AddNewMessage.vb">
+    <Compile Include="Messenger\Rough\AddNewMessage.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Messenger\Form1.Designer.vb">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <Compile Include="Messenger\BulkMessengerEntry.Designer.vb">
+      <DependentUpon>BulkMessengerEntry.vb</DependentUpon>
     </Compile>
-    <Compile Include="Messenger\Form1.vb">
+    <Compile Include="Messenger\BulkMessengerEntry.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Messenger\Form2.Designer.vb">
+    <Compile Include="Messenger\Rough\Form2.Designer.vb">
       <DependentUpon>Form2.vb</DependentUpon>
     </Compile>
-    <Compile Include="Messenger\Form2.vb">
+    <Compile Include="Messenger\Rough\Form2.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Messenger\Form3.Designer.vb">
+    <Compile Include="Messenger\Rough\Form3.Designer.vb">
       <DependentUpon>Form3.vb</DependentUpon>
     </Compile>
-    <Compile Include="Messenger\Form3.vb">
+    <Compile Include="Messenger\Rough\Form3.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Messenger\KittyRecievedReciept.Designer.vb">
+    <Compile Include="Messenger\Indirect Usage\KittyRecievedReciept.Designer.vb">
       <DependentUpon>KittyRecievedReciept.vb</DependentUpon>
     </Compile>
-    <Compile Include="Messenger\KittyRecievedReciept.vb">
+    <Compile Include="Messenger\Indirect Usage\KittyRecievedReciept.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Messenger\MessageSender.Designer.vb">
@@ -331,22 +333,22 @@
     <Compile Include="Messenger\MessageSender.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Messenger\Messenger.Designer.vb">
-      <DependentUpon>Messenger.vb</DependentUpon>
+    <Compile Include="Messenger\Indirect Usage\RecieptMessenger.Designer.vb">
+      <DependentUpon>RecieptMessenger.vb</DependentUpon>
     </Compile>
-    <Compile Include="Messenger\Messenger.vb">
+    <Compile Include="Messenger\Indirect Usage\RecieptMessenger.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Messenger\MessagePreviewControl.Designer.vb">
+    <Compile Include="MyUserControls\MessagePreviewControl.Designer.vb">
       <DependentUpon>MessagePreviewControl.vb</DependentUpon>
     </Compile>
-    <Compile Include="Messenger\MessagePreviewControl.vb">
+    <Compile Include="MyUserControls\MessagePreviewControl.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Messenger\MessagePreviewForm.Designer.vb">
-      <DependentUpon>MessagePreviewForm.vb</DependentUpon>
+    <Compile Include="Messenger\MessagesPreviewForm.Designer.vb">
+      <DependentUpon>MessagesPreviewForm.vb</DependentUpon>
     </Compile>
-    <Compile Include="Messenger\MessagePreviewForm.vb">
+    <Compile Include="Messenger\MessagesPreviewForm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\Resources.Designer.vb">
@@ -477,6 +479,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DevUse\LoadingForm.resx">
       <DependentUpon>LoadingForm.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Extras\Graph.resx">
       <DependentUpon>Graph.vb</DependentUpon>
@@ -490,7 +493,7 @@
     <EmbeddedResource Include="FormView\TransactionsForm.resx">
       <DependentUpon>TransactionsForm.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Messenger\MessageTemplates.resx">
+    <EmbeddedResource Include="Messenger\Indirect Usage\MessageTemplates.resx">
       <DependentUpon>MessageTemplates.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Messenger\MessengerForIndividual.resx">
@@ -553,32 +556,32 @@
     <EmbeddedResource Include="FormView\TransactionDetails.resx">
       <DependentUpon>TransactionDetails.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Messenger\AddNewMessage.resx">
+    <EmbeddedResource Include="Messenger\Rough\AddNewMessage.resx">
       <DependentUpon>AddNewMessage.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Messenger\Form1.resx">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <EmbeddedResource Include="Messenger\BulkMessengerEntry.resx">
+      <DependentUpon>BulkMessengerEntry.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Messenger\Form2.resx">
+    <EmbeddedResource Include="Messenger\Rough\Form2.resx">
       <DependentUpon>Form2.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Messenger\Form3.resx">
+    <EmbeddedResource Include="Messenger\Rough\Form3.resx">
       <DependentUpon>Form3.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Messenger\KittyRecievedReciept.resx">
+    <EmbeddedResource Include="Messenger\Indirect Usage\KittyRecievedReciept.resx">
       <DependentUpon>KittyRecievedReciept.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Messenger\MessageSender.resx">
       <DependentUpon>MessageSender.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Messenger\Messenger.resx">
-      <DependentUpon>Messenger.vb</DependentUpon>
+    <EmbeddedResource Include="Messenger\Indirect Usage\RecieptMessenger.resx">
+      <DependentUpon>RecieptMessenger.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Messenger\MessagePreviewControl.resx">
+    <EmbeddedResource Include="MyUserControls\MessagePreviewControl.resx">
       <DependentUpon>MessagePreviewControl.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Messenger\MessagePreviewForm.resx">
-      <DependentUpon>MessagePreviewForm.vb</DependentUpon>
+    <EmbeddedResource Include="Messenger\MessagesPreviewForm.resx">
+      <DependentUpon>MessagesPreviewForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MyUserControls\ActiveKittyControl.resx">
       <DependentUpon>ActiveKittyControl.vb</DependentUpon>

@@ -174,16 +174,17 @@
     End Sub
 
     Private Sub SendMessageButton_Click(sender As Object, e As EventArgs) Handles SendMessageButton.Click
-        Dim SelectedKitty As New List(Of Kitty)
+        Dim SelectedKitties As New List(Of Kitty)
         For RowNo = 0 To DgvMessage.Rows.Count - 1
             If DgvMessage.Rows(RowNo).Cells(MessageDgvEnum.MessageBoxColumn).Value Then
-                SelectedKitty.Add(DgvMessage.Rows(RowNo).Cells(MessageDgvEnum.KittyIDColumn).Value)
+                SelectedKitties.Add(DgvMessage.Rows(RowNo).Cells(MessageDgvEnum.KittyIDColumn).Value)
             End If
         Next
 
-        Dim Fm As New Form
-        Fm = Messenger
-        Fm.Tag = SelectedKitty
+        Dim Fm As New MessengerForIndividual With {
+            .SelectedKitties = SelectedKitties
+        }
+
         Fm.Show()
     End Sub
 
