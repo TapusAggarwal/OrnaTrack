@@ -80,6 +80,7 @@ Public Class Frame
             If updateInfo.ReleasesToApply.Count <= 0 Then
                 VersionLB.IconColor = Color.White
             Else
+                VersionLB.Text = "New Update"
                 VersionLB.IconColor = Color.Goldenrod
             End If
         Catch ex As Exception

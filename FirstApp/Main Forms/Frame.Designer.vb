@@ -37,6 +37,7 @@ Partial Class Frame
         Me.ChangeServerAddressToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TestConnectionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UpdateServerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ImageDownloadToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.IconButton1 = New FontAwesome.Sharp.IconButton()
         Me.WindowsRestoreButton = New FontAwesome.Sharp.IconButton()
         Me.WindowsMinimizeButton = New FontAwesome.Sharp.IconButton()
@@ -55,7 +56,6 @@ Partial Class Frame
         Me.NewCoustmerButton = New FontAwesome.Sharp.IconButton()
         Me.SendMessageButton = New FontAwesome.Sharp.IconButton()
         Me.QuickSearchButton = New FontAwesome.Sharp.IconButton()
-        Me.ImageDownloadToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PanelTitleBar.SuspendLayout()
         Me.ServerContextMenuStrip.SuspendLayout()
         CType(Me.SidePanelButton, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -202,6 +202,12 @@ Partial Class Frame
         Me.UpdateServerToolStripMenuItem.Name = "UpdateServerToolStripMenuItem"
         Me.UpdateServerToolStripMenuItem.Size = New System.Drawing.Size(311, 30)
         Me.UpdateServerToolStripMenuItem.Text = "Update Server"
+        '
+        'ImageDownloadToolStripMenuItem
+        '
+        Me.ImageDownloadToolStripMenuItem.Name = "ImageDownloadToolStripMenuItem"
+        Me.ImageDownloadToolStripMenuItem.Size = New System.Drawing.Size(311, 30)
+        Me.ImageDownloadToolStripMenuItem.Text = "Download Image"
         '
         'IconButton1
         '
@@ -533,12 +539,6 @@ Partial Class Frame
         Me.QuickSearchButton.Text = "Insta  Search"
         Me.QuickSearchButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
         Me.QuickSearchButton.UseVisualStyleBackColor = False
-        '
-        'ImageDownloadToolStripMenuItem
-        '
-        Me.ImageDownloadToolStripMenuItem.Name = "ImageDownloadToolStripMenuItem"
-        Me.ImageDownloadToolStripMenuItem.Size = New System.Drawing.Size(311, 30)
-        Me.ImageDownloadToolStripMenuItem.Text = "Download Image"
         '
         'Frame
         '
