@@ -1,134 +1,167 @@
-﻿Imports Newtonsoft
+﻿Imports System.Runtime.InteropServices
 
 Public Class AddItemPage
 
-    Dim dragging As Boolean
-    Dim startX As Integer
-    Dim startY As Integer
+    Private WithEvents FormulaForm As New AddFormulaForm()
 
     Public Property CurrentItem As Item
 
-    Private Sub AddAttributeButton_Click(sender As Object, e As EventArgs) Handles AddAttributeButton.Click
-        'Try
-
+    Private Function ValidateInputFields() As Item.Item_Attribute
         If AttrNameTB.TextLength < 1 Then
             MessageBox.Show("Please Enter Attribute Name In Order To Make Entry.", "Name Not Entered", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Exit Sub
+            Return Nothing
         End If
 
         If AttrTypeCB.SelectedItem.ToString.Length < 1 Then
             MessageBox.Show("Please Select Attribute Type In Order To Make Entry.", "Type Not Selected", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Exit Sub
+            Return Nothing
         End If
 
-        Dim _property As New Item.Item_Property With {
+        Dim _attribute As New Item.Item_Attribute With {
                 .Name = AttrNameTB.Text,
                 .DataType = AttrTypeCB.SelectedItem,
                 .Attr_Ctg = AttrCategoryCB.SelectedItem,
                 .IsConstant = ConstantChB.Checked,
                 .IsOptional = OptionalChB.Checked,
                 .IsCurrency = CurrencyChB.Checked,
-                .IsFormula = CheckBox1.Checked
+                .IsFormula = FormulaForm.FormulaInUse
         }
 
-        If _property.IsCurrency And _property.DataType <> Item.DataType.Integer_Type Then
+        If _attribute.IsCurrency And _attribute.DataType <> Item.DataType.Integer_Type Then
             MessageBox.Show("Only Integers Are Allowed To Be Declared As Currency.", "Illegal Selection")
-            Exit Sub
+            Return Nothing
         End If
 
-        Select Case _property.DataType
+        Select Case _attribute.DataType
+
             Case Item.DataType.Boolean_Type
-                _property.DefaultValue = IIf(TrueChB.Checked, "True", "False")
+
+                _attribute.DefaultValue = IIf(TrueChB.Checked, "True", "False")
+
+
             Case Item.DataType.List_Type
-                If ListValues.Items.Count = 0 Then MessageBox.Show("First Add Items To The Add List Type Property.") : Exit Sub
-                If ListValues.SelectedIndex < 0 Then MessageBox.Show("First Select An Item To Be Used As Default Value.") : Exit Sub
-                _property.DefaultValue = $"{ListValues.SelectedItem}`{String.Join(",", ListValues.Items.Cast(Of String))}"
+
+                If ListValuesCB.Items.Count = 0 Then MessageBox.Show("You Must Add Items In The List In Order To Create A New List_Attribute.") : Return Nothing
+                If ListValuesCB.SelectedIndex < 0 Then MessageBox.Show("You Must Select An Item To Be Used As Default Value In Order To Create A New List_Attribute.") : Return Nothing
+                _attribute.DefaultValue = $"{ListValuesCB.SelectedItem}`{String.Join(",", ListValuesCB.Items.Cast(Of String))}"
+
+
             Case Item.DataType.Integer_Type
-                If DefaultValueTB.TextLength = 0 Then MessageBox.Show("Enter A Default Value To Add Integer Type Property.") : Exit Sub
-                If Not _property.IsFormula Then
-                    If DefaultValueTB.Text.Contains("{") Or DefaultValueTB.Text.Contains("}") Then MessageBox.Show("Characters '{' or '}' Are Not Allowed Unless The Property Uses A Formula.") : Exit Sub
-                    _property.DefaultValue = DefaultValueTB.Text
+                Dim _text = DefaultValueTB.Text
+                If _text.Length = 0 Then MessageBox.Show("Enter A Default Value To Add Integer Type Attribute.") : Return Nothing
+
+                If Not _attribute.IsFormula Then
+                    If Not Double.TryParse(_text, _attribute.DefaultValue) Then
+                        MessageBox.Show("Provided Default Value Is Not An Integer.") : Return Nothing
+                    End If
                 Else
-                    _property.DefaultValue = FormulaTB.Text
-                    _property.IsConstant = True
+                    _attribute.DefaultValue = FormulaForm.FormulaTB.Text
+                    _attribute.IsConstant = True
                 End If
+
+
             Case Item.DataType.String_Type
-                If DefaultValueTB.TextLength = 0 Then MessageBox.Show("Enter A Default Value To Add String Type Property.") : Exit Sub
-                _property.DefaultValue = DefaultValueTB.Text
+
+                If DefaultValueTB.TextLength = 0 Then MessageBox.Show("Enter A Default Value To Add String Type Attribute.") : Return Nothing
+                _attribute.DefaultValue = DefaultValueTB.Text
+
+
         End Select
 
-        If CurrentItem.MyProperties.Where(Function(f) f.Name = _property.Name).Count > 0 Then
-            MessageBox.Show("Attribute With Same Name Already Exists. Try Another Name.", "Entry Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
-            AttrNameTB.Select()
-            Exit Sub
+        Return _attribute
+
+    End Function
+
+    Private Sub ClearAttributeFields()
+        AttrNameTB.Text = ""
+        AbbreviationTB.Text = ""
+        AttrTypeCB.SelectedIndex = -1
+        ConstantChB.Checked = False
+        OptionalChB.Checked = False
+        CurrencyChB.Checked = False
+
+        FormulaBT.Visible = False
+        FormulaForm.FormulaTB.Text = ""
+        If FormulaForm.FormulaInUse Then FormulaForm.ToggleUseBT()
+        FormulaBT.IconColor = Color.Goldenrod
+
+        DefaultValueTB.Enabled = True
+        DefaultValueTB.Text = ""
+        ListValuesCB.Items.Clear()
+        EditListBT.IconColor = Color.Goldenrod
+
+
+        AddAttributeButton.Text = "Add Attribute"
+        AddAttributeButton.IconColor = Color.White
+        AddAttributeButton.IconChar = FontAwesome.Sharp.IconChar.SignInAlt
+
+        DeleteBT.Visible = False
+
+        SelectedAttribute = Nothing
+
+    End Sub
+
+    Private Sub AddAttributeButton_Click(sender As Object, e As EventArgs) Handles AddAttributeButton.Click
+
+        Dim _validatedAttr = ValidateInputFields()
+
+        If _validatedAttr Is Nothing Then Exit Sub
+
+        If SelectedAttribute Is Nothing Then
+
+            If CurrentItem.Attributes.Where(Function(f) f.Name = _validatedAttr.Name).Count > 0 Then
+                MessageBox.Show("Attribute With Same Name Already Exists. Try Another Name.", "Entry Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
+                AttrNameTB.Select()
+                Exit Sub
+            End If
+
+            CurrentItem.Attributes.Add(_validatedAttr)
+        Else
+            Dim x = CurrentItem.Attributes.Where(Function(f) f.Name <> SelectedAttribute.Name)
+
+            If x.Where(Function(f) f.Name = _validatedAttr.Name).Count > 0 Then
+                MessageBox.Show("Attribute With Same Name Already Exists. Try Another Name.", "Entry Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk)
+                AttrNameTB.Select()
+                Exit Sub
+            End If
+
+            With CurrentItem.Attributes.Item(CurrentItem.Attributes.IndexOf(SelectedAttribute))
+                .Name = _validatedAttr.Name
+                .DataType = _validatedAttr.DataType
+                .Attr_Ctg = _validatedAttr.Attr_Ctg
+                .IsConstant = _validatedAttr.IsConstant
+                .IsOptional = _validatedAttr.IsOptional
+                .IsCurrency = _validatedAttr.IsCurrency
+                .IsFormula = _validatedAttr.IsFormula
+                .DefaultValue = _validatedAttr.DefaultValue
+            End With
+
         End If
 
-        CurrentItem.MyProperties.Add(_property)
+        ShowAttributes()
+        ClearAttributeFields()
 
-        ShowProperties()
-
-        'Catch ex As Exception
-        '    MessageBox.Show(ex.Message)
-        'End Try
     End Sub
 
     Dim PanelMaxWidth As Integer = 0
 
-    Private Sub ShowProperties()
+    Private Sub ShowAttributes()
 
         PurchaseFP.FlowLayoutPanel1.Controls.Clear()
         ProductFP.FlowLayoutPanel1.Controls.Clear()
         SaleFP.FlowLayoutPanel1.Controls.Clear()
 
-        'PurchaseFP.Size = New Point(0, 50)
-        'ProductFP.Size = New Point(0, 50)
-        'SaleFP.Size = New Point(0, 50)
+        For Each _Attribute In CurrentItem.Attributes
+            Dim z1 As New AttributeControl With {
+                .CurrentAttribute = _Attribute
+            }
 
-        For Each _property In CurrentItem.MyProperties
-            Dim z1 As New AttributeControl
-            z1.CurrentProperty = _property
+            AddHandler z1.ButtonClick, AddressOf AttributeSelected
 
-            'Dim z As New FontAwesome.Sharp.IconButton() With {
-            '    .ForeColor = Color.MediumPurple,
-            '    .BackColor = Color.FromArgb(25, 25, 70),
-            '    .IconColor = Color.White,
-            '    .FlatStyle = FlatStyle.Flat,
-            '    .TextImageRelation = TextImageRelation.ImageBeforeText,
-            '    .AutoSize = True,
-            '    .Font = New Font("Century Gothic ", 11.25),
-            '    .Tag = _property
-            '}
-
-            'z.FlatAppearance.BorderSize = 0
-            'z.Text = $"{{{_property.DataType}}} {_property.Name}*"
-            'z.IconChar = _property.Icon
-
-            'AddHandler z1.MouseDown, AddressOf StartDrag
-            'AddHandler z1.MouseMove, AddressOf WhileDragging
-            'AddHandler z1.MouseUp, AddressOf EndDrag
-
-            AddHandler z1.ButtonClick,
-                Sub(Ctrl_property As Item.Item_Property)
-                    If AddParameters = False Then
-                        If MessageBox.Show("Are You Sure You Want To Remove This Property.", "Confirm", MessageBoxButtons.YesNo) = DialogResult.No Then Exit Sub
-                        CurrentItem.MyProperties.Remove(Ctrl_property)
-                        ShowProperties()
-                    Else
-                        FormulaTB.SelectedText = $"{{{_property.Name}}}"
-                        FormulaTB.Select()
-                        'For Each i As AttributeControl In FlowLayoutPanel2.Controls
-                        '    i.UsedButton.IconChar = FontAwesome.Sharp.IconChar.WindowClose
-                        '    i.UsedButton.IconColor = Color.DarkRed
-                        '    i.Enabled = True
-                        'Next
-                        AddParameters = False
-                    End If
-                End Sub
-
-            If _property.Attr_Ctg = Item.AttributeCategory.Purchase_Type Then
+            If _Attribute.Attr_Ctg = Item.AttributeCategory.Purchase_Type Then
                 PurchaseFP.AddControl(z1)
                 PurchaseFP.AutoReSize()
-            ElseIf _property.Attr_Ctg = Item.AttributeCategory.Product_Type Then
+            ElseIf _Attribute.Attr_Ctg = Item.AttributeCategory.Product_Type Then
                 ProductFP.AddControl(z1)
                 ProductFP.AutoReSize()
             Else
@@ -138,101 +171,191 @@ Public Class AddItemPage
 
             PanelMaxWidth = Math.Max(PanelMaxWidth, z1.Width)
 
-            'FlowLayoutPanel2.Controls.Add(z1)
-            'Panel1.Size = New Point(FlowLayoutPanel2.Controls.Cast(Of AttributeControl).Max(Function(f) f.Size.Width), 0)
         Next
 
-        'Size = New Point(Width + PanelMaxWidth - Panel1.Width + 55, Height)
+    End Sub
 
+    Dim SelectedAttribute As Item.Item_Attribute
+
+    Private Sub AttributeSelected(_attr As Item.Item_Attribute)
+        ClearAttributeFields()
+        SelectedAttribute = _attr
+
+        AttrNameTB.Text = _attr.Name
+        AttrTypeCB.SelectedIndex = -1
+        AttrTypeCB.SelectedItem = _attr.DataType
+        AttrCategoryCB.SelectedItem = _attr.Attr_Ctg
+        ConstantChB.Checked = _attr.IsConstant
+        OptionalChB.Checked = _attr.IsOptional
+        CurrencyChB.Checked = _attr.IsCurrency
+        If _attr.IsFormula Then
+            FormulaForm.FormulaTB.Text = _attr.DefaultValue
+            DefaultValueTB.Text = "{Formula}"
+            DefaultValueTB.Enabled = False
+        Else
+            DefaultValueTB.Text = _attr.DefaultValue
+        End If
+
+        AddAttributeButton.Text = "Edit Attribute"
+        AddAttributeButton.IconColor = Color.Goldenrod
+        AddAttributeButton.IconChar = FontAwesome.Sharp.IconChar.SignInAlt
+
+        DeleteBT.Visible = True
     End Sub
 
     Private Sub AddItemPage_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        AttrTypeCB.Items.Clear()
-
-        Dim sbOutput As New Text.StringBuilder
-        Dim t As Type = GetType(Item.DataType)
-        For Each p As Reflection.FieldInfo In t.GetFields()
-            AttrTypeCB.Items.Add(p.GetValue(p))
-            sbOutput.AppendLine(p.GetValue(p))
+        For Each i In GetType(Item.DataType).GetFields()
+            AttrTypeCB.Items.Add(i.GetValue(i))
         Next
 
         If CurrentItem.ItemID > 0 Then
             ItemNameTB.Text = CurrentItem.Name
-            ShowProperties()
+            ShowAttributes()
             Exit Sub
         End If
 
-        ShowProperties()
+        ShowAttributes()
 
     End Sub
 
-    Private Sub IconButton7_Click(sender As Object, e As EventArgs) Handles IconButton7.Click
+    Private Sub SaveBT_Click(sender As Object, e As EventArgs) Handles SaveBT.Click
         If CurrentItem.Name.Length = 0 Then
             MessageBox.Show("First Add Item Name To Save Item.")
             Exit Sub
         End If
 
-        If CurrentItem.MyProperties.Count = 0 Then
-            MessageBox.Show("Add Atleast One Property Inorder To Save This Item.")
+        If CurrentItem.Attributes.Count = 0 Then
+            MessageBox.Show("Add Atleast One Attribute Inorder To Save This Item.")
             Exit Sub
         End If
 
-        If CurrentItem.ItemID > 0 Then
-            SqlCommand($"UPDATE Item_Data SET ItemName='{CurrentItem.Name}',ItemAttr='{CurrentItem.MyProperties_JSON}' WHERE ID={CurrentItem.ItemID}")
-        Else
-            SqlCommand($"INSERT INTO Item_Data (ItemName,ItemAttr) VALUES ('{CurrentItem.Name}','{CurrentItem.MyProperties_JSON}')")
-        End If
-
-        Try
-            Dim dr As OleDb.OleDbDataReader = DataReader("Select max(ID) From Item_Data")
-            While dr.Read
-                Dim _temp As Integer = dr(0)
-                CurrentItem.ItemID = _temp
-            End While
-        Catch ex As Exception
-        End Try
+        CurrentItem.Save()
 
         Close()
 
     End Sub
 
+    Private Sub AttrTypeCB_SelectedIndexChanged(sender As Object, e As EventArgs) Handles AttrTypeCB.SelectedIndexChanged
+        Dim typeSelected As String = AttrTypeCB.SelectedItem
+        If typeSelected Is Nothing OrElse typeSelected.Length = 0 Then Exit Sub
+
+        DefaultValueTB.Visible = False
+        TrueChB.Visible = False
+        FalseChB.Visible = False
+        ListValuesCB.Visible = False
+        EditListBT.Visible = False
+        FormulaBT.Visible = False
+
+        Select Case typeSelected
+            Case Item.DataType.Boolean_Type
+                TrueChB.Visible = True
+                FalseChB.Visible = True
+                TrueChB.Checked = True
+            Case Item.DataType.List_Type
+                ListValuesCB.Visible = True
+                EditListBT.Visible = True
+            Case Item.DataType.Integer_Type
+                DefaultValueTB.Visible = True
+                DefaultValueTB.Text = 0
+                FormulaBT.Visible = True
+            Case Item.DataType.String_Type
+                DefaultValueTB.Visible = True
+                DefaultValueTB.Text = "none"
+                DefaultValueTB.Enabled = True
+        End Select
+
+        If SelectedAttribute Is Nothing Then Exit Sub
+
+        Dim defVal = SelectedAttribute.DefaultValue
+
+        Select Case typeSelected
+
+            Case Item.DataType.Boolean_Type
+
+                If defVal = "True" Then
+                    TrueChB.Checked = True
+                Else
+                    FalseChB.Checked = True
+                End If
+
+
+            Case Item.DataType.List_Type
+
+                EditListBT.IconColor = Color.Lime
+                Dim selectedVal As String = defVal.Split("`")(0)
+                ListValuesCB.Items.Clear()
+                ListValuesCB.Items.AddRange(defVal.Split("`")(1).ToString.Split(",").ToArray)
+                ListValuesCB.SelectedItem = selectedVal
+            Case Item.DataType.Integer_Type
+
+                DefaultValueTB.Visible = True
+                DefaultValueTB.Text = 0
+                FormulaBT.Visible = True
+                If SelectedAttribute.IsFormula Then
+                    FormulaForm.FormulaTB.Text = SelectedAttribute.DefaultValue
+                    If Not FormulaForm.FormulaInUse Then
+                        FormulaForm.ToggleUseBT()
+                    End If
+                End If
+
+            Case Item.DataType.String_Type
+
+                DefaultValueTB.Text = defVal
+
+
+        End Select
+
+    End Sub
+
+    Private Sub EditListBT_Click(sender As Object, e As EventArgs) Handles EditListBT.Click
+        Dim Fm As New ListTypeDgv
+        AddHandler Fm.Submit_CLick, Sub()
+                                        Fm.Close()
+                                        ListValuesCB.Items.Clear()
+                                        ListValuesCB.Items.AddRange(Fm.ListItems.ToArray)
+                                        If ListValuesCB.Items.Count > 0 Then EditListBT.IconColor = Color.Lime
+                                    End Sub
+        AddHandler Fm.Cancel_CLick, Sub()
+                                        Fm.Close()
+                                    End Sub
+
+        If ListValuesCB.Items.Count > 0 Then
+            For Each i In ListValuesCB.Items
+                Fm.ListItems.Add(i.ToString)
+            Next
+
+        End If
+
+        Fm.Show()
+    End Sub
+
+    Sub FormulaForm_UseBT_Toggled() Handles FormulaForm.UseBT_Toggled
+        If FormulaForm.FormulaInUse Then
+            FormulaBT.IconColor = Color.Lime
+            DefaultValueTB.Text = "{Formula}"
+            DefaultValueTB.Enabled = False
+        Else
+            FormulaBT.IconColor = Color.Goldenrod
+            DefaultValueTB.Text = ""
+            DefaultValueTB.Enabled = True
+        End If
+    End Sub
+
+    Private Sub FormulaBT_Click(sender As Object, e As EventArgs) Handles FormulaBT.Click
+
+        FormulaForm.Attributes = CurrentItem.Attributes.Where(Function(f) f.DataType = Item.DataType.Integer_Type).ToList
+
+        FormulaForm.ShowDialog()
+
+    End Sub
+
+
+#Region "Direct Events"
+
     Private Sub ItemNameTB_LostFocus(sender As Object, e As EventArgs) Handles ItemNameTB.LostFocus
         If ItemNameTB.TextLength = 0 Then Exit Sub
         CurrentItem.Name = ItemNameTB.Text
-    End Sub
-
-    Private Sub AttrTypeCB_SelectedIndexChanged(sender As Object, e As EventArgs) Handles AttrTypeCB.SelectedIndexChanged
-        Dim typeSelected As String = AttrTypeCB.SelectedItem
-        If typeSelected.Length > 0 Then
-
-            DefaultValueTB.Visible = False
-            TrueChB.Visible = False
-            FalseChB.Visible = False
-            ListValues.Visible = False
-            EditListBT.Visible = False
-            'FormulaBT.Visible = False
-            CheckBox1.Visible = False
-
-            Select Case typeSelected
-                Case Item.DataType.Boolean_Type
-                    TrueChB.Visible = True
-                    FalseChB.Visible = True
-                    TrueChB.Checked = True
-                Case Item.DataType.List_Type
-                    ListValues.Visible = True
-                    EditListBT.Visible = True
-                Case Item.DataType.Integer_Type
-                    DefaultValueTB.Visible = True
-                    DefaultValueTB.Text = 0
-                    'FormulaBT.Visible = True
-                    CheckBox1.Visible = True
-                    CheckBox1.Checked = False
-                Case Item.DataType.String_Type
-                    DefaultValueTB.Visible = True
-                    DefaultValueTB.Text = "none"
-            End Select
-        End If
     End Sub
 
     Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles TrueChB.CheckedChanged
@@ -245,134 +368,33 @@ Public Class AddItemPage
         If Not (TrueChB.Checked) And Not (FalseChB.Checked) Then FalseChB.Checked = True
     End Sub
 
-    Private Sub EditListBT_Click(sender As Object, e As EventArgs) Handles EditListBT.Click
-        Dim Fm As New ListTypeDgv
-        AddHandler Fm.Submit_CLick, Sub()
-                                        Fm.Close()
-                                        ListValues.Items.Clear()
-                                        ListValues.Items.AddRange(Fm.ListItems.ToArray)
-                                    End Sub
-        AddHandler Fm.Cancel_CLick, Sub()
-                                        Fm.Close()
-                                    End Sub
-        Fm.Show()
-
-        Dim x As New PropertyControl
+    Private Sub NotNowToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NotNowToolStripMenuItem.Click
+        DefaultValueTB.Text = "{NotNow}"
+        DefaultValueTB.Enabled = False
     End Sub
 
-    Private AddParameters As Boolean = False
-
-    Private Sub AddParametersBT_Click(sender As Object, e As EventArgs) Handles AddParametersBT.Click
-        'For Each i As AttributeControl In FlowLayoutPanel2.Controls
-        '    Dim _property As Item.Item_Property = i.CurrentProperty
-        '    If _property.DataType <> Item.DataType.Integer_Type Then
-        '        i.Enabled = False
-        '    Else
-        '        i.UsedButton.IconChar = FontAwesome.Sharp.IconChar.CheckSquare
-        '        i.UsedButton.IconColor = Color.ForestGreen
-        '    End If
-        'Next
-        AddParameters = True
+    Private Sub UnKnownToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UnKnownToolStripMenuItem.Click
+        DefaultValueTB.Text = "{UnKnown}"
+        DefaultValueTB.Enabled = False
     End Sub
 
-    Private Sub CheckBox1_CheckedChanged_1(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged
-        If CheckBox1.Checked Then
-            FormulaTB.Visible = True
-            AddParametersBT.Visible = True
-            UseBT.Visible = True
-        Else
-            FormulaTB.Visible = False
-            AddParametersBT.Visible = False
-            UseBT.Visible = False
-        End If
+    Private Sub ClearToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ClearToolStripMenuItem.Click
+        DefaultValueTB.Text = ""
+        DefaultValueTB.Enabled = True
     End Sub
 
-    Private Sub MathOPerations_Click(sender As FontAwesome.Sharp.IconButton, e As EventArgs) Handles LeftBracketBT.Click, RightBracketBT.Click, DivideBT.Click, MultiplyBT.Click, PlusBT.Click, MinusBT.Click
-        Dim Operation As String = ""
-
-        If sender Is LeftBracketBT Then
-            Operation = "("
-        ElseIf sender Is RightBracketBT Then
-            Operation = ")"
-        ElseIf sender Is DivideBT Then
-            Operation = "/"
-        ElseIf sender Is MultiplyBT Then
-            Operation = "*"
-        ElseIf sender Is PlusBT Then
-            Operation = "+"
-        ElseIf sender Is MinusBT Then
-            Operation = "-"
-        End If
-
-        FormulaTB.SelectedText = Operation
+    Private Sub ClearBT_Click(sender As Object, e As EventArgs) Handles ClearBT.Click
+        ClearAttributeFields()
     End Sub
 
-
-    Private Sub UseBT_Click(sender As Object, e As EventArgs) Handles UseBT.Click
-        Dim equation As String = FormulaTB.Text
-        Dim result = New DataTable().Compute(equation, Nothing)
+    Private Sub DeleteBT_Click(sender As Object, e As EventArgs) Handles DeleteBT.Click
+        CurrentItem.Attributes.Remove(SelectedAttribute)
+        ClearAttributeFields()
+        ShowAttributes()
+        DeleteBT.Visible = False
     End Sub
 
-    Private Sub FormulaTB_KeyDown(sender As Object, e As EventArgs) Handles FormulaTB.TextChanged
-        'Dim filteredText As String = FormulaTB.Text
+#End Region
 
-        'Dim cursorIndex As Integer = FormulaTB.SelectionStart
-
-        'For Each i In filteredText
-        '    Dim ascVal As Integer = Asc(i)
-
-        '    If i = "(" Or i = ")" Or i = "/" Or i = "*" Or i = "+" Or i = "-" Then
-        '        Continue For
-        '    End If
-
-        '    If ascVal < 48 Or ascVal > 57 Then
-        '        MessageBox.Show($"Invalid Character Found ('{i}'). This Property Is Declared As Integer.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        '        filteredText = filteredText.Replace(i, "")
-        '    End If
-        'Next
-
-        'If FormulaTB.Text <> filteredText Then
-        '    FormulaTB.Text = filteredText
-        '    FormulaTB.SelectionStart = cursorIndex - 1
-        'End If
-
-        HighLightOperations()
-
-    End Sub
-
-    Private Sub HighLightOperations()
-        Dim x As Integer = 0
-        FormulaTB.SelectionColor = Color.Black
-        For Each i In FormulaTB.Text
-            Dim cursorIndex As Integer = FormulaTB.SelectionStart
-            If i = "%" Or i = "(" Or i = ")" Or i = "/" Or i = "*" Or i = "+" Or i = "-" Then
-                FormulaTB.SelectionStart = x
-                FormulaTB.SelectionLength = 1
-                FormulaTB.SelectionColor = Color.Red
-                FormulaTB.SelectionStart = cursorIndex
-                FormulaTB.SelectionLength = 0
-                FormulaTB.SelectionColor = Color.Black
-            End If
-            x += 1
-        Next
-    End Sub
-
-    Private Sub MathOPerations_Click(sender As Object, e As EventArgs) Handles RightBracketBT.Click, PlusBT.Click, MultiplyBT.Click, MinusBT.Click, LeftBracketBT.Click, DivideBT.Click
-
-    End Sub
-
-    Private Sub IconButton1_Click(sender As Object, e As EventArgs) Handles IconButton1.Click
-    End Sub
-
-    Private Sub FlowLayoutPanel2_SizeChanged(sender As Object, e As EventArgs)
-        'MakeControlsEqualSize()
-    End Sub
-
-
-    'Private Sub MakeControlsEqualSize()
-    '    SaleAttrFP.Size = New Point(FlowLayoutPanel2.Width, SaleAttrFP.Height)
-    '    PurchaseAttrFP.Size = New Point(FlowLayoutPanel2.Width, PurchaseAttrFP.Height)
-    '    ProductAttrFP.Size = New Point(FlowLayoutPanel2.Width, ProductAttrFP.Height)
-    'End Sub
 
 End Class

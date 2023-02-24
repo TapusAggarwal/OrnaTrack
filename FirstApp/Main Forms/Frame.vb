@@ -1,5 +1,4 @@
 ﻿Imports FontAwesome.Sharp
-Imports Google.Cloud.Firestore
 Imports Newtonsoft.Json.Linq
 Imports Squirrel
 Imports WebSocket4Net
@@ -307,7 +306,7 @@ Public Class Frame
         End If
     End Sub
 
-    Public Async Sub ConnectionLabel_Click() Handles ConnectionLabel.Click
+    Public Async Sub ConnectionLabel_Click(sender As Object, e As EventArgs) Handles ConnectionLabel.Click
         If state = "STANDBY" Then
             Exit Sub
         End If
@@ -641,13 +640,17 @@ Public Class Frame
         Cursor = Cursors.Default
     End Sub
 
-    Private Sub IconButton2_Click_1(sender As Object, e As EventArgs) Handles IconButton2.Click
-        Dim Fm As New rough
+    Private Sub RoughButton_Click(sender As Object, e As EventArgs) Handles RoughButton.Click
+        Dim Fm As New CategoriesPage
         Fm.ShowDialog()
     End Sub
 
     Private Sub ImageDownloadToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImageDownloadToolStripMenuItem.Click
         Dim Fm As New ImageDownloader
         Fm.Show()
+    End Sub
+
+    Private Sub ServerContextMenuStrip_Opening(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles ServerContextMenuStrip.Opening
+
     End Sub
 End Class

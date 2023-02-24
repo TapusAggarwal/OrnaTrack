@@ -71,4 +71,7 @@
         RaiseEvent Cancel_CLick()
     End Sub
 
+    Private Sub ListTypeDgv_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        LoadItems()
+    End Sub
 End Class

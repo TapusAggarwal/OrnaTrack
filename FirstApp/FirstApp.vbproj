@@ -119,6 +119,12 @@
     <Compile Include="Extras\Graph.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Extras\rough1.Designer.vb">
+      <DependentUpon>rough1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Extras\rough1.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FireBase.Designer.vb">
       <DependentUpon>FireBase.vb</DependentUpon>
     </Compile>
@@ -271,10 +277,10 @@
     <Compile Include="FormView\TransactionDetails.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Stock\AttributeControl.Designer.vb">
+    <Compile Include="Stock\UserControl\AttributeControl.Designer.vb">
       <DependentUpon>AttributeControl.vb</DependentUpon>
     </Compile>
-    <Compile Include="Stock\AttributeControl.vb">
+    <Compile Include="Stock\UserControl\AttributeControl.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Stock\CategoriesPage.Designer.vb">
@@ -283,10 +289,10 @@
     <Compile Include="Stock\CategoriesPage.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Stock\Folder.Designer.vb">
+    <Compile Include="Stock\UserControl\Folder.Designer.vb">
       <DependentUpon>Folder.vb</DependentUpon>
     </Compile>
-    <Compile Include="Stock\Folder.vb">
+    <Compile Include="Stock\UserControl\Folder.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Stock\Item.vb" />
@@ -436,10 +442,10 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Extras\Settings.vb" />
-    <Compile Include="Stock\ItemsUserControl.Designer.vb">
+    <Compile Include="Stock\UserControl\ItemsUserControl.Designer.vb">
       <DependentUpon>ItemsUserControl.vb</DependentUpon>
     </Compile>
-    <Compile Include="Stock\ItemsUserControl.vb">
+    <Compile Include="Stock\UserControl\ItemsUserControl.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Stock\ListTypeDgv.Designer.vb">
@@ -448,10 +454,10 @@
     <Compile Include="Stock\ListTypeDgv.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Stock\PropertyControl.Designer.vb">
-      <DependentUpon>PropertyControl.vb</DependentUpon>
+    <Compile Include="Stock\UserControl\AttributeStockControl.Designer.vb">
+      <DependentUpon>AttributeStockControl.vb</DependentUpon>
     </Compile>
-    <Compile Include="Stock\PropertyControl.vb">
+    <Compile Include="Stock\UserControl\AttributeStockControl.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Stock\ShowItems.Designer.vb">
@@ -476,6 +482,7 @@
   <ItemGroup>
     <EmbeddedResource Include="AstraDB.resx">
       <DependentUpon>AstraDB.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="DevUse\LoadingForm.resx">
       <DependentUpon>LoadingForm.vb</DependentUpon>
@@ -483,6 +490,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Extras\Graph.resx">
       <DependentUpon>Graph.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Extras\rough1.resx">
+      <DependentUpon>rough1.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FireBase.resx">
       <DependentUpon>FireBase.vb</DependentUpon>
@@ -531,9 +541,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Stock\AddFormulaForm.resx">
       <DependentUpon>AddFormulaForm.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Stock\AddItemPage.resx">
       <DependentUpon>AddItemPage.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormView\PreviewCustomers.resx">
       <DependentUpon>PreviewCustomers.vb</DependentUpon>
@@ -549,6 +561,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormView\BookMode.resx">
       <DependentUpon>BookMode.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormView\ShortCustomerSearch.resx">
       <DependentUpon>ShortCustomerSearch.vb</DependentUpon>
@@ -558,9 +571,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Messenger\Rough\AddNewMessage.resx">
       <DependentUpon>AddNewMessage.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Messenger\BulkMessengerEntry.resx">
       <DependentUpon>BulkMessengerEntry.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Messenger\Rough\Form2.resx">
       <DependentUpon>Form2.vb</DependentUpon>
@@ -585,6 +600,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MyUserControls\ActiveKittyControl.resx">
       <DependentUpon>ActiveKittyControl.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="MyUserControls\KittyModeControl.resx">
       <DependentUpon>KittyModeControl.vb</DependentUpon>
@@ -606,6 +622,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MyUserControls\CBoxForm.resx">
       <DependentUpon>CBoxForm.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormView\KittyView.resx">
       <DependentUpon>KittyView.vb</DependentUpon>
@@ -622,23 +639,24 @@
     <EmbeddedResource Include="Main Forms\KittyModeCoustView.resx">
       <DependentUpon>KittyModeCoustView.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Stock\AttributeControl.resx">
+    <EmbeddedResource Include="Stock\UserControl\AttributeControl.resx">
       <DependentUpon>AttributeControl.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Stock\CategoriesPage.resx">
       <DependentUpon>CategoriesPage.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Stock\Folder.resx">
+    <EmbeddedResource Include="Stock\UserControl\Folder.resx">
       <DependentUpon>Folder.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Stock\ItemsUserControl.resx">
+    <EmbeddedResource Include="Stock\UserControl\ItemsUserControl.resx">
       <DependentUpon>ItemsUserControl.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Stock\ListTypeDgv.resx">
       <DependentUpon>ListTypeDgv.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Stock\PropertyControl.resx">
-      <DependentUpon>PropertyControl.vb</DependentUpon>
+    <EmbeddedResource Include="Stock\UserControl\AttributeStockControl.resx">
+      <DependentUpon>AttributeStockControl.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Stock\ShowItems.resx">
       <DependentUpon>ShowItems.vb</DependentUpon>

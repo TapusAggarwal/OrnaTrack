@@ -30,19 +30,19 @@ Public Class KittyRecievedReciept
 
     Public WriteOnly Property AmountBeforePayment As Integer
         Set(value As Integer)
-            CashInWalletLB.Text = value.ToCurrency(RemoveSpaces:=True)
+            CashInWalletLB.Text = value.ToCurrency(AddSpace:=True)
         End Set
     End Property
 
     Public WriteOnly Property AmountRecieved As Integer
         Set(value As Integer)
-            RecievedLB.Text = value.ToCurrency(RemoveSpaces:=True)
+            RecievedLB.Text = value.ToCurrency(AddSpace:=True)
         End Set
     End Property
 
     Public WriteOnly Property Total As Integer
         Set(value As Integer)
-            TotalLB.Text = value.ToCurrency(RemoveSpaces:=True)
+            TotalLB.Text = value.ToCurrency(AddSpace:=True)
         End Set
     End Property
 

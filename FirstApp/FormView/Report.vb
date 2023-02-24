@@ -58,8 +58,8 @@
             .DefaultCellStyle.ForeColor = Color.Black
             .Cells(0).Value = "Total:"
             .Cells(1).Value = TotalKitties
-            .Cells(2).Value = TotalAmount.ToCurrency(RemoveSpaces:=True)
-            .Cells(3).Value = TotalInterest.ToCurrency(RemoveSpaces:=True)
+            .Cells(2).Value = TotalAmount.ToCurrency(AddSpace:=True)
+            .Cells(3).Value = TotalInterest.ToCurrency(AddSpace:=True)
         End With
 
         Dgv_temp.Rows.Add()
@@ -82,8 +82,8 @@
                 .Cells(3).Value += dictRelative.Item(1)(2)
             End If
 
-            .Cells(2).Value = .Cells(2).Value.ToString.ToCurrency(RemoveSpaces:=True)
-            .Cells(3).Value = .Cells(2).Value.ToString.ToCurrency(RemoveSpaces:=True)
+            .Cells(2).Value = .Cells(2).Value.ToString.ToCurrency(AddSpace:=True)
+            .Cells(3).Value = .Cells(2).Value.ToString.ToCurrency(AddSpace:=True)
         End With
 
         Dgv_temp.Rows.Add()
@@ -106,8 +106,8 @@
                 .Cells(3).Value -= dictRelative.Item(1)(2)
             End If
 
-            .Cells(2).Value = .Cells(2).Value.ToString.ToCurrency(RemoveSpaces:=True)
-            .Cells(3).Value = .Cells(2).Value.ToString.ToCurrency(RemoveSpaces:=True)
+            .Cells(2).Value = .Cells(2).Value.ToString.ToCurrency(AddSpace:=True)
+            .Cells(3).Value = .Cells(2).Value.ToString.ToCurrency(AddSpace:=True)
         End With
 
         Dgv_temp.Size = New Point(Dgv_temp.Size.Width, 31 * (Dgv_temp.Rows.Count + 1))
@@ -175,8 +175,8 @@
                 TotalInterest += i(2)
             Next
             .Cells(1).Value = TotalKitties
-            .Cells(2).Value = TotalAmount.ToCurrency(RemoveSpaces:=True)
-            .Cells(3).Value = TotalInterest.ToCurrency(RemoveSpaces:=True)
+            .Cells(2).Value = TotalAmount.ToCurrency(AddSpace:=True)
+            .Cells(3).Value = TotalInterest.ToCurrency(AddSpace:=True)
         End With
 
         Dgv_temp.Size = New Point(Dgv_temp.Size.Width, 31 * (Dgv_temp.Rows.Count + 1))

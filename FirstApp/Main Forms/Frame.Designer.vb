@@ -25,7 +25,7 @@ Partial Class Frame
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Frame))
         Me.PanelTitleBar = New System.Windows.Forms.Panel()
-        Me.IconButton2 = New FontAwesome.Sharp.IconButton()
+        Me.RoughButton = New FontAwesome.Sharp.IconButton()
         Me.VersionLB = New FontAwesome.Sharp.IconButton()
         Me.ServerContextMenuStrip = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.WhatsappWebVisibilityToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -68,7 +68,7 @@ Partial Class Frame
         'PanelTitleBar
         '
         Me.PanelTitleBar.BackColor = System.Drawing.Color.FromArgb(CType(CType(24, Byte), Integer), CType(CType(24, Byte), Integer), CType(CType(60, Byte), Integer))
-        Me.PanelTitleBar.Controls.Add(Me.IconButton2)
+        Me.PanelTitleBar.Controls.Add(Me.RoughButton)
         Me.PanelTitleBar.Controls.Add(Me.VersionLB)
         Me.PanelTitleBar.Controls.Add(Me.IconButton1)
         Me.PanelTitleBar.Controls.Add(Me.WindowsRestoreButton)
@@ -90,28 +90,27 @@ Partial Class Frame
         Me.PanelTitleBar.Size = New System.Drawing.Size(1924, 63)
         Me.PanelTitleBar.TabIndex = 138
         '
-        'IconButton2
+        'RoughButton
         '
-        Me.IconButton2.BackColor = System.Drawing.Color.Transparent
-        Me.IconButton2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(24, Byte), Integer), CType(CType(24, Byte), Integer), CType(CType(60, Byte), Integer))
-        Me.IconButton2.FlatAppearance.BorderSize = 0
-        Me.IconButton2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
-        Me.IconButton2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
-        Me.IconButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.IconButton2.Font = New System.Drawing.Font("Comic Sans MS", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.IconButton2.ForeColor = System.Drawing.Color.WhiteSmoke
-        Me.IconButton2.IconChar = FontAwesome.Sharp.IconChar.Wallet
-        Me.IconButton2.IconColor = System.Drawing.Color.WhiteSmoke
-        Me.IconButton2.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.IconButton2.IconSize = 60
-        Me.IconButton2.Location = New System.Drawing.Point(231, 3)
-        Me.IconButton2.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.IconButton2.Name = "IconButton2"
-        Me.IconButton2.Size = New System.Drawing.Size(100, 58)
-        Me.IconButton2.TabIndex = 269
-        Me.IconButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.IconButton2.UseVisualStyleBackColor = False
-        Me.IconButton2.Visible = False
+        Me.RoughButton.BackColor = System.Drawing.Color.Transparent
+        Me.RoughButton.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(24, Byte), Integer), CType(CType(24, Byte), Integer), CType(CType(60, Byte), Integer))
+        Me.RoughButton.FlatAppearance.BorderSize = 0
+        Me.RoughButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.RoughButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.RoughButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.RoughButton.Font = New System.Drawing.Font("Comic Sans MS", 15.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.RoughButton.ForeColor = System.Drawing.Color.WhiteSmoke
+        Me.RoughButton.IconChar = FontAwesome.Sharp.IconChar.Wallet
+        Me.RoughButton.IconColor = System.Drawing.Color.WhiteSmoke
+        Me.RoughButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.RoughButton.IconSize = 60
+        Me.RoughButton.Location = New System.Drawing.Point(231, 3)
+        Me.RoughButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.RoughButton.Name = "RoughButton"
+        Me.RoughButton.Size = New System.Drawing.Size(100, 58)
+        Me.RoughButton.TabIndex = 269
+        Me.RoughButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.RoughButton.UseVisualStyleBackColor = False
         '
         'VersionLB
         '
@@ -146,7 +145,7 @@ Partial Class Frame
         Me.ServerContextMenuStrip.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow
         Me.ServerContextMenuStrip.Name = "ServerContextMenuStrip"
         Me.ServerContextMenuStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional
-        Me.ServerContextMenuStrip.Size = New System.Drawing.Size(312, 214)
+        Me.ServerContextMenuStrip.Size = New System.Drawing.Size(312, 247)
         '
         'WhatsappWebVisibilityToolStripMenuItem
         '
@@ -596,6 +595,6 @@ Partial Class Frame
     Friend WithEvents IconButton1 As FontAwesome.Sharp.IconButton
     Friend WithEvents VersionLB As FontAwesome.Sharp.IconButton
     Friend WithEvents ProgressBar1 As ProgressBar
-    Friend WithEvents IconButton2 As FontAwesome.Sharp.IconButton
+    Friend WithEvents RoughButton As FontAwesome.Sharp.IconButton
     Friend WithEvents ImageDownloadToolStripMenuItem As ToolStripMenuItem
 End Class

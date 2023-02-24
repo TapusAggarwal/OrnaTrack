@@ -555,7 +555,7 @@ Partial Class MessageSender
         Me.EditBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.EditBT.Font = New System.Drawing.Font("Century Gothic", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.EditBT.ForeColor = System.Drawing.Color.Linen
-        Me.EditBT.IconChar = FontAwesome.Sharp.IconChar.Pen
+        Me.EditBT.IconChar = FontAwesome.Sharp.IconChar.PencilAlt
         Me.EditBT.IconColor = System.Drawing.Color.White
         Me.EditBT.IconFont = FontAwesome.Sharp.IconFont.[Auto]
         Me.EditBT.IconSize = 36

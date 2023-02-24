@@ -22,118 +22,103 @@ Partial Class AddItemPage
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.TotalInstalmentsLabel = New System.Windows.Forms.Label()
+        Me.components = New System.ComponentModel.Container()
+        Me.ItemNameLB = New System.Windows.Forms.Label()
         Me.ItemNameTB = New System.Windows.Forms.TextBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
+        Me.NameLB = New System.Windows.Forms.Label()
         Me.AttrNameTB = New System.Windows.Forms.TextBox()
-        Me.Label3 = New System.Windows.Forms.Label()
+        Me.TypeLB = New System.Windows.Forms.Label()
         Me.OptionalChB = New System.Windows.Forms.CheckBox()
-        Me.Label4 = New System.Windows.Forms.Label()
+        Me.DefValLB = New System.Windows.Forms.Label()
         Me.DefaultValueTB = New System.Windows.Forms.TextBox()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.NotNowToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UnKnownToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ClearToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AttrTypeCB = New System.Windows.Forms.ComboBox()
         Me.ConstantChB = New System.Windows.Forms.CheckBox()
         Me.CurrencyChB = New System.Windows.Forms.CheckBox()
         Me.TrueChB = New System.Windows.Forms.CheckBox()
         Me.FalseChB = New System.Windows.Forms.CheckBox()
-        Me.ListValues = New System.Windows.Forms.ComboBox()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.FormulaTB = New ProBaseAdvancedTextBox.ProBaseAdvancedTextBox.RichTextBoxPrintCtrl()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
-        Me.UseBT = New FontAwesome.Sharp.IconButton()
-        Me.AddParametersBT = New FontAwesome.Sharp.IconButton()
-        Me.IconButton7 = New FontAwesome.Sharp.IconButton()
+        Me.ListValuesCB = New System.Windows.Forms.ComboBox()
         Me.AddAttributeButton = New FontAwesome.Sharp.IconButton()
         Me.EditListBT = New FontAwesome.Sharp.IconButton()
-        Me.DivideBT = New FontAwesome.Sharp.IconButton()
-        Me.MultiplyBT = New FontAwesome.Sharp.IconButton()
-        Me.PlusBT = New FontAwesome.Sharp.IconButton()
-        Me.MinusBT = New FontAwesome.Sharp.IconButton()
-        Me.RightBracketBT = New FontAwesome.Sharp.IconButton()
-        Me.LeftBracketBT = New FontAwesome.Sharp.IconButton()
         Me.AttrCategoryCB = New System.Windows.Forms.ComboBox()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.IconButton1 = New FontAwesome.Sharp.IconButton()
-        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.CtgLB = New System.Windows.Forms.Label()
+        Me.SaveBT = New FontAwesome.Sharp.IconButton()
+        Me.FillDockPNL = New System.Windows.Forms.Panel()
         Me.SaleFP = New FirstApp.UserControl1()
         Me.ProductFP = New FirstApp.UserControl1()
         Me.PurchaseFP = New FirstApp.UserControl1()
-        Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.Panel1.SuspendLayout()
-        Me.Panel2.SuspendLayout()
+        Me.TopDockPNL = New System.Windows.Forms.Panel()
+        Me.AbrvLB = New System.Windows.Forms.Label()
+        Me.AbbreviationTB = New System.Windows.Forms.TextBox()
+        Me.FormulaBT = New FontAwesome.Sharp.IconButton()
+        Me.DeleteBT = New FontAwesome.Sharp.IconButton()
+        Me.ClearBT = New FontAwesome.Sharp.IconButton()
+        Me.ContextMenuStrip1.SuspendLayout()
+        Me.FillDockPNL.SuspendLayout()
+        Me.TopDockPNL.SuspendLayout()
         Me.SuspendLayout()
         '
-        'TotalInstalmentsLabel
+        'ItemNameLB
         '
-        Me.TotalInstalmentsLabel.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.TotalInstalmentsLabel.AutoSize = True
-        Me.TotalInstalmentsLabel.Font = New System.Drawing.Font("Century Schoolbook", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TotalInstalmentsLabel.ForeColor = System.Drawing.Color.Peru
-        Me.TotalInstalmentsLabel.Location = New System.Drawing.Point(957, 596)
-        Me.TotalInstalmentsLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.TotalInstalmentsLabel.Name = "TotalInstalmentsLabel"
-        Me.TotalInstalmentsLabel.Size = New System.Drawing.Size(158, 30)
-        Me.TotalInstalmentsLabel.TabIndex = 249
-        Me.TotalInstalmentsLabel.Text = "Item-Name:"
+        Me.ItemNameLB.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.ItemNameLB.AutoSize = True
+        Me.ItemNameLB.Font = New System.Drawing.Font("Century Schoolbook", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ItemNameLB.ForeColor = System.Drawing.Color.Peru
+        Me.ItemNameLB.Location = New System.Drawing.Point(49, 603)
+        Me.ItemNameLB.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.ItemNameLB.Name = "ItemNameLB"
+        Me.ItemNameLB.Size = New System.Drawing.Size(158, 30)
+        Me.ItemNameLB.TabIndex = 249
+        Me.ItemNameLB.Text = "Item-Name:"
         '
         'ItemNameTB
         '
         Me.ItemNameTB.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.ItemNameTB.Font = New System.Drawing.Font("Century", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ItemNameTB.Location = New System.Drawing.Point(1131, 590)
+        Me.ItemNameTB.Location = New System.Drawing.Point(223, 597)
         Me.ItemNameTB.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.ItemNameTB.Name = "ItemNameTB"
         Me.ItemNameTB.Size = New System.Drawing.Size(293, 36)
         Me.ItemNameTB.TabIndex = 248
         '
-        'Label1
+        'NameLB
         '
-        Me.Label1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Century Schoolbook", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.ForeColor = System.Drawing.Color.Peru
-        Me.Label1.Location = New System.Drawing.Point(881, 585)
-        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(41, 30)
-        Me.Label1.TabIndex = 250
-        Me.Label1.Text = "#1"
-        '
-        'Label2
-        '
-        Me.Label2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Century Schoolbook", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.ForeColor = System.Drawing.Color.Peru
-        Me.Label2.Location = New System.Drawing.Point(127, 639)
-        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(157, 30)
-        Me.Label2.TabIndex = 252
-        Me.Label2.Text = "Attr.-Name:"
+        Me.NameLB.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.NameLB.AutoSize = True
+        Me.NameLB.Font = New System.Drawing.Font("Century Schoolbook", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.NameLB.ForeColor = System.Drawing.Color.Peru
+        Me.NameLB.Location = New System.Drawing.Point(1118, 594)
+        Me.NameLB.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.NameLB.Name = "NameLB"
+        Me.NameLB.Size = New System.Drawing.Size(157, 30)
+        Me.NameLB.TabIndex = 252
+        Me.NameLB.Text = "Attr.-Name:"
         '
         'AttrNameTB
         '
         Me.AttrNameTB.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.AttrNameTB.Font = New System.Drawing.Font("Century", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.AttrNameTB.Location = New System.Drawing.Point(311, 637)
+        Me.AttrNameTB.Location = New System.Drawing.Point(1312, 592)
         Me.AttrNameTB.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.AttrNameTB.Name = "AttrNameTB"
         Me.AttrNameTB.Size = New System.Drawing.Size(293, 36)
         Me.AttrNameTB.TabIndex = 251
         '
-        'Label3
+        'TypeLB
         '
-        Me.Label3.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Century Schoolbook", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.ForeColor = System.Drawing.Color.Peru
-        Me.Label3.Location = New System.Drawing.Point(137, 688)
-        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(147, 30)
-        Me.Label3.TabIndex = 254
-        Me.Label3.Text = "Attr.-Type:"
+        Me.TypeLB.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.TypeLB.AutoSize = True
+        Me.TypeLB.Font = New System.Drawing.Font("Century Schoolbook", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TypeLB.ForeColor = System.Drawing.Color.Peru
+        Me.TypeLB.Location = New System.Drawing.Point(569, 657)
+        Me.TypeLB.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.TypeLB.Name = "TypeLB"
+        Me.TypeLB.Size = New System.Drawing.Size(147, 30)
+        Me.TypeLB.TabIndex = 254
+        Me.TypeLB.Text = "Attr.-Type:"
         '
         'OptionalChB
         '
@@ -142,37 +127,63 @@ Partial Class AddItemPage
         Me.OptionalChB.BackColor = System.Drawing.Color.Transparent
         Me.OptionalChB.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.OptionalChB.ForeColor = System.Drawing.SystemColors.ActiveCaption
-        Me.OptionalChB.Location = New System.Drawing.Point(471, 783)
+        Me.OptionalChB.Location = New System.Drawing.Point(1309, 715)
         Me.OptionalChB.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.OptionalChB.Name = "OptionalChB"
-        Me.OptionalChB.Size = New System.Drawing.Size(143, 34)
+        Me.OptionalChB.Size = New System.Drawing.Size(159, 34)
         Me.OptionalChB.TabIndex = 279
         Me.OptionalChB.TabStop = False
-        Me.OptionalChB.Text = "Optional"
+        Me.OptionalChB.Text = "IsOptional"
         Me.OptionalChB.UseVisualStyleBackColor = False
         '
-        'Label4
+        'DefValLB
         '
-        Me.Label4.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Century Schoolbook", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.ForeColor = System.Drawing.Color.Peru
-        Me.Label4.Location = New System.Drawing.Point(94, 739)
-        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(190, 30)
-        Me.Label4.TabIndex = 282
-        Me.Label4.Text = "Default Value:"
+        Me.DefValLB.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.DefValLB.AutoSize = True
+        Me.DefValLB.Font = New System.Drawing.Font("Century Schoolbook", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DefValLB.ForeColor = System.Drawing.Color.Peru
+        Me.DefValLB.Location = New System.Drawing.Point(1118, 657)
+        Me.DefValLB.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.DefValLB.Name = "DefValLB"
+        Me.DefValLB.Size = New System.Drawing.Size(190, 30)
+        Me.DefValLB.TabIndex = 282
+        Me.DefValLB.Text = "Default Value:"
         '
         'DefaultValueTB
         '
         Me.DefaultValueTB.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.DefaultValueTB.ContextMenuStrip = Me.ContextMenuStrip1
         Me.DefaultValueTB.Font = New System.Drawing.Font("Century", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DefaultValueTB.Location = New System.Drawing.Point(311, 736)
+        Me.DefaultValueTB.Location = New System.Drawing.Point(1312, 655)
         Me.DefaultValueTB.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.DefaultValueTB.Name = "DefaultValueTB"
         Me.DefaultValueTB.Size = New System.Drawing.Size(293, 36)
         Me.DefaultValueTB.TabIndex = 281
+        '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.ImageScalingSize = New System.Drawing.Size(24, 24)
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NotNowToolStripMenuItem, Me.UnKnownToolStripMenuItem, Me.ClearToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(161, 100)
+        '
+        'NotNowToolStripMenuItem
+        '
+        Me.NotNowToolStripMenuItem.Name = "NotNowToolStripMenuItem"
+        Me.NotNowToolStripMenuItem.Size = New System.Drawing.Size(160, 32)
+        Me.NotNowToolStripMenuItem.Text = "NotNow"
+        '
+        'UnKnownToolStripMenuItem
+        '
+        Me.UnKnownToolStripMenuItem.Name = "UnKnownToolStripMenuItem"
+        Me.UnKnownToolStripMenuItem.Size = New System.Drawing.Size(160, 32)
+        Me.UnKnownToolStripMenuItem.Text = "UnKnown"
+        '
+        'ClearToolStripMenuItem
+        '
+        Me.ClearToolStripMenuItem.Name = "ClearToolStripMenuItem"
+        Me.ClearToolStripMenuItem.Size = New System.Drawing.Size(160, 32)
+        Me.ClearToolStripMenuItem.Text = "Clear"
         '
         'AttrTypeCB
         '
@@ -183,8 +194,7 @@ Partial Class AddItemPage
         Me.AttrTypeCB.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.AttrTypeCB.FormattingEnabled = True
         Me.AttrTypeCB.IntegralHeight = False
-        Me.AttrTypeCB.Items.AddRange(New Object() {"Str", "T/F", "List", "Int"})
-        Me.AttrTypeCB.Location = New System.Drawing.Point(311, 688)
+        Me.AttrTypeCB.Location = New System.Drawing.Point(732, 657)
         Me.AttrTypeCB.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.AttrTypeCB.MaxDropDownItems = 20
         Me.AttrTypeCB.Name = "AttrTypeCB"
@@ -199,13 +209,13 @@ Partial Class AddItemPage
         Me.ConstantChB.BackColor = System.Drawing.Color.Transparent
         Me.ConstantChB.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ConstantChB.ForeColor = System.Drawing.SystemColors.ActiveCaption
-        Me.ConstantChB.Location = New System.Drawing.Point(308, 783)
+        Me.ConstantChB.Location = New System.Drawing.Point(1490, 715)
         Me.ConstantChB.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.ConstantChB.Name = "ConstantChB"
-        Me.ConstantChB.Size = New System.Drawing.Size(147, 34)
+        Me.ConstantChB.Size = New System.Drawing.Size(163, 34)
         Me.ConstantChB.TabIndex = 284
         Me.ConstantChB.TabStop = False
-        Me.ConstantChB.Text = "Constant"
+        Me.ConstantChB.Text = "IsConstant"
         Me.ConstantChB.UseVisualStyleBackColor = False
         '
         'CurrencyChB
@@ -215,13 +225,13 @@ Partial Class AddItemPage
         Me.CurrencyChB.BackColor = System.Drawing.Color.Transparent
         Me.CurrencyChB.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CurrencyChB.ForeColor = System.Drawing.SystemColors.ActiveCaption
-        Me.CurrencyChB.Location = New System.Drawing.Point(307, 831)
+        Me.CurrencyChB.Location = New System.Drawing.Point(1123, 715)
         Me.CurrencyChB.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.CurrencyChB.Name = "CurrencyChB"
-        Me.CurrencyChB.Size = New System.Drawing.Size(148, 34)
+        Me.CurrencyChB.Size = New System.Drawing.Size(164, 34)
         Me.CurrencyChB.TabIndex = 285
         Me.CurrencyChB.TabStop = False
-        Me.CurrencyChB.Text = "Currency"
+        Me.CurrencyChB.Text = "IsCurrency"
         Me.CurrencyChB.UseVisualStyleBackColor = False
         '
         'TrueChB
@@ -231,7 +241,7 @@ Partial Class AddItemPage
         Me.TrueChB.BackColor = System.Drawing.Color.Transparent
         Me.TrueChB.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TrueChB.ForeColor = System.Drawing.SystemColors.ActiveCaption
-        Me.TrueChB.Location = New System.Drawing.Point(334, 736)
+        Me.TrueChB.Location = New System.Drawing.Point(1335, 655)
         Me.TrueChB.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.TrueChB.Name = "TrueChB"
         Me.TrueChB.Size = New System.Drawing.Size(88, 34)
@@ -248,7 +258,7 @@ Partial Class AddItemPage
         Me.FalseChB.BackColor = System.Drawing.Color.Transparent
         Me.FalseChB.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FalseChB.ForeColor = System.Drawing.SystemColors.ActiveCaption
-        Me.FalseChB.Location = New System.Drawing.Point(430, 736)
+        Me.FalseChB.Location = New System.Drawing.Point(1431, 655)
         Me.FalseChB.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.FalseChB.Name = "FalseChB"
         Me.FalseChB.Size = New System.Drawing.Size(99, 34)
@@ -258,131 +268,23 @@ Partial Class AddItemPage
         Me.FalseChB.UseVisualStyleBackColor = False
         Me.FalseChB.Visible = False
         '
-        'ListValues
+        'ListValuesCB
         '
-        Me.ListValues.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.ListValues.DropDownHeight = 200
-        Me.ListValues.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ListValues.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ListValues.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ListValues.FormattingEnabled = True
-        Me.ListValues.IntegralHeight = False
-        Me.ListValues.Location = New System.Drawing.Point(311, 738)
-        Me.ListValues.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.ListValues.MaxDropDownItems = 20
-        Me.ListValues.Name = "ListValues"
-        Me.ListValues.Size = New System.Drawing.Size(293, 34)
-        Me.ListValues.TabIndex = 290
-        Me.ListValues.Tag = ""
-        Me.ListValues.Visible = False
-        '
-        'Label5
-        '
-        Me.Label5.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Century Schoolbook", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.ForeColor = System.Drawing.Color.Peru
-        Me.Label5.Location = New System.Drawing.Point(1432, 590)
-        Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(27, 30)
-        Me.Label5.TabIndex = 293
-        Me.Label5.Text = "0"
-        '
-        'FormulaTB
-        '
-        Me.FormulaTB.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.FormulaTB.AutoWordSelection = True
-        Me.FormulaTB.BackColor = System.Drawing.Color.Lavender
-        Me.FormulaTB.Font = New System.Drawing.Font("Century Schoolbook", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.FormulaTB.Location = New System.Drawing.Point(908, 737)
-        Me.FormulaTB.Name = "FormulaTB"
-        Me.FormulaTB.Size = New System.Drawing.Size(504, 84)
-        Me.FormulaTB.TabIndex = 296
-        Me.FormulaTB.Text = ""
-        Me.FormulaTB.Visible = False
-        '
-        'CheckBox1
-        '
-        Me.CheckBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Location = New System.Drawing.Point(656, 743)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(22, 21)
-        Me.CheckBox1.TabIndex = 303
-        Me.CheckBox1.UseVisualStyleBackColor = True
-        Me.CheckBox1.Visible = False
-        '
-        'UseBT
-        '
-        Me.UseBT.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.UseBT.AutoSize = True
-        Me.UseBT.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.UseBT.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(70, Byte), Integer))
-        Me.UseBT.FlatAppearance.BorderSize = 0
-        Me.UseBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.UseBT.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.UseBT.ForeColor = System.Drawing.Color.MediumPurple
-        Me.UseBT.IconChar = FontAwesome.Sharp.IconChar.SignInAlt
-        Me.UseBT.IconColor = System.Drawing.Color.White
-        Me.UseBT.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.UseBT.IconSize = 45
-        Me.UseBT.Location = New System.Drawing.Point(1430, 770)
-        Me.UseBT.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.UseBT.Name = "UseBT"
-        Me.UseBT.Size = New System.Drawing.Size(107, 51)
-        Me.UseBT.TabIndex = 302
-        Me.UseBT.Text = "Use"
-        Me.UseBT.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.UseBT.UseVisualStyleBackColor = False
-        Me.UseBT.Visible = False
-        '
-        'AddParametersBT
-        '
-        Me.AddParametersBT.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.AddParametersBT.AutoSize = True
-        Me.AddParametersBT.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.AddParametersBT.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(70, Byte), Integer))
-        Me.AddParametersBT.FlatAppearance.BorderSize = 0
-        Me.AddParametersBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.AddParametersBT.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.AddParametersBT.ForeColor = System.Drawing.Color.MediumPurple
-        Me.AddParametersBT.IconChar = FontAwesome.Sharp.IconChar.Plus
-        Me.AddParametersBT.IconColor = System.Drawing.Color.White
-        Me.AddParametersBT.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.AddParametersBT.IconSize = 45
-        Me.AddParametersBT.Location = New System.Drawing.Point(1430, 831)
-        Me.AddParametersBT.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.AddParametersBT.Name = "AddParametersBT"
-        Me.AddParametersBT.Size = New System.Drawing.Size(187, 51)
-        Me.AddParametersBT.TabIndex = 295
-        Me.AddParametersBT.Text = "Parameter"
-        Me.AddParametersBT.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.AddParametersBT.UseVisualStyleBackColor = False
-        Me.AddParametersBT.Visible = False
-        '
-        'IconButton7
-        '
-        Me.IconButton7.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.IconButton7.AutoSize = True
-        Me.IconButton7.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.IconButton7.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(70, Byte), Integer))
-        Me.IconButton7.FlatAppearance.BorderSize = 0
-        Me.IconButton7.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.IconButton7.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.IconButton7.ForeColor = System.Drawing.Color.MediumPurple
-        Me.IconButton7.IconChar = FontAwesome.Sharp.IconChar.SignInAlt
-        Me.IconButton7.IconColor = System.Drawing.Color.White
-        Me.IconButton7.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.IconButton7.IconSize = 45
-        Me.IconButton7.Location = New System.Drawing.Point(700, 829)
-        Me.IconButton7.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.IconButton7.Name = "IconButton7"
-        Me.IconButton7.Size = New System.Drawing.Size(124, 51)
-        Me.IconButton7.TabIndex = 287
-        Me.IconButton7.Text = "Save"
-        Me.IconButton7.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.IconButton7.UseVisualStyleBackColor = False
+        Me.ListValuesCB.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.ListValuesCB.DropDownHeight = 200
+        Me.ListValuesCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ListValuesCB.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ListValuesCB.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ListValuesCB.FormattingEnabled = True
+        Me.ListValuesCB.IntegralHeight = False
+        Me.ListValuesCB.Location = New System.Drawing.Point(1312, 657)
+        Me.ListValuesCB.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.ListValuesCB.MaxDropDownItems = 20
+        Me.ListValuesCB.Name = "ListValuesCB"
+        Me.ListValuesCB.Size = New System.Drawing.Size(293, 34)
+        Me.ListValuesCB.TabIndex = 290
+        Me.ListValuesCB.Tag = ""
+        Me.ListValuesCB.Visible = False
         '
         'AddAttributeButton
         '
@@ -398,7 +300,7 @@ Partial Class AddItemPage
         Me.AddAttributeButton.IconColor = System.Drawing.Color.White
         Me.AddAttributeButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
         Me.AddAttributeButton.IconSize = 45
-        Me.AddAttributeButton.Location = New System.Drawing.Point(457, 822)
+        Me.AddAttributeButton.Location = New System.Drawing.Point(1384, 809)
         Me.AddAttributeButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.AddAttributeButton.Name = "AddAttributeButton"
         Me.AddAttributeButton.Size = New System.Drawing.Size(221, 51)
@@ -423,7 +325,7 @@ Partial Class AddItemPage
         Me.EditListBT.IconColor = System.Drawing.Color.Goldenrod
         Me.EditListBT.IconFont = FontAwesome.Sharp.IconFont.[Auto]
         Me.EditListBT.IconSize = 35
-        Me.EditListBT.Location = New System.Drawing.Point(608, 736)
+        Me.EditListBT.Location = New System.Drawing.Point(1613, 655)
         Me.EditListBT.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.EditListBT.Name = "EditListBT"
         Me.EditListBT.Size = New System.Drawing.Size(41, 41)
@@ -431,150 +333,6 @@ Partial Class AddItemPage
         Me.EditListBT.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
         Me.EditListBT.UseVisualStyleBackColor = False
         Me.EditListBT.Visible = False
-        '
-        'DivideBT
-        '
-        Me.DivideBT.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.DivideBT.AutoSize = True
-        Me.DivideBT.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.DivideBT.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(70, Byte), Integer))
-        Me.DivideBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.DivideBT.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DivideBT.ForeColor = System.Drawing.Color.MediumPurple
-        Me.DivideBT.IconChar = FontAwesome.Sharp.IconChar.Divide
-        Me.DivideBT.IconColor = System.Drawing.Color.White
-        Me.DivideBT.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.DivideBT.IconSize = 45
-        Me.DivideBT.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.DivideBT.Location = New System.Drawing.Point(1088, 831)
-        Me.DivideBT.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.DivideBT.Name = "DivideBT"
-        Me.DivideBT.Size = New System.Drawing.Size(53, 53)
-        Me.DivideBT.TabIndex = 307
-        Me.DivideBT.TextAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.DivideBT.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.DivideBT.UseVisualStyleBackColor = False
-        Me.DivideBT.Visible = False
-        '
-        'MultiplyBT
-        '
-        Me.MultiplyBT.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.MultiplyBT.AutoSize = True
-        Me.MultiplyBT.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.MultiplyBT.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(70, Byte), Integer))
-        Me.MultiplyBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.MultiplyBT.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.MultiplyBT.ForeColor = System.Drawing.Color.MediumPurple
-        Me.MultiplyBT.IconChar = FontAwesome.Sharp.IconChar.Times
-        Me.MultiplyBT.IconColor = System.Drawing.Color.White
-        Me.MultiplyBT.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.MultiplyBT.IconSize = 45
-        Me.MultiplyBT.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.MultiplyBT.Location = New System.Drawing.Point(1177, 829)
-        Me.MultiplyBT.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.MultiplyBT.Name = "MultiplyBT"
-        Me.MultiplyBT.Size = New System.Drawing.Size(53, 53)
-        Me.MultiplyBT.TabIndex = 308
-        Me.MultiplyBT.TextAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.MultiplyBT.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.MultiplyBT.UseVisualStyleBackColor = False
-        Me.MultiplyBT.Visible = False
-        '
-        'PlusBT
-        '
-        Me.PlusBT.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.PlusBT.AutoSize = True
-        Me.PlusBT.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.PlusBT.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(70, Byte), Integer))
-        Me.PlusBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.PlusBT.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.PlusBT.ForeColor = System.Drawing.Color.MediumPurple
-        Me.PlusBT.IconChar = FontAwesome.Sharp.IconChar.Plus
-        Me.PlusBT.IconColor = System.Drawing.Color.White
-        Me.PlusBT.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.PlusBT.IconSize = 45
-        Me.PlusBT.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.PlusBT.Location = New System.Drawing.Point(1266, 829)
-        Me.PlusBT.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.PlusBT.Name = "PlusBT"
-        Me.PlusBT.Size = New System.Drawing.Size(53, 53)
-        Me.PlusBT.TabIndex = 309
-        Me.PlusBT.TextAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.PlusBT.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.PlusBT.UseVisualStyleBackColor = False
-        Me.PlusBT.Visible = False
-        '
-        'MinusBT
-        '
-        Me.MinusBT.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.MinusBT.AutoSize = True
-        Me.MinusBT.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.MinusBT.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(70, Byte), Integer))
-        Me.MinusBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.MinusBT.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.MinusBT.ForeColor = System.Drawing.Color.MediumPurple
-        Me.MinusBT.IconChar = FontAwesome.Sharp.IconChar.Minus
-        Me.MinusBT.IconColor = System.Drawing.Color.White
-        Me.MinusBT.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.MinusBT.IconSize = 45
-        Me.MinusBT.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.MinusBT.Location = New System.Drawing.Point(1355, 829)
-        Me.MinusBT.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.MinusBT.Name = "MinusBT"
-        Me.MinusBT.Size = New System.Drawing.Size(53, 53)
-        Me.MinusBT.TabIndex = 310
-        Me.MinusBT.TextAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.MinusBT.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.MinusBT.UseVisualStyleBackColor = False
-        Me.MinusBT.Visible = False
-        '
-        'RightBracketBT
-        '
-        Me.RightBracketBT.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.RightBracketBT.AutoSize = True
-        Me.RightBracketBT.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.RightBracketBT.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(70, Byte), Integer))
-        Me.RightBracketBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.RightBracketBT.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RightBracketBT.ForeColor = System.Drawing.Color.MediumPurple
-        Me.RightBracketBT.IconChar = FontAwesome.Sharp.IconChar.AngleRight
-        Me.RightBracketBT.IconColor = System.Drawing.Color.White
-        Me.RightBracketBT.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.RightBracketBT.IconSize = 45
-        Me.RightBracketBT.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.RightBracketBT.Location = New System.Drawing.Point(999, 831)
-        Me.RightBracketBT.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.RightBracketBT.Name = "RightBracketBT"
-        Me.RightBracketBT.Size = New System.Drawing.Size(53, 53)
-        Me.RightBracketBT.TabIndex = 313
-        Me.RightBracketBT.TextAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.RightBracketBT.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.RightBracketBT.UseVisualStyleBackColor = False
-        Me.RightBracketBT.Visible = False
-        '
-        'LeftBracketBT
-        '
-        Me.LeftBracketBT.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.LeftBracketBT.AutoSize = True
-        Me.LeftBracketBT.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.LeftBracketBT.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(70, Byte), Integer))
-        Me.LeftBracketBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.LeftBracketBT.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LeftBracketBT.ForeColor = System.Drawing.Color.MediumPurple
-        Me.LeftBracketBT.IconChar = FontAwesome.Sharp.IconChar.AngleLeft
-        Me.LeftBracketBT.IconColor = System.Drawing.Color.White
-        Me.LeftBracketBT.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.LeftBracketBT.IconSize = 45
-        Me.LeftBracketBT.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.LeftBracketBT.Location = New System.Drawing.Point(910, 831)
-        Me.LeftBracketBT.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.LeftBracketBT.Name = "LeftBracketBT"
-        Me.LeftBracketBT.Size = New System.Drawing.Size(53, 53)
-        Me.LeftBracketBT.TabIndex = 312
-        Me.LeftBracketBT.TextAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.LeftBracketBT.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.LeftBracketBT.UseVisualStyleBackColor = False
-        Me.LeftBracketBT.Visible = False
         '
         'AttrCategoryCB
         '
@@ -586,7 +344,7 @@ Partial Class AddItemPage
         Me.AttrCategoryCB.FormattingEnabled = True
         Me.AttrCategoryCB.IntegralHeight = False
         Me.AttrCategoryCB.Items.AddRange(New Object() {"Purchase Attr.", "Product Attr.", "Sale Attribute"})
-        Me.AttrCategoryCB.Location = New System.Drawing.Point(311, 590)
+        Me.AttrCategoryCB.Location = New System.Drawing.Point(732, 594)
         Me.AttrCategoryCB.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.AttrCategoryCB.MaxDropDownItems = 20
         Me.AttrCategoryCB.Name = "AttrCategoryCB"
@@ -594,53 +352,53 @@ Partial Class AddItemPage
         Me.AttrCategoryCB.TabIndex = 315
         Me.AttrCategoryCB.Tag = ""
         '
-        'Label6
+        'CtgLB
         '
-        Me.Label6.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("Century Schoolbook", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.ForeColor = System.Drawing.Color.Peru
-        Me.Label6.Location = New System.Drawing.Point(148, 590)
-        Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(136, 30)
-        Me.Label6.TabIndex = 314
-        Me.Label6.Text = "Attr.-Ctg.:"
+        Me.CtgLB.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.CtgLB.AutoSize = True
+        Me.CtgLB.Font = New System.Drawing.Font("Century Schoolbook", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CtgLB.ForeColor = System.Drawing.Color.Peru
+        Me.CtgLB.Location = New System.Drawing.Point(569, 594)
+        Me.CtgLB.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.CtgLB.Name = "CtgLB"
+        Me.CtgLB.Size = New System.Drawing.Size(136, 30)
+        Me.CtgLB.TabIndex = 314
+        Me.CtgLB.Text = "Attr.-Ctg.:"
         '
-        'IconButton1
+        'SaveBT
         '
-        Me.IconButton1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.IconButton1.AutoSize = True
-        Me.IconButton1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.IconButton1.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(70, Byte), Integer))
-        Me.IconButton1.FlatAppearance.BorderSize = 0
-        Me.IconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.IconButton1.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.IconButton1.ForeColor = System.Drawing.Color.MediumPurple
-        Me.IconButton1.IconChar = FontAwesome.Sharp.IconChar.SignInAlt
-        Me.IconButton1.IconColor = System.Drawing.Color.White
-        Me.IconButton1.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.IconButton1.IconSize = 45
-        Me.IconButton1.Location = New System.Drawing.Point(908, 671)
-        Me.IconButton1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.IconButton1.Name = "IconButton1"
-        Me.IconButton1.Size = New System.Drawing.Size(124, 51)
-        Me.IconButton1.TabIndex = 316
-        Me.IconButton1.Text = "Save"
-        Me.IconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.IconButton1.UseVisualStyleBackColor = False
+        Me.SaveBT.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.SaveBT.AutoSize = True
+        Me.SaveBT.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.SaveBT.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(70, Byte), Integer))
+        Me.SaveBT.FlatAppearance.BorderSize = 0
+        Me.SaveBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.SaveBT.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SaveBT.ForeColor = System.Drawing.Color.MediumPurple
+        Me.SaveBT.IconChar = FontAwesome.Sharp.IconChar.SignInAlt
+        Me.SaveBT.IconColor = System.Drawing.Color.White
+        Me.SaveBT.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.SaveBT.IconSize = 45
+        Me.SaveBT.Location = New System.Drawing.Point(293, 661)
+        Me.SaveBT.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.SaveBT.Name = "SaveBT"
+        Me.SaveBT.Size = New System.Drawing.Size(124, 51)
+        Me.SaveBT.TabIndex = 316
+        Me.SaveBT.Text = "Save"
+        Me.SaveBT.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.SaveBT.UseVisualStyleBackColor = False
         '
-        'Panel1
+        'FillDockPNL
         '
-        Me.Panel1.AutoScroll = True
-        Me.Panel1.Controls.Add(Me.SaleFP)
-        Me.Panel1.Controls.Add(Me.ProductFP)
-        Me.Panel1.Controls.Add(Me.PurchaseFP)
-        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Panel1.Location = New System.Drawing.Point(0, 0)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1688, 572)
-        Me.Panel1.TabIndex = 317
+        Me.FillDockPNL.AutoScroll = True
+        Me.FillDockPNL.Controls.Add(Me.SaleFP)
+        Me.FillDockPNL.Controls.Add(Me.ProductFP)
+        Me.FillDockPNL.Controls.Add(Me.PurchaseFP)
+        Me.FillDockPNL.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.FillDockPNL.Location = New System.Drawing.Point(0, 0)
+        Me.FillDockPNL.Name = "FillDockPNL"
+        Me.FillDockPNL.Size = New System.Drawing.Size(1688, 572)
+        Me.FillDockPNL.TabIndex = 317
         '
         'SaleFP
         '
@@ -678,15 +436,108 @@ Partial Class AddItemPage
         Me.PurchaseFP.TabIndex = 304
         Me.PurchaseFP.Title = "Puchase Attr."
         '
-        'Panel2
+        'TopDockPNL
         '
-        Me.Panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel2.Controls.Add(Me.Panel1)
-        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel2.Location = New System.Drawing.Point(0, 0)
-        Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(1690, 574)
-        Me.Panel2.TabIndex = 318
+        Me.TopDockPNL.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TopDockPNL.Controls.Add(Me.FillDockPNL)
+        Me.TopDockPNL.Dock = System.Windows.Forms.DockStyle.Top
+        Me.TopDockPNL.Location = New System.Drawing.Point(0, 0)
+        Me.TopDockPNL.Name = "TopDockPNL"
+        Me.TopDockPNL.Size = New System.Drawing.Size(1690, 574)
+        Me.TopDockPNL.TabIndex = 318
+        '
+        'AbrvLB
+        '
+        Me.AbrvLB.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.AbrvLB.AutoSize = True
+        Me.AbrvLB.Font = New System.Drawing.Font("Century Schoolbook", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.AbrvLB.ForeColor = System.Drawing.Color.Peru
+        Me.AbrvLB.Location = New System.Drawing.Point(569, 721)
+        Me.AbrvLB.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.AbrvLB.Name = "AbrvLB"
+        Me.AbrvLB.Size = New System.Drawing.Size(153, 30)
+        Me.AbrvLB.TabIndex = 322
+        Me.AbrvLB.Text = "Attr.-Abrv.:"
+        Me.AbrvLB.Visible = False
+        '
+        'AbbreviationTB
+        '
+        Me.AbbreviationTB.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.AbbreviationTB.Font = New System.Drawing.Font("Century", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.AbbreviationTB.Location = New System.Drawing.Point(732, 715)
+        Me.AbbreviationTB.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.AbbreviationTB.Name = "AbbreviationTB"
+        Me.AbbreviationTB.Size = New System.Drawing.Size(293, 36)
+        Me.AbbreviationTB.TabIndex = 321
+        Me.AbbreviationTB.Visible = False
+        '
+        'FormulaBT
+        '
+        Me.FormulaBT.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.FormulaBT.AutoSize = True
+        Me.FormulaBT.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.FormulaBT.BackColor = System.Drawing.Color.Transparent
+        Me.FormulaBT.FlatAppearance.BorderSize = 0
+        Me.FormulaBT.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent
+        Me.FormulaBT.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent
+        Me.FormulaBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.FormulaBT.Font = New System.Drawing.Font("Century Gothic", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.FormulaBT.ForeColor = System.Drawing.Color.Transparent
+        Me.FormulaBT.IconChar = FontAwesome.Sharp.IconChar.Calculator
+        Me.FormulaBT.IconColor = System.Drawing.Color.Goldenrod
+        Me.FormulaBT.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.FormulaBT.IconSize = 35
+        Me.FormulaBT.Location = New System.Drawing.Point(1613, 655)
+        Me.FormulaBT.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.FormulaBT.Name = "FormulaBT"
+        Me.FormulaBT.Size = New System.Drawing.Size(41, 41)
+        Me.FormulaBT.TabIndex = 323
+        Me.FormulaBT.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.FormulaBT.UseVisualStyleBackColor = False
+        Me.FormulaBT.Visible = False
+        '
+        'DeleteBT
+        '
+        Me.DeleteBT.BackColor = System.Drawing.Color.Maroon
+        Me.DeleteBT.FlatAppearance.BorderSize = 0
+        Me.DeleteBT.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Lime
+        Me.DeleteBT.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.DeleteBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.DeleteBT.Font = New System.Drawing.Font("Century Gothic", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DeleteBT.ForeColor = System.Drawing.Color.Linen
+        Me.DeleteBT.IconChar = FontAwesome.Sharp.IconChar.TrashAlt
+        Me.DeleteBT.IconColor = System.Drawing.Color.White
+        Me.DeleteBT.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.DeleteBT.IconSize = 36
+        Me.DeleteBT.Location = New System.Drawing.Point(1335, 811)
+        Me.DeleteBT.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.DeleteBT.Name = "DeleteBT"
+        Me.DeleteBT.Size = New System.Drawing.Size(45, 44)
+        Me.DeleteBT.TabIndex = 10039
+        Me.DeleteBT.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.DeleteBT.UseVisualStyleBackColor = False
+        Me.DeleteBT.Visible = False
+        '
+        'ClearBT
+        '
+        Me.ClearBT.BackColor = System.Drawing.Color.Transparent
+        Me.ClearBT.FlatAppearance.BorderSize = 0
+        Me.ClearBT.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Lime
+        Me.ClearBT.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(74, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.ClearBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ClearBT.Font = New System.Drawing.Font("Century Gothic", 14.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ClearBT.ForeColor = System.Drawing.Color.Linen
+        Me.ClearBT.IconChar = FontAwesome.Sharp.IconChar.Eraser
+        Me.ClearBT.IconColor = System.Drawing.Color.White
+        Me.ClearBT.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.ClearBT.IconSize = 36
+        Me.ClearBT.Location = New System.Drawing.Point(1639, 580)
+        Me.ClearBT.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.ClearBT.Name = "ClearBT"
+        Me.ClearBT.Size = New System.Drawing.Size(45, 44)
+        Me.ClearBT.TabIndex = 10040
+        Me.ClearBT.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.ClearBT.UseVisualStyleBackColor = False
         '
         'AddItemPage
         '
@@ -694,83 +545,72 @@ Partial Class AddItemPage
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(60, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1690, 896)
-        Me.Controls.Add(Me.Panel2)
-        Me.Controls.Add(Me.IconButton1)
+        Me.Controls.Add(Me.ClearBT)
+        Me.Controls.Add(Me.DeleteBT)
+        Me.Controls.Add(Me.AbrvLB)
+        Me.Controls.Add(Me.AbbreviationTB)
+        Me.Controls.Add(Me.TopDockPNL)
+        Me.Controls.Add(Me.SaveBT)
         Me.Controls.Add(Me.AttrCategoryCB)
-        Me.Controls.Add(Me.Label6)
-        Me.Controls.Add(Me.RightBracketBT)
-        Me.Controls.Add(Me.LeftBracketBT)
-        Me.Controls.Add(Me.MinusBT)
-        Me.Controls.Add(Me.PlusBT)
-        Me.Controls.Add(Me.MultiplyBT)
-        Me.Controls.Add(Me.DivideBT)
-        Me.Controls.Add(Me.CheckBox1)
-        Me.Controls.Add(Me.UseBT)
-        Me.Controls.Add(Me.FormulaTB)
-        Me.Controls.Add(Me.AddParametersBT)
-        Me.Controls.Add(Me.Label5)
+        Me.Controls.Add(Me.CtgLB)
         Me.Controls.Add(Me.DefaultValueTB)
         Me.Controls.Add(Me.TrueChB)
         Me.Controls.Add(Me.FalseChB)
-        Me.Controls.Add(Me.IconButton7)
         Me.Controls.Add(Me.CurrencyChB)
         Me.Controls.Add(Me.ConstantChB)
         Me.Controls.Add(Me.AttrTypeCB)
-        Me.Controls.Add(Me.Label4)
+        Me.Controls.Add(Me.DefValLB)
         Me.Controls.Add(Me.OptionalChB)
         Me.Controls.Add(Me.AddAttributeButton)
-        Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.TypeLB)
+        Me.Controls.Add(Me.NameLB)
         Me.Controls.Add(Me.AttrNameTB)
-        Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.TotalInstalmentsLabel)
+        Me.Controls.Add(Me.ItemNameLB)
         Me.Controls.Add(Me.ItemNameTB)
-        Me.Controls.Add(Me.ListValues)
+        Me.Controls.Add(Me.ListValuesCB)
         Me.Controls.Add(Me.EditListBT)
+        Me.Controls.Add(Me.FormulaBT)
         Me.DoubleBuffered = True
         Me.Name = "AddItemPage"
-        Me.Panel1.ResumeLayout(False)
-        Me.Panel2.ResumeLayout(False)
+        Me.ContextMenuStrip1.ResumeLayout(False)
+        Me.FillDockPNL.ResumeLayout(False)
+        Me.TopDockPNL.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
 
-    Friend WithEvents TotalInstalmentsLabel As Label
+    Friend WithEvents ItemNameLB As Label
     Friend WithEvents ItemNameTB As TextBox
-    Friend WithEvents Label1 As Label
-    Friend WithEvents Label2 As Label
+    Friend WithEvents NameLB As Label
     Friend WithEvents AttrNameTB As TextBox
-    Friend WithEvents Label3 As Label
+    Friend WithEvents TypeLB As Label
     Friend WithEvents AddAttributeButton As FontAwesome.Sharp.IconButton
     Friend WithEvents OptionalChB As CheckBox
-    Friend WithEvents Label4 As Label
+    Friend WithEvents DefValLB As Label
     Friend WithEvents DefaultValueTB As TextBox
     Friend WithEvents AttrTypeCB As ComboBox
     Friend WithEvents ConstantChB As CheckBox
     Friend WithEvents EditListBT As FontAwesome.Sharp.IconButton
     Friend WithEvents CurrencyChB As CheckBox
-    Friend WithEvents IconButton7 As FontAwesome.Sharp.IconButton
     Friend WithEvents TrueChB As CheckBox
     Friend WithEvents FalseChB As CheckBox
-    Friend WithEvents ListValues As ComboBox
-    Friend WithEvents Label5 As Label
-    Friend WithEvents AddParametersBT As FontAwesome.Sharp.IconButton
-    Friend WithEvents FormulaTB As ProBaseAdvancedTextBox.ProBaseAdvancedTextBox.RichTextBoxPrintCtrl
-    Friend WithEvents UseBT As FontAwesome.Sharp.IconButton
-    Friend WithEvents CheckBox1 As CheckBox
+    Friend WithEvents ListValuesCB As ComboBox
     Friend WithEvents PurchaseFP As UserControl1
     Friend WithEvents ProductFP As UserControl1
     Friend WithEvents SaleFP As UserControl1
-    Friend WithEvents DivideBT As FontAwesome.Sharp.IconButton
-    Friend WithEvents MultiplyBT As FontAwesome.Sharp.IconButton
-    Friend WithEvents PlusBT As FontAwesome.Sharp.IconButton
-    Friend WithEvents MinusBT As FontAwesome.Sharp.IconButton
-    Friend WithEvents RightBracketBT As FontAwesome.Sharp.IconButton
-    Friend WithEvents LeftBracketBT As FontAwesome.Sharp.IconButton
     Friend WithEvents AttrCategoryCB As ComboBox
-    Friend WithEvents Label6 As Label
-    Friend WithEvents IconButton1 As FontAwesome.Sharp.IconButton
-    Friend WithEvents Panel1 As Panel
-    Friend WithEvents Panel2 As Panel
+    Friend WithEvents CtgLB As Label
+    Friend WithEvents SaveBT As FontAwesome.Sharp.IconButton
+    Friend WithEvents FillDockPNL As Panel
+    Friend WithEvents TopDockPNL As Panel
+    Friend WithEvents AbrvLB As Label
+    Friend WithEvents AbbreviationTB As TextBox
+    Friend WithEvents FormulaBT As FontAwesome.Sharp.IconButton
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents NotNowToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents UnKnownToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ClearToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents DeleteBT As FontAwesome.Sharp.IconButton
+    Friend WithEvents ClearBT As FontAwesome.Sharp.IconButton
 End Class

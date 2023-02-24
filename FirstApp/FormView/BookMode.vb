@@ -13,7 +13,7 @@ Public Class BookMode
             End While
 
             Dgv.Rows.Add()
-            Dgv.Rows(Dgv.Rows.Count - 1).Cells(0).Value = dr_Types("KittyType").ToString.ToCurrency(RemoveSpaces:=True)
+            Dgv.Rows(Dgv.Rows.Count - 1).Cells(0).Value = dr_Types("KittyType").ToString.ToCurrency(AddSpace:=True)
             Dgv.Rows(Dgv.Rows.Count - 1).Cells(1).Value = $"{New Kitty(BookList.First, True).KittyNo}-{New Kitty(BookList.Last, True).KittyNo}"
             Dgv.Rows(Dgv.Rows.Count - 1).Cells(2).Value = BookList.Count
             dr_UID.Close()

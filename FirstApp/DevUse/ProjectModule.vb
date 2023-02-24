@@ -290,22 +290,18 @@ Module ProjectModule
     End Function
 
     <Extension()>
-    Public Function ToCurrency(_number As Integer, Optional RemoveSpaces As Boolean = False) As String
-        If RemoveSpaces Then
-            Return Format(_number, "C0").Replace(" ", "")
-        Else
-            Return Format(_number, "C0")
+    Public Function ToCurrency(_number As Object, Optional AddSpace As Boolean = False) As String
+        Dim _numberCur As String = _number.ToString()
+        If _numberCur = "" Then
+            Return ""
         End If
-    End Function
-
-    <Extension()>
-    Public Function ToCurrency(_text As String, Optional RemoveSpaces As Boolean = False) As String
-        Try
-            Dim _temp As Integer = _text
-            Return _temp.ToCurrency(RemoveSpaces)
-        Catch ex As Exception
-            Return Nothing
-        End Try
+        _numberCur = _numberCur.Replace(" ", "")
+        _numberCur = _numberCur.Replace("₹", "")
+        If AddSpace Then
+            Return String.Format("₹{0:C}", _numberCur)
+        Else
+            Return String.Format("₹ {0:C}", _numberCur)
+        End If
     End Function
 
     '<Extension()>

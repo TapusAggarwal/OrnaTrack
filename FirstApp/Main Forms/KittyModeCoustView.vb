@@ -364,7 +364,7 @@ Public Class KittyModeCoustView
     Private Sub UpdateBookModeIndexes()
         If Not BookMode Then Exit Sub
         _KittyID_Book = KittyIdTB.Text
-        KittyInfoLabel.Text = $"{_KittyForm._currentKitty.KittyType.ToCurrency(RemoveSpaces:=True)} : #{_KittyForm._currentKitty.KittyNo}: {New Kitty(BookList.First, True).KittyNo}-{New Kitty(BookList.Last, True).KittyNo}"
+        KittyInfoLabel.Text = $"{_KittyForm._currentKitty.KittyType.ToCurrency(AddSpace:=True)} : #{_KittyForm._currentKitty.KittyNo}: {New Kitty(BookList.First, True).KittyNo}-{New Kitty(BookList.Last, True).KittyNo}"
         Dim Index As Integer = CurrentIndex()
         If Index = 0 Then PrevKittyButton.Enabled = False Else PrevKittyButton.Enabled = True
         If Index = BookList.Count - 1 Then NextKittyButton.Enabled = False Else NextKittyButton.Enabled = True

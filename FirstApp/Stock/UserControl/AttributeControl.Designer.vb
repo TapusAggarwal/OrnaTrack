@@ -73,8 +73,8 @@ Partial Class AttributeControl
         Me.UsedButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Red
         Me.UsedButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Snow
         Me.UsedButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.UsedButton.IconChar = FontAwesome.Sharp.IconChar.WindowClose
-        Me.UsedButton.IconColor = System.Drawing.Color.DarkRed
+        Me.UsedButton.IconChar = FontAwesome.Sharp.IconChar.HandPointer
+        Me.UsedButton.IconColor = System.Drawing.Color.Goldenrod
         Me.UsedButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
         Me.UsedButton.IconSize = 45
         Me.UsedButton.ImageAlign = System.Drawing.ContentAlignment.TopCenter

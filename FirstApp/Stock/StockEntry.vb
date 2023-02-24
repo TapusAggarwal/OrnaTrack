@@ -1,44 +1,31 @@
 ﻿Imports System.IO
 Imports System.Net
+Imports System.Runtime.InteropServices
+Imports Google.Protobuf.WellKnownTypes
 Imports Newtonsoft
+Imports Newtonsoft.Json
+Imports Newtonsoft.Json.Linq
 Imports WebSocket4Net
 
 Public Class StockEntry
 
     Public Property CurrentItem As Item
+    Public Property StockID As Integer = -1
 
     Private Sub StockEntry_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         If CurrentItem.ItemID < 0 Then Exit Sub
 
-        For Each _property In CurrentItem.MyProperties
-            Dim x As New PropertyControl With {
-                .CurrentProperty = _property,
-                .Name = _property.Name
+        For Each _attribute In CurrentItem.Attributes
+            Dim x As New AttributeStockControl With {
+                .CurrentAttribute = _attribute,
+                .Name = _attribute.Name
             }
 
-
-            'AddHandler x.ButtonCLick,
-            '    Sub()
-
-            '        Dim formula As String = _property.DefaultValue
-
-            '        For Each i As PropertyControl In FlowLayoutPanel1.Controls
-            '            If Not formula.Contains($"{{{i.CurrentProperty.Name}}}") Then Continue For
-            '            formula = formula.Replace($"{{{i.CurrentProperty.Name}}}", i.EnteredData)
-            '        Next
-
-            '        Dim equation As String = formula
-            '        Dim result As Integer = New DataTable().Compute(equation, Nothing)
-            '        x.DefaultValueTB.Text = result
-
-            '        _property.DependsUpon(CurrentItem)
-
-            '    End Sub
-            If _property.Attr_Ctg = Item.AttributeCategory.Purchase_Type Then
+            If _attribute.Attr_Ctg = Item.AttributeCategory.Purchase_Type Then
                 PurchaseFP.AddControl(x)
                 PurchaseFP.AutoReSize()
-            ElseIf _property.Attr_Ctg = Item.AttributeCategory.Product_Type Then
+            ElseIf _attribute.Attr_Ctg = Item.AttributeCategory.Product_Type Then
                 ProductFP.AddControl(x)
                 ProductFP.AutoReSize()
             Else
@@ -47,54 +34,124 @@ Public Class StockEntry
             End If
         Next
 
-        'For Each _property In CurrentItem.MyProperties
-        '    If _property.IsFormula Then
+        For Each _attribute In CurrentItem.Attributes
+            If Not _attribute.IsFormula Then Continue For
 
-        '        Dim DependentProperties As List(Of Item.Item_Property) = _property.DependsUpon(CurrentItem)
+            Dim DependentAttributes As List(Of Item.Item_Attribute) = _attribute.DependsUpon(CurrentItem)
 
-        '        For Each i In DependentProperties
-        '            Dim _control As PropertyControl = FlowLayoutPanel1.Controls.Find(i.Name, True)(0)
-        '            AddHandler _control.DefaultValueTB.TextChanged,
-        '                Sub()
-        '                    Dim formula As String = _property.DefaultValue
+            For Each i In DependentAttributes
+                Dim _control As AttributeStockControl = Panel1.Controls.Find(i.Name, True)(0)
+                AddHandler _control.DefaultValueTB.TextChanged,
+                    Sub(_sender As Object, _e As EventArgs)
+                        If CType(_sender, TextBox).Text = "" Then Exit Sub
+                        Dim formula As String = _attribute.DefaultValue
 
-        '                    For Each _prp In DependentProperties
-        '                        Dim _cntrl As PropertyControl = FlowLayoutPanel1.Controls.Find(_prp.Name, True)(0)
-        '                        formula = formula.Replace($"{{{_prp.Name}}}", _cntrl.EnteredData)
-        '                    Next
+                        For Each _attr In DependentAttributes
+                            Dim _cntrl As AttributeStockControl = Panel1.Controls.Find(_attr.Name, True)(0)
+                            Dim _enteredData As String = _cntrl.EnteredData
+                            If _enteredData = "" Then _enteredData = 0
+                            formula = formula.Replace($"{{{_attr.Name}}}", _enteredData)
+                        Next
 
-        '                    Try
-        '                        Dim equation As String = formula
-        '                        Dim result As String = CDbl(New DataTable().Compute(equation, Nothing))
+                        Try
+                            Dim equation As String = formula
+                            Dim result As String = CDbl(New DataTable().Compute(equation, Nothing))
 
-        '                        Dim _ruleControl As PropertyControl = FlowLayoutPanel1.Controls.Find(_property.Name, True)(0)
+                            Dim _ruleControl As AttributeStockControl = Panel1.Controls.Find(_attribute.Name, True)(0)
 
-        '                        _ruleControl.DefaultValueTB.Text = result
-        '                    Catch ex As Exception
-        '                        MessageBox.Show(ex.Message, "Error Occured", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        '                    End Try
-        '                End Sub
-        '        Next
+                            _ruleControl.DefaultValueTB.Text = result
+                        Catch ex As Exception
+                            MessageBox.Show(ex.Message, "Error Occured", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        End Try
+                    End Sub
+            Next
 
-        'End If
-        'Next
+        Next
+
+        ListenerStatus()
+
+        PurchaseFP.Visible = False
+        SaleFP.Visible = False
+
+        previousImage = ImageBox.Image
+
+        If StockID <> -1 Then
+            Dim dr As OleDb.OleDbDataReader = DataReader($"Select img_path,Item_Data From Stock_Data Where ID={StockID}")
+            Dim x As New Dictionary(Of Integer, String)
+            While dr.Read
+                x = JsonConvert.DeserializeObject(Of Dictionary(Of Integer, String))(dr(1))
+                If Not IsDBNull(dr(0)) Then
+                    ImageBox.ImageLocation = dr(0)
+                End If
+            End While
+
+            For Each id In x.Keys
+                Dim f As Item.Item_Attribute = CurrentItem.Attributes.Where(Function(g) g.ID = id)(0)
+                Dim _cntrl As AttributeStockControl = Panel1.Controls.Find(f.Name, True)(0)
+                Select Case f.DataType
+                    Case Item.DataType.Boolean_Type
+
+                        If x(id) = "True" Then
+                            _cntrl.TrueChB.Checked = True
+                        Else
+                            _cntrl.FalseChB.Checked = True
+                        End If
+
+
+                    Case Item.DataType.List_Type
+
+                        _cntrl.ListValues.SelectedIndex = _cntrl.ListValues.FindStringExact(x(id).Split("`")(0))
+
+
+                    Case Item.DataType.Integer_Type
+
+                        _cntrl.DefaultValueTB.Text = x(id)
+
+
+                    Case Item.DataType.String_Type
+
+                        _cntrl.DefaultValueTB.Text = x(id)
+
+
+                End Select
+            Next
+
+            SaveBT.Text = "Update"
+
+        End If
 
     End Sub
 
-    Private Sub SaveBT_Click(sender As Object, e As EventArgs) Handles SaveBT.Click
+    Dim fm As Frame = Nothing
 
-        'Dim Entry As New Dictionary(Of String, String)
+    Async Sub ListenerStatus()
+        For Each _form As Form In Application.OpenForms
+            If TypeOf _form IsNot Frame Then Continue For
+            fm = _form
+            Exit For
+        Next
 
-        'For Each cntrl As PropertyControl In FlowLayoutPanel1.Controls
-        '    If cntrl.EnteredData Is Nothing Then Exit Sub
-        '    Entry.Add(cntrl.CurrentProperty.Name, cntrl.EnteredData)
-        'Next
+        Dim req As WebRequest = WebRequest.Create($"http://{My.Settings.connection_url}?purpose=phno_listeners")
+        req.Method = "POST"
+        req.Timeout = 3000
+        Try
+            Using request As WebResponse = Await req.GetResponseAsync
+                Using reader As New StreamReader(request.GetResponseStream)
+                    Dim response As String = Await reader.ReadToEndAsync
 
-        'If Entry.Count > 0 Then
-        '    Dim entryString As String = Json.JsonConvert.SerializeObject(Entry)
-        '    SqlCommand($"Insert Into Stock_Data (ItemID,ItemEntry) VALUES ('{CurrentItem.ItemID}','{entryString}')")
-        'End If
+                    If response.Trim.Length = 0 Then Exit Sub
+                    ListeningStatusPanel.BackColor = Color.FromArgb(0, 64, 0)
 
+                    If WebSocket Is Nothing OrElse Not WebSocket.State = WebSocketState.Open Then
+                        Await fm?.StartServer(False)
+                    End If
+
+                    AddHandler fm.NewMessage_Socket, AddressOf UpdateImage
+
+                End Using
+            End Using
+        Catch ex As Exception
+        End Try
     End Sub
 
     Public Sub UpdateImage(e As MessageReceivedEventArgs)
@@ -112,76 +169,73 @@ Public Class StockEntry
         ' Convert the byte array to an image
         Using memoryStream As New MemoryStream(imageBytes)
             Dim image As Image = Image.FromStream(memoryStream)
-            ImageBox.Invoke(Sub()
-                                ImageBox.Image = New Bitmap(image)
-                            End Sub)
+            If ImageBox.IsHandleCreated Then
+                ImageBox.Invoke(Sub()
+                                    ImageBox.Image = New Bitmap(image)
+                                End Sub)
+            End If
             ' Do something with the image, such as display it
         End Using
 
     End Sub
 
-    'Private Sub ImageBox_Click(sender As Object, e As EventArgs) Handles ImageBox.Click
-    '    UpdateImage()
-    'End Sub
+    Private Sub Panel1_SizeChanged(sender As Object, e As EventArgs) Handles Panel1.SizeChanged
+        Size = New Point(SaleFP.Size.Width + ListeningStatusPanel.Size.Width + 40, Size.Height)
+    End Sub
+    Private previousImage As Image
 
-    Private Sub ExistingPhNosButton_Click(sender As Object, e As EventArgs) Handles ListenPhNoBT.Click
-        If ListenPhNoBT.IconChar = FontAwesome.Sharp.IconChar.EyeSlash Then
-            Dim fm As Frame = Nothing
-            For Each _form As Form In Application.OpenForms
-                If TypeOf _form IsNot Frame Then Continue For
-                fm = _form
-                Exit For
-            Next
+    Private Sub SaveBT_Click_1(sender As Object, e As EventArgs) Handles SaveBT.Click
 
-            'fm?.ConnectionLabel_Click()
-            ListenPhNoBT.IconChar = FontAwesome.Sharp.IconChar.Eye
-        Else
-            StartListeningForMessages(My.Settings.ListenerPhNo)
+        If MessageBox.Show("Are You Sure You Want To Save This Item.", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then
+            Exit Sub
         End If
-    End Sub
 
-    Private Sub ChangeListenerPhNoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ChangeListenerPhNoToolStripMenuItem.Click
-        Dim newPhno As String = InputBox($"Enter New PhNo With Country Code Which Will Be Used As A Listener. Add Comma To Add Multiple Numbers).{vbNewLine}Current PhNo: {My.Settings.ListenerPhNo}", "Listener PhNo")
-        If newPhno.Length < 12 Then Exit Sub
-        My.Settings.ListenerPhNo = newPhno
-        StartListeningForMessages(newPhno)
-    End Sub
 
-    Private Sub StartListeningForMessages(phno As String)
+        Dim x As New Dictionary(Of Integer, String)
 
-        Dim fm As Frame = Nothing
-        For Each _form As Form In Application.OpenForms
-            If TypeOf _form IsNot Frame Then Continue For
-            fm = _form
-            Exit For
+        For Each _attr In CurrentItem.Attributes
+            If _attr.IsFormula Then Continue For
+            Dim _cntrl As AttributeStockControl = Panel1.Controls.Find(_attr.Name, True)(0)
+            Dim _enteredData = _cntrl.EnteredData
+            If _attr.DataType = Item.DataType.List_Type Then
+                If _enteredData <> _attr.DefaultValue.Split("`")(0) Then
+                    x.Add(_attr.ID, _enteredData)
+                End If
+                Continue For
+
+            End If
+
+            If _enteredData <> _attr.DefaultValue Then
+                x.Add(_attr.ID, _enteredData)
+            End If
+
         Next
 
-        'fm?.ConnectionLabel_Click()
+        Dim _str = Json.JsonConvert.SerializeObject(x)
 
+        If StockID > 0 Then
+            SqlCommand($"UPDATE Stock_Data SET Ctg_ID='{CurrentItem.ItemID}',Item_Data='{_str}',entry_time='{DateTime.Now}' WHERE ID={StockID}")
+        Else
+            SqlCommand($"Insert INTO Stock_Data (Ctg_ID,Item_Data,entry_time) VALUES ('{CurrentItem.ItemID}','{_str}','{DateTime.Now}')")
 
-        AddHandler fm.State_Changed,
-            Sub(newState, oldState)
+            Dim dr As OleDb.OleDbDataReader = DataReader("Select MAX(ID) FROM Stock_Data")
+            Dim _int As Integer = -1
+            While dr.Read
+                _int = If(IsDBNull(dr(0)), -1, dr(0))
+            End While
 
-                For Each i In phno.Split(",")
-                    Dim req As WebRequest = WebRequest.Create($"http://{My.Settings.connection_url}?purpose=listen_phno&phno={i}&listen='true'")
-                    req.Method = "POST"
-                    req.Timeout = 3000
-                    Using request As WebResponse = req.GetResponse
-                        Using reader As New StreamReader(request.GetResponseStream)
-                            Dim response As String = reader.ReadToEnd
+            If _int = -1 Then Exit Sub
+            StockID = _int
+            SaveBT.Text = "Update"
+        End If
 
-                            If response = "added" Then
-                                MessageBox.Show($"PhNo:{i} Added As A New Listener", "Success")
-                                AddHandler fm.NewMessage_Socket, AddressOf UpdateImage
-                                My.Settings.ListenerPhNo = i
-                                ListenPhNoBT.IconChar = FontAwesome.Sharp.IconChar.EyeSlash
-                            Else
-                                MessageBox.Show($"Can't Add PhNo: {i} Either This No. Is Not Registered With Whatsapp Or An Internal Error Occured.")
-                            End If
-                        End Using
-                    End Using
-                Next
-            End Sub
+        If Not ImageBox.Image.Equals(previousImage) Then
+            ImageBox.Image.Save($"C:\Users\hp\Desktop\stock_images\img{StockID}.jpg")
+        End If
+
+        SqlCommand($"UPDATE Stock_Data SET img_path='{$"C:\Users\hp\Desktop\stock_images\img{StockID}.jpg"}' WHERE ID={StockID}")
+
+        MessageBox.Show("Record Updated Successfully.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
 
     End Sub

@@ -25,10 +25,11 @@ Partial Class CategoriesPage
         Me.TreeView1 = New System.Windows.Forms.TreeView()
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.EditBT = New FontAwesome.Sharp.IconButton()
+        Me.StockEntryBT = New FontAwesome.Sharp.IconButton()
         Me.SaveBT = New FontAwesome.Sharp.IconButton()
         Me.AddBT = New FontAwesome.Sharp.IconButton()
-        Me.StockEntryBT = New FontAwesome.Sharp.IconButton()
-        Me.EditBT = New FontAwesome.Sharp.IconButton()
+        Me.IconButton1 = New FontAwesome.Sharp.IconButton()
         Me.FlowLayoutPanel1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -59,6 +60,30 @@ Partial Class CategoriesPage
         Me.Label1.TabIndex = 3
         Me.Label1.Text = "Label1"
         '
+        'EditBT
+        '
+        Me.EditBT.IconChar = FontAwesome.Sharp.IconChar.None
+        Me.EditBT.IconColor = System.Drawing.Color.Black
+        Me.EditBT.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.EditBT.Location = New System.Drawing.Point(588, 55)
+        Me.EditBT.Name = "EditBT"
+        Me.EditBT.Size = New System.Drawing.Size(101, 39)
+        Me.EditBT.TabIndex = 6
+        Me.EditBT.Text = "Edit Node"
+        Me.EditBT.UseVisualStyleBackColor = True
+        '
+        'StockEntryBT
+        '
+        Me.StockEntryBT.IconChar = FontAwesome.Sharp.IconChar.None
+        Me.StockEntryBT.IconColor = System.Drawing.Color.Black
+        Me.StockEntryBT.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.StockEntryBT.Location = New System.Drawing.Point(588, 334)
+        Me.StockEntryBT.Name = "StockEntryBT"
+        Me.StockEntryBT.Size = New System.Drawing.Size(101, 39)
+        Me.StockEntryBT.TabIndex = 5
+        Me.StockEntryBT.Text = "Stock Entry"
+        Me.StockEntryBT.UseVisualStyleBackColor = True
+        '
         'SaveBT
         '
         Me.SaveBT.IconChar = FontAwesome.Sharp.IconChar.None
@@ -83,29 +108,17 @@ Partial Class CategoriesPage
         Me.AddBT.Text = "Add Node"
         Me.AddBT.UseVisualStyleBackColor = True
         '
-        'StockEntryBT
+        'IconButton1
         '
-        Me.StockEntryBT.IconChar = FontAwesome.Sharp.IconChar.None
-        Me.StockEntryBT.IconColor = System.Drawing.Color.Black
-        Me.StockEntryBT.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.StockEntryBT.Location = New System.Drawing.Point(588, 334)
-        Me.StockEntryBT.Name = "StockEntryBT"
-        Me.StockEntryBT.Size = New System.Drawing.Size(101, 39)
-        Me.StockEntryBT.TabIndex = 5
-        Me.StockEntryBT.Text = "Stock Entry"
-        Me.StockEntryBT.UseVisualStyleBackColor = True
-        '
-        'EditBT
-        '
-        Me.EditBT.IconChar = FontAwesome.Sharp.IconChar.None
-        Me.EditBT.IconColor = System.Drawing.Color.Black
-        Me.EditBT.IconFont = FontAwesome.Sharp.IconFont.[Auto]
-        Me.EditBT.Location = New System.Drawing.Point(588, 55)
-        Me.EditBT.Name = "EditBT"
-        Me.EditBT.Size = New System.Drawing.Size(101, 39)
-        Me.EditBT.TabIndex = 6
-        Me.EditBT.Text = "Edit Node"
-        Me.EditBT.UseVisualStyleBackColor = True
+        Me.IconButton1.IconChar = FontAwesome.Sharp.IconChar.None
+        Me.IconButton1.IconColor = System.Drawing.Color.Black
+        Me.IconButton1.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.IconButton1.Location = New System.Drawing.Point(588, 391)
+        Me.IconButton1.Name = "IconButton1"
+        Me.IconButton1.Size = New System.Drawing.Size(101, 39)
+        Me.IconButton1.TabIndex = 7
+        Me.IconButton1.Text = "Show Entry"
+        Me.IconButton1.UseVisualStyleBackColor = True
         '
         'CategoriesPage
         '
@@ -113,6 +126,7 @@ Partial Class CategoriesPage
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(60, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1193, 786)
+        Me.Controls.Add(Me.IconButton1)
         Me.Controls.Add(Me.EditBT)
         Me.Controls.Add(Me.StockEntryBT)
         Me.Controls.Add(Me.SaveBT)
@@ -134,4 +148,5 @@ Partial Class CategoriesPage
     Friend WithEvents SaveBT As FontAwesome.Sharp.IconButton
     Friend WithEvents StockEntryBT As FontAwesome.Sharp.IconButton
     Friend WithEvents EditBT As FontAwesome.Sharp.IconButton
+    Friend WithEvents IconButton1 As FontAwesome.Sharp.IconButton
 End Class

@@ -1,14 +1,14 @@
 ﻿Public Class AttributeControl
 
-    Private _currentProperty As Item.Item_Property
+    Private _currentAttribute As Item.Item_Attribute
 
-    Public Property CurrentProperty As Item.Item_Property
+    Public Property CurrentAttribute As Item.Item_Attribute
         Get
-            Return _currentProperty
+            Return _currentAttribute
         End Get
-        Set(value As Item.Item_Property)
-            _currentProperty = value
-            With _currentProperty
+        Set(value As Item.Item_Attribute)
+            _currentAttribute = value
+            With _currentAttribute
                 AttrIconBT.Text = $"{{{ .DataType}{If(.IsCurrency, "-₹", "")}}} { .Name}" + If(.IsOptional, "*", "")
                 If .IsConstant Then
                     AttrIconBT.Font = New Font(AttrIconBT.Font, FontStyle.Underline)
@@ -29,9 +29,9 @@
         End Set
     End Property
 
-    Public Event ButtonClick(_property As Item.Item_Property)
+    Public Event ButtonClick(_property As Item.Item_Attribute)
     Private Sub UsedButton_Click(sender As Object, e As EventArgs) Handles UsedButton.Click
-        RaiseEvent ButtonClick(_currentProperty)
+        RaiseEvent ButtonClick(_currentAttribute)
     End Sub
 
 End Class

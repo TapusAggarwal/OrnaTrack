@@ -6,6 +6,7 @@ Imports WebSocket4Net
 Public Class ImageDownloader
 
     Public Property SelectedPhNo As String
+    Dim fm As Frame = Nothing
 
     Public Sub UpdateImage(e As MessageReceivedEventArgs)
         Dim req As WebRequest = WebRequest.Create($"http://{My.Settings.connection_url}?purpose=latest_images")
@@ -32,35 +33,6 @@ Public Class ImageDownloader
 
     End Sub
 
-
-    Private Sub ListenPhNoBT_Click(sender As Object, e As EventArgs) Handles ListenPhNoBT.Click
-        Dim i = SelectedPhNo
-        If i = "" Then Exit Sub
-        If ListenPhNoBT.IconChar = FontAwesome.Sharp.IconChar.EyeSlash Then
-            Dim req As WebRequest = WebRequest.Create($"http://{My.Settings.connection_url}?purpose=listen_phno&phno={i}&listen=false")
-            req.Method = "POST"
-            req.Timeout = 3000
-            Using request As WebResponse = req.GetResponse
-                Using reader As New StreamReader(request.GetResponseStream)
-                    Dim response As String = reader.ReadToEnd
-
-                    If response = "removed" Then
-                        MessageBox.Show($"PhNo:{i} removed As A New Listener", "Success")
-                        RemoveHandler fm.NewMessage_Socket, AddressOf UpdateImage
-                        ListenPhNoBT.IconChar = FontAwesome.Sharp.IconChar.Eye
-                        ListenPhNoBT.BackColor = Color.FromArgb(0, 64, 0)
-                        ListenPhNoBT.Text = "Start"
-                    Else
-                        MessageBox.Show($"Can't Remove PhNo: {i} Either This No. Is Not Registered With Whatsapp Or An Internal Error Occured.")
-                    End If
-                End Using
-            End Using
-        Else
-            StartListeningForMessages()
-        End If
-    End Sub
-
-    Dim fm As Frame = Nothing
 
     Private Async Sub StartListeningForMessages()
 
@@ -109,66 +81,6 @@ Public Class ImageDownloader
 
     End Sub
 
-    Private Sub ImageDownloader_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        LoadRecentListeners()
-        PhNoTB.Text = SelectedPhNo
-
-        For Each _form As Form In Application.OpenForms
-            If TypeOf _form IsNot Frame Then Continue For
-            fm = _form
-            Exit For
-        Next
-    End Sub
-
-    Private Sub AddNewListenerBT_Click(sender As Object, e As EventArgs) Handles AddNewListenerBT.Click
-        Dim newPhno As String = InputBox($"Enter New PhNo With Country Code Which Will Be Used As A Listener. Add Comma To Add Multiple Numbers).{vbNewLine}Current PhNo: {SelectedPhNo}", "Listener PhNo")
-        If newPhno.Length <> 12 Then Exit Sub
-
-        SelectedPhNo = newPhno
-        Dim dr As OleDb.OleDbDataReader = DataReader("Select RecentListeners From Message_Data Where id=1")
-        Dim num As String = ""
-        While dr.Read
-            num = If(IsDBNull(dr(0)), "", dr(0))
-        End While
-
-        Dim _list = num.Split(",").ToList
-        ' Removing From Current Position
-        _list.Remove(SelectedPhNo.Trim)
-        ' Adding To Current Position
-        _list.Add(SelectedPhNo)
-
-        SqlCommand($"Update Message_Data set RecentListeners='{String.Join(",", _list)}'")
-        LoadRecentListeners()
-
-        StartListeningForMessages()
-    End Sub
-
-    Private Sub SaveButton_Click(sender As Object, e As EventArgs) Handles SaveButton.Click
-        If ImageBox.Image IsNot Nothing Then
-            SaveFileDialog1.Filter = "JPEG Image|*.jpg|PNG Image|*.png"
-            SaveFileDialog1.FileName = "Whatsapp-Image.jpg"
-            SaveFileDialog1.ShowDialog()
-            If SaveFileDialog1.FileName <> "" Then
-                ImageBox.Image.Save(SaveFileDialog1.FileName)
-            End If
-        End If
-    End Sub
-
-    Private Sub ImageDownloader_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
-        Try
-            Dim i = SelectedPhNo
-            If i = "" Then Exit Sub
-            Dim req As WebRequest = WebRequest.Create($"http://{My.Settings.connection_url}?purpose=listen_phno&phno={i}&listen=false")
-            req.Method = "POST"
-            req.Timeout = 3000
-            Using request As WebResponse = req.GetResponse
-                Using reader As New StreamReader(request.GetResponseStream)
-                End Using
-            End Using
-        Catch ex As Exception
-        End Try
-    End Sub
-
     Private Sub LoadRecentListeners()
         Dim dr As OleDb.OleDbDataReader = DataReader("Select RecentListeners From Message_Data Where id=1")
         Dim num As String = ""
@@ -207,17 +119,9 @@ Public Class ImageDownloader
                                       lbl.BorderStyle = BorderStyle.FixedSingle
                                       lbl.Select()
 
-                                      RemoveHandler SelectBT.Click, AddressOf Select_Click
-                                      RemoveHandler DeleteBT.Click, AddressOf DeleteBT_Click
-                                      RemoveHandler CancelEditBT.Click, AddressOf CancelBT_Click
-
                                       SelectBT.Visible = True
                                       DeleteBT.Visible = True
                                       CancelEditBT.Visible = True
-
-                                      AddHandler SelectBT.Click, AddressOf Select_Click
-                                      AddHandler DeleteBT.Click, AddressOf DeleteBT_Click
-                                      AddHandler CancelEditBT.Click, AddressOf CancelBT_Click
 
                                   End Sub
 
@@ -226,11 +130,10 @@ Public Class ImageDownloader
                    End Sub)
         Next
 
-
-
     End Sub
 
-    Private Sub Select_Click(sender As Object, e As EventArgs)
+#Region "Dierct Events"
+    Private Sub Select_Click(sender As Object, e As EventArgs) Handles SelectBT.Click
 
         Dim dr As OleDb.OleDbDataReader = DataReader("Select RecentListeners From Message_Data Where id=1")
         Dim num As String = ""
@@ -254,13 +157,13 @@ Public Class ImageDownloader
         ListenPhNoBT.Text = "Start"
     End Sub
 
-    Private Sub DeleteBT_Click(sender As Object, e As EventArgs)
+    Private Sub DeleteBT_Click(sender As Object, e As EventArgs) Handles DeleteBT.Click
         UpdateRecentListeners(SelectedPhNo, True)
         CancelBT_Click(sender, e)
         SelectedPhNo = ""
     End Sub
 
-    Private Sub CancelBT_Click(sender As Object, e As EventArgs)
+    Private Sub CancelBT_Click(sender As Object, e As EventArgs) Handles CancelEditBT.Click
         SelectBT.Visible = False
         DeleteBT.Visible = False
         CancelEditBT.Visible = False
@@ -274,6 +177,106 @@ Public Class ImageDownloader
         Next
 
     End Sub
+
+    Private Sub SaveButton_Click(sender As Object, e As EventArgs) Handles SaveButton.Click
+        If ImageBox.Image IsNot Nothing Then
+            SaveFileDialog1.Filter = "JPEG Image|*.jpg|PNG Image|*.png"
+            SaveFileDialog1.FileName = "Whatsapp-Image.jpg"
+            SaveFileDialog1.ShowDialog()
+            If SaveFileDialog1.FileName <> "" Then
+                ImageBox.Image.Save(SaveFileDialog1.FileName)
+            End If
+        End If
+    End Sub
+
+
+
+    Private Sub AddNewListenerBT_Click(sender As Object, e As EventArgs) Handles AddNewListenerBT.Click
+        Dim newPhno As String = InputBox($"Enter New PhNo With Country Code Which Will Be Used As A Listener. Add Comma To Add Multiple Numbers).{vbNewLine}Current PhNo: {SelectedPhNo}", "Listener PhNo")
+        If newPhno.Length <> 12 Then Exit Sub
+
+        SelectedPhNo = newPhno
+        Dim dr As OleDb.OleDbDataReader = DataReader("Select RecentListeners From Message_Data Where id=1")
+        Dim num As String = ""
+        While dr.Read
+            num = If(IsDBNull(dr(0)), "", dr(0))
+        End While
+
+        Dim _list = num.Split(",").ToList
+        ' Removing From Current Position
+        _list.Remove(SelectedPhNo.Trim)
+        ' Adding To Current Position
+        _list.Add(SelectedPhNo)
+
+        SqlCommand($"Update Message_Data set RecentListeners='{String.Join(",", _list)}'")
+        LoadRecentListeners()
+
+        StartListeningForMessages()
+    End Sub
+
+    Private Async Sub ImageDownloader_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        LoadRecentListeners()
+        PhNoTB.Text = SelectedPhNo
+
+        For Each _form As Form In Application.OpenForms
+            If TypeOf _form IsNot Frame Then Continue For
+            fm = _form
+            Exit For
+        Next
+
+        Dim req As WebRequest = WebRequest.Create($"http://{My.Settings.connection_url}?purpose=phno_listeners")
+        req.Method = "POST"
+        req.Timeout = 3000
+        Using request As WebResponse = Await req.GetResponseAsync
+            Using reader As New StreamReader(request.GetResponseStream)
+                Dim response As String = Await reader.ReadToEndAsync
+
+                If response.Trim.Length = 0 Then Exit Sub
+                PhNoTB.Text = response.Trim
+                ListenPhNoBT.IconChar = FontAwesome.Sharp.IconChar.EyeSlash
+                ListenPhNoBT.BackColor = Color.Maroon
+                ListenPhNoBT.Text = "Stop"
+
+                If WebSocket Is Nothing OrElse Not WebSocket.State = WebSocketState.Open Then
+                    Await fm?.StartServer(False)
+                End If
+
+                AddHandler fm.NewMessage_Socket, AddressOf UpdateImage
+
+            End Using
+        End Using
+
+
+    End Sub
+
+    Private Sub ListenPhNoBT_Click(sender As Object, e As EventArgs) Handles ListenPhNoBT.Click
+        Dim i = SelectedPhNo
+        If i = "" Then Exit Sub
+        If ListenPhNoBT.IconChar = FontAwesome.Sharp.IconChar.EyeSlash Then
+            Dim req As WebRequest = WebRequest.Create($"http://{My.Settings.connection_url}?purpose=listen_phno&phno={i}&listen=false")
+            req.Method = "POST"
+            req.Timeout = 3000
+            Using request As WebResponse = req.GetResponse
+                Using reader As New StreamReader(request.GetResponseStream)
+                    Dim response As String = reader.ReadToEnd
+
+                    If response = "removed" Then
+                        MessageBox.Show($"PhNo:{i} removed As A New Listener", "Success")
+                        RemoveHandler fm.NewMessage_Socket, AddressOf UpdateImage
+                        ListenPhNoBT.IconChar = FontAwesome.Sharp.IconChar.Eye
+                        ListenPhNoBT.BackColor = Color.FromArgb(0, 64, 0)
+                        ListenPhNoBT.Text = "Start"
+                    Else
+                        MessageBox.Show($"Can't Remove PhNo: {i} Either This No. Is Not Registered With Whatsapp Or An Internal Error Occured.")
+                    End If
+                End Using
+            End Using
+        Else
+            StartListeningForMessages()
+        End If
+    End Sub
+
+#End Region
 
     Private Sub UpdateRecentListeners(phno As String, Optional remove As Boolean = False)
         Dim dr As OleDb.OleDbDataReader = DataReader("Select RecentListeners From Message_Data Where id=1")

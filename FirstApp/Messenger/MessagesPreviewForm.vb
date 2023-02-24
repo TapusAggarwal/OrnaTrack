@@ -301,11 +301,10 @@ Public Class MessagesPreviewForm
 
             Invoke(Sub()
                        UpdateStatuses()
-                       Try
-                           Dim correspondingControl As MessagePreviewControl = FlowLayoutPanel1.Controls.OfType(Of MessagePreviewControl).Where(Function(c) c.Name = id)(0)
+                       Dim correspondingControl As MessagePreviewControl = FlowLayoutPanel1.Controls.OfType(Of MessagePreviewControl).Where(Function(c) c.Name = id)(0)
+                       If correspondingControl IsNot Nothing Then
                            correspondingControl.Status = "Sending"
-                       Catch ex As Exception
-                       End Try
+                       End If
                    End Sub)
 
             Dim _resp As JObject = Await UniversalWhatsappMessageBundle(msg.Item1, MessageList, ImagePaths)
@@ -320,12 +319,10 @@ Public Class MessagesPreviewForm
             UpdateList(msg.Item1, msg.Item2.KittyUID, status)
             Invoke(Sub()
                        UpdateStatuses()
-                       Try
-                           Dim correspondingControl As MessagePreviewControl = FlowLayoutPanel1.Controls.OfType(Of MessagePreviewControl).Where(Function(c) c.Name = id)(0)
+                       Dim correspondingControl As MessagePreviewControl = FlowLayoutPanel1.Controls.OfType(Of MessagePreviewControl).Where(Function(c) c.Name = id)(0)
+                       If correspondingControl IsNot Nothing Then
                            correspondingControl.Status = status
-                       Catch ex As Exception
-                           MessageBox.Show(ex.Message)
-                       End Try
+                       End If
                    End Sub)
 
         Next

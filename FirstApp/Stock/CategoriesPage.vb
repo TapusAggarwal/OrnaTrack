@@ -14,16 +14,14 @@ Public Class CategoriesPage
 
     Private Sub AddBT_Click(sender As Object, e As EventArgs) Handles AddBT.Click
         Dim N As Item
-        Dim fm As New AddItemPage
-
-        fm.CurrentItem = New Item(-1)
+        Dim fm As New AddItemPage With {
+            .CurrentItem = New Item(-1)
+        }
 
         If TreeView1.SelectedNode IsNot Nothing Then
-            Try
-                Dim prevItem As New Item(TreeView1.SelectedNode.Name)
-                fm.CurrentItem.MyProperties = prevItem.MyProperties
-            Catch ex As Exception
-            End Try
+            fm.CurrentItem.ParentCategory = New Item(TreeView1.SelectedNode.Name)
+        Else
+            fm.CurrentItem.ParentCategory = New Item(-1)
         End If
 
         fm.ShowDialog()
@@ -119,7 +117,7 @@ Public Class CategoriesPage
             While dr.Read
                 Dim _temp As Integer = dr(0)
                 If _temp = 0 Then
-                    SqlCommand($"INSERT INTO Stock_Structure (Id,Structure) VALUES (1,'{myJ}')")
+                    SqlCommand($"INSERT INTO Stock_Structure (Id,ItemOrder) VALUES (1,'{myJ}')")
                 Else
                     SqlCommand($"UPDATE Stock_Structure SET ItemOrder='{myJ}' WHERE Id=1")
                 End If
@@ -158,5 +156,10 @@ Public Class CategoriesPage
 
     Private Sub FlowLayoutPanel1_Paint(sender As Object, e As PaintEventArgs) Handles FlowLayoutPanel1.Paint
 
+    End Sub
+
+    Private Sub IconButton1_Click(sender As Object, e As EventArgs) Handles IconButton1.Click
+        Dim fm As New ShowItems
+        fm.ShowDialog()
     End Sub
 End Class

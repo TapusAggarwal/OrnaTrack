@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class PropertyControl
+Partial Class AttributeStockControl
     Inherits System.Windows.Forms.UserControl
 
     'UserControl overrides dispose to clean up the component list.
@@ -22,29 +22,29 @@ Partial Class PropertyControl
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.PropertyLB = New System.Windows.Forms.Label()
+        Me.AttributeLB = New System.Windows.Forms.Label()
         Me.DefaultValueTB = New System.Windows.Forms.TextBox()
         Me.TrueChB = New System.Windows.Forms.CheckBox()
         Me.FalseChB = New System.Windows.Forms.CheckBox()
         Me.ListValues = New System.Windows.Forms.ComboBox()
         Me.SuspendLayout()
         '
-        'PropertyLB
+        'AttributeLB
         '
-        Me.PropertyLB.AutoSize = True
-        Me.PropertyLB.Font = New System.Drawing.Font("Century Schoolbook", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.PropertyLB.ForeColor = System.Drawing.Color.Peru
-        Me.PropertyLB.Location = New System.Drawing.Point(39, 10)
-        Me.PropertyLB.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.PropertyLB.Name = "PropertyLB"
-        Me.PropertyLB.Size = New System.Drawing.Size(0, 30)
-        Me.PropertyLB.TabIndex = 253
+        Me.AttributeLB.AutoSize = True
+        Me.AttributeLB.Font = New System.Drawing.Font("Century Schoolbook", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.AttributeLB.ForeColor = System.Drawing.Color.Peru
+        Me.AttributeLB.Location = New System.Drawing.Point(8, 13)
+        Me.AttributeLB.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.AttributeLB.Name = "AttributeLB"
+        Me.AttributeLB.Size = New System.Drawing.Size(0, 30)
+        Me.AttributeLB.TabIndex = 253
         '
         'DefaultValueTB
         '
         Me.DefaultValueTB.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.DefaultValueTB.Font = New System.Drawing.Font("Century", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DefaultValueTB.Location = New System.Drawing.Point(46, 8)
+        Me.DefaultValueTB.Location = New System.Drawing.Point(20, 11)
         Me.DefaultValueTB.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.DefaultValueTB.Name = "DefaultValueTB"
         Me.DefaultValueTB.ShortcutsEnabled = False
@@ -59,7 +59,7 @@ Partial Class PropertyControl
         Me.TrueChB.BackColor = System.Drawing.Color.Transparent
         Me.TrueChB.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TrueChB.ForeColor = System.Drawing.SystemColors.ActiveCaption
-        Me.TrueChB.Location = New System.Drawing.Point(69, 8)
+        Me.TrueChB.Location = New System.Drawing.Point(43, 11)
         Me.TrueChB.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.TrueChB.Name = "TrueChB"
         Me.TrueChB.Size = New System.Drawing.Size(88, 34)
@@ -76,7 +76,7 @@ Partial Class PropertyControl
         Me.FalseChB.BackColor = System.Drawing.Color.Transparent
         Me.FalseChB.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FalseChB.ForeColor = System.Drawing.SystemColors.ActiveCaption
-        Me.FalseChB.Location = New System.Drawing.Point(165, 8)
+        Me.FalseChB.Location = New System.Drawing.Point(139, 11)
         Me.FalseChB.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.FalseChB.Name = "FalseChB"
         Me.FalseChB.Size = New System.Drawing.Size(99, 34)
@@ -95,7 +95,7 @@ Partial Class PropertyControl
         Me.ListValues.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ListValues.FormattingEnabled = True
         Me.ListValues.IntegralHeight = False
-        Me.ListValues.Location = New System.Drawing.Point(46, 10)
+        Me.ListValues.Location = New System.Drawing.Point(20, 13)
         Me.ListValues.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.ListValues.MaxDropDownItems = 20
         Me.ListValues.Name = "ListValues"
@@ -104,7 +104,7 @@ Partial Class PropertyControl
         Me.ListValues.Tag = ""
         Me.ListValues.Visible = False
         '
-        'PropertyControl
+        'AtttributeStockControl
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -112,16 +112,16 @@ Partial Class PropertyControl
         Me.Controls.Add(Me.DefaultValueTB)
         Me.Controls.Add(Me.TrueChB)
         Me.Controls.Add(Me.ListValues)
-        Me.Controls.Add(Me.PropertyLB)
+        Me.Controls.Add(Me.AttributeLB)
         Me.Controls.Add(Me.FalseChB)
-        Me.Name = "PropertyControl"
-        Me.Size = New System.Drawing.Size(296, 57)
+        Me.Name = "AtttributeStockControl"
+        Me.Size = New System.Drawing.Size(259, 57)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
 
-    Friend WithEvents PropertyLB As Label
+    Friend WithEvents AttributeLB As Label
     Friend WithEvents DefaultValueTB As TextBox
     Friend WithEvents TrueChB As CheckBox
     Friend WithEvents FalseChB As CheckBox
