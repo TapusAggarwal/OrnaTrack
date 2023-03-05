@@ -227,9 +227,9 @@ Public Class ImageDownloader
         Dim req As WebRequest = WebRequest.Create($"http://{My.Settings.connection_url}?purpose=phno_listeners")
         req.Method = "POST"
         req.Timeout = 3000
-        Using request As WebResponse = Await req.GetResponseAsync
+        Using request As WebResponse = req.GetResponse
             Using reader As New StreamReader(request.GetResponseStream)
-                Dim response As String = Await reader.ReadToEndAsync
+                Dim response As String = reader.ReadToEnd
 
                 If response.Trim.Length = 0 Then Exit Sub
                 PhNoTB.Text = response.Trim

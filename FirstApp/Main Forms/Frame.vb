@@ -647,7 +647,7 @@ Public Class Frame
 
     Private Sub ImageDownloadToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImageDownloadToolStripMenuItem.Click
         Dim Fm As New ImageDownloader
-        Fm.Show()
+        Fm.ShowDialog()
     End Sub
 
     Private Sub ServerContextMenuStrip_Opening(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles ServerContextMenuStrip.Opening
