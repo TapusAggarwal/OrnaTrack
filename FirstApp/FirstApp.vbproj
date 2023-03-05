@@ -442,16 +442,28 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Extras\Settings.vb" />
+    <Compile Include="Stock\UserControl\HUID_Checker.Designer.vb">
+      <DependentUpon>HUID_Checker.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Stock\UserControl\HUID_Checker.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Stock\UserControl\ItemsUserControl.Designer.vb">
       <DependentUpon>ItemsUserControl.vb</DependentUpon>
     </Compile>
     <Compile Include="Stock\UserControl\ItemsUserControl.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Stock\ListTypeDgv.Designer.vb">
+    <Compile Include="Stock\UserControl\KeyValue_Control.Designer.vb">
+      <DependentUpon>KeyValue_Control.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Stock\UserControl\KeyValue_Control.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Stock\UserControl\ListTypeDgv.Designer.vb">
       <DependentUpon>ListTypeDgv.vb</DependentUpon>
     </Compile>
-    <Compile Include="Stock\ListTypeDgv.vb">
+    <Compile Include="Stock\UserControl\ListTypeDgv.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Stock\UserControl\AttributeStockControl.Designer.vb">
@@ -649,10 +661,16 @@
     <EmbeddedResource Include="Stock\UserControl\Folder.resx">
       <DependentUpon>Folder.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Stock\UserControl\HUID_Checker.resx">
+      <DependentUpon>HUID_Checker.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Stock\UserControl\ItemsUserControl.resx">
       <DependentUpon>ItemsUserControl.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Stock\ListTypeDgv.resx">
+    <EmbeddedResource Include="Stock\UserControl\KeyValue_Control.resx">
+      <DependentUpon>KeyValue_Control.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stock\UserControl\ListTypeDgv.resx">
       <DependentUpon>ListTypeDgv.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Stock\UserControl\AttributeStockControl.resx">

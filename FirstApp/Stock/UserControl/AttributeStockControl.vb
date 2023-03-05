@@ -131,18 +131,7 @@ Public Class AttributeStockControl
 
     End Sub
 
-    Public Function CheckUIDExists(ByVal uid As String) As Boolean
-        Dim client As New HttpClient()
-        Dim response As HttpResponseMessage
 
-        Try
-            response = client.GetAsync($"https://mobile.manakonline.in/MANAK/getAHCUIDdetails?uid={uid}").Result
-            response.EnsureSuccessStatusCode()
-            Return True
-        Catch ex As Exception
-            Return False
-        End Try
-    End Function
 
     Private Sub DefaultValueTB_GotFocus(sender As Object, e As EventArgs) Handles DefaultValueTB.GotFocus
         If _currentAttribute.IsFormula Then Exit Sub
@@ -150,10 +139,16 @@ Public Class AttributeStockControl
         If _currentAttribute.DataType = Item.DataType.Integer_Type Then
             DefaultValueTB.Text = CDbl(DefaultValueTB.Text)
         End If
+        If DefaultValueTB.Text = CurrentAttribute.DefaultValue Then DefaultValueTB.Text = ""
         SendKeys.Send("{End}")
     End Sub
 
     Private Sub DefaultValueTB_KeyPress(sender As Object, e As KeyPressEventArgs) Handles DefaultValueTB.KeyPress
+        If e.KeyChar = ChrW(Keys.Enter) Then
+            SendKeys.Send("{TAB}")
+            e.Handled = True
+            Exit Sub
+        End If
         If e.KeyChar = "'" Then
             e.Handled = True
         End If

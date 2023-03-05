@@ -8,7 +8,7 @@ Public Class ImageDownloader
     Public Property SelectedPhNo As String
     Dim fm As Frame = Nothing
 
-    Public Sub UpdateImage(e As MessageReceivedEventArgs)
+    Public Sub UpdateImage()
         Dim req As WebRequest = WebRequest.Create($"http://{My.Settings.connection_url}?purpose=latest_images")
         req.Method = "POST"
 
@@ -19,6 +19,7 @@ Public Class ImageDownloader
 
         ' Convert the base64 encoded string to a byte array
         Dim imageBytes As Byte() = Convert.FromBase64String(base64String)
+        If base64String = "" Then Exit Sub
 
         ' Convert the byte array to an image
         Using memoryStream As New MemoryStream(imageBytes)
@@ -293,4 +294,12 @@ Public Class ImageDownloader
         LoadRecentListeners()
     End Sub
 
+    Private Sub ReloadImgBT_Click(sender As Object, e As EventArgs) Handles ReloadImgBT.Click
+        UpdateImage()
+    End Sub
+
+    Private Sub ImageDownloader_Closed(sender As Object, e As EventArgs) Handles Me.Closed
+        RemoveHandler fm.NewMessage_Socket, AddressOf UpdateImage
+        Dispose()
+    End Sub
 End Class

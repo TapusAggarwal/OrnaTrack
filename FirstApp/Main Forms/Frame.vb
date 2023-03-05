@@ -211,7 +211,7 @@ Public Class Frame
         InitialiseStates()
 
         If msgInfo.SelectToken("purpose") = "new_msg" Then
-            RaiseEvent NewMessage_Socket(e)
+            RaiseEvent NewMessage_Socket()
         End If
 
         If oldState <> state Then
@@ -223,7 +223,7 @@ Public Class Frame
         'End Try
     End Sub
 
-    Public Event NewMessage_Socket(e As MessageReceivedEventArgs)
+    Public Event NewMessage_Socket()
     Public Event State_Changed(newState As String, oldState As String)
 
 

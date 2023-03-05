@@ -26,11 +26,14 @@ Partial Class StockEntry
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ChangeListenerPhNoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ListenOnceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ProductFP = New FirstApp.UserControl1()
-        Me.SaleFP = New FirstApp.UserControl1()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.SaleFP = New FirstApp.UserControl1()
+        Me.ProductFP = New FirstApp.UserControl1()
         Me.PurchaseFP = New FirstApp.UserControl1()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.ReloadImgBT = New FontAwesome.Sharp.IconButton()
+        Me.NextImgButton = New FontAwesome.Sharp.IconButton()
+        Me.BackImgButton = New FontAwesome.Sharp.IconButton()
         Me.SaveBT = New FontAwesome.Sharp.IconButton()
         Me.ListeningStatusPanel = New System.Windows.Forms.Panel()
         Me.ImageBox = New System.Windows.Forms.PictureBox()
@@ -60,17 +63,18 @@ Partial Class StockEntry
         Me.ListenOnceToolStripMenuItem.Size = New System.Drawing.Size(258, 32)
         Me.ListenOnceToolStripMenuItem.Text = "Listen Once"
         '
-        'ProductFP
+        'Panel1
         '
-        Me.ProductFP.AllowDrop = True
-        Me.ProductFP.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(60, Byte), Integer))
-        Me.ProductFP.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.ProductFP.Dock = System.Windows.Forms.DockStyle.Left
-        Me.ProductFP.Location = New System.Drawing.Point(555, 0)
-        Me.ProductFP.Name = "ProductFP"
-        Me.ProductFP.Size = New System.Drawing.Size(555, 726)
-        Me.ProductFP.TabIndex = 305
-        Me.ProductFP.Title = "Product Attr."
+        Me.Panel1.AutoScroll = True
+        Me.Panel1.AutoSize = True
+        Me.Panel1.Controls.Add(Me.SaleFP)
+        Me.Panel1.Controls.Add(Me.ProductFP)
+        Me.Panel1.Controls.Add(Me.PurchaseFP)
+        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Panel1.Location = New System.Drawing.Point(259, 0)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(1665, 726)
+        Me.Panel1.TabIndex = 320
         '
         'SaleFP
         '
@@ -85,18 +89,17 @@ Partial Class StockEntry
         Me.SaleFP.Title = "Sale Attr."
         Me.SaleFP.Visible = False
         '
-        'Panel1
+        'ProductFP
         '
-        Me.Panel1.AutoScroll = True
-        Me.Panel1.AutoSize = True
-        Me.Panel1.Controls.Add(Me.SaleFP)
-        Me.Panel1.Controls.Add(Me.ProductFP)
-        Me.Panel1.Controls.Add(Me.PurchaseFP)
-        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel1.Location = New System.Drawing.Point(259, 0)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1665, 726)
-        Me.Panel1.TabIndex = 320
+        Me.ProductFP.AllowDrop = True
+        Me.ProductFP.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(60, Byte), Integer))
+        Me.ProductFP.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.ProductFP.Dock = System.Windows.Forms.DockStyle.Left
+        Me.ProductFP.Location = New System.Drawing.Point(555, 0)
+        Me.ProductFP.Name = "ProductFP"
+        Me.ProductFP.Size = New System.Drawing.Size(555, 726)
+        Me.ProductFP.TabIndex = 305
+        Me.ProductFP.Title = "Product Attr."
         '
         'PurchaseFP
         '
@@ -113,6 +116,9 @@ Partial Class StockEntry
         '
         'Panel2
         '
+        Me.Panel2.Controls.Add(Me.ReloadImgBT)
+        Me.Panel2.Controls.Add(Me.NextImgButton)
+        Me.Panel2.Controls.Add(Me.BackImgButton)
         Me.Panel2.Controls.Add(Me.SaveBT)
         Me.Panel2.Controls.Add(Me.ListeningStatusPanel)
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
@@ -120,6 +126,75 @@ Partial Class StockEntry
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(259, 726)
         Me.Panel2.TabIndex = 322
+        '
+        'ReloadImgBT
+        '
+        Me.ReloadImgBT.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.ReloadImgBT.AutoSize = True
+        Me.ReloadImgBT.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.ReloadImgBT.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(70, Byte), Integer))
+        Me.ReloadImgBT.FlatAppearance.BorderSize = 0
+        Me.ReloadImgBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ReloadImgBT.Font = New System.Drawing.Font("Cambria", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ReloadImgBT.ForeColor = System.Drawing.Color.MediumPurple
+        Me.ReloadImgBT.IconChar = FontAwesome.Sharp.IconChar.RedoAlt
+        Me.ReloadImgBT.IconColor = System.Drawing.Color.MediumPurple
+        Me.ReloadImgBT.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.ReloadImgBT.IconSize = 40
+        Me.ReloadImgBT.Location = New System.Drawing.Point(176, 439)
+        Me.ReloadImgBT.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.ReloadImgBT.Name = "ReloadImgBT"
+        Me.ReloadImgBT.Size = New System.Drawing.Size(46, 46)
+        Me.ReloadImgBT.TabIndex = 10012
+        Me.ReloadImgBT.Tag = "-1"
+        Me.ReloadImgBT.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
+        Me.ReloadImgBT.UseVisualStyleBackColor = False
+        '
+        'NextImgButton
+        '
+        Me.NextImgButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.NextImgButton.AutoSize = True
+        Me.NextImgButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.NextImgButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(70, Byte), Integer))
+        Me.NextImgButton.FlatAppearance.BorderSize = 0
+        Me.NextImgButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.NextImgButton.Font = New System.Drawing.Font("Cambria", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.NextImgButton.ForeColor = System.Drawing.Color.MediumPurple
+        Me.NextImgButton.IconChar = FontAwesome.Sharp.IconChar.ArrowCircleRight
+        Me.NextImgButton.IconColor = System.Drawing.Color.MediumPurple
+        Me.NextImgButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.NextImgButton.IconSize = 40
+        Me.NextImgButton.Location = New System.Drawing.Point(97, 439)
+        Me.NextImgButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.NextImgButton.Name = "NextImgButton"
+        Me.NextImgButton.Size = New System.Drawing.Size(46, 46)
+        Me.NextImgButton.TabIndex = 10010
+        Me.NextImgButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
+        Me.NextImgButton.UseVisualStyleBackColor = False
+        Me.NextImgButton.Visible = False
+        '
+        'BackImgButton
+        '
+        Me.BackImgButton.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BackImgButton.AutoSize = True
+        Me.BackImgButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.BackImgButton.BackColor = System.Drawing.Color.FromArgb(CType(CType(25, Byte), Integer), CType(CType(25, Byte), Integer), CType(CType(70, Byte), Integer))
+        Me.BackImgButton.FlatAppearance.BorderSize = 0
+        Me.BackImgButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BackImgButton.Font = New System.Drawing.Font("Cambria", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BackImgButton.ForeColor = System.Drawing.Color.MediumPurple
+        Me.BackImgButton.IconChar = FontAwesome.Sharp.IconChar.ArrowCircleLeft
+        Me.BackImgButton.IconColor = System.Drawing.Color.MediumPurple
+        Me.BackImgButton.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.BackImgButton.IconSize = 40
+        Me.BackImgButton.Location = New System.Drawing.Point(35, 439)
+        Me.BackImgButton.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.BackImgButton.Name = "BackImgButton"
+        Me.BackImgButton.Size = New System.Drawing.Size(46, 46)
+        Me.BackImgButton.TabIndex = 10011
+        Me.BackImgButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.BackImgButton.UseVisualStyleBackColor = False
+        Me.BackImgButton.Visible = False
         '
         'SaveBT
         '
@@ -200,4 +275,7 @@ Partial Class StockEntry
     Friend WithEvents ListeningStatusPanel As Panel
     Friend WithEvents ImageBox As PictureBox
     Friend WithEvents PurchaseFP As UserControl1
+    Friend WithEvents NextImgButton As FontAwesome.Sharp.IconButton
+    Friend WithEvents BackImgButton As FontAwesome.Sharp.IconButton
+    Friend WithEvents ReloadImgBT As FontAwesome.Sharp.IconButton
 End Class

@@ -77,10 +77,10 @@ Namespace My
                 Me("server_notify") = value
             End Set
         End Property
-        
-        <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("3.14.225.85:3966")>  _
+
+        <Global.System.Configuration.UserScopedSettingAttribute(),
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.Configuration.DefaultSettingValueAttribute("3.14.225.85:3966")>
         Public Property connection_url() As String
             Get
                 Return CType(Me("connection_url"),String)

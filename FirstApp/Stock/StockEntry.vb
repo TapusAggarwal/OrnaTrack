@@ -14,6 +14,8 @@ Public Class StockEntry
 
     Private Sub StockEntry_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
+        KeyPreview = True
+
         If CurrentItem.ItemID < 0 Then Exit Sub
 
         For Each _attribute In CurrentItem.Attributes
@@ -32,6 +34,35 @@ Public Class StockEntry
                 SaleFP.AddControl(x)
                 SaleFP.AutoReSize()
             End If
+
+            If _attribute.Name = "Huid No" Then
+                AddHandler KeyDown, Sub(_sender As Object, _e As KeyEventArgs)
+                                        If _e.KeyCode = Keys.I AndAlso _e.Control = True Then
+                                            Dim f = x.DefaultValueTB.Text
+                                            Dim Fm As New HUID_Checker
+                                            Fm.SearchTB.Select()
+                                            _e.Handled = True
+                                            AddHandler Fm.HuidSelected, Sub(_status, _huid)
+                                                                            If _status Then
+                                                                                Dim _text As String = x.EnteredData
+                                                                                If _text = _attribute.DefaultValue Then _text = ""
+                                                                                Dim _list As List(Of String) = _text.Split(",").ToList
+                                                                                _list.Remove("")
+                                                                                _list.Add(_huid)
+                                                                                Fm.Close()
+                                                                                If _list.Count = 1 Then
+                                                                                    x.DefaultValueTB.Text = _huid
+                                                                                Else
+                                                                                    x.DefaultValueTB.Text = String.Join(",", _list)
+                                                                                End If
+                                                                            End If
+                                                                        End Sub
+                                            Fm.ShowDialog()
+
+                                        End If
+                                    End Sub
+            End If
+
         Next
 
         For Each _attribute In CurrentItem.Attributes
@@ -146,6 +177,7 @@ Public Class StockEntry
                         Await fm?.StartServer(False)
                     End If
 
+                    RemoveHandler fm.NewMessage_Socket, AddressOf UpdateImage
                     AddHandler fm.NewMessage_Socket, AddressOf UpdateImage
 
                 End Using
@@ -154,7 +186,10 @@ Public Class StockEntry
         End Try
     End Sub
 
-    Public Sub UpdateImage(e As MessageReceivedEventArgs)
+    Dim _currentImageIndex As Integer = -1
+
+    Public Sub UpdateImage()
+        Cursor = Cursors.AppStarting
         Dim req As WebRequest = WebRequest.Create($"http://{My.Settings.connection_url}?purpose=latest_images")
         req.Method = "POST"
 
@@ -162,6 +197,8 @@ Public Class StockEntry
         Dim response As WebResponse = req.GetResponse()
         Dim streamReader As New StreamReader(response.GetResponseStream())
         Dim base64String As String = streamReader.ReadToEnd()
+
+        If base64String = "" Then Exit Sub
 
         ' Convert the base64 encoded string to a byte array
         Dim imageBytes As Byte() = Convert.FromBase64String(base64String)
@@ -176,7 +213,7 @@ Public Class StockEntry
             End If
             ' Do something with the image, such as display it
         End Using
-
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub Panel1_SizeChanged(sender As Object, e As EventArgs) Handles Panel1.SizeChanged
@@ -214,9 +251,9 @@ Public Class StockEntry
         Dim _str = Json.JsonConvert.SerializeObject(x)
 
         If StockID > 0 Then
-            SqlCommand($"UPDATE Stock_Data SET Ctg_ID='{CurrentItem.ItemID}',Item_Data='{_str}',entry_time='{DateTime.Now}' WHERE ID={StockID}")
+            SqlCommand($"UPDATE Stock_Data SET Ctg_ID='{CurrentItem.ItemID}',Item_Data='{_str}',entry_time='{Now}' WHERE ID={StockID}")
         Else
-            SqlCommand($"Insert INTO Stock_Data (Ctg_ID,Item_Data,entry_time) VALUES ('{CurrentItem.ItemID}','{_str}','{DateTime.Now}')")
+            SqlCommand($"Insert INTO Stock_Data (Ctg_ID,Item_Data,entry_time) VALUES ('{CurrentItem.ItemID}','{_str}','{Now}')")
 
             Dim dr As OleDb.OleDbDataReader = DataReader("Select MAX(ID) FROM Stock_Data")
             Dim _int As Integer = -1
@@ -235,9 +272,44 @@ Public Class StockEntry
 
         SqlCommand($"UPDATE Stock_Data SET img_path='{$"C:\Users\hp\Desktop\stock_images\img{StockID}.jpg"}' WHERE ID={StockID}")
 
-        MessageBox.Show("Record Updated Successfully.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Dispose()
+        For Each _form As Form In Application.OpenForms
+            If TypeOf _form IsNot CategoriesPage Then Continue For
+            CType(_form, CategoriesPage).Focus()
+            CType(_form, CategoriesPage).StockEntryBT.PerformClick()
+            Exit For
+        Next
+
 
 
     End Sub
+
+    Private Sub ReloadImgBT_Click(sender As Object, e As EventArgs) Handles ReloadImgBT.Click
+        _currentImageIndex = -1
+        UpdateImage()
+    End Sub
+
+    'Private Sub NextImgButton_Click(sender As Object, e As EventArgs) Handles NextImgButton.Click
+    '    If _currentImageIndex < -1 Then
+    '        _currentImageIndex += 1
+    '        UpdateImage()
+    '        BackImgButton.Enabled = True
+    '    Else
+    '        NextImgButton.Enabled = False
+    '        _currentImageIndex = -1
+    '    End If
+    'End Sub
+
+    Private Sub StockEntry_Closed(sender As Object, e As EventArgs) Handles Me.Closed
+        RemoveHandler fm.NewMessage_Socket, AddressOf UpdateImage
+        Dispose()
+    End Sub
+
+
+    'Private Sub BackImgButton_Click(sender As Object, e As EventArgs) Handles BackImgButton.Click
+    '    _currentImageIndex += 1
+    '    If Not UpdateImage() Then BackImgButton.Enabled = False
+    '    NextImgButton.Enabled = True
+    'End Sub
 
 End Class
