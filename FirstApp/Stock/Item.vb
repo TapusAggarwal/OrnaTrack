@@ -32,6 +32,7 @@ Public Class Item
             End While
 
             For Each i In attributesList.Split(",")
+                If i = "" Then Continue For
                 i = Int(i)
                 If i < 0 Then
                     Attributes.RemoveAll(Function(f) f.ID = i)

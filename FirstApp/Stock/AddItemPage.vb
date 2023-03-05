@@ -232,6 +232,8 @@ Public Class AddItemPage
 
         CurrentItem.Save()
 
+
+
         Close()
 
     End Sub
