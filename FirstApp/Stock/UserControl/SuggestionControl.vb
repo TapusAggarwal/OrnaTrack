@@ -1,4 +1,5 @@
-﻿Public Class AttributeControl
+﻿Public Class SuggestionControl
+    Private _Attribute As Item.Item_Attribute
 
     Private _currentAttribute As Item.Item_Attribute
 
@@ -8,7 +9,10 @@
         End Get
         Set(value As Item.Item_Attribute)
             _currentAttribute = value
+            If value Is Nothing Then Exit Property
             With _currentAttribute
+                AttrIconBT.Visible = True
+                Label2.Visible = True
                 AttrIconBT.Text = $"{{{ .DataType}{If(.IsCurrency, "-₹", "")}}} { .Name}" + If(.IsOptional, "*", "")
                 If .IsConstant Then
                     AttrIconBT.Font = New Font(AttrIconBT.Font, FontStyle.Underline)
@@ -27,10 +31,4 @@
 
         End Set
     End Property
-
-    Public Event ButtonClick(_property As Item.Item_Attribute)
-    Private Sub UsedButton_Click(sender As Object, e As EventArgs) Handles UsedButton.Click
-        RaiseEvent ButtonClick(_currentAttribute)
-    End Sub
-
 End Class

@@ -277,6 +277,12 @@
     <Compile Include="FormView\TransactionDetails.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Stock\SuggestionsPage.Designer.vb">
+      <DependentUpon>SuggestionsPage.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Stock\SuggestionsPage.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Stock\UserControl\AttributeControl.Designer.vb">
       <DependentUpon>AttributeControl.vb</DependentUpon>
     </Compile>
@@ -484,6 +490,18 @@
     <Compile Include="Stock\StockEntry.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Stock\UserControl\SelectAttributeForm.Designer.vb">
+      <DependentUpon>SelectAttributeForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Stock\UserControl\SelectAttributeForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Stock\UserControl\SuggestionControl.Designer.vb">
+      <DependentUpon>SuggestionControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Stock\UserControl\SuggestionControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Stock\UserControl\UserControl1.Designer.vb">
       <DependentUpon>UserControl1.vb</DependentUpon>
     </Compile>
@@ -651,6 +669,9 @@
     <EmbeddedResource Include="Main Forms\KittyModeCoustView.resx">
       <DependentUpon>KittyModeCoustView.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Stock\SuggestionsPage.resx">
+      <DependentUpon>SuggestionsPage.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Stock\UserControl\AttributeControl.resx">
       <DependentUpon>AttributeControl.vb</DependentUpon>
     </EmbeddedResource>
@@ -681,6 +702,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Stock\StockEntry.resx">
       <DependentUpon>StockEntry.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stock\UserControl\SelectAttributeForm.resx">
+      <DependentUpon>SelectAttributeForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stock\UserControl\SuggestionControl.resx">
+      <DependentUpon>SuggestionControl.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Stock\UserControl\UserControl1.resx">
       <DependentUpon>UserControl1.vb</DependentUpon>

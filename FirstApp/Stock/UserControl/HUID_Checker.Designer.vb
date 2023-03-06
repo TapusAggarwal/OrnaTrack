@@ -26,10 +26,13 @@ Partial Class HUID_Checker
         Me.FindCoustmerButton = New FontAwesome.Sharp.IconButton()
         Me.FlowLayoutPanel1 = New System.Windows.Forms.FlowLayoutPanel()
         Me.SelectBT = New FontAwesome.Sharp.IconButton()
+        Me.ListBox1 = New System.Windows.Forms.ListBox()
         Me.SuspendLayout()
         '
         'SearchTB
         '
+        Me.SearchTB.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.SearchTB.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
         Me.SearchTB.Font = New System.Drawing.Font("Segoe UI", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SearchTB.Location = New System.Drawing.Point(138, 27)
         Me.SearchTB.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
@@ -93,12 +96,25 @@ Partial Class HUID_Checker
         Me.SelectBT.UseVisualStyleBackColor = False
         Me.SelectBT.Visible = False
         '
+        'ListBox1
+        '
+        Me.ListBox1.Font = New System.Drawing.Font("Segoe UI", 14.0!)
+        Me.ListBox1.FormattingEnabled = True
+        Me.ListBox1.IntegralHeight = False
+        Me.ListBox1.ItemHeight = 38
+        Me.ListBox1.Location = New System.Drawing.Point(138, 69)
+        Me.ListBox1.Name = "ListBox1"
+        Me.ListBox1.Size = New System.Drawing.Size(248, 42)
+        Me.ListBox1.TabIndex = 9999
+        Me.ListBox1.Visible = False
+        '
         'HUID_Checker
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(60, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(610, 607)
+        Me.Controls.Add(Me.ListBox1)
         Me.Controls.Add(Me.SelectBT)
         Me.Controls.Add(Me.FlowLayoutPanel1)
         Me.Controls.Add(Me.FindCoustmerButton)
@@ -117,4 +133,5 @@ Partial Class HUID_Checker
     Friend WithEvents FindCoustmerButton As FontAwesome.Sharp.IconButton
     Friend WithEvents FlowLayoutPanel1 As FlowLayoutPanel
     Friend WithEvents SelectBT As FontAwesome.Sharp.IconButton
+    Friend WithEvents ListBox1 As ListBox
 End Class

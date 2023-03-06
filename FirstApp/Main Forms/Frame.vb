@@ -653,4 +653,9 @@ Public Class Frame
     Private Sub ServerContextMenuStrip_Opening(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles ServerContextMenuStrip.Opening
 
     End Sub
+
+    Private Sub IconButton2_Click_1(sender As Object, e As EventArgs) Handles IconButton2.Click
+        Dim Fm As New rough1
+        Fm.ShowDialog()
+    End Sub
 End Class
