@@ -5,7 +5,7 @@ Imports System.Net
 Public Class HUID_Checker
 
     Private Sub HUID_Checker_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        SearchTB.Text = "VXZSYD"
+        'SearchTB.Text = "VXZSYD"
     End Sub
 
     Private Async Function CheckUIDExists(huid As String) As Task(Of String)
