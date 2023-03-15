@@ -11,6 +11,7 @@ Public Class StockEntry
 
     Public Property CurrentItem As Item
     Public Property StockID As Integer = -1
+    Dim _huids As New List(Of String)
 
     Private Sub StockEntry_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -36,6 +37,22 @@ Public Class StockEntry
             End If
 
             If _attribute.Name = "Huid No" Then
+
+                Dim dr As OleDb.OleDbDataReader = DataReader("Select * From Stock_Data")
+                While dr.Read
+                    Dim _jsonObject As JObject = JsonConvert.DeserializeObject(Of JObject)(dr("Item_Data"))
+
+                    If _jsonObject.ContainsKey("15") Then
+                        Dim _list As List(Of String) = _jsonObject("15").ToString.Split(",").ToList
+                        _list.Remove("")
+                        If _list.Count > 0 Then
+                            _huids.AddRange(_list)
+                        End If
+                    End If
+                End While
+
+                _huids = _huids.Select(Function(str) str.Trim()).ToList()
+
                 AddHandler KeyDown, Sub(_sender As Object, _e As KeyEventArgs)
                                         If _e.KeyCode = Keys.I AndAlso _e.Control = True Then
                                             Dim f = x.DefaultValueTB.Text
@@ -43,6 +60,12 @@ Public Class StockEntry
                                             Fm.SearchTB.Select()
                                             _e.Handled = True
                                             AddHandler Fm.HuidSelected, Sub(_status, _huid)
+
+                                                                            If _huids.Contains(_huid.Trim) Then
+                                                                                MessageBox.Show("This HUID No. Is Already Used For An Item Before.", "Duplication Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                                                                Exit Sub
+                                                                            End If
+
                                                                             If _status Then
                                                                                 Dim _text As String = x.EnteredData
                                                                                 If _text = _attribute.DefaultValue Then _text = ""
@@ -58,7 +81,6 @@ Public Class StockEntry
                                                                             End If
                                                                         End Sub
                                             Fm.ShowDialog()
-
                                         End If
                                     End Sub
             End If
@@ -249,6 +271,13 @@ Public Class StockEntry
         Next
 
         Dim _str = Json.JsonConvert.SerializeObject(x)
+
+        If x.ContainsKey(15) Then
+            If _huids.Contains(x(15)) Then
+                MessageBox.Show("This HUID No. Is Already Used For An Item Before.", "Duplication Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End If
+        End If
 
         If StockID > 0 Then
             SqlCommand($"UPDATE Stock_Data SET Ctg_ID='{CurrentItem.ItemID}',Item_Data='{_str}',entry_time='{Now}' WHERE ID={StockID}")

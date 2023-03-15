@@ -133,7 +133,7 @@ Public Class HUID_Checker
 
         End If
 
-        RaiseEvent HuidSelected(_status, huid)
+        RaiseEvent HuidSelected(_status, huid.Trim)
     End Sub
 
     Private Sub SearchTB_TextChanged(sender As Object, e As EventArgs) Handles SearchTB.TextChanged

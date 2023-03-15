@@ -47,7 +47,6 @@ Partial Class AttributeStockControl
         Me.DefaultValueTB.Location = New System.Drawing.Point(20, 11)
         Me.DefaultValueTB.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.DefaultValueTB.Name = "DefaultValueTB"
-        Me.DefaultValueTB.ShortcutsEnabled = False
         Me.DefaultValueTB.Size = New System.Drawing.Size(229, 36)
         Me.DefaultValueTB.TabIndex = 291
         Me.DefaultValueTB.Visible = False
@@ -104,7 +103,7 @@ Partial Class AttributeStockControl
         Me.ListValues.Tag = ""
         Me.ListValues.Visible = False
         '
-        'AtttributeStockControl
+        'AttributeStockControl
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -114,7 +113,7 @@ Partial Class AttributeStockControl
         Me.Controls.Add(Me.ListValues)
         Me.Controls.Add(Me.AttributeLB)
         Me.Controls.Add(Me.FalseChB)
-        Me.Name = "AtttributeStockControl"
+        Me.Name = "AttributeStockControl"
         Me.Size = New System.Drawing.Size(259, 57)
         Me.ResumeLayout(False)
         Me.PerformLayout()
