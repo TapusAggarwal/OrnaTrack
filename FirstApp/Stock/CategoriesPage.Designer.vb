@@ -30,6 +30,7 @@ Partial Class CategoriesPage
         Me.SaveBT = New FontAwesome.Sharp.IconButton()
         Me.AddBT = New FontAwesome.Sharp.IconButton()
         Me.IconButton1 = New FontAwesome.Sharp.IconButton()
+        Me.IconButton2 = New FontAwesome.Sharp.IconButton()
         Me.FlowLayoutPanel1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -120,12 +121,25 @@ Partial Class CategoriesPage
         Me.IconButton1.Text = "Show Entry"
         Me.IconButton1.UseVisualStyleBackColor = True
         '
+        'IconButton2
+        '
+        Me.IconButton2.IconChar = FontAwesome.Sharp.IconChar.None
+        Me.IconButton2.IconColor = System.Drawing.Color.Black
+        Me.IconButton2.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.IconButton2.Location = New System.Drawing.Point(588, 278)
+        Me.IconButton2.Name = "IconButton2"
+        Me.IconButton2.Size = New System.Drawing.Size(101, 39)
+        Me.IconButton2.TabIndex = 8
+        Me.IconButton2.Text = "Bulk Entry"
+        Me.IconButton2.UseVisualStyleBackColor = True
+        '
         'CategoriesPage
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(60, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1193, 786)
+        Me.Controls.Add(Me.IconButton2)
         Me.Controls.Add(Me.IconButton1)
         Me.Controls.Add(Me.EditBT)
         Me.Controls.Add(Me.StockEntryBT)
@@ -149,4 +163,5 @@ Partial Class CategoriesPage
     Friend WithEvents StockEntryBT As FontAwesome.Sharp.IconButton
     Friend WithEvents EditBT As FontAwesome.Sharp.IconButton
     Friend WithEvents IconButton1 As FontAwesome.Sharp.IconButton
+    Friend WithEvents IconButton2 As FontAwesome.Sharp.IconButton
 End Class

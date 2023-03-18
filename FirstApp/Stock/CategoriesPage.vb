@@ -162,4 +162,9 @@ Public Class CategoriesPage
         Dim fm As New ShowItems
         fm.ShowDialog()
     End Sub
+
+    Private Sub IconButton2_Click(sender As Object, e As EventArgs) Handles IconButton2.Click
+        Dim fm As New OrganiseStock
+        fm.ShowDialog()
+    End Sub
 End Class

@@ -277,6 +277,12 @@
     <Compile Include="FormView\TransactionDetails.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Stock\OrganiseStock.Designer.vb">
+      <DependentUpon>OrganiseStock.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Stock\OrganiseStock.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Stock\SuggestionsPage.Designer.vb">
       <DependentUpon>SuggestionsPage.vb</DependentUpon>
     </Compile>
@@ -502,6 +508,12 @@
     <Compile Include="Stock\UserControl\SuggestionControl.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Stock\UserControl\TrayControl.Designer.vb">
+      <DependentUpon>TrayControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Stock\UserControl\TrayControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Stock\UserControl\UserControl1.Designer.vb">
       <DependentUpon>UserControl1.vb</DependentUpon>
     </Compile>
@@ -669,6 +681,9 @@
     <EmbeddedResource Include="Main Forms\KittyModeCoustView.resx">
       <DependentUpon>KittyModeCoustView.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Stock\OrganiseStock.resx">
+      <DependentUpon>OrganiseStock.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Stock\SuggestionsPage.resx">
       <DependentUpon>SuggestionsPage.vb</DependentUpon>
     </EmbeddedResource>
@@ -708,6 +723,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Stock\UserControl\SuggestionControl.resx">
       <DependentUpon>SuggestionControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stock\UserControl\TrayControl.resx">
+      <DependentUpon>TrayControl.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Stock\UserControl\UserControl1.resx">
       <DependentUpon>UserControl1.vb</DependentUpon>

@@ -170,12 +170,7 @@ Public Class MessageSender
 
         MessageTB.Text = "{Greet}
 Dear, {CoustName} Ji
-{CoustPhNo}
-Your Kitty Of {KittyType}({KittyNo})
-Is Due From-: {InstPendMonth}
-Instalment Pending({InstPend}) = {PendingAmt}
-Instalments Completed({InstCompl})-: {InstCompMonth}
-You Can Also Pay Online Account Info Below."
+Have A Nice Day Ahead."
 
     End Sub
 
@@ -269,6 +264,8 @@ You Can Also Pay Online Account Info Below."
         MessageTB.Select()
     End Sub
 
+    'Preview Button
+
     Private Sub PreviewBT_Click(sender As Object, e As EventArgs) Handles PreviewBT.Click
         Dim imgPaths As List(Of String) = GetPathForImages()
         If MessagesList.Count = 0 AndAlso imgPaths.Count = 0 Then Exit Sub
@@ -340,8 +337,9 @@ You Can Also Pay Online Account Info Below."
         Try
 
             Dim img As New OpenFileDialog With {
-                .Filter = "Choose Image(*.jpg;*.png;*.gif)|*.jpg;*.png;*.gif"
+                .Filter = "Choose Image(*.jpg;*.jpeg;*.png;*.gif)|*.jpg;*.jpeg;*.png;*.gif"
             }
+
             If img.ShowDialog = DialogResult.OK Then
                 Dim ImageBox As New PictureBox With {
                     .Image = Image.FromFile(img.FileName),
@@ -462,6 +460,7 @@ You Can Also Pay Online Account Info Below."
 
 #End Region
 
+    'Send Button
     Private Async Sub SendBT_Click(sender As Object, e As EventArgs) Handles SendBT.Click
 
         Dim _imagePath As List(Of String) = GetPathForImages()
@@ -507,6 +506,9 @@ You Can Also Pay Online Account Info Below."
         Next
     End Sub
 
+    Private Sub ImageFirstChB_CheckedChanged(sender As Object, e As EventArgs) Handles ImageFirstChB.CheckedChanged
+        ImageFirst = ImageFirstChB.Checked
+    End Sub
 End Class
 
 'ReadOnly SelectedColour As Color = Color.Wheat

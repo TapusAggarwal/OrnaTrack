@@ -12,6 +12,7 @@ Module ProjectModule
     Public myconnection As New OleDbConnection
     Public WebSocket As WebSocket
     Public state As String = ""
+    Public Property ImageFirst As Boolean = True
     Public ReadOnly apostropheReplacer As String = "{#}"
 
 
@@ -103,6 +104,28 @@ Module ProjectModule
             Dim content As New MultipartFormDataContent From {
             {New StringContent("91" + phno.Trim), "phno"}
         }
+
+            If imgList.Count = 0 And msgList.Count = 0 Then
+                MessageBox.Show($"Neither Image Nor Message was provided to send to this number.", "Error", MessageBoxButtons.OK)
+                Return Nothing
+            End If
+
+            If Not ImageFirst And (msgList.Count > 0 AndAlso imgList.Count > 0) Then
+                Dim _resp As JObject = Await UniversalWhatsappMessageBundle(phno, msgList, New List(Of String))
+                Dim status = "fail"
+                If _resp IsNot Nothing Then status = _resp.SelectToken("result").ToString
+
+                If status = "pass" Then
+                    msgList.Clear()
+                ElseIf status = "fail" Then
+                    Dim response As New JObject From {
+                        {"result", "fail"}
+                    }
+                    Return response
+                Else
+                    Return Nothing
+                End If
+            End If
 
             For Each msg In msgList
                 content.Add(New StringContent(msg), "msg")
