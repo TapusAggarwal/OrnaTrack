@@ -1,4 +1,4 @@
-﻿Imports FirstApp.MessageSender
+﻿Imports FirstApp.MessageAndImageSender
 Imports System.Net.Http
 Imports Newtonsoft.Json.Linq
 Imports System.IO

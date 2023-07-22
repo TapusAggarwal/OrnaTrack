@@ -1,6 +1,6 @@
 ﻿Imports FirstApp.Utility
 
-Public Class TransactionDetails
+Public Class TransactionDetailsForm
 
     Public Property CurrentTransaction As Transaction = Nothing
     Public Property _kitty As Kitty = Nothing
@@ -226,7 +226,7 @@ Public Class TransactionDetails
     End Sub
 
     Private Sub OnlineTransactionsBT_Click(sender As Object, e As EventArgs) Handles OnlineTransactionsBT.Click
-        Dim Fm As New TransactionsForm
+        Dim Fm As New AllTransactionsForm
         Fm.FromDatePicker.Value = CurrentTransaction.TrnsDate
         Fm.TillDatePicker.Value = CurrentTransaction.TrnsDate
         Fm.ButtonText = "Select"
@@ -249,7 +249,7 @@ Public Class TransactionDetails
                                     End Sub
 
         AddHandler Fm.AddTransactionButton_Clicked, Sub()
-                                                        Dim Fm_Trns As New TransactionDetails
+                                                        Dim Fm_Trns As New TransactionDetailsForm
                                                         Fm_Trns.DatePicker.Value = CurrentTransaction.TrnsDate
                                                         Fm_Trns.DatePicker.Enabled = False
                                                         Fm_Trns._kitty = _kitty

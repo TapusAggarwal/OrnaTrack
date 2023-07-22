@@ -92,7 +92,7 @@ Public Class rough
 
 
         Dim _acc = From i In _selectedTrns Select i.Account Distinct
-        Dim _list = TransactionsForm.GetAllTransactions()
+        Dim _list = AllTransactionsForm.GetAllTransactions()
         Dim _unCommon = _list.Where(Function(f) _selectedTrns.Where(
                                         Function(r) (r.Description = f.RefNo AndAlso r.Amount = f.Amount) OrElse Not _acc.Contains(f.Account)).Count = 0).ToList
 

@@ -45,7 +45,6 @@ Partial Class CoustProfileUpdated
         Me.ImageBoxPanel = New System.Windows.Forms.Panel()
         Me.ImageBox = New System.Windows.Forms.PictureBox()
         Me.ProfilePanel = New System.Windows.Forms.Panel()
-        Me.PhoneNoTag1 = New FirstApp.PhoneNoTag()
         Me.FemaleRB = New System.Windows.Forms.RadioButton()
         Me.ProfessionCB = New System.Windows.Forms.ComboBox()
         Me.MaleRB = New System.Windows.Forms.RadioButton()
@@ -88,6 +87,9 @@ Partial Class CoustProfileUpdated
         Me.TillDateAmountLabel = New System.Windows.Forms.Label()
         Me.ProductsCompleted = New System.Windows.Forms.Label()
         Me.KittyDetailsButton = New FontAwesome.Sharp.IconButton()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Adhaar = New System.Windows.Forms.TextBox()
+        Me.PhoneNoTag1 = New FirstApp.PhoneNoTag()
         Me.ButtonPanel.SuspendLayout()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.ImageBoxPanel.SuspendLayout()
@@ -370,6 +372,8 @@ Partial Class CoustProfileUpdated
         'ProfilePanel
         '
         Me.ProfilePanel.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(35, Byte), Integer), CType(CType(70, Byte), Integer))
+        Me.ProfilePanel.Controls.Add(Me.Label3)
+        Me.ProfilePanel.Controls.Add(Me.Adhaar)
         Me.ProfilePanel.Controls.Add(Me.PhoneNoTag1)
         Me.ProfilePanel.Controls.Add(Me.FemaleRB)
         Me.ProfilePanel.Controls.Add(Me.ProfessionCB)
@@ -392,23 +396,13 @@ Partial Class CoustProfileUpdated
         Me.ProfilePanel.Size = New System.Drawing.Size(839, 359)
         Me.ProfilePanel.TabIndex = 5
         '
-        'PhoneNoTag1
-        '
-        Me.PhoneNoTag1.BackColor = System.Drawing.Color.MediumSlateBlue
-        Me.PhoneNoTag1.Location = New System.Drawing.Point(164, 82)
-        Me.PhoneNoTag1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-        Me.PhoneNoTag1.Name = "PhoneNoTag1"
-        Me.PhoneNoTag1.Size = New System.Drawing.Size(642, 52)
-        Me.PhoneNoTag1.TabIndex = 2
-        Me.PhoneNoTag1.TagData = ""
-        '
         'FemaleRB
         '
         Me.FemaleRB.AutoSize = True
         Me.FemaleRB.Checked = True
         Me.FemaleRB.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FemaleRB.ForeColor = System.Drawing.SystemColors.ActiveCaption
-        Me.FemaleRB.Location = New System.Drawing.Point(505, 300)
+        Me.FemaleRB.Location = New System.Drawing.Point(531, 300)
         Me.FemaleRB.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.FemaleRB.Name = "FemaleRB"
         Me.FemaleRB.Size = New System.Drawing.Size(128, 34)
@@ -439,7 +433,7 @@ Partial Class CoustProfileUpdated
         Me.MaleRB.AutoSize = True
         Me.MaleRB.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.MaleRB.ForeColor = System.Drawing.SystemColors.ActiveCaption
-        Me.MaleRB.Location = New System.Drawing.Point(407, 300)
+        Me.MaleRB.Location = New System.Drawing.Point(433, 300)
         Me.MaleRB.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.MaleRB.Name = "MaleRB"
         Me.MaleRB.Size = New System.Drawing.Size(99, 34)
@@ -462,7 +456,7 @@ Partial Class CoustProfileUpdated
         Me.IconButton1.IconFont = FontAwesome.Sharp.IconFont.[Auto]
         Me.IconButton1.IconSize = 30
         Me.IconButton1.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.IconButton1.Location = New System.Drawing.Point(131, 242)
+        Me.IconButton1.Location = New System.Drawing.Point(126, 238)
         Me.IconButton1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.IconButton1.Name = "IconButton1"
         Me.IconButton1.Size = New System.Drawing.Size(30, 32)
@@ -477,7 +471,7 @@ Partial Class CoustProfileUpdated
         Me.NameLabel.BackColor = System.Drawing.Color.Transparent
         Me.NameLabel.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.NameLabel.ForeColor = System.Drawing.SystemColors.ActiveCaption
-        Me.NameLabel.Location = New System.Drawing.Point(28, 23)
+        Me.NameLabel.Location = New System.Drawing.Point(13, 23)
         Me.NameLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.NameLabel.Name = "NameLabel"
         Me.NameLabel.Size = New System.Drawing.Size(87, 30)
@@ -530,7 +524,7 @@ Partial Class CoustProfileUpdated
         Me.PhoneNoLabel.BackColor = System.Drawing.Color.Transparent
         Me.PhoneNoLabel.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.PhoneNoLabel.ForeColor = System.Drawing.SystemColors.ActiveCaption
-        Me.PhoneNoLabel.Location = New System.Drawing.Point(28, 98)
+        Me.PhoneNoLabel.Location = New System.Drawing.Point(13, 91)
         Me.PhoneNoLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.PhoneNoLabel.Name = "PhoneNoLabel"
         Me.PhoneNoLabel.Size = New System.Drawing.Size(130, 30)
@@ -567,7 +561,7 @@ Partial Class CoustProfileUpdated
         Me.ProfessionLabel.BackColor = System.Drawing.Color.Transparent
         Me.ProfessionLabel.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ProfessionLabel.ForeColor = System.Drawing.SystemColors.ActiveCaption
-        Me.ProfessionLabel.Location = New System.Drawing.Point(28, 165)
+        Me.ProfessionLabel.Location = New System.Drawing.Point(13, 165)
         Me.ProfessionLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.ProfessionLabel.Name = "ProfessionLabel"
         Me.ProfessionLabel.Size = New System.Drawing.Size(131, 30)
@@ -581,7 +575,7 @@ Partial Class CoustProfileUpdated
         Me.RegionLabel.BackColor = System.Drawing.Color.Transparent
         Me.RegionLabel.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.RegionLabel.ForeColor = System.Drawing.SystemColors.ActiveCaption
-        Me.RegionLabel.Location = New System.Drawing.Point(469, 165)
+        Me.RegionLabel.Location = New System.Drawing.Point(450, 168)
         Me.RegionLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.RegionLabel.Name = "RegionLabel"
         Me.RegionLabel.Size = New System.Drawing.Size(97, 30)
@@ -594,7 +588,7 @@ Partial Class CoustProfileUpdated
         Me.MarriedCheckBox.BackColor = System.Drawing.Color.Transparent
         Me.MarriedCheckBox.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.MarriedCheckBox.ForeColor = System.Drawing.SystemColors.ActiveCaption
-        Me.MarriedCheckBox.Location = New System.Drawing.Point(662, 297)
+        Me.MarriedCheckBox.Location = New System.Drawing.Point(688, 297)
         Me.MarriedCheckBox.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.MarriedCheckBox.Name = "MarriedCheckBox"
         Me.MarriedCheckBox.Size = New System.Drawing.Size(141, 43)
@@ -610,7 +604,7 @@ Partial Class CoustProfileUpdated
         Me.AddressLabel.BackColor = System.Drawing.Color.Transparent
         Me.AddressLabel.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.AddressLabel.ForeColor = System.Drawing.SystemColors.ActiveCaption
-        Me.AddressLabel.Location = New System.Drawing.Point(28, 242)
+        Me.AddressLabel.Location = New System.Drawing.Point(13, 238)
         Me.AddressLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.AddressLabel.Name = "AddressLabel"
         Me.AddressLabel.Size = New System.Drawing.Size(105, 30)
@@ -1051,6 +1045,43 @@ Partial Class CoustProfileUpdated
         Me.KittyDetailsButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
         Me.KittyDetailsButton.UseVisualStyleBackColor = False
         '
+        'Label3
+        '
+        Me.Label3.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.Label3.AutoSize = True
+        Me.Label3.BackColor = System.Drawing.Color.Transparent
+        Me.Label3.Font = New System.Drawing.Font("Century Gothic", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.SystemColors.ActiveCaption
+        Me.Label3.Location = New System.Drawing.Point(13, 298)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(148, 30)
+        Me.Label3.TabIndex = 250
+        Me.Label3.Text = "Adhaar No."
+        '
+        'Adhaar
+        '
+        Me.Adhaar.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.Adhaar.BackColor = System.Drawing.Color.White
+        Me.Adhaar.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Adhaar.Location = New System.Drawing.Point(165, 297)
+        Me.Adhaar.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.Adhaar.Name = "Adhaar"
+        Me.Adhaar.Size = New System.Drawing.Size(229, 35)
+        Me.Adhaar.TabIndex = 249
+        Me.Adhaar.Tag = ""
+        Me.Adhaar.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'PhoneNoTag1
+        '
+        Me.PhoneNoTag1.BackColor = System.Drawing.Color.MediumSlateBlue
+        Me.PhoneNoTag1.Location = New System.Drawing.Point(164, 82)
+        Me.PhoneNoTag1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.PhoneNoTag1.Name = "PhoneNoTag1"
+        Me.PhoneNoTag1.Size = New System.Drawing.Size(642, 52)
+        Me.PhoneNoTag1.TabIndex = 2
+        Me.PhoneNoTag1.TagData = ""
+        '
         'CoustProfileUpdated
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
@@ -1154,4 +1185,6 @@ Partial Class CoustProfileUpdated
     Friend WithEvents ProductsCompleted As Label
     Friend WithEvents KittyDetailsButton As FontAwesome.Sharp.IconButton
     Friend WithEvents PhoneNoTag1 As PhoneNoTag
+    Friend WithEvents Label3 As Label
+    Friend WithEvents Adhaar As TextBox
 End Class

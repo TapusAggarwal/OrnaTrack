@@ -87,7 +87,6 @@ Partial Class StockEntry
         Me.SaleFP.Size = New System.Drawing.Size(555, 726)
         Me.SaleFP.TabIndex = 306
         Me.SaleFP.Title = "Sale Attr."
-        Me.SaleFP.Visible = False
         '
         'ProductFP
         '
@@ -112,7 +111,6 @@ Partial Class StockEntry
         Me.PurchaseFP.Size = New System.Drawing.Size(555, 726)
         Me.PurchaseFP.TabIndex = 304
         Me.PurchaseFP.Title = "Puchase Attr."
-        Me.PurchaseFP.Visible = False
         '
         'Panel2
         '

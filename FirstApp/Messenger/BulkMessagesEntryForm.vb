@@ -1,4 +1,4 @@
-﻿Public Class BulkMessengerEntry
+﻿Public Class BulkMessagesEntryForm
     ReadOnly Kitties As New Dictionary(Of Integer, Dictionary(Of String, List(Of Kitty)))
     ReadOnly SelectedMatured As New List(Of Kitty)
     ReadOnly SelectedAvailed As New List(Of Kitty)
@@ -441,7 +441,7 @@
     End Sub
 
     Private Sub SendButton_Click(sender As Object, e As EventArgs) Handles SendButton.Click
-        Using Fm As New MessageSender
+        Using Fm As New MessageAndImageSender
             Fm.SelectedKitties = SelectedKitties
             Fm.ShowDialog()
         End Using

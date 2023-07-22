@@ -1,7 +1,7 @@
 ﻿Imports Newtonsoft.Json
 Imports Newtonsoft.Json.Linq
 
-Public Class CategoriesPage
+Public Class MainStockPage
 
     Dim StockStructure As Dictionary(Of String, Object)
 
@@ -159,12 +159,17 @@ Public Class CategoriesPage
     End Sub
 
     Private Sub IconButton1_Click(sender As Object, e As EventArgs) Handles IconButton1.Click
-        Dim fm As New ShowItems
+        Dim fm As New AllStock
         fm.ShowDialog()
     End Sub
 
     Private Sub IconButton2_Click(sender As Object, e As EventArgs) Handles IconButton2.Click
         Dim fm As New OrganiseStock
         fm.ShowDialog()
+    End Sub
+
+    Private Sub IconButton3_Click(sender As Object, e As EventArgs) Handles IconButton3.Click
+        Dim Fm As New PurchaseBill
+        Fm.Show()
     End Sub
 End Class

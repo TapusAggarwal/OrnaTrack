@@ -82,6 +82,7 @@
             If sender.TextLength <> 10 Then
                 MessageBox.Show("PhNo Must Be 10 Digit Long This No Is " & sender.TextLength & " Digit Long.",
                             "Typing Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                sender.Text = ""
                 sender.Select()
                 Exit Sub
             Else
@@ -106,6 +107,7 @@
         If sender.TextLength > 0 AndAlso sender.TextLength <> 10 Then
             MessageBox.Show("PhNo Must Be 10 Digit Long This No Is " & sender.TextLength & " Digit Long.",
                             "Typing Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            sender.Text = ""
             sender.Select()
             Exit Sub
         End If

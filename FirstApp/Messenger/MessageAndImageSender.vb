@@ -1,6 +1,6 @@
 ﻿Imports Newtonsoft.Json.Linq
 
-Public Class MessageSender
+Public Class MessageAndImageSender
 
     Public Property SelectedKitties As New List(Of Kitty)
     ReadOnly MessagesList As New List(Of String)

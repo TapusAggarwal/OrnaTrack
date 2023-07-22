@@ -479,7 +479,7 @@ Public Class Frame
                 Exit Sub
             End If
             If e.Control And e.KeyCode = Keys.R Then
-                Form2.Show()
+                'Form2.Show()
             End If
             If e.Control And e.KeyCode = Keys.B Then
                 If ActiveMdiChild Is Main Then
@@ -488,7 +488,7 @@ Public Class Frame
             End If
             If e.Control And e.KeyCode = Keys.M Then
                 If ActiveMdiChild() Is Main Then
-                    BulkMessengerEntry.Show()
+                    BulkMessagesEntryForm.Show()
                 End If
             End If
             If e.Control And e.KeyCode = Keys.E Then
@@ -596,15 +596,15 @@ Public Class Frame
     End Sub
 
     Private Sub GoldButton_Click(sender As Object, e As EventArgs)
-        Dim fm As New CategoriesPage
+        Dim fm As New MainStockPage
         fm.Show()
     End Sub
 
     Private Sub SilverButton_Click(sender As Object, e As EventArgs) Handles SilverButton.Click
-        Dim fm_trns As New TransactionsForm
+        Dim fm_trns As New AllTransactionsForm
         fm_trns.Size = New Point(fm_trns.Width, 10000)
         AddHandler fm_trns.AddTransactionButton_Clicked, Sub()
-                                                             Dim fm As New TransactionDetails
+                                                             Dim fm As New TransactionDetailsForm
                                                              fm.CurrentTransaction = New Transaction(-1)
                                                              fm.ShowDialog()
                                                          End Sub
@@ -641,7 +641,7 @@ Public Class Frame
     End Sub
 
     Private Sub RoughButton_Click(sender As Object, e As EventArgs) Handles RoughButton.Click
-        Dim Fm As New CategoriesPage
+        Dim Fm As New MainStockPage
         Fm.ShowDialog()
     End Sub
 

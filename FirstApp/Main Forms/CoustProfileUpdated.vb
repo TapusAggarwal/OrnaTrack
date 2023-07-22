@@ -35,6 +35,7 @@ Public Class CoustProfileUpdated
         ProfessionCB.SelectedIndex = ProfessionCB.FindStringExact(_customer.Profession)
         RegionCB.SelectedIndex = RegionCB.FindStringExact(_customer.Region)
         AddressTB.Text = _customer.Address
+        Adhaar.Text = _customer.AdhaarNumber
         If _customer.IsMarried() Then MarriedCheckBox.Checked = True Else MarriedCheckBox.Checked = False
         If _customer.Gender() = "Male" Then
             MaleRB.Checked = True
@@ -71,21 +72,40 @@ Public Class CoustProfileUpdated
             _currentCustomer.UpdatedProfession = ProfessionCB.SelectedItem
             _currentCustomer.UpdatedRegion = RegionCB.SelectedItem
             _currentCustomer.UpdatedAddress = AddressTB.Text
-            If MarriedCheckBox.Checked Then _currentCustomer.UpdatedMarriedStatus = "True" Else _currentCustomer.UpdatedMarriedStatus = "False"
-            If MaleRB.Checked Then
-                _currentCustomer.UpdatedGender = "Male"
-            ElseIf FemaleRB.Checked Then
-                _currentCustomer.UpdatedGender = "Female"
+
+
+            For Each i In Adhaar.Text
+                If Not Char.IsDigit(i) Then
+                    MessageBox.Show("Adhaar Number Should Only Contain Numbers. No Alphabets Allowed!!", "Invalid Input", MessageBoxButtons.OK)
+                    Exit Sub
+                End If
+            Next
+
+            If Not Adhaar.TextLength = 12 Then
+                MessageBox.Show("Adhaar Number Should Only Be 12 Digits Long.", "Invalid Input", MessageBoxButtons.OK)
+                Exit Sub
             End If
-            _currentCustomer.UpdatedDescription = NotesTB.Text
-        Else
-            Dim _Married As String
+
+            _currentCustomer.UpdatedAdhaarNumber = Adhaar.Text
+
+
+                If MarriedCheckBox.Checked Then _currentCustomer.UpdatedMarriedStatus = "True" Else _currentCustomer.UpdatedMarriedStatus = "False"
+                If MaleRB.Checked Then
+                    _currentCustomer.UpdatedGender = "Male"
+                ElseIf FemaleRB.Checked Then
+                    _currentCustomer.UpdatedGender = "Female"
+                End If
+                _currentCustomer.UpdatedDescription = NotesTB.Text
+            Else
+                Dim _Married As String
             Dim _gender As String = ""
             If MaleRB.Checked Then
                 _gender = "Male"
             ElseIf FemaleRB.Checked Then
                 _gender = "Female"
             End If
+
+
 
             If MarriedCheckBox.Checked Then _Married = "True" Else _Married = "False"
             If MessageBox.Show("Do You Want To Save New Member To Customer Data ?", "Confirm", MessageBoxButtons.YesNo) = DialogResult.No Then Exit Sub
@@ -273,6 +293,14 @@ Public Class CoustProfileUpdated
             SendKeys.Send("{Tab}")
             Exit Sub
         End If
+    End Sub
+
+    Private Sub TB_GotFocus(sender As Object, e As EventArgs) Handles SirNameTB.GotFocus, NameTB.GotFocus, AddressTB.GotFocus
+
+    End Sub
+
+    Private Sub TB_LostFocus(sender As Object, e As EventArgs) Handles SirNameTB.LostFocus, NameTB.LostFocus, AddressTB.LostFocus
+
     End Sub
 
 #End Region

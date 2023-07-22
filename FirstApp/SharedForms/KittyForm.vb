@@ -697,7 +697,7 @@ Public Class KittyForm
         If Dgv.Rows(e.RowIndex).Cells(6).GetType <> GetType(DataGridViewButtonCell) Then Exit Sub
         Dim SelectedRowDate As Date = Dgv.Rows(e.RowIndex).Cells(DgvEnum.DateColumn).Value
 
-        Dim Fm As New TransactionDetails
+        Dim Fm As New TransactionDetailsForm
         Fm.DatePicker.Value = SelectedRowDate
         Fm.DatePicker.Enabled = False
         Fm._kitty = _currentKitty
@@ -724,7 +724,7 @@ Public Class KittyForm
             Fm.ShowDialog()
         Else
             'Multiple Transactions
-            Dim Fm_Trns As New TransactionsForm
+            Dim Fm_Trns As New AllTransactionsForm
             Fm_Trns.FromDatePicker.Value = SelectedRowDate
             Fm_Trns.TillDatePicker.Value = SelectedRowDate
 

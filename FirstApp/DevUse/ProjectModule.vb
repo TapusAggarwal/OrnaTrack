@@ -5,7 +5,7 @@ Imports System.IO
 Imports WebSocket4Net
 Imports System.Net.Http
 Imports System.Net.Http.Headers
-Imports FirstApp.MessageSender
+Imports FirstApp.MessageAndImageSender
 Imports Newtonsoft.Json.Linq
 
 Module ProjectModule

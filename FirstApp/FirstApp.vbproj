@@ -85,7 +85,7 @@
     <TargetZone>LocalIntranet</TargetZone>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
@@ -105,12 +105,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
-    <Compile Include="AstraDB.Designer.vb">
-      <DependentUpon>AstraDB.vb</DependentUpon>
-    </Compile>
-    <Compile Include="AstraDB.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Customer.vb" />
     <Compile Include="DevUse\Instructions.vb" />
     <Compile Include="Extras\Graph.Designer.vb">
@@ -125,25 +119,18 @@
     <Compile Include="Extras\rough1.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FireBase.Designer.vb">
-      <DependentUpon>FireBase.vb</DependentUpon>
-    </Compile>
-    <Compile Include="FireBase.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="FormView\ImageDownloader.Designer.vb">
       <DependentUpon>ImageDownloader.vb</DependentUpon>
     </Compile>
     <Compile Include="FormView\ImageDownloader.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormView\TransactionsForm.Designer.vb">
-      <DependentUpon>TransactionsForm.vb</DependentUpon>
+    <Compile Include="SharedForms\AllTransactionsForm.Designer.vb">
+      <DependentUpon>AllTransactionsForm.vb</DependentUpon>
     </Compile>
-    <Compile Include="FormView\TransactionsForm.vb">
+    <Compile Include="SharedForms\AllTransactionsForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Messenger\BulkMessagesClass.vb" />
     <Compile Include="Messenger\Indirect Usage\MessageTemplates.Designer.vb">
       <DependentUpon>MessageTemplates.vb</DependentUpon>
     </Compile>
@@ -271,16 +258,22 @@
     <Compile Include="FormView\ShortCustomerSearch.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormView\TransactionDetails.Designer.vb">
-      <DependentUpon>TransactionDetails.vb</DependentUpon>
+    <Compile Include="SharedForms\TransactionDetailsForm.Designer.vb">
+      <DependentUpon>TransactionDetailsForm.vb</DependentUpon>
     </Compile>
-    <Compile Include="FormView\TransactionDetails.vb">
+    <Compile Include="SharedForms\TransactionDetailsForm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Stock\OrganiseStock.Designer.vb">
       <DependentUpon>OrganiseStock.vb</DependentUpon>
     </Compile>
     <Compile Include="Stock\OrganiseStock.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Stock\PurchaseBill.Designer.vb">
+      <DependentUpon>PurchaseBill.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Stock\PurchaseBill.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Stock\SuggestionsPage.Designer.vb">
@@ -295,10 +288,10 @@
     <Compile Include="Stock\UserControl\AttributeControl.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Stock\CategoriesPage.Designer.vb">
-      <DependentUpon>CategoriesPage.vb</DependentUpon>
+    <Compile Include="Stock\MainStockPage.Designer.vb">
+      <DependentUpon>MainStockPage.vb</DependentUpon>
     </Compile>
-    <Compile Include="Stock\CategoriesPage.vb">
+    <Compile Include="Stock\MainStockPage.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Stock\UserControl\Folder.Designer.vb">
@@ -315,22 +308,10 @@
     <Compile Include="FormView\BookMode.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Messenger\Rough\AddNewMessage.Designer.vb">
-      <DependentUpon>AddNewMessage.vb</DependentUpon>
+    <Compile Include="Messenger\BulkMessagesEntryForm.Designer.vb">
+      <DependentUpon>BulkMessagesEntryForm.vb</DependentUpon>
     </Compile>
-    <Compile Include="Messenger\Rough\AddNewMessage.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Messenger\BulkMessengerEntry.Designer.vb">
-      <DependentUpon>BulkMessengerEntry.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Messenger\BulkMessengerEntry.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Messenger\Rough\Form2.Designer.vb">
-      <DependentUpon>Form2.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Messenger\Rough\Form2.vb">
+    <Compile Include="Messenger\BulkMessagesEntryForm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Messenger\Rough\Form3.Designer.vb">
@@ -345,10 +326,10 @@
     <Compile Include="Messenger\Indirect Usage\KittyRecievedReciept.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Messenger\MessageSender.Designer.vb">
-      <DependentUpon>MessageSender.vb</DependentUpon>
+    <Compile Include="Messenger\MessageAndImageSender.Designer.vb">
+      <DependentUpon>MessageAndImageSender.vb</DependentUpon>
     </Compile>
-    <Compile Include="Messenger\MessageSender.vb">
+    <Compile Include="Messenger\MessageAndImageSender.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Messenger\Indirect Usage\RecieptMessenger.Designer.vb">
@@ -386,10 +367,10 @@
     <Compile Include="MyUserControls\KittyModeControl.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="FormView\KittyForm.Designer.vb">
+    <Compile Include="SharedForms\KittyForm.Designer.vb">
       <DependentUpon>KittyForm.vb</DependentUpon>
     </Compile>
-    <Compile Include="FormView\KittyForm.vb">
+    <Compile Include="SharedForms\KittyForm.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DevUse\ProjectModule.vb" />
@@ -424,10 +405,10 @@
     <Compile Include="MyUserControls\CBoxForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormView\KittyView.Designer.vb">
+    <Compile Include="SharedForms\KittyView.Designer.vb">
       <DependentUpon>KittyView.vb</DependentUpon>
     </Compile>
-    <Compile Include="FormView\KittyView.vb">
+    <Compile Include="SharedForms\KittyView.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -447,10 +428,10 @@
     <Compile Include="MyUserControls\PhoneNoTag.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Main Forms\KittyModeCoustView.Designer.vb">
+    <Compile Include="KittyModeCoustView\KittyModeCoustView.Designer.vb">
       <DependentUpon>KittyModeCoustView.vb</DependentUpon>
     </Compile>
-    <Compile Include="Main Forms\KittyModeCoustView.vb">
+    <Compile Include="KittyModeCoustView\KittyModeCoustView.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Extras\Settings.vb" />
@@ -484,10 +465,10 @@
     <Compile Include="Stock\UserControl\AttributeStockControl.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Stock\ShowItems.Designer.vb">
-      <DependentUpon>ShowItems.vb</DependentUpon>
+    <Compile Include="Stock\AllStock.Designer.vb">
+      <DependentUpon>AllStock.vb</DependentUpon>
     </Compile>
-    <Compile Include="Stock\ShowItems.vb">
+    <Compile Include="Stock\AllStock.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Stock\StockEntry.Designer.vb">
@@ -522,10 +503,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="AstraDB.resx">
-      <DependentUpon>AstraDB.vb</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="DevUse\LoadingForm.resx">
       <DependentUpon>LoadingForm.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -536,14 +513,11 @@
     <EmbeddedResource Include="Extras\rough1.resx">
       <DependentUpon>rough1.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FireBase.resx">
-      <DependentUpon>FireBase.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormView\ImageDownloader.resx">
       <DependentUpon>ImageDownloader.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormView\TransactionsForm.resx">
-      <DependentUpon>TransactionsForm.vb</DependentUpon>
+    <EmbeddedResource Include="SharedForms\AllTransactionsForm.resx">
+      <DependentUpon>AllTransactionsForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Messenger\Indirect Usage\MessageTemplates.resx">
       <DependentUpon>MessageTemplates.vb</DependentUpon>
@@ -608,19 +582,12 @@
     <EmbeddedResource Include="FormView\ShortCustomerSearch.resx">
       <DependentUpon>ShortCustomerSearch.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormView\TransactionDetails.resx">
-      <DependentUpon>TransactionDetails.vb</DependentUpon>
+    <EmbeddedResource Include="SharedForms\TransactionDetailsForm.resx">
+      <DependentUpon>TransactionDetailsForm.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Messenger\Rough\AddNewMessage.resx">
-      <DependentUpon>AddNewMessage.vb</DependentUpon>
+    <EmbeddedResource Include="Messenger\BulkMessagesEntryForm.resx">
+      <DependentUpon>BulkMessagesEntryForm.vb</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Messenger\BulkMessengerEntry.resx">
-      <DependentUpon>BulkMessengerEntry.vb</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Messenger\Rough\Form2.resx">
-      <DependentUpon>Form2.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Messenger\Rough\Form3.resx">
       <DependentUpon>Form3.vb</DependentUpon>
@@ -628,8 +595,8 @@
     <EmbeddedResource Include="Messenger\Indirect Usage\KittyRecievedReciept.resx">
       <DependentUpon>KittyRecievedReciept.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Messenger\MessageSender.resx">
-      <DependentUpon>MessageSender.vb</DependentUpon>
+    <EmbeddedResource Include="Messenger\MessageAndImageSender.resx">
+      <DependentUpon>MessageAndImageSender.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Messenger\Indirect Usage\RecieptMessenger.resx">
       <DependentUpon>RecieptMessenger.vb</DependentUpon>
@@ -647,7 +614,7 @@
     <EmbeddedResource Include="MyUserControls\KittyModeControl.resx">
       <DependentUpon>KittyModeControl.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormView\KittyForm.resx">
+    <EmbeddedResource Include="SharedForms\KittyForm.resx">
       <DependentUpon>KittyForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DevUse\SqlCommandTester.resx">
@@ -666,7 +633,7 @@
       <DependentUpon>CBoxForm.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormView\KittyView.resx">
+    <EmbeddedResource Include="SharedForms\KittyView.resx">
       <DependentUpon>KittyView.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -678,11 +645,14 @@
     <EmbeddedResource Include="MyUserControls\PhoneNoTag.resx">
       <DependentUpon>PhoneNoTag.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Main Forms\KittyModeCoustView.resx">
+    <EmbeddedResource Include="KittyModeCoustView\KittyModeCoustView.resx">
       <DependentUpon>KittyModeCoustView.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Stock\OrganiseStock.resx">
       <DependentUpon>OrganiseStock.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stock\PurchaseBill.resx">
+      <DependentUpon>PurchaseBill.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Stock\SuggestionsPage.resx">
       <DependentUpon>SuggestionsPage.vb</DependentUpon>
@@ -690,8 +660,8 @@
     <EmbeddedResource Include="Stock\UserControl\AttributeControl.resx">
       <DependentUpon>AttributeControl.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Stock\CategoriesPage.resx">
-      <DependentUpon>CategoriesPage.vb</DependentUpon>
+    <EmbeddedResource Include="Stock\MainStockPage.resx">
+      <DependentUpon>MainStockPage.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Stock\UserControl\Folder.resx">
@@ -712,8 +682,8 @@
     <EmbeddedResource Include="Stock\UserControl\AttributeStockControl.resx">
       <DependentUpon>AttributeStockControl.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Stock\ShowItems.resx">
-      <DependentUpon>ShowItems.vb</DependentUpon>
+    <EmbeddedResource Include="Stock\AllStock.resx">
+      <DependentUpon>AllStock.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Stock\StockEntry.resx">
       <DependentUpon>StockEntry.vb</DependentUpon>
@@ -733,9 +703,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <Content Include="bj-database.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <None Include="Extras\app.config" />
     <None Include="Extras\app.manifest" />
     <None Include="My Project\app.manifest" />

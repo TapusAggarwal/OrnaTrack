@@ -517,6 +517,37 @@ Public Class Customer
     End Property
 #End Region
 
+#Region "Adhaar Number"
+    Public Function AdhaarNumber() As String
+        Try
+            Dim dr_adhaar As OleDbDataReader = DataReader("Select Adhaar From Coustmers_Data Where SrNo=" & CustomerID)
+            Dim temp_adhaar As String = ""
+            While dr_adhaar.Read
+                Try
+                    temp_adhaar = dr_adhaar("Adhaar")
+                Catch ex As Exception
+                    Return Nothing
+                End Try
+            End While
+            dr_adhaar.Close()
+            Return temp_adhaar.Trim
+        Catch ex As Exception
+            MessageBox.Show($"Error [Customer/AdhaarNumber]: {ex.Message}", "Error In Customer Class", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return Nothing
+        End Try
+    End Function
+
+    Public WriteOnly Property UpdatedAdhaarNumber As String
+        Set(value As String)
+            If Not String.IsNullOrEmpty(value) Then
+                value = value.Replace("'", apostropheReplacer)
+            End If
+            SqlCommand("UPDATE Coustmers_Data set Adhaar='" & value.Trim & "' Where SrNo=" & CustomerID)
+        End Set
+    End Property
+
+#End Region
+
 End Class
 
 Public Class Utility

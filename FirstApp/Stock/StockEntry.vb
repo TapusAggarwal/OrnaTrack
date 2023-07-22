@@ -123,8 +123,8 @@ Public Class StockEntry
 
         ListenerStatus()
 
-        PurchaseFP.Visible = False
-        SaleFP.Visible = False
+        'PurchaseFP.Visible = False
+        'SaleFP.Visible = False
 
         previousImage = ImageBox.Image
 
@@ -238,9 +238,9 @@ Public Class StockEntry
         Cursor = Cursors.Default
     End Sub
 
-    Private Sub Panel1_SizeChanged(sender As Object, e As EventArgs) Handles Panel1.SizeChanged
-        Size = New Point(SaleFP.Size.Width + ListeningStatusPanel.Size.Width + 40, Size.Height)
-    End Sub
+    'Private Sub Panel1_SizeChanged(sender As Object, e As EventArgs) Handles Panel1.SizeChanged
+    '    Size = New Point(SaleFP.Size.Width + ListeningStatusPanel.Size.Width + 40, Size.Height)
+    'End Sub
     Private previousImage As Image
 
     Private Sub SaveBT_Click_1(sender As Object, e As EventArgs) Handles SaveBT.Click
@@ -303,9 +303,9 @@ Public Class StockEntry
 
         Dispose()
         For Each _form As Form In Application.OpenForms
-            If TypeOf _form IsNot CategoriesPage Then Continue For
-            CType(_form, CategoriesPage).Focus()
-            CType(_form, CategoriesPage).StockEntryBT.PerformClick()
+            If TypeOf _form IsNot MainStockPage Then Continue For
+            CType(_form, MainStockPage).Focus()
+            CType(_form, MainStockPage).StockEntryBT.PerformClick()
             Exit For
         Next
 

@@ -1,4 +1,4 @@
-﻿Public Class ShowItems
+﻿Public Class AllStock
 
     Dim _list As New Dictionary(Of Integer, Item)
     Dim _currentIndex As Integer = 0

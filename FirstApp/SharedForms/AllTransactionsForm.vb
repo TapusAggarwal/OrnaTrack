@@ -1,4 +1,4 @@
-﻿Public Class TransactionsForm
+﻿Public Class AllTransactionsForm
 
     Public Enum DgvEnum
         CheckBoxColumn = 0
@@ -88,7 +88,7 @@
         RaiseEvent Cell_Clicked(_id)
         If ButtonText = "Select" Then Exit Sub
 
-        Dim Fm As New TransactionDetails
+        Dim Fm As New TransactionDetailsForm
         Dim _trns As New Transaction(_id)
         Fm.DatePicker.Value = _trns.TrnsDate
         Fm.DatePicker.Enabled = False

@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class CategoriesPage
+Partial Class MainStockPage
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -31,6 +31,7 @@ Partial Class CategoriesPage
         Me.AddBT = New FontAwesome.Sharp.IconButton()
         Me.IconButton1 = New FontAwesome.Sharp.IconButton()
         Me.IconButton2 = New FontAwesome.Sharp.IconButton()
+        Me.IconButton3 = New FontAwesome.Sharp.IconButton()
         Me.FlowLayoutPanel1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -133,12 +134,25 @@ Partial Class CategoriesPage
         Me.IconButton2.Text = "Bulk Entry"
         Me.IconButton2.UseVisualStyleBackColor = True
         '
-        'CategoriesPage
+        'IconButton3
+        '
+        Me.IconButton3.IconChar = FontAwesome.Sharp.IconChar.None
+        Me.IconButton3.IconColor = System.Drawing.Color.Black
+        Me.IconButton3.IconFont = FontAwesome.Sharp.IconFont.[Auto]
+        Me.IconButton3.Location = New System.Drawing.Point(292, 10)
+        Me.IconButton3.Name = "IconButton3"
+        Me.IconButton3.Size = New System.Drawing.Size(172, 39)
+        Me.IconButton3.TabIndex = 9
+        Me.IconButton3.Text = "Add Purchase Bill"
+        Me.IconButton3.UseVisualStyleBackColor = True
+        '
+        'MainStockPage
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(60, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1193, 786)
+        Me.Controls.Add(Me.IconButton3)
         Me.Controls.Add(Me.IconButton2)
         Me.Controls.Add(Me.IconButton1)
         Me.Controls.Add(Me.EditBT)
@@ -147,7 +161,7 @@ Partial Class CategoriesPage
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.AddBT)
         Me.Controls.Add(Me.FlowLayoutPanel1)
-        Me.Name = "CategoriesPage"
+        Me.Name = "MainStockPage"
         Me.Text = "CategoriesPage"
         Me.FlowLayoutPanel1.ResumeLayout(False)
         Me.ResumeLayout(False)
@@ -164,4 +178,5 @@ Partial Class CategoriesPage
     Friend WithEvents EditBT As FontAwesome.Sharp.IconButton
     Friend WithEvents IconButton1 As FontAwesome.Sharp.IconButton
     Friend WithEvents IconButton2 As FontAwesome.Sharp.IconButton
+    Friend WithEvents IconButton3 As FontAwesome.Sharp.IconButton
 End Class
