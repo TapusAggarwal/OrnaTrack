@@ -81,7 +81,7 @@ Public Class CoustProfileUpdated
                 End If
             Next
 
-            If Not Adhaar.TextLength = 12 Then
+            If Not Adhaar.TextLength = 12 And Not Adhaar.TextLength = 0 Then
                 MessageBox.Show("Adhaar Number Should Only Be 12 Digits Long.", "Invalid Input", MessageBoxButtons.OK)
                 Exit Sub
             End If
