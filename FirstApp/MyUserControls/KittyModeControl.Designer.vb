@@ -57,7 +57,7 @@ Partial Class KittyModeControl
         'ImageParam
         '
         Me.ImageParam.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.ImageParam.Image = Global.FirstApp.My.Resources.Resources.addSign
+        Me.ImageParam.Image = Global.OrnaTrack.My.Resources.Resources.addSign
         Me.ImageParam.Location = New System.Drawing.Point(3, 26)
         Me.ImageParam.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.ImageParam.Name = "ImageParam"

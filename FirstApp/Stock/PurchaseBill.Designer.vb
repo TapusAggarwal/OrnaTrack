@@ -56,12 +56,12 @@ Partial Class PurchaseBill
         '
         Me.CtgLB.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.CtgLB.AutoSize = True
-        Me.CtgLB.Font = New System.Drawing.Font("Century Schoolbook", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CtgLB.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CtgLB.ForeColor = System.Drawing.Color.Peru
         Me.CtgLB.Location = New System.Drawing.Point(26, 23)
         Me.CtgLB.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.CtgLB.Name = "CtgLB"
-        Me.CtgLB.Size = New System.Drawing.Size(92, 30)
+        Me.CtgLB.Size = New System.Drawing.Size(90, 29)
         Me.CtgLB.TabIndex = 316
         Me.CtgLB.Text = "Seller:"
         '
@@ -69,12 +69,12 @@ Partial Class PurchaseBill
         '
         Me.Label1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Century Schoolbook", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.Peru
         Me.Label1.Location = New System.Drawing.Point(493, 23)
         Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(79, 30)
+        Me.Label1.Size = New System.Drawing.Size(74, 29)
         Me.Label1.TabIndex = 318
         Me.Label1.Text = "Date:"
         '
@@ -91,7 +91,7 @@ Partial Class PurchaseBill
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.ImageBox.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(60, Byte), Integer))
-        Me.ImageBox.Image = Global.FirstApp.My.Resources.Resources.addSign
+        Me.ImageBox.Image = Global.OrnaTrack.My.Resources.Resources.addSign
         Me.ImageBox.Location = New System.Drawing.Point(12, 456)
         Me.ImageBox.Name = "ImageBox"
         Me.ImageBox.Size = New System.Drawing.Size(227, 71)
@@ -103,46 +103,46 @@ Partial Class PurchaseBill
         '
         Me.NameLB.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.NameLB.AutoSize = True
-        Me.NameLB.Font = New System.Drawing.Font("Century Schoolbook", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.NameLB.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.NameLB.ForeColor = System.Drawing.Color.Peru
         Me.NameLB.Location = New System.Drawing.Point(26, 95)
         Me.NameLB.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.NameLB.Name = "NameLB"
-        Me.NameLB.Size = New System.Drawing.Size(228, 30)
+        Me.NameLB.Size = New System.Drawing.Size(216, 29)
         Me.NameLB.TabIndex = 326
         Me.NameLB.Text = "Amt. Before GST:"
         '
         'AttrNameTB
         '
         Me.AttrNameTB.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.AttrNameTB.Font = New System.Drawing.Font("Century", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.AttrNameTB.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.AttrNameTB.Location = New System.Drawing.Point(262, 93)
         Me.AttrNameTB.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.AttrNameTB.Name = "AttrNameTB"
-        Me.AttrNameTB.Size = New System.Drawing.Size(293, 36)
+        Me.AttrNameTB.Size = New System.Drawing.Size(293, 35)
         Me.AttrNameTB.TabIndex = 325
         '
         'Label4
         '
         Me.Label4.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Century Schoolbook", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.Color.Peru
         Me.Label4.Location = New System.Drawing.Point(608, 95)
         Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(73, 30)
+        Me.Label4.Size = New System.Drawing.Size(73, 29)
         Me.Label4.TabIndex = 328
         Me.Label4.Text = "GST:"
         '
         'TextBox1
         '
         Me.TextBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.TextBox1.Font = New System.Drawing.Font("Century", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox1.Location = New System.Drawing.Point(689, 93)
         Me.TextBox1.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(293, 36)
+        Me.TextBox1.Size = New System.Drawing.Size(293, 35)
         Me.TextBox1.TabIndex = 327
         '
         'PurchaseBill

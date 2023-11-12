@@ -378,7 +378,7 @@ Public Class Frame
         If ans = 7 Then Exit Sub
         Dim CleanerBat As New Process()
         Dim info As New ProcessStartInfo With {
-                .FileName = "C:\Users\hp\source\repos\TapusAggarwal\FirstApp-ReBuild\FirstApp\whatsapp-web.js-main\ServerClear.bat"
+                .FileName = "C:\Users\hp\source\repos\TapusAggarwal\OrnaTrack-ReBuild\OrnaTrack\whatsapp-web.js-main\ServerClear.bat"
         }
         CleanerBat.StartInfo = info
         CleanerBat.Start()
@@ -658,4 +658,14 @@ Public Class Frame
         Dim Fm As New rough1
         Fm.ShowDialog()
     End Sub
+
+    Private Sub ChangeDatabasePathToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ChangeDatabasePathToolStripMenuItem.Click
+        Dim ans As Integer = MessageBox.Show("This Selection Will Change The Path To The Database", "Confirm Selection", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        If ans = 7 Then Exit Sub
+        Dim newPath As String = InputBox($"Enter New Path Where The Database Is Located.{vbNewLine}Current Path: {My.Settings.Database_path}", "New Server Address")
+        If newPath.Length <> 0 Then
+            My.Settings.Database_path = newPath.Trim
+        End If
+    End Sub
+
 End Class

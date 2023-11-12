@@ -89,7 +89,7 @@ Partial Class CoustProfileUpdated
         Me.KittyDetailsButton = New FontAwesome.Sharp.IconButton()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Adhaar = New System.Windows.Forms.TextBox()
-        Me.PhoneNoTag1 = New FirstApp.PhoneNoTag()
+        Me.PhoneNoTag1 = New OrnaTrack.PhoneNoTag()
         Me.ButtonPanel.SuspendLayout()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.ImageBoxPanel.SuspendLayout()

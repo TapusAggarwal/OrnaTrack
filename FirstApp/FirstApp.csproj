@@ -1,0 +1,836 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7A247B81-4FD4-0EA4-00C8-D9AA06F6FB9E}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>FirstApp.My.MyApplication</StartupObject>
+    <RootNamespace>FirstApp</RootNamespace>
+    <AssemblyName>FirstApp</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp></NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
+    <PublishUrl>C:\Users\hp\Desktop\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>false</MapFileExtensions>
+    <UpdateUrl>http://ec2-3-16-198-57.us-east-2.compute.amazonaws.com:8081/</UpdateUrl>
+    <ApplicationRevision>110</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>false</BootstrapperEnabled>
+    <DefaultItemExcludes>$(DefaultItemExcludes);$(ProjectDir)**\*.vb</DefaultItemExcludes>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>bin\Debug\FirstApp.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <CodeAnalysisRuleSet>ExtendedCorrectnessRules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>bin\Release\FirstApp.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Extras\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>B62C4A97D64CAF417A3A746862CDD4C310C7D95A</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>FirstApp_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="My Project\MyNamespace.Dynamic.Designer.cs" />
+    <Compile Include="My Project\MyNamespace.Static.1.Designer.cs" />
+    <Compile Include="My Project\MyNamespace.Static.2.Designer.cs" />
+    <Compile Include="My Project\MyNamespace.Static.3.Designer.cs" />
+    <Compile Include="ApplicationEvents.cs" />
+    <Compile Include="Customer.cs" />
+    <Compile Include="DevUse\Instructions.cs" />
+    <Compile Include="Extras\Graph.Designer.cs">
+      <DependentUpon>Graph.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Extras\Graph.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Extras\rough1.Designer.cs">
+      <DependentUpon>rough1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Extras\rough1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormView\ImageDownloader.Designer.cs">
+      <DependentUpon>ImageDownloader.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormView\ImageDownloader.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SharedForms\AllTransactionsForm.Designer.cs">
+      <DependentUpon>AllTransactionsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SharedForms\AllTransactionsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Messenger\Indirect Usage\MessageTemplates.Designer.cs">
+      <DependentUpon>MessageTemplates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Messenger\Indirect Usage\MessageTemplates.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Messenger\MessengerForIndividual.Designer.cs">
+      <DependentUpon>MessengerForIndividual.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Messenger\MessengerForIndividual.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyUserControls\OneDayControl.Designer.cs">
+      <DependentUpon>OneDayControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyUserControls\OneDayControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MyUserControls\PerUnitTimeControl.Designer.cs">
+      <DependentUpon>PerUnitTimeControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyUserControls\PerUnitTimeControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MyUserControls\TransactionsControl.Designer.cs">
+      <DependentUpon>TransactionsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyUserControls\TransactionsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FormView\PaymentReport.Designer.cs">
+      <DependentUpon>PaymentReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormView\PaymentReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="rough.Designer.cs">
+      <DependentUpon>rough.cs</DependentUpon>
+    </Compile>
+    <Compile Include="rough.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ServerManagement\Form5.Designer.cs">
+      <DependentUpon>Form5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ServerManagement\Form5.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ServerManagement\Form7.Designer.cs">
+      <DependentUpon>Form7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ServerManagement\Form7.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ServerManagement\ServerUpdateForm.Designer.cs">
+      <DependentUpon>ServerUpdateForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ServerManagement\ServerUpdateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ServerManagement\ServerUpdateProgressBar.Designer.cs">
+      <DependentUpon>ServerUpdateProgressBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ServerManagement\ServerUpdateProgressBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ServerManagement\webjs.Designer.cs">
+      <DependentUpon>webjs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ServerManagement\webjs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Stock\AddFormulaForm.Designer.cs">
+      <DependentUpon>AddFormulaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Stock\AddFormulaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Stock\AddItemPage.Designer.cs">
+      <DependentUpon>AddItemPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Stock\AddItemPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Extras\ApplicationEvents.cs" />
+    <Compile Include="DevUse\LoadingForm.Designer.cs">
+      <DependentUpon>LoadingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DevUse\LoadingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormView\DgvForExistingPhNo.Designer.cs">
+      <DependentUpon>DgvForExistingPhNo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormView\DgvForExistingPhNo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormView\PreviewCustomers.Designer.cs">
+      <DependentUpon>PreviewCustomers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormView\PreviewCustomers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormView\PreviewKitty.Designer.cs">
+      <DependentUpon>PreviewKitty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormView\PreviewKitty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormView\QrCodeView.Designer.cs">
+      <DependentUpon>QrCodeView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormView\QrCodeView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormView\Report.Designer.cs">
+      <DependentUpon>Report.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormView\Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormView\ShortCustomerSearch.Designer.cs">
+      <DependentUpon>ShortCustomerSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormView\ShortCustomerSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SharedForms\TransactionDetailsForm.Designer.cs">
+      <DependentUpon>TransactionDetailsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SharedForms\TransactionDetailsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Stock\OrganiseStock.Designer.cs">
+      <DependentUpon>OrganiseStock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Stock\OrganiseStock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Stock\PurchaseBill.Designer.cs">
+      <DependentUpon>PurchaseBill.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Stock\PurchaseBill.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Stock\SuggestionsPage.Designer.cs">
+      <DependentUpon>SuggestionsPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Stock\SuggestionsPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Stock\UserControl\AttributeControl.Designer.cs">
+      <DependentUpon>AttributeControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Stock\UserControl\AttributeControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Stock\MainStockPage.Designer.cs">
+      <DependentUpon>MainStockPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Stock\MainStockPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Stock\UserControl\Folder.Designer.cs">
+      <DependentUpon>Folder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Stock\UserControl\Folder.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Stock\Item.cs" />
+    <Compile Include="Kitty.cs" />
+    <Compile Include="FormView\BookMode.Designer.cs">
+      <DependentUpon>BookMode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormView\BookMode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Messenger\BulkMessagesEntryForm.Designer.cs">
+      <DependentUpon>BulkMessagesEntryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Messenger\BulkMessagesEntryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Messenger\Rough\Form3.Designer.cs">
+      <DependentUpon>Form3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Messenger\Rough\Form3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Messenger\Indirect Usage\KittyRecievedReciept.Designer.cs">
+      <DependentUpon>KittyRecievedReciept.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Messenger\Indirect Usage\KittyRecievedReciept.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Messenger\MessageAndImageSender.Designer.cs">
+      <DependentUpon>MessageAndImageSender.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Messenger\MessageAndImageSender.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Messenger\Indirect Usage\RecieptMessenger.Designer.cs">
+      <DependentUpon>RecieptMessenger.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Messenger\Indirect Usage\RecieptMessenger.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyUserControls\MessagePreviewControl.Designer.cs">
+      <DependentUpon>MessagePreviewControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyUserControls\MessagePreviewControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Messenger\MessagesPreviewForm.Designer.cs">
+      <DependentUpon>MessagesPreviewForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Messenger\MessagesPreviewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="MyUserControls\ActiveKittyControl.Designer.cs">
+      <DependentUpon>ActiveKittyControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyUserControls\ActiveKittyControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MyUserControls\KittyModeControl.Designer.cs">
+      <DependentUpon>KittyModeControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyUserControls\KittyModeControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SharedForms\KittyForm.Designer.cs">
+      <DependentUpon>KittyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SharedForms\KittyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DevUse\ProjectModule.cs" />
+    <Compile Include="DevUse\SqlCommandTester.Designer.cs">
+      <DependentUpon>SqlCommandTester.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DevUse\SqlCommandTester.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DevUse\TaskManager.cs" />
+    <Compile Include="Main Forms\Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main Forms\Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main Forms\Frame.Designer.cs">
+      <DependentUpon>Frame.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main Forms\Frame.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main Forms\CoustProfileUpdated.Designer.cs">
+      <DependentUpon>CoustProfileUpdated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main Forms\CoustProfileUpdated.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MyUserControls\CBoxForm.Designer.cs">
+      <DependentUpon>CBoxForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyUserControls\CBoxForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SharedForms\KittyView.Designer.cs">
+      <DependentUpon>KittyView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SharedForms\KittyView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.cs" />
+    <Compile Include="My Project\Application.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="MyUserControls\PhoneNoTag.Designer.cs">
+      <DependentUpon>PhoneNoTag.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MyUserControls\PhoneNoTag.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="KittyModeCoustView\KittyModeCoustView.Designer.cs">
+      <DependentUpon>KittyModeCoustView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KittyModeCoustView\KittyModeCoustView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Extras\Settings.cs" />
+    <Compile Include="Stock\UserControl\HUID_Checker.Designer.cs">
+      <DependentUpon>HUID_Checker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Stock\UserControl\HUID_Checker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Stock\UserControl\ItemsUserControl.Designer.cs">
+      <DependentUpon>ItemsUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Stock\UserControl\ItemsUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Stock\UserControl\KeyValue_Control.Designer.cs">
+      <DependentUpon>KeyValue_Control.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Stock\UserControl\KeyValue_Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Stock\UserControl\ListTypeDgv.Designer.cs">
+      <DependentUpon>ListTypeDgv.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Stock\UserControl\ListTypeDgv.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Stock\UserControl\AttributeStockControl.Designer.cs">
+      <DependentUpon>AttributeStockControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Stock\UserControl\AttributeStockControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Stock\AllStock.Designer.cs">
+      <DependentUpon>AllStock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Stock\AllStock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Stock\StockEntry.Designer.cs">
+      <DependentUpon>StockEntry.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Stock\StockEntry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Stock\UserControl\SelectAttributeForm.Designer.cs">
+      <DependentUpon>SelectAttributeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Stock\UserControl\SelectAttributeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Stock\UserControl\SuggestionControl.Designer.cs">
+      <DependentUpon>SuggestionControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Stock\UserControl\SuggestionControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Stock\UserControl\TrayControl.Designer.cs">
+      <DependentUpon>TrayControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Stock\UserControl\TrayControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Stock\UserControl\UserControl1.Designer.cs">
+      <DependentUpon>UserControl1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Stock\UserControl\UserControl1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DevUse\LoadingForm.resx">
+      <DependentUpon>LoadingForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Extras\Graph.resx">
+      <DependentUpon>Graph.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Extras\rough1.resx">
+      <DependentUpon>rough1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormView\ImageDownloader.resx">
+      <DependentUpon>ImageDownloader.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SharedForms\AllTransactionsForm.resx">
+      <DependentUpon>AllTransactionsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Messenger\Indirect Usage\MessageTemplates.resx">
+      <DependentUpon>MessageTemplates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Messenger\MessengerForIndividual.resx">
+      <DependentUpon>MessengerForIndividual.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyUserControls\OneDayControl.resx">
+      <DependentUpon>OneDayControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyUserControls\PerUnitTimeControl.resx">
+      <DependentUpon>PerUnitTimeControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyUserControls\TransactionsControl.resx">
+      <DependentUpon>TransactionsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormView\PaymentReport.resx">
+      <DependentUpon>PaymentReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rough.resx">
+      <DependentUpon>rough.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServerManagement\Form5.resx">
+      <DependentUpon>Form5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServerManagement\Form7.resx">
+      <DependentUpon>Form7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServerManagement\ServerUpdateForm.resx">
+      <DependentUpon>ServerUpdateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServerManagement\ServerUpdateProgressBar.resx">
+      <DependentUpon>ServerUpdateProgressBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServerManagement\webjs.resx">
+      <DependentUpon>webjs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stock\AddFormulaForm.resx">
+      <DependentUpon>AddFormulaForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stock\AddItemPage.resx">
+      <DependentUpon>AddItemPage.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormView\PreviewCustomers.resx">
+      <DependentUpon>PreviewCustomers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormView\PreviewKitty.resx">
+      <DependentUpon>PreviewKitty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormView\QrCodeView.resx">
+      <DependentUpon>QrCodeView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormView\Report.resx">
+      <DependentUpon>Report.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormView\BookMode.resx">
+      <DependentUpon>BookMode.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormView\ShortCustomerSearch.resx">
+      <DependentUpon>ShortCustomerSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SharedForms\TransactionDetailsForm.resx">
+      <DependentUpon>TransactionDetailsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Messenger\BulkMessagesEntryForm.resx">
+      <DependentUpon>BulkMessagesEntryForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Messenger\Rough\Form3.resx">
+      <DependentUpon>Form3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Messenger\Indirect Usage\KittyRecievedReciept.resx">
+      <DependentUpon>KittyRecievedReciept.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Messenger\MessageAndImageSender.resx">
+      <DependentUpon>MessageAndImageSender.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Messenger\Indirect Usage\RecieptMessenger.resx">
+      <DependentUpon>RecieptMessenger.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyUserControls\MessagePreviewControl.resx">
+      <DependentUpon>MessagePreviewControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Messenger\MessagesPreviewForm.resx">
+      <DependentUpon>MessagesPreviewForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyUserControls\ActiveKittyControl.resx">
+      <DependentUpon>ActiveKittyControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyUserControls\KittyModeControl.resx">
+      <DependentUpon>KittyModeControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SharedForms\KittyForm.resx">
+      <DependentUpon>KittyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DevUse\SqlCommandTester.resx">
+      <DependentUpon>SqlCommandTester.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main Forms\Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main Forms\Frame.resx">
+      <DependentUpon>Frame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main Forms\CoustProfileUpdated.resx">
+      <DependentUpon>CoustProfileUpdated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyUserControls\CBoxForm.resx">
+      <DependentUpon>CBoxForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SharedForms\KittyView.resx">
+      <DependentUpon>KittyView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <CustomToolNamespace>FirstApp.My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MyUserControls\PhoneNoTag.resx">
+      <DependentUpon>PhoneNoTag.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KittyModeCoustView\KittyModeCoustView.resx">
+      <DependentUpon>KittyModeCoustView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stock\OrganiseStock.resx">
+      <DependentUpon>OrganiseStock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stock\PurchaseBill.resx">
+      <DependentUpon>PurchaseBill.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stock\SuggestionsPage.resx">
+      <DependentUpon>SuggestionsPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stock\UserControl\AttributeControl.resx">
+      <DependentUpon>AttributeControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stock\MainStockPage.resx">
+      <DependentUpon>MainStockPage.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stock\UserControl\Folder.resx">
+      <DependentUpon>Folder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stock\UserControl\HUID_Checker.resx">
+      <DependentUpon>HUID_Checker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stock\UserControl\ItemsUserControl.resx">
+      <DependentUpon>ItemsUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stock\UserControl\KeyValue_Control.resx">
+      <DependentUpon>KeyValue_Control.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stock\UserControl\ListTypeDgv.resx">
+      <DependentUpon>ListTypeDgv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stock\UserControl\AttributeStockControl.resx">
+      <DependentUpon>AttributeStockControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stock\AllStock.resx">
+      <DependentUpon>AllStock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stock\StockEntry.resx">
+      <DependentUpon>StockEntry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stock\UserControl\SelectAttributeForm.resx">
+      <DependentUpon>SelectAttributeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stock\UserControl\SuggestionControl.resx">
+      <DependentUpon>SuggestionControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stock\UserControl\TrayControl.resx">
+      <DependentUpon>TrayControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stock\UserControl\UserControl1.resx">
+      <DependentUpon>UserControl1.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Extras\app.config" />
+    <None Include="Extras\app.manifest" />
+    <None Include="My Project\app.manifest" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>FirstApp.My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\open_eye-removebg-preview2.png" />
+    <None Include="Resources\open_eye-removebg-preview1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\AccountInfo.jpg" />
+    <Content Include="Resources\Bis_Logo.jpg" />
+    <None Include="Resources\BJ_Logo.bmp" />
+    <None Include="Resources\BJ_Logo.png" />
+    <Content Include="Resources\Google_PhonePe.png" />
+    <None Include="Resources\phnIcon.png" />
+    <Content Include="Resources\Splash-Screen.gif" />
+    <None Include="Resources\LogoMata.jpg" />
+    <None Include="Resources\Heder.jpg" />
+    <Content Include="Resources\Paytm.jpg" />
+    <Content Include="Resources\PhonePe.png" />
+    <Content Include="Resources\Signature.jpg" />
+    <Content Include="Resources\signatureUsed.jpg" />
+    <None Include="Resources\addSign.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="NetSpell.SpellChecker, Version=2.1.7.41329, Culture=neutral, PublicKeyToken=318b389f0db66e46">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\TextEditor\NetSpell.SpellChecker.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="ProBaseAdvancedTextBox">
+      <HintPath>..\TextEditor\ProBaseAdvancedTextBox.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="ExcelDataReader">
+      <Version>3.7.0-develop00385</Version>
+    </PackageReference>
+    <PackageReference Include="ExcelDataReader.DataSet">
+      <Version>3.7.0-develop00385</Version>
+    </PackageReference>
+    <PackageReference Include="FontAwesome.Sharp.StrongName">
+      <Version>5.15.3.3</Version>
+    </PackageReference>
+    <PackageReference Include="HtmlAgilityPack">
+      <Version>1.11.59</Version>
+    </PackageReference>
+    <PackageReference Include="ICSharpCode.CodeConverter">
+      <Version>9.2.5.694</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="QRCoder">
+      <Version>1.4.3</Version>
+    </PackageReference>
+    <PackageReference Include="squirrel.windows">
+      <Version>2.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="SSH.NET">
+      <Version>2023.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="WebSocket4Net">
+      <Version>0.15.2</Version>
+    </PackageReference>
+    <PackageReference Include="ZXing.Net">
+      <Version>0.16.9</Version>
+    </PackageReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="AfterBuild">
+    <ItemGroup>
+      <NugetTools Include="$(SolutionDir)packages\NuGet.CommandLine.*\tools\NuGet.exe" />
+      <SquirrelTools Include="$(SolutionDir)packages\squirrel.windows.*\tools\Squirrel.exe" />
+    </ItemGroup>
+    <Copy SourceFiles="@(SquirrelTools-&gt;'%(FullPath)')" DestinationFiles="$(OutDir)..\Update.exe" Condition="!Exists('$(OutDir)..\Update.exe')" />
+    <GetAssemblyIdentity AssemblyFiles="$(TargetPath)">
+      <Output TaskParameter="Assemblies" ItemName="assemblyInfo" />
+    </GetAssemblyIdentity>
+    <PropertyGroup>
+      <Version>$([System.Version]::Parse(%(assemblyInfo.Version)).ToString(3))</Version>
+      <NuspecFile>$(SolutionDir)FirstApp\ReleaseSpec.nuspec</NuspecFile>
+    </PropertyGroup>
+    <XmlPeek XmlInputPath="$(NuspecFile)" Query="/package/metadata/id/text()">
+      <Output TaskParameter="Result" ItemName="ID" />
+    </XmlPeek>
+    <Exec Condition=" '$(Configuration)' == 'Release'" Command="@(NugetTools-&gt;'%(FullPath)') pack $(NuspecFile) -Version $(Version) -Properties Configuration=Release -OutputDirectory $(SolutionDir)Deployment\Test_App\GeneratedNugets" />
+    <Exec Condition=" '$(Configuration)' == 'Release'" Command="@(SquirrelTools-&gt;'%(FullPath)') --releasify $(SolutionDir)Deployment\Test_App\GeneratedNugets\@(ID).$(Version).nupkg --releaseDir=$(SolutionDir)Deployment\Test_App\Releases" />
+  </Target>
+</Project>

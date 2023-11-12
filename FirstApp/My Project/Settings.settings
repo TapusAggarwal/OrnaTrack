@@ -14,5 +14,11 @@
     <Setting Name="ListenerPhNo" Type="System.String" Scope="User">
       <Value Profile="(Default)">917018362951</Value>
     </Setting>
+    <Setting Name="Database_path" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Users\tapus\OneDrive\Desktop\OrnaTrack_database.accdb</Value>
+    </Setting>
+    <Setting Name="StockImages_Path" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Users\tapus\OneDrive\Desktop</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

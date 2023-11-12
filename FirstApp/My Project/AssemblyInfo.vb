@@ -7,10 +7,10 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("FirstApp")>
+<Assembly: AssemblyTitle("OrnaTrack")>
 <Assembly: AssemblyDescription("")>
 <Assembly: AssemblyCompany("")>
-<Assembly: AssemblyProduct("FirstApp")>
+<Assembly: AssemblyProduct("OrnaTrack")>
 <Assembly: AssemblyCopyright("Copyright ©  2020")>
 <Assembly: AssemblyTrademark("")>
 
@@ -30,5 +30,5 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 '<Assembly: AssemblyVersion("1.0.*")>
 
-<Assembly: AssemblyVersion("1.1.23.0")>
+<Assembly: AssemblyVersion("1.1.24.0")>
 <Assembly: AssemblyFileVersion("1.0.0.0")>

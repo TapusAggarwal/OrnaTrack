@@ -15,7 +15,7 @@ Option Explicit On
 Namespace My
     
     <Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute(),  _
-     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.3.0.0"),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.8.0.0"),  _
      Global.System.ComponentModel.EditorBrowsableAttribute(Global.System.ComponentModel.EditorBrowsableState.Advanced)>  _
     Partial Friend NotInheritable Class MySettings
         Inherits Global.System.Configuration.ApplicationSettingsBase
@@ -77,10 +77,10 @@ Namespace My
                 Me("server_notify") = value
             End Set
         End Property
-
-        <Global.System.Configuration.UserScopedSettingAttribute(),
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-         Global.System.Configuration.DefaultSettingValueAttribute("3.14.225.85:3966")>
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("3.14.225.85:3966")>  _
         Public Property connection_url() As String
             Get
                 Return CType(Me("connection_url"),String)
@@ -101,6 +101,30 @@ Namespace My
                 Me("ListenerPhNo") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("C:\Users\tapus\OneDrive\Desktop\OrnaTrack_database.accdb")>  _
+        Public Property Database_path() As String
+            Get
+                Return CType(Me("Database_path"),String)
+            End Get
+            Set
+                Me("Database_path") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("C:\Users\tapus\OneDrive\Desktop")>  _
+        Public Property StockImages_Path() As String
+            Get
+                Return CType(Me("StockImages_Path"),String)
+            End Get
+            Set
+                Me("StockImages_Path") = value
+            End Set
+        End Property
     End Class
 End Namespace
 
@@ -112,9 +136,9 @@ Namespace My
     Friend Module MySettingsProperty
         
         <Global.System.ComponentModel.Design.HelpKeywordAttribute("My.Settings")>  _
-        Friend ReadOnly Property Settings() As Global.FirstApp.My.MySettings
+        Friend ReadOnly Property Settings() As Global.OrnaTrack.My.MySettings
             Get
-                Return Global.FirstApp.My.MySettings.Default
+                Return Global.OrnaTrack.My.MySettings.Default
             End Get
         End Property
     End Module

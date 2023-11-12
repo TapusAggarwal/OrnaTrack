@@ -111,7 +111,7 @@ Partial Class Form3
         '
         Me.PictureBox8.BackColor = System.Drawing.Color.Transparent
         Me.PictureBox8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.PictureBox8.Image = Global.FirstApp.My.Resources.Resources.phnIcon
+        Me.PictureBox8.Image = Global.OrnaTrack.My.Resources.Resources.phnIcon
         Me.PictureBox8.Location = New System.Drawing.Point(19, 335)
         Me.PictureBox8.Name = "PictureBox8"
         Me.PictureBox8.Size = New System.Drawing.Size(39, 39)
@@ -123,7 +123,7 @@ Partial Class Form3
         '
         Me.PictureBox6.BackColor = System.Drawing.Color.Transparent
         Me.PictureBox6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.PictureBox6.Image = Global.FirstApp.My.Resources.Resources.phnIcon
+        Me.PictureBox6.Image = Global.OrnaTrack.My.Resources.Resources.phnIcon
         Me.PictureBox6.Location = New System.Drawing.Point(3, 59)
         Me.PictureBox6.Name = "PictureBox6"
         Me.PictureBox6.Size = New System.Drawing.Size(31, 31)
@@ -170,7 +170,7 @@ Partial Class Form3
         '
         Me.PictureBox3.BackColor = System.Drawing.Color.Black
         Me.PictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.PictureBox3.Image = Global.FirstApp.My.Resources.Resources.AccountInfo
+        Me.PictureBox3.Image = Global.OrnaTrack.My.Resources.Resources.AccountInfo
         Me.PictureBox3.Location = New System.Drawing.Point(233, 352)
         Me.PictureBox3.Name = "PictureBox3"
         Me.PictureBox3.Size = New System.Drawing.Size(229, 99)
@@ -182,7 +182,7 @@ Partial Class Form3
         '
         Me.PictureBox2.BackColor = System.Drawing.Color.Black
         Me.PictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.PictureBox2.Image = Global.FirstApp.My.Resources.Resources.LogoMata
+        Me.PictureBox2.Image = Global.OrnaTrack.My.Resources.Resources.LogoMata
         Me.PictureBox2.Location = New System.Drawing.Point(202, 16)
         Me.PictureBox2.Name = "PictureBox2"
         Me.PictureBox2.Size = New System.Drawing.Size(107, 139)
@@ -202,7 +202,7 @@ Partial Class Form3
         '
         Me.PictureBox4.BackColor = System.Drawing.Color.Black
         Me.PictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.PictureBox4.Image = Global.FirstApp.My.Resources.Resources.Google_PhonePe
+        Me.PictureBox4.Image = Global.OrnaTrack.My.Resources.Resources.Google_PhonePe
         Me.PictureBox4.Location = New System.Drawing.Point(128, 762)
         Me.PictureBox4.Name = "PictureBox4"
         Me.PictureBox4.Size = New System.Drawing.Size(184, 142)
@@ -236,7 +236,7 @@ Partial Class Form3
         '
         Me.PictureBox5.BackColor = System.Drawing.Color.Black
         Me.PictureBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.PictureBox5.Image = Global.FirstApp.My.Resources.Resources.signatureUsed
+        Me.PictureBox5.Image = Global.OrnaTrack.My.Resources.Resources.signatureUsed
         Me.PictureBox5.Location = New System.Drawing.Point(354, 766)
         Me.PictureBox5.Name = "PictureBox5"
         Me.PictureBox5.Size = New System.Drawing.Size(123, 70)
@@ -324,7 +324,7 @@ Partial Class Form3
         'PictureBox1
         '
         Me.PictureBox1.BackColor = System.Drawing.Color.White
-        Me.PictureBox1.Image = Global.FirstApp.My.Resources.Resources.Heder
+        Me.PictureBox1.Image = Global.OrnaTrack.My.Resources.Resources.Heder
         Me.PictureBox1.Location = New System.Drawing.Point(3, 137)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(514, 122)
@@ -336,7 +336,7 @@ Partial Class Form3
         '
         Me.PictureBox7.BackColor = System.Drawing.Color.Black
         Me.PictureBox7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.PictureBox7.Image = Global.FirstApp.My.Resources.Resources.Bis_Logo
+        Me.PictureBox7.Image = Global.OrnaTrack.My.Resources.Resources.Bis_Logo
         Me.PictureBox7.Location = New System.Drawing.Point(382, 33)
         Me.PictureBox7.Name = "PictureBox7"
         Me.PictureBox7.Size = New System.Drawing.Size(111, 90)

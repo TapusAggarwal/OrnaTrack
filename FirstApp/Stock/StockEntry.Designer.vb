@@ -27,9 +27,6 @@ Partial Class StockEntry
         Me.ChangeListenerPhNoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ListenOnceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.SaleFP = New FirstApp.UserControl1()
-        Me.ProductFP = New FirstApp.UserControl1()
-        Me.PurchaseFP = New FirstApp.UserControl1()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.ReloadImgBT = New FontAwesome.Sharp.IconButton()
         Me.NextImgButton = New FontAwesome.Sharp.IconButton()
@@ -37,6 +34,10 @@ Partial Class StockEntry
         Me.SaveBT = New FontAwesome.Sharp.IconButton()
         Me.ListeningStatusPanel = New System.Windows.Forms.Panel()
         Me.ImageBox = New System.Windows.Forms.PictureBox()
+        Me.SaleFP = New OrnaTrack.UserControl1()
+        Me.ProductFP = New OrnaTrack.UserControl1()
+        Me.PurchaseFP = New OrnaTrack.UserControl1()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.ContextMenuStrip1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
@@ -76,44 +77,9 @@ Partial Class StockEntry
         Me.Panel1.Size = New System.Drawing.Size(1665, 726)
         Me.Panel1.TabIndex = 320
         '
-        'SaleFP
-        '
-        Me.SaleFP.AllowDrop = True
-        Me.SaleFP.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(60, Byte), Integer))
-        Me.SaleFP.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.SaleFP.Dock = System.Windows.Forms.DockStyle.Left
-        Me.SaleFP.Location = New System.Drawing.Point(1110, 0)
-        Me.SaleFP.Name = "SaleFP"
-        Me.SaleFP.Size = New System.Drawing.Size(555, 726)
-        Me.SaleFP.TabIndex = 306
-        Me.SaleFP.Title = "Sale Attr."
-        '
-        'ProductFP
-        '
-        Me.ProductFP.AllowDrop = True
-        Me.ProductFP.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(60, Byte), Integer))
-        Me.ProductFP.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.ProductFP.Dock = System.Windows.Forms.DockStyle.Left
-        Me.ProductFP.Location = New System.Drawing.Point(555, 0)
-        Me.ProductFP.Name = "ProductFP"
-        Me.ProductFP.Size = New System.Drawing.Size(555, 726)
-        Me.ProductFP.TabIndex = 305
-        Me.ProductFP.Title = "Product Attr."
-        '
-        'PurchaseFP
-        '
-        Me.PurchaseFP.AllowDrop = True
-        Me.PurchaseFP.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(60, Byte), Integer))
-        Me.PurchaseFP.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.PurchaseFP.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PurchaseFP.Location = New System.Drawing.Point(0, 0)
-        Me.PurchaseFP.Name = "PurchaseFP"
-        Me.PurchaseFP.Size = New System.Drawing.Size(555, 726)
-        Me.PurchaseFP.TabIndex = 304
-        Me.PurchaseFP.Title = "Puchase Attr."
-        '
         'Panel2
         '
+        Me.Panel2.Controls.Add(Me.TextBox1)
         Me.Panel2.Controls.Add(Me.ReloadImgBT)
         Me.Panel2.Controls.Add(Me.NextImgButton)
         Me.Panel2.Controls.Add(Me.BackImgButton)
@@ -202,7 +168,7 @@ Partial Class StockEntry
         Me.SaveBT.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.SaveBT.FlatAppearance.BorderSize = 0
         Me.SaveBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.SaveBT.Font = New System.Drawing.Font("Century Gothic", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SaveBT.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SaveBT.ForeColor = System.Drawing.Color.MediumPurple
         Me.SaveBT.IconChar = FontAwesome.Sharp.IconChar.SignInAlt
         Me.SaveBT.IconColor = System.Drawing.Color.White
@@ -233,13 +199,56 @@ Partial Class StockEntry
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.ImageBox.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(60, Byte), Integer))
-        Me.ImageBox.Image = Global.FirstApp.My.Resources.Resources.addSign
+        Me.ImageBox.Image = Global.OrnaTrack.My.Resources.Resources.addSign
         Me.ImageBox.Location = New System.Drawing.Point(3, 3)
         Me.ImageBox.Name = "ImageBox"
         Me.ImageBox.Size = New System.Drawing.Size(250, 420)
         Me.ImageBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.ImageBox.TabIndex = 290
         Me.ImageBox.TabStop = False
+        '
+        'SaleFP
+        '
+        Me.SaleFP.AllowDrop = True
+        Me.SaleFP.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(60, Byte), Integer))
+        Me.SaleFP.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.SaleFP.Dock = System.Windows.Forms.DockStyle.Left
+        Me.SaleFP.Location = New System.Drawing.Point(1110, 0)
+        Me.SaleFP.Name = "SaleFP"
+        Me.SaleFP.Size = New System.Drawing.Size(555, 726)
+        Me.SaleFP.TabIndex = 306
+        Me.SaleFP.Title = "Sale Attr."
+        '
+        'ProductFP
+        '
+        Me.ProductFP.AllowDrop = True
+        Me.ProductFP.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(60, Byte), Integer))
+        Me.ProductFP.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.ProductFP.Dock = System.Windows.Forms.DockStyle.Left
+        Me.ProductFP.Location = New System.Drawing.Point(555, 0)
+        Me.ProductFP.Name = "ProductFP"
+        Me.ProductFP.Size = New System.Drawing.Size(555, 726)
+        Me.ProductFP.TabIndex = 305
+        Me.ProductFP.Title = "Product Attr."
+        '
+        'PurchaseFP
+        '
+        Me.PurchaseFP.AllowDrop = True
+        Me.PurchaseFP.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(60, Byte), Integer))
+        Me.PurchaseFP.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.PurchaseFP.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PurchaseFP.Location = New System.Drawing.Point(0, 0)
+        Me.PurchaseFP.Name = "PurchaseFP"
+        Me.PurchaseFP.Size = New System.Drawing.Size(555, 726)
+        Me.PurchaseFP.TabIndex = 304
+        Me.PurchaseFP.Title = "Puchase Attr."
+        '
+        'TextBox1
+        '
+        Me.TextBox1.Location = New System.Drawing.Point(43, 550)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(100, 26)
+        Me.TextBox1.TabIndex = 10013
         '
         'StockEntry
         '
@@ -276,4 +285,5 @@ Partial Class StockEntry
     Friend WithEvents NextImgButton As FontAwesome.Sharp.IconButton
     Friend WithEvents BackImgButton As FontAwesome.Sharp.IconButton
     Friend WithEvents ReloadImgBT As FontAwesome.Sharp.IconButton
+    Friend WithEvents TextBox1 As TextBox
 End Class

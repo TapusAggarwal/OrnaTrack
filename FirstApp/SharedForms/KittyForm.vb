@@ -1,5 +1,5 @@
 ﻿Imports System.Data.OleDb
-Imports FirstApp.Utility
+Imports OrnaTrack.Utility
 Imports FontAwesome.Sharp
 
 Public Class KittyForm
@@ -548,7 +548,7 @@ Public Class KittyForm
     Private Sub RightArrowButton_Click(sender As Object, e As EventArgs) Handles RightArrowButton.Click
         'Dim x As New Process()
         'Dim info As New ProcessStartInfo With {
-        '    .Arguments = "/c del /S C:\Users\hp\Desktop\Bills\ /Q",
+        '    .Arguments = "/c del /S {My.Settings.StockImages_Path}\Bills\ /Q",
         '    .FileName = "cmd.exe",
         '    .CreateNoWindow = False,
         '    .WindowStyle = ProcessWindowStyle.Hidden
@@ -557,7 +557,7 @@ Public Class KittyForm
         'x.Start()
         Dim proc As New Process()
         proc.StartInfo.FileName = "cmd"
-        proc.StartInfo.Arguments = "/c del /S C:\Users\hp\Desktop\Bills\ /Q"
+        proc.StartInfo.Arguments = $"/c del /S {My.Settings.StockImages_Path}\Bills\ /Q"
         proc.Start()
         proc.WaitForExit()
         Dim Fm As New MessengerForIndividual With {

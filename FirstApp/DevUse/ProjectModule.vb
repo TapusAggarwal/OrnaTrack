@@ -5,7 +5,7 @@ Imports System.IO
 Imports WebSocket4Net
 Imports System.Net.Http
 Imports System.Net.Http.Headers
-Imports FirstApp.MessageAndImageSender
+Imports OrnaTrack.MessageAndImageSender
 Imports Newtonsoft.Json.Linq
 
 Module ProjectModule
@@ -18,7 +18,7 @@ Module ProjectModule
 
     Public Structure Variables
         Shared ConnectionString As String =
-                "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\hp\Desktop\FirstApp_database.accdb"
+                $"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={My.Settings.Database_path}"
     End Structure
 
     Sub InitaliseConnection()

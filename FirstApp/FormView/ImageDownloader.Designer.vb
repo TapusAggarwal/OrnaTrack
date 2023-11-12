@@ -231,7 +231,7 @@ Partial Class ImageDownloader
         'ImageBox
         '
         Me.ImageBox.Dock = System.Windows.Forms.DockStyle.Left
-        Me.ImageBox.Image = Global.FirstApp.My.Resources.Resources.addSign
+        Me.ImageBox.Image = Global.OrnaTrack.My.Resources.Resources.addSign
         Me.ImageBox.Location = New System.Drawing.Point(0, 0)
         Me.ImageBox.Name = "ImageBox"
         Me.ImageBox.Size = New System.Drawing.Size(564, 636)

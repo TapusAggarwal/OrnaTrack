@@ -30,7 +30,7 @@ Partial Class TrayControl
         '
         Me.ImageBox.BackColor = System.Drawing.Color.FromArgb(CType(CType(36, Byte), Integer), CType(CType(30, Byte), Integer), CType(CType(60, Byte), Integer))
         Me.ImageBox.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.ImageBox.Image = Global.FirstApp.My.Resources.Resources.addSign
+        Me.ImageBox.Image = Global.OrnaTrack.My.Resources.Resources.addSign
         Me.ImageBox.Location = New System.Drawing.Point(0, 0)
         Me.ImageBox.Name = "ImageBox"
         Me.ImageBox.Size = New System.Drawing.Size(250, 250)
