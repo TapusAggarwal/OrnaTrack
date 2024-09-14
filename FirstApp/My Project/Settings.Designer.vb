@@ -80,7 +80,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("3.14.225.85:3966")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("localhost:3966")>  _
         Public Property connection_url() As String
             Get
                 Return CType(Me("connection_url"),String)
@@ -104,7 +104,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("C:\Users\tapus\OneDrive\Desktop\OrnaTrack_database.accdb")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("C:\Users\tapus\OneDrive\Desktop\FirstApp_database.accdb")>  _
         Public Property Database_path() As String
             Get
                 Return CType(Me("Database_path"),String)

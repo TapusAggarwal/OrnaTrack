@@ -319,6 +319,7 @@ Public Class Frame
         End If
 
         Try
+            If WebSocket Is Nothing Then Exit Try
             If Not WebSocket.State = WebSocketState.Closed AndAlso Not WebSocket.State = WebSocketState.Closing Then
                 WebSocket.Close()
             End If

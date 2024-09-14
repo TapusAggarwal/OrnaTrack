@@ -9,13 +9,13 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="connection_url" Type="System.String" Scope="User">
-      <Value Profile="(Default)">3.14.225.85:3966</Value>
+      <Value Profile="(Default)">localhost:3966</Value>
     </Setting>
     <Setting Name="ListenerPhNo" Type="System.String" Scope="User">
       <Value Profile="(Default)">917018362951</Value>
     </Setting>
     <Setting Name="Database_path" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\Users\tapus\OneDrive\Desktop\OrnaTrack_database.accdb</Value>
+      <Value Profile="(Default)">C:\Users\tapus\OneDrive\Desktop\FirstApp_database.accdb</Value>
     </Setting>
     <Setting Name="StockImages_Path" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\Users\tapus\OneDrive\Desktop</Value>
