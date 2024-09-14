@@ -117,10 +117,10 @@ Public Class KittyForm
 
         If Not _currentKitty.IsMatured Then
             LeftAmountTB.Text = _currentKitty.TotalAmount - _currentKitty.GivenAmount
-            BalanceTB.Text = GivenAmountTB.Text Mod _currentKitty.KittyType
+            BalanceTB.Text = GivenAmountTB.Text.Split.Last Mod _currentKitty.KittyType
         Else
             LeftAmountTB.Text = 0
-            BalanceTB.Text = GivenAmountTB.Text - _currentKitty.TotalAmount
+            BalanceTB.Text = GivenAmountTB.Text.Split.Last - _currentKitty.TotalAmount
         End If
     End Sub
 

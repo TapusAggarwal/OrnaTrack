@@ -656,8 +656,6 @@ Public Class Frame
     End Sub
 
     Private Sub IconButton2_Click_1(sender As Object, e As EventArgs) Handles IconButton2.Click
-        Dim Fm As New rough1
-        Fm.ShowDialog()
     End Sub
 
     Private Sub ChangeDatabasePathToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ChangeDatabasePathToolStripMenuItem.Click
